@@ -8,7 +8,7 @@
     <BuildType Name="Stable_Release" />
     <Platform Name="x64" />
   </Configurations>
-  <Project Path="Bannerlord.GameCommander/Bannerlord.Commander.csproj">
+  <Project Path="Bannerlord.Commander/Bannerlord.Commander.csproj">
     <Platform Project="x64" />
   </Project>
 </Solution>
