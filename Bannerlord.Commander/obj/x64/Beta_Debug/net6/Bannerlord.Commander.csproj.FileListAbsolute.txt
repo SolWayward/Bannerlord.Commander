@@ -1,0 +1,13 @@
+C:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\bin\x64\Beta_Debug\net6\Bannerlord.Commander.v1.3.13.deps.json
+c:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\bin\x64\Beta_Debug\net6\Bannerlord.Commander.v1.3.13.dll
+c:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\bin\x64\Beta_Debug\net6\Bannerlord.Commander.v1.3.13.pdb
+c:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\obj\x64\Beta_Debug\net6\Bannerlord.Commander.csproj.AssemblyReference.cache
+c:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\obj\x64\Beta_Debug\net6\Bannerlord.Commander.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\obj\x64\Beta_Debug\net6\Bannerlord.Commander.AssemblyInfoInputs.cache
+c:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\obj\x64\Beta_Debug\net6\Bannerlord.Commander.AssemblyInfo.cs
+c:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\obj\x64\Beta_Debug\net6\Bannerlord.Commander.csproj.CoreCompileInputs.cache
+c:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\obj\x64\Beta_Debug\net6\Bannerlord.Commander.sourcelink.json
+c:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\obj\x64\Beta_Debug\net6\Bannerlord.Commander.v1.3.13.dll
+c:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\obj\x64\Beta_Debug\net6\refint\Bannerlord.Commander.v1.3.13.dll
+c:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\obj\x64\Beta_Debug\net6\Bannerlord.Commander.v1.3.13.pdb
+C:\Users\Shadow\source\repos\Bannerlord.Commander\Bannerlord.Commander\obj\x64\Beta_Debug\net6\ref\Bannerlord.Commander.v1.3.13.dll

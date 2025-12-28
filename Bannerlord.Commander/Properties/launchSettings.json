@@ -2,21 +2,11 @@
   "profiles": {
     "Bannerlord": {
       "commandName": "Executable",
-      "executablePath": "$(GameFolder)\\bin\\$(GameBinariesFolder)\\Bannerlord.exe",
-      "commandLineArgs": "/singleplayer _MODULES_*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*Bannerlord.GameMaster*Bannerlord.Commander*_MODULES_",
-      "workingDirectory": "$(GameFolder)\\bin\\$(GameBinariesFolder)"
-    },
-    "BLSE Bannerlord": {
-      "commandName": "Executable",
-      "executablePath": "$(GameFolder)\\bin\\$(GameBinariesFolder)\\Bannerlord.BLSE.Standalone.exe",
-      "commandLineArgs": "/disableautogenexceptions /singleplayer _MODULES_*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*$(ModuleId)*_MODULES_",
-      "workingDirectory": "$(GameFolder)\\bin\\$(GameBinariesFolder)"
-    },
-    "BLSE Bannerlord With Crash Reporter": {
-      "commandName": "Executable",
-      "executablePath": "$(GameFolder)\\bin\\$(GameBinariesFolder)\\Bannerlord.BLSE.Standalone.exe",
-      "commandLineArgs": "/enablecrashhandlerwhendebuggerisattached /singleplayer _MODULES_*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*$(ModuleId)*_MODULES_",
-      "workingDirectory": "$(GameFolder)\\bin\\$(GameBinariesFolder)"
+      "executablePath": "$(BANNERLORD_GAME_DIR)\\bin\\$(GameBinariesFolder)\\Bannerlord.exe",
+      "commandLineArgs": "/singleplayer /continuegame _MODULES_*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*NavalDLC*Bannerlord.GameMaster*Bannerlord.Commander*_MODULES_",
+      "workingDirectory": "$(BANNERLORD_GAME_DIR)\\bin\\Win64_Shipping_Client",
+      "nativeDebugging": true,
+      "suppressJITOptimizations": true
     }
   }
 }
