@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Bannerlord",
+            "type": "clr",
+            "request": "launch",
+            "preLaunchTask": "build bannerlord",
+            "postDebugTask": "cleanup-debug",
+            "program": "${env:BANNERLORD_GAME_DIR}/bin/Win64_Shipping_Client/Bannerlord.exe",
+            "args": [
+                "/singleplayer",
+                "/continuegame",
+                "_MODULES_*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*NavalDLC*Bannerlord.GameMaster*Bannerlord.Commander*_MODULES_"
+            ],
+            "cwd": "${env:BANNERLORD_GAME_DIR}/bin/Win64_Shipping_Client",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        }
+    ]
+}
