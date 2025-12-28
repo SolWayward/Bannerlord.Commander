@@ -1,0 +1,67 @@
+<Prefab>
+  <Window>
+    <!-- Centered panel -->
+    <Widget WidthSizePolicy="Fixed" 
+            HeightSizePolicy="Fixed" 
+            SuggestedWidth="500" 
+            SuggestedHeight="300"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            Sprite="BlankWhiteSquare_9"
+            Color="#2a2a2aFF">
+      <Children>
+      
+        <!-- Title text using native game brush -->
+        <RichTextWidget WidthSizePolicy="StretchToParent"
+                        HeightSizePolicy="Fixed"
+                        SuggestedHeight="50"
+                        MarginTop="30"
+                        MarginLeft="20"
+                        MarginRight="20"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        Brush="TownManagement.Description.Title.Text"
+                        Brush.FontSize="24"
+                        Text="Commander Test Screen" />
+        
+        <!-- Info text using native game brush -->
+        <RichTextWidget WidthSizePolicy="StretchToParent"
+                        HeightSizePolicy="Fixed"
+                        SuggestedHeight="60"
+                        MarginLeft="20"
+                        MarginRight="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Brush="TownManagement.Description.Title.Text"
+                        Brush.FontSize="16"
+                        Text="Press ESC to close this screen." />
+        
+        <!-- Close button -->
+        <ButtonWidget WidthSizePolicy="Fixed"
+                      HeightSizePolicy="Fixed"
+                      SuggestedWidth="150"
+                      SuggestedHeight="50"
+                      MarginBottom="30"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Bottom"
+                      DoNotPassEventsToChildren="true"
+                      UpdateChildrenStates="true"
+                      Command.Click="ExecuteClose">
+          <Children>
+            <Widget WidthSizePolicy="StretchToParent"
+                    HeightSizePolicy="StretchToParent"
+                    Sprite="BlankWhiteSquare_9"
+                    Color="#555555FF" />
+            <TextWidget WidthSizePolicy="StretchToParent"
+                        HeightSizePolicy="StretchToParent"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Brush="Clan.TabControl.Text"
+                        Text="Close" />
+          </Children>
+        </ButtonWidget>
+        
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

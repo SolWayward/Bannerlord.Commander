@@ -1,0 +1,65 @@
+{
+  // XML Configuration
+  "xml.format.enabled": true,
+  "xml.format.splitAttributes": false,
+  "xml.format.joinContentLines": false,
+  "xml.format.preserveEmptyContent": true,
+  "xml.format.preservedNewlines": 2,
+  "xml.validation.enabled": true,
+  "xml.validation.noGrammar": "hint",
+  
+  // File associations
+  "files.associations": {
+    "*.xml": "xml",
+    "*.xsd": "xml"
+  },
+  
+  // XML formatter settings
+  "[xml]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "redhat.vscode-xml",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  
+  // General editor settings for the project
+  "editor.detectIndentation": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 4,
+  
+  // C# settings
+  "[csharp]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
+  },
+  
+  // File exclusions to reduce clutter
+  "files.exclude": {
+    "**/bin": false,
+    "**/obj": false,
+    "**/.vs": true
+  },
+  
+  // Search exclusions
+  "search.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    "**/.vs": true
+  },
+  
+  // Workspace specific settings
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  
+  // XML catalog for schema validation
+  "xml.fileAssociations": [
+    {
+      "pattern": "**/GUI/**/*.xml",
+      "systemId": "Bannerlord.Commander/schemas/gauntletui.xsd"
+    },
+    {
+      "pattern": "**/GUI/Prefabs/*.xml",
+      "systemId": "Bannerlord.Commander/schemas/gauntletui.xsd"
+    }
+  ]
+}

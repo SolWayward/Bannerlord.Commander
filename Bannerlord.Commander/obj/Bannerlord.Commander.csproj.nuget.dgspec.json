@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\Bannerlord.Commander.csproj": {}
+    "c:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\Bannerlord.Commander.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\Bannerlord.Commander.csproj": {
+    "c:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\Bannerlord.Commander.csproj": {
       "version": "1.3.13.1",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\Bannerlord.Commander.csproj",
+        "projectUniqueName": "c:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\Bannerlord.Commander.csproj",
         "projectName": "Bannerlord.Commander.v1.3.13",
-        "projectPath": "C:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\Bannerlord.Commander.csproj",
+        "projectPath": "c:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\Bannerlord.Commander.csproj",
         "packagesPath": "C:\\Users\\Shadow\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\obj\\",
+        "outputPath": "c:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [

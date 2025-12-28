@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Brushes>
+  <!-- Simple text brush that should work -->
+  <Brush Name="Commander.Text.White" Font="Galahad" FontSize="20">
+    <Styles>
+      <Style Name="Default">
+        <TextMaterial Color="#FFFFFFFF" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Commander.Text.Gray" Font="Galahad" FontSize="16">
+    <Styles>
+      <Style Name="Default">
+        <TextMaterial Color="#CCCCCCFF" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <Brush Name="Commander.Button.Normal" Font="Galahad" FontSize="18">
+    <Styles>
+      <Style Name="Default">
+        <TextMaterial Color="#FFFFFFFF" />
+      </Style>
+    </Styles>
+  </Brush>
+</Brushes>

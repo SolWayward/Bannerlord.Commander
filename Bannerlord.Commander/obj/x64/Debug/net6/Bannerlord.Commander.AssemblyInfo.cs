@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bannerlord.Commander.v1.3.13")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.3.13.1")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.3.13.1+909a33be90b4f14f7017a381e48dbd6cd40d1118")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.3.13.1+31fa8e2fed837f63e20972c16e6ac8474f61a9d3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bannerlord.Commander.v1.3.13")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bannerlord.Commander.v1.3.13")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.3.13.1")]

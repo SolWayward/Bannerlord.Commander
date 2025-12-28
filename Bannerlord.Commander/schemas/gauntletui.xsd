@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  
+  <!-- Root Elements -->
+  <xs:element name="Prefab" type="PrefabType"/>
+  <xs:element name="Window" type="WindowType"/>
+  
+  <!-- Complex Types -->
+  <xs:complexType name="PrefabType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Window" type="WindowType"/>
+      <xs:element name="Widget" type="WidgetType"/>
+      <xs:element name="Constants" type="ConstantsType"/>
+    </xs:choice>
+  </xs:complexType>
+  
+  <xs:complexType name="ConstantsType">
+    <xs:sequence>
+      <xs:element name="Constant" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attribute name="Name" type="xs:string" use="required"/>
+          <xs:attribute name="Value" type="xs:string" use="required"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="WindowType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:group ref="WidgetElements"/>
+    </xs:choice>
+    <xs:attributeGroup ref="CommonAttributes"/>
+  </xs:complexType>
+  
+  <xs:complexType name="WidgetType" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:group ref="WidgetElements"/>
+    </xs:choice>
+    <xs:attributeGroup ref="CommonAttributes"/>
+  </xs:complexType>
+  
+  <!-- Widget Elements Group -->
+  <xs:group name="WidgetElements">
+    <xs:choice>
+      <xs:element name="Widget" type="WidgetType"/>
+      <xs:element name="ListPanel" type="WidgetType"/>
+      <xs:element name="GridWidget" type="WidgetType"/>
+      <xs:element name="ButtonWidget" type="WidgetType"/>
+      <xs:element name="TextWidget" type="WidgetType"/>
+      <xs:element name="RichTextWidget" type="WidgetType"/>
+      <xs:element name="ImageWidget" type="WidgetType"/>
+      <xs:element name="BrushWidget" type="WidgetType"/>
+      <xs:element name="ScrollablePanel" type="WidgetType"/>
+      <xs:element name="EditableTextWidget" type="WidgetType"/>
+      <xs:element name="SliderWidget" type="WidgetType"/>
+      <xs:element name="CheckboxWidget" type="WidgetType"/>
+      <xs:element name="DropdownWidget" type="WidgetType"/>
+      <xs:element name="NavigationScopeTargeter" type="WidgetType"/>
+      <xs:element name="TooltipWidget" type="WidgetType"/>
+      <xs:element name="VideoWidget" type="WidgetType"/>
+      <xs:element name="CircleWidget" type="WidgetType"/>
+      <xs:element name="MaskedTextureWidget" type="WidgetType"/>
+      <xs:element name="FillBarWidget" type="WidgetType"/>
+      <xs:element name="MinMaxSliderWidget" type="WidgetType"/>
+      <xs:element name="AutoHideScrollBar" type="WidgetType"/>
+      <xs:element name="NavigationAutoScrollWidget" type="WidgetType"/>
+      <xs:element name="TabbedPanel" type="WidgetType"/>
+      <xs:element name="Tree" type="WidgetType"/>
+      <xs:element name="Container" type="WidgetType"/>
+    </xs:choice>
+  </xs:group>
+  
+  <!-- Common Attributes -->
+  <xs:attributeGroup name="CommonAttributes">
+    <!-- Core Properties -->
+    <xs:attribute name="Id" type="xs:string"/>
+    <xs:attribute name="DataSource" type="xs:string"/>
+    <xs:attribute name="DoNotAcceptEvents" type="xs:boolean"/>
+    <xs:attribute name="DoNotPassEventsToChildren" type="xs:boolean"/>
+    <xs:attribute name="IsEnabled" type="xs:boolean"/>
+    <xs:attribute name="IsVisible" type="xs:boolean"/>
+    <xs:attribute name="IsHidden" type="xs:boolean"/>
+    
+    <!-- Size Properties -->
+    <xs:attribute name="WidthSizePolicy" type="SizePolicyType"/>
+    <xs:attribute name="HeightSizePolicy" type="SizePolicyType"/>
+    <xs:attribute name="SuggestedWidth" type="xs:float"/>
+    <xs:attribute name="SuggestedHeight" type="xs:float"/>
+    <xs:attribute name="MinWidth" type="xs:float"/>
+    <xs:attribute name="MinHeight" type="xs:float"/>
+    <xs:attribute name="MaxWidth" type="xs:float"/>
+    <xs:attribute name="MaxHeight" type="xs:float"/>
+    <xs:attribute name="ScaledSuggestedWidth" type="xs:float"/>
+    <xs:attribute name="ScaledSuggestedHeight" type="xs:float"/>
+    
+    <!-- Alignment Properties -->
+    <xs:attribute name="HorizontalAlignment" type="AlignmentType"/>
+    <xs:attribute name="VerticalAlignment" type="AlignmentType"/>
+    
+    <!-- Margin and Padding -->
+    <xs:attribute name="MarginTop" type="xs:float"/>
+    <xs:attribute name="MarginBottom" type="xs:float"/>
+    <xs:attribute name="MarginLeft" type="xs:float"/>
+    <xs:attribute name="MarginRight" type="xs:float"/>
+    <xs:attribute name="PaddingTop" type="xs:float"/>
+    <xs:attribute name="PaddingBottom" type="xs:float"/>
+    <xs:attribute name="PaddingLeft" type="xs:float"/>
+    <xs:attribute name="PaddingRight" type="xs:float"/>
+    
+    <!-- Position -->
+    <xs:attribute name="PositionXOffset" type="xs:float"/>
+    <xs:attribute name="PositionYOffset" type="xs:float"/>
+    <xs:attribute name="UpdateChildrenStates" type="xs:boolean"/>
+    
+    <!-- Visual Properties -->
+    <xs:attribute name="Brush" type="xs:string"/>
+    <xs:attribute name="Sprite" type="xs:string"/>
+    <xs:attribute name="Color" type="xs:string"/>
+    <xs:attribute name="AlphaFactor" type="xs:float"/>
+    <xs:attribute name="ColorFactor" type="xs:float"/>
+    <xs:attribute name="HueFactor" type="xs:float"/>
+    <xs:attribute name="SaturationFactor" type="xs:float"/>
+    <xs:attribute name="ValueFactor" type="xs:float"/>
+    
+    <!-- Text Properties -->
+    <xs:attribute name="Text" type="xs:string"/>
+    <xs:attribute name="FontSize" type="xs:float"/>
+    <xs:attribute name="TextHorizontalAlignment" type="AlignmentType"/>
+    <xs:attribute name="TextVerticalAlignment" type="AlignmentType"/>
+    
+    <!-- ListPanel Properties -->
+    <xs:attribute name="LayoutImp.LayoutMethod" type="LayoutMethodType"/>
+    <xs:attribute name="StackLayout.LayoutMethod" type="LayoutMethodType"/>
+    <xs:attribute name="ClipContents" type="xs:boolean"/>
+    
+    <!-- Button Properties -->
+    <xs:attribute name="Command.Click" type="xs:string"/>
+    <xs:attribute name="ClickToActivate" type="xs:boolean"/>
+    <xs:attribute name="IsSelected" type="xs:boolean"/>
+    
+    <!-- Scrollable Properties -->
+    <xs:attribute name="ClipRect" type="xs:string"/>
+    <xs:attribute name="InnerPanel" type="xs:string"/>
+    <xs:attribute name="AutoHideScrollBarHandle" type="xs:boolean"/>
+    <xs:attribute name="AutoHideScrollBars" type="xs:boolean"/>
+    
+    <!-- Advanced Properties -->
+    <xs:attribute name="UsedNavigationMovements" type="xs:string"/>
+    <xs:attribute name="GamepadNavigationIndex" type="xs:int"/>
+    <xs:attribute name="IsAutoNavigationTarget" type="xs:boolean"/>
+    <xs:attribute name="FocusableChildIndex" type="xs:int"/>
+    
+    <!-- Grid Properties -->
+    <xs:attribute name="DefaultCellWidth" type="xs:float"/>
+    <xs:attribute name="DefaultCellHeight" type="xs:float"/>
+    <xs:attribute name="ColumnCount" type="xs:int"/>
+    
+    <!-- Tooltip -->
+    <xs:attribute name="TooltipWidget" type="xs:string"/>
+    
+    <!-- Misc -->
+    <xs:attribute name="AcceptDrop" type="xs:boolean"/>
+    <xs:attribute name="AcceptDrag" type="xs:boolean"/>
+    <xs:attribute name="CanEffectOtherWidgetsBrush" type="xs:boolean"/>
+    <xs:attribute name="CircularClipEnabled" type="xs:boolean"/>
+    <xs:attribute name="CircularClipRadius" type="xs:float"/>
+    <xs:attribute name="CircularClipSmoothingRadius" type="xs:float"/>
+  </xs:attributeGroup>
+  
+  <!-- Simple Types -->
+  <xs:simpleType name="SizePolicyType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Fixed"/>
+      <xs:enumeration value="StretchToParent"/>
+      <xs:enumeration value="CoverChildren"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="AlignmentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Left"/>
+      <xs:enumeration value="Right"/>
+      <xs:enumeration value="Center"/>
+      <xs:enumeration value="Top"/>
+      <xs:enumeration value="Bottom"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="LayoutMethodType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HorizontalLeftToRight"/>
+      <xs:enumeration value="HorizontalRightToLeft"/>
+      <xs:enumeration value="VerticalTopToBottom"/>
+      <xs:enumeration value="VerticalBottomToTop"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+</xs:schema>

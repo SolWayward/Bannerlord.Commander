@@ -2,11 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Bannerlord",
+            "name": "BLC",
             "type": "clr",
             "request": "launch",
-            "preLaunchTask": "build bannerlord",
-            "postDebugTask": "cleanup-debug",
+            "preLaunchTask": "disable-safe-mode",
             "program": "${env:BANNERLORD_GAME_DIR}/bin/Win64_Shipping_Client/Bannerlord.exe",
             "args": [
                 "/singleplayer",

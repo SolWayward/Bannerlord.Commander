@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UIQlxTVqSFM=",
+  "dgSpecHash": "sIMgEeFaNM4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\Bannerlord.Commander.csproj",
+  "projectFilePath": "c:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\Bannerlord.Commander.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Shadow\\.nuget\\packages\\bannerlord.referenceassemblies\\1.3.13.105726\\bannerlord.referenceassemblies.1.3.13.105726.nupkg.sha512",
     "C:\\Users\\Shadow\\.nuget\\packages\\bannerlord.referenceassemblies.birthanddeath\\1.3.13.105726\\bannerlord.referenceassemblies.birthanddeath.1.3.13.105726.nupkg.sha512",
