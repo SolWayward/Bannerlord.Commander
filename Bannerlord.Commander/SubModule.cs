@@ -7,8 +7,7 @@ namespace Bannerlord.Commander
     {
         protected override void OnSubModuleLoad()
         {
-            base.OnSubModuleLoad();
-
+            base.OnSubModuleLoad();          
         }
 
         protected override void OnSubModuleUnloaded()

@@ -7,6 +7,8 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <LangVersion>10.0</LangVersion>
     <Nullable>disable</Nullable>
+    <!-- Suppress unused variable warnings for EXLauncher template code -->
+    <NoWarn>$(NoWarn);CS0168</NoWarn>
 
     <BuildForWindows>false</BuildForWindows>
     <BuildForWindowsStore>false</BuildForWindowsStore>
@@ -16,7 +18,7 @@
     <ModuleUrl></ModuleUrl>
     <GameFolder>$(BANNERLORD_GAME_DIR)</GameFolder>
     <!-- Module manually override GameVersion -->
-	<OverrideGameVersion>v1.3.13</OverrideGameVersion>
+ <OverrideGameVersion>v1.3.13</OverrideGameVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework) == 'net472'">
@@ -39,8 +41,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" PrivateAssets="all" IncludeAssets="compile" />
-	  <PackageReference Include="BUTR.Harmony.Analyzer" Version="1.0.1.50" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+   <PackageReference Include="Newtonsoft.Json" Version="13.0.1" PrivateAssets="all" IncludeAssets="compile" />
+   <PackageReference Include="BUTR.Harmony.Analyzer" Version="1.0.1.50" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+  </ItemGroup>
+
+  <!-- Bannerlord.GameMaster references for Steam/GOG/Epic (net472) -->
+  <ItemGroup Condition="$(TargetFramework) == 'net472'">
+   <Reference Include="Bannerlord.GameMaster">
+    <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.GameMaster\bin\Win64_Shipping_Client\Bannerlord.GameMaster.v1.3.11.dll</HintPath>
+    <Private>false</Private>
+   </Reference>
+  </ItemGroup>
+
+  <!-- Bannerlord.GameMaster references for Xbox Game Pass (net6) -->
+  <ItemGroup Condition="$(TargetFramework) == 'net6'">
+   <Reference Include="Bannerlord.GameMaster">
+    <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.GameMaster\bin\Gaming.Desktop.x64_Shipping_Client\Bannerlord.GameMaster.v1.3.11.dll</HintPath>
+    <Private>false</Private>
+   </Reference>
   </ItemGroup>
   
 </Project>
