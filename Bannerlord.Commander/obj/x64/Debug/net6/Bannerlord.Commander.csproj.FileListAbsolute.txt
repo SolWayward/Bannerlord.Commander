@@ -1,0 +1,12 @@
+C:\Users\Shadow\source\repos\Bannerlord.GameCommander\Bannerlord.GameCommander\bin\x64\Debug\net6\Bannerlord.Commander.v1.3.13.deps.json
+C:\Users\Shadow\source\repos\Bannerlord.GameCommander\Bannerlord.GameCommander\bin\x64\Debug\net6\Bannerlord.Commander.v1.3.13.dll
+C:\Users\Shadow\source\repos\Bannerlord.GameCommander\Bannerlord.GameCommander\bin\x64\Debug\net6\Bannerlord.Commander.v1.3.13.pdb
+C:\Users\Shadow\source\repos\Bannerlord.GameCommander\Bannerlord.GameCommander\obj\x64\Debug\net6\Bannerlord.Commander.csproj.AssemblyReference.cache
+C:\Users\Shadow\source\repos\Bannerlord.GameCommander\Bannerlord.GameCommander\obj\x64\Debug\net6\Bannerlord.Commander.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Shadow\source\repos\Bannerlord.GameCommander\Bannerlord.GameCommander\obj\x64\Debug\net6\Bannerlord.Commander.AssemblyInfoInputs.cache
+C:\Users\Shadow\source\repos\Bannerlord.GameCommander\Bannerlord.GameCommander\obj\x64\Debug\net6\Bannerlord.Commander.AssemblyInfo.cs
+C:\Users\Shadow\source\repos\Bannerlord.GameCommander\Bannerlord.GameCommander\obj\x64\Debug\net6\Bannerlord.Commander.csproj.CoreCompileInputs.cache
+C:\Users\Shadow\source\repos\Bannerlord.GameCommander\Bannerlord.GameCommander\obj\x64\Debug\net6\Bannerlord.Commander.v1.3.13.dll
+C:\Users\Shadow\source\repos\Bannerlord.GameCommander\Bannerlord.GameCommander\obj\x64\Debug\net6\refint\Bannerlord.Commander.v1.3.13.dll
+C:\Users\Shadow\source\repos\Bannerlord.GameCommander\Bannerlord.GameCommander\obj\x64\Debug\net6\Bannerlord.Commander.v1.3.13.pdb
+C:\Users\Shadow\source\repos\Bannerlord.GameCommander\Bannerlord.GameCommander\obj\x64\Debug\net6\ref\Bannerlord.Commander.v1.3.13.dll
