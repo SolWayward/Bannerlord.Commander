@@ -16,7 +16,7 @@ namespace Bannerlord.Commander
             base.OnSubModuleLoad();
             
             InformationManager.DisplayMessage(
-                new InformationMessage("Bannerlord.Commander loaded! Press F10 to open test screen.")
+                new InformationMessage("Bannerlord.Commander loaded! Press F10 to open Commander screen.")
             );
         }
 
@@ -26,7 +26,7 @@ namespace Bannerlord.Commander
         }
 
         /// <summary>
-        /// Called every frame - handles F10 key press to open the test screen
+        /// Called every frame - handles F10 key press to open the Commander screen
         /// </summary>
         protected override void OnApplicationTick(float dt)
         {
@@ -40,23 +40,23 @@ namespace Bannerlord.Commander
             if (_isScreenOpen)
             {
                 // Check if screen was closed
-                if (!(ScreenManager.TopScreen is CommanderTestGauntletScreen))
+                if (!(ScreenManager.TopScreen is CommanderGauntletScreen))
                 {
                     _isScreenOpen = false;
                 }
                 return;
             }
 
-            // F10 opens the test screen
+            // F10 opens the Commander screen
             if (Input.IsKeyPressed(InputKey.F10))
             {
-                OpenTestScreen();
+                OpenCommanderScreen();
             }
         }
 
-        private void OpenTestScreen()
+        private void OpenCommanderScreen()
         {
-            var screen = new CommanderTestGauntletScreen();
+            var screen = new CommanderGauntletScreen();
             ScreenManager.PushScreen(screen);
             _isScreenOpen = true;
         }

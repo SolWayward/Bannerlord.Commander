@@ -5,27 +5,27 @@ using TaleWorlds.ScreenSystem;
 namespace Bannerlord.Commander.UI
 {
     /// <summary>
-    /// A dedicated GauntletScreen for the test UI.
+    /// The main Commander screen - a full-screen Gauntlet UI for Commander functionality.
     /// Uses the standard Bannerlord screen pattern with GauntletLayer.
     /// </summary>
-    public class CommanderTestGauntletScreen : ScreenBase
+    public class CommanderGauntletScreen : ScreenBase
     {
         private GauntletLayer _gauntletLayer;
-        private CommanderTestVM _viewModel;
+        private CommanderVM _viewModel;
         private bool _isClosing;
 
         protected override void OnInitialize()
         {
             base.OnInitialize();
 
-            _viewModel = new CommanderTestVM();
+            _viewModel = new CommanderVM();
             _viewModel.OnCloseRequested += OnCloseRequested;
             
             // Create the layer (categoryId, localOrder, shouldClear)
             _gauntletLayer = new GauntletLayer("GauntletLayer", 100, false);
             
             // Load the movie - must be in GUI/Prefabs folder
-            _gauntletLayer.LoadMovie("CommanderTestScreen", _viewModel);
+            _gauntletLayer.LoadMovie("CommanderScreen", _viewModel);
             
             // Add and focus the layer
             AddLayer(_gauntletLayer);
