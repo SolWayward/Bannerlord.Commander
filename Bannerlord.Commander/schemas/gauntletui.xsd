@@ -46,6 +46,7 @@
       <xs:element name="ListPanel" type="WidgetType"/>
       <xs:element name="GridWidget" type="WidgetType"/>
       <xs:element name="ButtonWidget" type="WidgetType"/>
+      <xs:element name="TabToggleWidget" type="WidgetType"/>
       <xs:element name="TextWidget" type="WidgetType"/>
       <xs:element name="RichTextWidget" type="WidgetType"/>
       <xs:element name="ImageWidget" type="WidgetType"/>

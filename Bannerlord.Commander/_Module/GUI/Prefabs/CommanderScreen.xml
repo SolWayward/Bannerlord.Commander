@@ -63,366 +63,205 @@
               <Children>
                 
                 <!-- Kingdoms Tab -->
-                <ButtonWidget WidthSizePolicy="Fixed"
+                <ButtonWidget DoNotPassEventsToChildren="true"
+                              UpdateChildrenStates="true"
+                              WidthSizePolicy="Fixed"
                               HeightSizePolicy="Fixed"
-                              SuggestedWidth="110"
+                              SuggestedWidth="180"
                               SuggestedHeight="38"
                               MarginLeft="2"
                               MarginRight="2"
-                              DoNotPassEventsToChildren="true"
-                              UpdateChildrenStates="true"
+                              Brush="Commander.Tab.Button"
                               Command.Click="ExecuteSelectKingdoms">
                   <Children>
-                    <!-- Unselected background (darker, recessed) -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#2A2A2AFF"
-                            IsVisible="@IsKingdomsSelected"
-                            IsVisibleNot="true" />
-                    <!-- Selected background (brighter, raised tab look) -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#3D3D3DFF"
-                            IsVisible="@IsKingdomsSelected" />
-                    <!-- Top highlight border for selected tab -->
+                    <!-- Top border - only visible when selected -->
                     <Widget WidthSizePolicy="StretchToParent"
                             HeightSizePolicy="Fixed"
                             SuggestedHeight="3"
                             VerticalAlignment="Top"
                             Sprite="BlankWhiteSquare_9"
                             Color="#C9A86CFF"
-                            IsVisible="@IsKingdomsSelected" />
-                    <!-- Selected text -->
+                            IsVisible="@IsKingdomsSelected"/>
                     <TextWidget WidthSizePolicy="StretchToParent"
                                 HeightSizePolicy="StretchToParent"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Selected"
-                                Text="Kingdoms"
-                                IsVisible="@IsKingdomsSelected" />
-                    <!-- Unselected text -->
-                    <TextWidget WidthSizePolicy="StretchToParent"
-                                HeightSizePolicy="StretchToParent"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Unselected"
-                                Text="Kingdoms"
-                                IsVisible="@IsKingdomsSelected"
-                                IsVisibleNot="true" />
+                                Brush="Clan.TabControl.Text"
+                                Text="Kingdoms" />
                   </Children>
                 </ButtonWidget>
                 
                 <!-- Clans Tab -->
-                <ButtonWidget WidthSizePolicy="Fixed"
+                <ButtonWidget DoNotPassEventsToChildren="true"
+                              UpdateChildrenStates="true"
+                              WidthSizePolicy="Fixed"
                               HeightSizePolicy="Fixed"
-                              SuggestedWidth="110"
+                              SuggestedWidth="180"
                               SuggestedHeight="38"
                               MarginLeft="2"
                               MarginRight="2"
-                              DoNotPassEventsToChildren="true"
-                              UpdateChildrenStates="true"
+                              Brush="Commander.Tab.Button"
                               Command.Click="ExecuteSelectClans">
                   <Children>
-                    <!-- Unselected background -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#2A2A2AFF"
-                            IsVisible="@IsClansSelected"
-                            IsVisibleNot="true" />
-                    <!-- Selected background -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#3D3D3DFF"
-                            IsVisible="@IsClansSelected" />
-                    <!-- Top highlight border for selected tab -->
+                    <!-- Top border - only visible when selected -->
                     <Widget WidthSizePolicy="StretchToParent"
                             HeightSizePolicy="Fixed"
                             SuggestedHeight="3"
                             VerticalAlignment="Top"
                             Sprite="BlankWhiteSquare_9"
                             Color="#C9A86CFF"
-                            IsVisible="@IsClansSelected" />
-                    <!-- Selected text -->
+                            IsVisible="@IsClansSelected"/>
                     <TextWidget WidthSizePolicy="StretchToParent"
                                 HeightSizePolicy="StretchToParent"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Selected"
-                                Text="Clans"
-                                IsVisible="@IsClansSelected" />
-                    <!-- Unselected text -->
-                    <TextWidget WidthSizePolicy="StretchToParent"
-                                HeightSizePolicy="StretchToParent"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Unselected"
-                                Text="Clans"
-                                IsVisible="@IsClansSelected"
-                                IsVisibleNot="true" />
+                                Brush="Clan.TabControl.Text"
+                                Text="Clans" />
                   </Children>
                 </ButtonWidget>
                 
                 <!-- Heroes Tab -->
-                <ButtonWidget WidthSizePolicy="Fixed"
+                <ButtonWidget DoNotPassEventsToChildren="true"
+                              UpdateChildrenStates="true"
+                              WidthSizePolicy="Fixed"
                               HeightSizePolicy="Fixed"
-                              SuggestedWidth="110"
+                              SuggestedWidth="180"
                               SuggestedHeight="38"
                               MarginLeft="2"
                               MarginRight="2"
-                              DoNotPassEventsToChildren="true"
-                              UpdateChildrenStates="true"
+                              Brush="Commander.Tab.Button"
                               Command.Click="ExecuteSelectHeroes">
                   <Children>
-                    <!-- Unselected background -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#2A2A2AFF"
-                            IsVisible="@IsHeroesSelected"
-                            IsVisibleNot="true" />
-                    <!-- Selected background -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#3D3D3DFF"
-                            IsVisible="@IsHeroesSelected" />
-                    <!-- Top highlight border for selected tab -->
+                    <!-- Top border - only visible when selected -->
                     <Widget WidthSizePolicy="StretchToParent"
                             HeightSizePolicy="Fixed"
                             SuggestedHeight="3"
                             VerticalAlignment="Top"
                             Sprite="BlankWhiteSquare_9"
                             Color="#C9A86CFF"
-                            IsVisible="@IsHeroesSelected" />
-                    <!-- Selected text -->
+                            IsVisible="@IsHeroesSelected"/>
                     <TextWidget WidthSizePolicy="StretchToParent"
                                 HeightSizePolicy="StretchToParent"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Selected"
-                                Text="Heroes"
-                                IsVisible="@IsHeroesSelected" />
-                    <!-- Unselected text -->
-                    <TextWidget WidthSizePolicy="StretchToParent"
-                                HeightSizePolicy="StretchToParent"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Unselected"
-                                Text="Heroes"
-                                IsVisible="@IsHeroesSelected"
-                                IsVisibleNot="true" />
+                                Brush="Clan.TabControl.Text"
+                                Text="Heroes" />
                   </Children>
                 </ButtonWidget>
                 
                 <!-- Settlements Tab -->
-                <ButtonWidget WidthSizePolicy="Fixed"
+                <ButtonWidget DoNotPassEventsToChildren="true"
+                              UpdateChildrenStates="true"
+                              WidthSizePolicy="Fixed"
                               HeightSizePolicy="Fixed"
-                              SuggestedWidth="110"
+                              SuggestedWidth="180"
                               SuggestedHeight="38"
                               MarginLeft="2"
                               MarginRight="2"
-                              DoNotPassEventsToChildren="true"
-                              UpdateChildrenStates="true"
+                              Brush="Commander.Tab.Button"
                               Command.Click="ExecuteSelectSettlements">
                   <Children>
-                    <!-- Unselected background -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#2A2A2AFF"
-                            IsVisible="@IsSettlementsSelected"
-                            IsVisibleNot="true" />
-                    <!-- Selected background -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#3D3D3DFF"
-                            IsVisible="@IsSettlementsSelected" />
-                    <!-- Top highlight border for selected tab -->
+                    <!-- Top border - only visible when selected -->
                     <Widget WidthSizePolicy="StretchToParent"
                             HeightSizePolicy="Fixed"
                             SuggestedHeight="3"
                             VerticalAlignment="Top"
                             Sprite="BlankWhiteSquare_9"
                             Color="#C9A86CFF"
-                            IsVisible="@IsSettlementsSelected" />
-                    <!-- Selected text -->
+                            IsVisible="@IsSettlementsSelected"/>
                     <TextWidget WidthSizePolicy="StretchToParent"
                                 HeightSizePolicy="StretchToParent"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Selected"
-                                Text="Settlements"
-                                IsVisible="@IsSettlementsSelected" />
-                    <!-- Unselected text -->
-                    <TextWidget WidthSizePolicy="StretchToParent"
-                                HeightSizePolicy="StretchToParent"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Unselected"
-                                Text="Settlements"
-                                IsVisible="@IsSettlementsSelected"
-                                IsVisibleNot="true" />
+                                Brush="Clan.TabControl.Text"
+                                Text="Settlements" />
                   </Children>
                 </ButtonWidget>
                 
                 <!-- Troops Tab -->
-                <ButtonWidget WidthSizePolicy="Fixed"
+                <ButtonWidget DoNotPassEventsToChildren="true"
+                              UpdateChildrenStates="true"
+                              WidthSizePolicy="Fixed"
                               HeightSizePolicy="Fixed"
-                              SuggestedWidth="110"
+                              SuggestedWidth="180"
                               SuggestedHeight="38"
                               MarginLeft="2"
                               MarginRight="2"
-                              DoNotPassEventsToChildren="true"
-                              UpdateChildrenStates="true"
+                              Brush="Commander.Tab.Button"
                               Command.Click="ExecuteSelectTroops">
                   <Children>
-                    <!-- Unselected background -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#2A2A2AFF"
-                            IsVisible="@IsTroopsSelected"
-                            IsVisibleNot="true" />
-                    <!-- Selected background -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#3D3D3DFF"
-                            IsVisible="@IsTroopsSelected" />
-                    <!-- Top highlight border for selected tab -->
+                    <!-- Top border - only visible when selected -->
                     <Widget WidthSizePolicy="StretchToParent"
                             HeightSizePolicy="Fixed"
                             SuggestedHeight="3"
                             VerticalAlignment="Top"
                             Sprite="BlankWhiteSquare_9"
                             Color="#C9A86CFF"
-                            IsVisible="@IsTroopsSelected" />
-                    <!-- Selected text -->
+                            IsVisible="@IsTroopsSelected"/>
                     <TextWidget WidthSizePolicy="StretchToParent"
                                 HeightSizePolicy="StretchToParent"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Selected"
-                                Text="Troops"
-                                IsVisible="@IsTroopsSelected" />
-                    <!-- Unselected text -->
-                    <TextWidget WidthSizePolicy="StretchToParent"
-                                HeightSizePolicy="StretchToParent"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Unselected"
-                                Text="Troops"
-                                IsVisible="@IsTroopsSelected"
-                                IsVisibleNot="true" />
+                                Brush="Clan.TabControl.Text"
+                                Text="Troops" />
                   </Children>
                 </ButtonWidget>
                 
                 <!-- Items Tab -->
-                <ButtonWidget WidthSizePolicy="Fixed"
+                <ButtonWidget DoNotPassEventsToChildren="true"
+                              UpdateChildrenStates="true"
+                              WidthSizePolicy="Fixed"
                               HeightSizePolicy="Fixed"
-                              SuggestedWidth="110"
+                              SuggestedWidth="180"
                               SuggestedHeight="38"
                               MarginLeft="2"
                               MarginRight="2"
-                              DoNotPassEventsToChildren="true"
-                              UpdateChildrenStates="true"
+                              Brush="Commander.Tab.Button"
                               Command.Click="ExecuteSelectItems">
                   <Children>
-                    <!-- Unselected background -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#2A2A2AFF"
-                            IsVisible="@IsItemsSelected"
-                            IsVisibleNot="true" />
-                    <!-- Selected background -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#3D3D3DFF"
-                            IsVisible="@IsItemsSelected" />
-                    <!-- Top highlight border for selected tab -->
+                    <!-- Top border - only visible when selected -->
                     <Widget WidthSizePolicy="StretchToParent"
                             HeightSizePolicy="Fixed"
                             SuggestedHeight="3"
                             VerticalAlignment="Top"
                             Sprite="BlankWhiteSquare_9"
                             Color="#C9A86CFF"
-                            IsVisible="@IsItemsSelected" />
-                    <!-- Selected text -->
+                            IsVisible="@IsItemsSelected"/>
                     <TextWidget WidthSizePolicy="StretchToParent"
                                 HeightSizePolicy="StretchToParent"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Selected"
-                                Text="Items"
-                                IsVisible="@IsItemsSelected" />
-                    <!-- Unselected text -->
-                    <TextWidget WidthSizePolicy="StretchToParent"
-                                HeightSizePolicy="StretchToParent"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Unselected"
-                                Text="Items"
-                                IsVisible="@IsItemsSelected"
-                                IsVisibleNot="true" />
+                                Brush="Clan.TabControl.Text"
+                                Text="Items" />
                   </Children>
                 </ButtonWidget>
                 
                 <!-- Characters Tab -->
-                <ButtonWidget WidthSizePolicy="Fixed"
+                <ButtonWidget DoNotPassEventsToChildren="true"
+                              UpdateChildrenStates="true"
+                              WidthSizePolicy="Fixed"
                               HeightSizePolicy="Fixed"
-                              SuggestedWidth="110"
+                              SuggestedWidth="180"
                               SuggestedHeight="38"
                               MarginLeft="2"
                               MarginRight="2"
-                              DoNotPassEventsToChildren="true"
-                              UpdateChildrenStates="true"
+                              Brush="Commander.Tab.Button"
                               Command.Click="ExecuteSelectCharacters">
                   <Children>
-                    <!-- Unselected background -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#2A2A2AFF"
-                            IsVisible="@IsCharactersSelected"
-                            IsVisibleNot="true" />
-                    <!-- Selected background -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#3D3D3DFF"
-                            IsVisible="@IsCharactersSelected" />
-                    <!-- Top highlight border for selected tab -->
+                    <!-- Top border - only visible when selected -->
                     <Widget WidthSizePolicy="StretchToParent"
                             HeightSizePolicy="Fixed"
                             SuggestedHeight="3"
                             VerticalAlignment="Top"
                             Sprite="BlankWhiteSquare_9"
                             Color="#C9A86CFF"
-                            IsVisible="@IsCharactersSelected" />
-                    <!-- Selected text -->
+                            IsVisible="@IsCharactersSelected"/>
                     <TextWidget WidthSizePolicy="StretchToParent"
                                 HeightSizePolicy="StretchToParent"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Selected"
-                                Text="Characters"
-                                IsVisible="@IsCharactersSelected" />
-                    <!-- Unselected text -->
-                    <TextWidget WidthSizePolicy="StretchToParent"
-                                HeightSizePolicy="StretchToParent"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Brush="Commander.Tab.Text.Unselected"
-                                Text="Characters"
-                                IsVisible="@IsCharactersSelected"
-                                IsVisibleNot="true" />
+                                Brush="Clan.TabControl.Text"
+                                Text="Characters" />
                   </Children>
                 </ButtonWidget>
                 
@@ -478,12 +317,9 @@
                           VerticalAlignment="Center"
                           DoNotPassEventsToChildren="true"
                           UpdateChildrenStates="true"
+                          Brush="Commander.Tab.Button"
                           Command.Click="ExecuteClose">
               <Children>
-                <Widget WidthSizePolicy="StretchToParent"
-                        HeightSizePolicy="StretchToParent"
-                        Sprite="BlankWhiteSquare_9"
-                        Color="#444444FF" />
                 <TextWidget WidthSizePolicy="StretchToParent"
                             HeightSizePolicy="StretchToParent"
                             HorizontalAlignment="Center"
