@@ -34,9 +34,16 @@
   
   <xs:complexType name="WidgetType" mixed="true">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Children" type="ChildrenType"/>
       <xs:group ref="WidgetElements"/>
     </xs:choice>
     <xs:attributeGroup ref="CommonAttributes"/>
+  </xs:complexType>
+  
+  <xs:complexType name="ChildrenType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:group ref="WidgetElements"/>
+    </xs:choice>
   </xs:complexType>
   
   <!-- Widget Elements Group -->
@@ -111,7 +118,7 @@
     <!-- Position -->
     <xs:attribute name="PositionXOffset" type="xs:float"/>
     <xs:attribute name="PositionYOffset" type="xs:float"/>
-    <xs:attribute name="UpdateChildrenStates" type="xs:boolean"/>
+    <xs:attribute name="UpdateChildrenStates" type="BooleanOrBindingType"/>
     
     <!-- Visual Properties -->
     <xs:attribute name="Brush" type="xs:string"/>
@@ -129,26 +136,33 @@
     <xs:attribute name="TextHorizontalAlignment" type="AlignmentType"/>
     <xs:attribute name="TextVerticalAlignment" type="AlignmentType"/>
     
+    <!-- Brush Override Properties (using dot notation) -->
+    <xs:attribute name="Brush.FontSize" type="xs:float"/>
+    <xs:attribute name="Brush.TextHorizontalAlignment" type="AlignmentType"/>
+    <xs:attribute name="Brush.TextVerticalAlignment" type="AlignmentType"/>
+    <xs:attribute name="Brush.TextColor" type="xs:string"/>
+    <xs:attribute name="Brush.Color" type="xs:string"/>
+    
     <!-- ListPanel Properties -->
     <xs:attribute name="LayoutImp.LayoutMethod" type="LayoutMethodType"/>
     <xs:attribute name="StackLayout.LayoutMethod" type="LayoutMethodType"/>
-    <xs:attribute name="ClipContents" type="xs:boolean"/>
+    <xs:attribute name="ClipContents" type="BooleanOrBindingType"/>
     
     <!-- Button Properties -->
     <xs:attribute name="Command.Click" type="xs:string"/>
-    <xs:attribute name="ClickToActivate" type="xs:boolean"/>
-    <xs:attribute name="IsSelected" type="xs:boolean"/>
+    <xs:attribute name="ClickToActivate" type="BooleanOrBindingType"/>
+    <xs:attribute name="IsSelected" type="BooleanOrBindingType"/>
     
     <!-- Scrollable Properties -->
     <xs:attribute name="ClipRect" type="xs:string"/>
     <xs:attribute name="InnerPanel" type="xs:string"/>
-    <xs:attribute name="AutoHideScrollBarHandle" type="xs:boolean"/>
-    <xs:attribute name="AutoHideScrollBars" type="xs:boolean"/>
+    <xs:attribute name="AutoHideScrollBarHandle" type="BooleanOrBindingType"/>
+    <xs:attribute name="AutoHideScrollBars" type="BooleanOrBindingType"/>
     
     <!-- Advanced Properties -->
     <xs:attribute name="UsedNavigationMovements" type="xs:string"/>
     <xs:attribute name="GamepadNavigationIndex" type="xs:int"/>
-    <xs:attribute name="IsAutoNavigationTarget" type="xs:boolean"/>
+    <xs:attribute name="IsAutoNavigationTarget" type="BooleanOrBindingType"/>
     <xs:attribute name="FocusableChildIndex" type="xs:int"/>
     
     <!-- Grid Properties -->
@@ -160,15 +174,28 @@
     <xs:attribute name="TooltipWidget" type="xs:string"/>
     
     <!-- Misc -->
-    <xs:attribute name="AcceptDrop" type="xs:boolean"/>
-    <xs:attribute name="AcceptDrag" type="xs:boolean"/>
-    <xs:attribute name="CanEffectOtherWidgetsBrush" type="xs:boolean"/>
-    <xs:attribute name="CircularClipEnabled" type="xs:boolean"/>
+    <xs:attribute name="AcceptDrop" type="BooleanOrBindingType"/>
+    <xs:attribute name="AcceptDrag" type="BooleanOrBindingType"/>
+    <xs:attribute name="CanEffectOtherWidgetsBrush" type="BooleanOrBindingType"/>
+    <xs:attribute name="CircularClipEnabled" type="BooleanOrBindingType"/>
     <xs:attribute name="CircularClipRadius" type="xs:float"/>
     <xs:attribute name="CircularClipSmoothingRadius" type="xs:float"/>
+    
+    <!-- Allow any other attributes (must be last) -->
+    <xs:anyAttribute processContents="lax"/>
   </xs:attributeGroup>
   
   <!-- Simple Types -->
+  <xs:simpleType name="BooleanOrBindingType">
+    <xs:union memberTypes="xs:boolean">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="@.*"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  
   <xs:simpleType name="SizePolicyType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Fixed"/>

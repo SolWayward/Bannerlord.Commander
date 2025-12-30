@@ -2,6 +2,25 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "build",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "${workspaceFolder}/Bannerlord.Commander/Bannerlord.Commander.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "disable-safe-mode",
             "type": "shell",
             "command": "powershell",
@@ -12,6 +31,15 @@
             "presentation": {
                 "reveal": "silent"
             },
+            "problemMatcher": []
+        },
+        {
+            "label": "build-and-disable-safe-mode",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build",
+                "disable-safe-mode"
+            ],
             "problemMatcher": []
         }
     ]

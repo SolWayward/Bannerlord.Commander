@@ -5,7 +5,7 @@
             "name": "BLC",
             "type": "clr",
             "request": "launch",
-            "preLaunchTask": "disable-safe-mode",
+            "preLaunchTask": "build-and-disable-safe-mode",
             "program": "${env:BANNERLORD_GAME_DIR}/bin/Win64_Shipping_Client/Bannerlord.exe",
             "args": [
                 "/singleplayer",
