@@ -1,4 +1,4 @@
-<Project Sdk="Bannerlord.BUTRModule.Sdk/1.1.0.124">
+﻿<Project Sdk="Bannerlord.BUTRModule.Sdk/1.1.0.124">
 
   <PropertyGroup>
     <Version>1.3.13.1</Version>
@@ -12,17 +12,33 @@
 
     <BuildForWindows>false</BuildForWindows>
     <BuildForWindowsStore>false</BuildForWindowsStore>
-    
+  
     <ModuleId>$(MSBuildProjectName)</ModuleId>
     <ModuleName>$(MSBuildProjectName)</ModuleName>
     <ModuleUrl></ModuleUrl>
     <GameFolder>$(BANNERLORD_GAME_DIR)</GameFolder>
     <!-- Module manually override GameVersion -->
- <OverrideGameVersion>v1.3.13</OverrideGameVersion>
+    <OverrideGameVersion>v1.3.13</OverrideGameVersion>
+  </PropertyGroup>
+
+  <!--
+    The Bannerlord SDK used by this project can inject MSBuild properties
+    such as StartProgram/StartArguments which Visual Studio will honor and
+    then show a warning that those MSBuild properties override launchSettings.json.
+    To allow the Debug -> Command line arguments UI (which reads launchSettings.json)
+    to be used in the IDE, clear those Start* properties during design-time
+    evaluation (when $(DesignTimeBuild) == 'true'). This only affects IDE
+    evaluation and does not change the build behavior.
+  -->
+  <PropertyGroup Condition="'$(DesignTimeBuild)' == 'true'">
+    <StartProgram></StartProgram>
+    <StartArguments></StartArguments>
+    <StartAction></StartAction>
+    <StartWorkingDirectory></StartWorkingDirectory>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework) == 'net472'">
-    <!-- Steam/GOG/Epic versions of the game -->
+  <!-- Steam/GOG/Epic versions of the game -->
     <BuildForWindows>true</BuildForWindows>
   </PropertyGroup>
   <PropertyGroup Condition="$(TargetFramework) == 'net6'">
@@ -33,32 +49,32 @@
 
   <!-- Development Variables -->
   <PropertyGroup>
-	  <!--
-	  <HarmonyExtensionsVersion>3.2.0.77</HarmonyExtensionsVersion>  
+    <!--
+    <HarmonyExtensionsVersion>3.2.0.77</HarmonyExtensionsVersion>  
     <BUTRSharedVersion>3.0.0.135</BUTRSharedVersion>
     <BUTRModuleManagerVersion>5.0.198</BUTRModuleManagerVersion>
     -->
   </PropertyGroup>
 
   <ItemGroup>
-   <PackageReference Include="Newtonsoft.Json" Version="13.0.1" PrivateAssets="all" IncludeAssets="compile" />
-   <PackageReference Include="BUTR.Harmony.Analyzer" Version="1.0.1.50" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" PrivateAssets="all" IncludeAssets="compile" />
+    <PackageReference Include="BUTR.Harmony.Analyzer" Version="1.0.1.50" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
   </ItemGroup>
 
   <!-- Bannerlord.GameMaster references for Steam/GOG/Epic (net472) -->
   <ItemGroup Condition="$(TargetFramework) == 'net472'">
-   <Reference Include="Bannerlord.GameMaster">
-    <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.GameMaster\bin\Win64_Shipping_Client\Bannerlord.GameMaster.v1.3.13.dll</HintPath>
-    <Private>false</Private>
-   </Reference>
+    <Reference Include="Bannerlord.GameMaster">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.GameMaster\bin\Win64_Shipping_Client\Bannerlord.GameMaster.v1.3.13.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 
   <!-- Bannerlord.GameMaster references for Xbox Game Pass (net6) -->
   <ItemGroup Condition="$(TargetFramework) == 'net6'">
-   <Reference Include="Bannerlord.GameMaster">
-    <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.GameMaster\bin\Gaming.Desktop.x64_Shipping_Client\Bannerlord.GameMaster.v1.3.13.dll</HintPath>
-    <Private>false</Private>
-   </Reference>
+    <Reference Include="Bannerlord.GameMaster">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.GameMaster\bin\Gaming.Desktop.x64_Shipping_Client\Bannerlord.GameMaster.v1.3.13.dll</HintPath>
+      <Private>false</Private>
+ </Reference>
   </ItemGroup>
   
 </Project>

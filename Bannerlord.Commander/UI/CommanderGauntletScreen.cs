@@ -72,8 +72,11 @@ namespace Bannerlord.Commander.UI
             if (_isClosing)
                 return;
             
+            // Allow ViewModel to handle deferred operations
+            _viewModel?.OnTick();
+            
             // Handle ESC to close
-            if (Input.IsKeyPressed(InputKey.Escape) || 
+            if (Input.IsKeyPressed(InputKey.Escape) ||
                 (_gauntletLayer != null && _gauntletLayer.Input.IsKeyPressed(InputKey.Escape)))
             {
                 CloseScreen();

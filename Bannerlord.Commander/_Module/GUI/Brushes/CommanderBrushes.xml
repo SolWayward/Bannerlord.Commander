@@ -30,4 +30,30 @@
       </EventSounds>
     </SoundProperties>
   </Brush>
+
+  <!-- Commander Hero Row Brush - For selectable hero list items -->
+  <Brush Name="Commander.HeroRow">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="BlankWhiteSquare_9" />
+      <BrushLayer Name="Selected" Sprite="BlankWhiteSquare_9" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" Color="#1E1E1EFF" />
+        <BrushLayer Name="Selected" AlphaFactor="0" />
+      </Style>
+      <Style Name="Hovered">
+        <BrushLayer Name="Default" AlphaFactor="1" Color="#2A2A2AFF" />
+        <BrushLayer Name="Selected" AlphaFactor="0" />
+      </Style>
+      <Style Name="Selected">
+        <BrushLayer Name="Default" AlphaFactor="0" />
+        <BrushLayer Name="Selected" AlphaFactor="1" Color="#453920FF" />
+      </Style>
+      <Style Name="Pressed">
+        <BrushLayer Name="Default" AlphaFactor="1" ColorFactor="0.8" Color="#1E1E1EFF" />
+        <BrushLayer Name="Selected" AlphaFactor="0" />
+      </Style>
+    </Styles>
+  </Brush>
 </Brushes>
