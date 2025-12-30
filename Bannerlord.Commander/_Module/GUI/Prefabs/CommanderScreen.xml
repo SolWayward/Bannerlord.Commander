@@ -489,145 +489,201 @@
                           </Children>
                         </Widget>
                         
-                        <!-- Scrollable Data Rows -->
-                        <ScrollablePanel WidthSizePolicy="StretchToParent"
-                                         HeightSizePolicy="StretchToParent"
-                                         MarginTop="42"
-                                         ClipContents="true">
+                        <!-- Scrollable Data Rows Container -->
+                        <Widget WidthSizePolicy="StretchToParent"
+                                HeightSizePolicy="StretchToParent"
+                                MarginTop="42">
                           <Children>
                             
-                            <!-- Heroes List -->
-                            <ListPanel WidthSizePolicy="StretchToParent"
-                                       HeightSizePolicy="CoverChildren"
-                                       DataSource="{Heroes}"
-                                       StackLayout.LayoutMethod="VerticalBottomToTop">
-                              <ItemTemplate>
+                            <!-- ScrollablePanel with proper ClipRect, InnerPanel, and Scrollbar references -->
+                            <ScrollablePanel Id="HeroesScrollablePanel"
+                                             WidthSizePolicy="StretchToParent"
+                                             HeightSizePolicy="StretchToParent"
+                                             MarginRight="25"
+                                             AutoHideScrollBars="true"
+                                             ClipRect="HeroesClipRect"
+                                             InnerPanel="HeroesClipRect\HeroesInnerPanel"
+                                             VerticalScrollbar="..\ScrollbarContainer\HeroesScrollbar">
+                              <Children>
                                 
-                                <!-- Hero Row as ButtonWidget for selection -->
-                                <ButtonWidget DoNotPassEventsToChildren="true"
-                                              UpdateChildrenStates="true"
-                                              WidthSizePolicy="StretchToParent"
-                                              HeightSizePolicy="Fixed"
-                                              SuggestedHeight="35"
-                                              MarginBottom="2"
-                                              Brush="Commander.HeroRow"
-                                              Command.Click="ExecuteSelect"
-                                              IsSelected="@IsSelected">
+                                <!-- ClipRect that clips the content -->
+                                <Widget Id="HeroesClipRect"
+                                        WidthSizePolicy="StretchToParent"
+                                        HeightSizePolicy="StretchToParent"
+                                        ClipContents="true">
                                   <Children>
                                     
-                                    <!-- Row data layout -->
-                                    <ListPanel WidthSizePolicy="StretchToParent"
-                                               HeightSizePolicy="StretchToParent"
-                                               StackLayout.LayoutMethod="HorizontalLeftToRight">
-                                      <Children>
+                                    <!-- Inner panel that holds the list and can scroll -->
+                                    <ListPanel Id="HeroesInnerPanel"
+                                               WidthSizePolicy="StretchToParent"
+                                               HeightSizePolicy="CoverChildren"
+                                               DataSource="{Heroes}"
+                                               StackLayout.LayoutMethod="VerticalBottomToTop">
+                                      <ItemTemplate>
                                         
-                                        <!-- Name Column -->
-                                        <Widget WidthSizePolicy="Fixed"
-                                                HeightSizePolicy="StretchToParent"
-                                                SuggestedWidth="250"
-                                                MarginLeft="10">
+                                        <!-- Hero Row as ButtonWidget for selection -->
+                                        <ButtonWidget DoNotPassEventsToChildren="true"
+                                                      UpdateChildrenStates="true"
+                                                      WidthSizePolicy="StretchToParent"
+                                                      HeightSizePolicy="Fixed"
+                                                      SuggestedHeight="35"
+                                                      MarginBottom="2"
+                                                      Brush="Commander.HeroRow"
+                                                      Command.Click="ExecuteSelect"
+                                                      IsSelected="@IsSelected">
                                           <Children>
-                                            <TextWidget WidthSizePolicy="StretchToParent"
+                                            
+                                            <!-- Row data layout -->
+                                            <ListPanel WidthSizePolicy="StretchToParent"
+                                                       HeightSizePolicy="StretchToParent"
+                                                       StackLayout.LayoutMethod="HorizontalLeftToRight">
+                                              <Children>
+                                                
+                                                <!-- Name Column -->
+                                                <Widget WidthSizePolicy="Fixed"
                                                         HeightSizePolicy="StretchToParent"
-                                                        Brush="Clan.TabControl.Text"
-                                                        Brush.FontSize="18"
-                                                        Text="@Name"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Center" />
-                                          </Children>
-                                        </Widget>
-                                        
-                                        <!-- Culture Column -->
-                                        <Widget WidthSizePolicy="Fixed"
-                                                HeightSizePolicy="StretchToParent"
-                                                SuggestedWidth="150"
-                                                MarginLeft="10">
-                                          <Children>
-                                            <TextWidget WidthSizePolicy="StretchToParent"
+                                                        SuggestedWidth="250"
+                                                        MarginLeft="10">
+                                                  <Children>
+                                                    <TextWidget WidthSizePolicy="StretchToParent"
+                                                                HeightSizePolicy="StretchToParent"
+                                                                Brush="Clan.TabControl.Text"
+                                                                Brush.FontSize="18"
+                                                                Text="@Name"
+                                                                HorizontalAlignment="Left"
+                                                                VerticalAlignment="Center" />
+                                                  </Children>
+                                                </Widget>
+                                                
+                                                <!-- Culture Column -->
+                                                <Widget WidthSizePolicy="Fixed"
                                                         HeightSizePolicy="StretchToParent"
-                                                        Brush="Clan.TabControl.Text"
-                                                        Brush.FontSize="18"
-                                                        Text="@Culture"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Center" />
-                                          </Children>
-                                        </Widget>
-                                        
-                                        <!-- Level Column -->
-                                        <Widget WidthSizePolicy="Fixed"
-                                                HeightSizePolicy="StretchToParent"
-                                                SuggestedWidth="80"
-                                                MarginLeft="10">
-                                          <Children>
-                                            <TextWidget WidthSizePolicy="StretchToParent"
+                                                        SuggestedWidth="150"
+                                                        MarginLeft="10">
+                                                  <Children>
+                                                    <TextWidget WidthSizePolicy="StretchToParent"
+                                                                HeightSizePolicy="StretchToParent"
+                                                                Brush="Clan.TabControl.Text"
+                                                                Brush.FontSize="18"
+                                                                Text="@Culture"
+                                                                HorizontalAlignment="Left"
+                                                                VerticalAlignment="Center" />
+                                                  </Children>
+                                                </Widget>
+                                                
+                                                <!-- Level Column -->
+                                                <Widget WidthSizePolicy="Fixed"
                                                         HeightSizePolicy="StretchToParent"
-                                                        Brush="Clan.TabControl.Text"
-                                                        Brush.FontSize="18"
-                                                        Text="@LevelText"
-                                                        HorizontalAlignment="Center"
-                                                        VerticalAlignment="Center" />
-                                          </Children>
-                                        </Widget>
-                                        
-                                        <!-- Gender Column -->
-                                        <Widget WidthSizePolicy="Fixed"
-                                                HeightSizePolicy="StretchToParent"
-                                                SuggestedWidth="100"
-                                                MarginLeft="10">
-                                          <Children>
-                                            <TextWidget WidthSizePolicy="StretchToParent"
+                                                        SuggestedWidth="80"
+                                                        MarginLeft="10">
+                                                  <Children>
+                                                    <TextWidget WidthSizePolicy="StretchToParent"
+                                                                HeightSizePolicy="StretchToParent"
+                                                                Brush="Clan.TabControl.Text"
+                                                                Brush.FontSize="18"
+                                                                Text="@LevelText"
+                                                                HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center" />
+                                                  </Children>
+                                                </Widget>
+                                                
+                                                <!-- Gender Column -->
+                                                <Widget WidthSizePolicy="Fixed"
                                                         HeightSizePolicy="StretchToParent"
-                                                        Brush="Clan.TabControl.Text"
-                                                        Brush.FontSize="18"
-                                                        Text="@Gender"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Center" />
-                                          </Children>
-                                        </Widget>
-                                        
-                                        <!-- Clan Column -->
-                                        <Widget WidthSizePolicy="Fixed"
-                                                HeightSizePolicy="StretchToParent"
-                                                SuggestedWidth="200"
-                                                MarginLeft="10">
-                                          <Children>
-                                            <TextWidget WidthSizePolicy="StretchToParent"
+                                                        SuggestedWidth="100"
+                                                        MarginLeft="10">
+                                                  <Children>
+                                                    <TextWidget WidthSizePolicy="StretchToParent"
+                                                                HeightSizePolicy="StretchToParent"
+                                                                Brush="Clan.TabControl.Text"
+                                                                Brush.FontSize="18"
+                                                                Text="@Gender"
+                                                                HorizontalAlignment="Left"
+                                                                VerticalAlignment="Center" />
+                                                  </Children>
+                                                </Widget>
+                                                
+                                                <!-- Clan Column -->
+                                                <Widget WidthSizePolicy="Fixed"
                                                         HeightSizePolicy="StretchToParent"
-                                                        Brush="Clan.TabControl.Text"
-                                                        Brush.FontSize="18"
-                                                        Text="@Clan"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Center" />
-                                          </Children>
-                                        </Widget>
-                                        
-                                        <!-- Kingdom Column -->
-                                        <Widget WidthSizePolicy="Fixed"
-                                                HeightSizePolicy="StretchToParent"
-                                                SuggestedWidth="200"
-                                                MarginLeft="10">
-                                          <Children>
-                                            <TextWidget WidthSizePolicy="StretchToParent"
+                                                        SuggestedWidth="200"
+                                                        MarginLeft="10">
+                                                  <Children>
+                                                    <TextWidget WidthSizePolicy="StretchToParent"
+                                                                HeightSizePolicy="StretchToParent"
+                                                                Brush="Clan.TabControl.Text"
+                                                                Brush.FontSize="18"
+                                                                Text="@Clan"
+                                                                HorizontalAlignment="Left"
+                                                                VerticalAlignment="Center" />
+                                                  </Children>
+                                                </Widget>
+                                                
+                                                <!-- Kingdom Column -->
+                                                <Widget WidthSizePolicy="Fixed"
                                                         HeightSizePolicy="StretchToParent"
-                                                        Brush="Clan.TabControl.Text"
-                                                        Brush.FontSize="18"
-                                                        Text="@Kingdom"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Center" />
+                                                        SuggestedWidth="200"
+                                                        MarginLeft="10">
+                                                  <Children>
+                                                    <TextWidget WidthSizePolicy="StretchToParent"
+                                                                HeightSizePolicy="StretchToParent"
+                                                                Brush="Clan.TabControl.Text"
+                                                                Brush.FontSize="18"
+                                                                Text="@Kingdom"
+                                                                HorizontalAlignment="Left"
+                                                                VerticalAlignment="Center" />
+                                                  </Children>
+                                                </Widget>
+                                                
+                                              </Children>
+                                            </ListPanel>
+                                            
                                           </Children>
-                                        </Widget>
+                                        </ButtonWidget>
                                         
-                                      </Children>
+                                      </ItemTemplate>
                                     </ListPanel>
                                     
                                   </Children>
-                                </ButtonWidget>
+                                </Widget>
                                 
-                              </ItemTemplate>
-                            </ListPanel>
+                              </Children>
+                            </ScrollablePanel>
+                            
+                            <!-- Scrollbar Container -->
+                            <Widget Id="ScrollbarContainer"
+                                    WidthSizePolicy="Fixed"
+                                    HeightSizePolicy="StretchToParent"
+                                    SuggestedWidth="25"
+                                    HorizontalAlignment="Right">
+                              <Children>
+                                <ScrollbarWidget Id="HeroesScrollbar"
+                                                 WidthSizePolicy="Fixed"
+                                                 HeightSizePolicy="StretchToParent"
+                                                 SuggestedWidth="20"
+                                                 MinValue="0"
+                                                 MaxValue="100"
+                                                 AlignmentAxis="Vertical"
+                                                 HorizontalAlignment="Center"
+                                                 VerticalAlignment="Top"
+                                                 Handle="ScrollbarHandle">
+                                  <Children>
+                                    <Widget Id="ScrollbarHandle"
+                                            WidthSizePolicy="Fixed"
+                                            HeightSizePolicy="Fixed"
+                                            SuggestedWidth="20"
+                                            MinHeight="30"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Top"
+                                            Sprite="BlankWhiteSquare_9"
+                                            Color="#8B7355FF" />
+                                  </Children>
+                                </ScrollbarWidget>
+                              </Children>
+                            </Widget>
                             
                           </Children>
-                        </ScrollablePanel>
+                        </Widget>
                         
                       </Children>
                     </Widget>

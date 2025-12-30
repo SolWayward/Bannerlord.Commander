@@ -27,7 +27,8 @@ namespace Bannerlord.Commander.UI
     public class CommanderVM : ViewModel
     {
         // Number of heroes to add per frame during incremental loading
-        private const int HeroesPerFrame = 50;
+        // Reduced to 10 for smoother background loading without UI freeze
+        private const int HeroesPerFrame = 10;
         
         private string _titleText;
         private CommanderMode _selectedMode;
@@ -52,6 +53,9 @@ namespace Bannerlord.Commander.UI
         private List<Hero> _pendingHeroes;
         private int _pendingHeroIndex;
         private string _loadingStatusText;
+        
+        // Track if this is the first time opening (for initial load)
+        private bool _hasLoadedOnce;
 
         // Event to notify the screen that close was requested
         public event System.Action OnCloseRequested;
@@ -70,6 +74,7 @@ namespace Bannerlord.Commander.UI
             
             // Flag that heroes need to be loaded, but defer until bindings are ready
             _needsHeroLoad = true;
+            _hasLoadedOnce = false;
         }
         
         /// <summary>
@@ -325,6 +330,7 @@ namespace Bannerlord.Commander.UI
                 _pendingHeroes = null;
                 _pendingHeroIndex = 0;
                 LoadingStatusText = "";
+                _hasLoadedOnce = true;
             }
         }
         
@@ -453,6 +459,36 @@ namespace Bannerlord.Commander.UI
         public void ExecuteClose()
         {
             OnCloseRequested?.Invoke();
+        }
+        
+        /// <summary>
+        /// Refreshes data for the current mode.
+        /// Called when the menu is reopened to ensure fresh data.
+        /// </summary>
+        public void RefreshCurrentMode()
+        {
+            // Only refresh if we've loaded at least once (not the initial load)
+            // This prevents double loading on first open
+            if (!_hasLoadedOnce)
+                return;
+                
+            switch (_selectedMode)
+            {
+                case CommanderMode.Heroes:
+                    // Force reload heroes to get fresh game state
+                    _isLoading = false; // Reset loading state to allow new load
+                    StartHeroLoading();
+                    break;
+                // Add other modes as they are implemented
+                case CommanderMode.Kingdoms:
+                case CommanderMode.Clans:
+                case CommanderMode.Settlements:
+                case CommanderMode.Troops:
+                case CommanderMode.Items:
+                case CommanderMode.Characters:
+                    // TODO: Implement refresh for other modes when they are added
+                    break;
+            }
         }
 
         #endregion
