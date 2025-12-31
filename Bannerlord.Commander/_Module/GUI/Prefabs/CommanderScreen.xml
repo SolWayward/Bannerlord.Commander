@@ -393,7 +393,7 @@
                                                 HeightSizePolicy="StretchToParent"
                                                 Brush="TownManagement.Description.Title.Text"
                                                 Brush.FontSize="20"
-                                                Text="Name"
+                                                Text="@NameSortIndicatorText"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Center" />
                                   </Children>
@@ -411,7 +411,7 @@
                                                 HeightSizePolicy="StretchToParent"
                                                 Brush="TownManagement.Description.Title.Text"
                                                 Brush.FontSize="20"
-                                                Text="Gender"
+                                                Text="@GenderSortIndicatorText"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Center" />
                                   </Children>
@@ -429,7 +429,7 @@
                                                 HeightSizePolicy="StretchToParent"
                                                 Brush="TownManagement.Description.Title.Text"
                                                 Brush.FontSize="20"
-                                                Text="Age"
+                                                Text="@AgeSortIndicatorText"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center" />
                                   </Children>
@@ -447,7 +447,7 @@
                                                 HeightSizePolicy="StretchToParent"
                                                 Brush="TownManagement.Description.Title.Text"
                                                 Brush.FontSize="20"
-                                                Text="Clan"
+                                                Text="@ClanSortIndicatorText"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Center" />
                                   </Children>
@@ -465,7 +465,7 @@
                                                 HeightSizePolicy="StretchToParent"
                                                 Brush="TownManagement.Description.Title.Text"
                                                 Brush.FontSize="20"
-                                                Text="Kingdom"
+                                                Text="@KingdomSortIndicatorText"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Center" />
                                   </Children>
@@ -483,7 +483,7 @@
                                                 HeightSizePolicy="StretchToParent"
                                                 Brush="TownManagement.Description.Title.Text"
                                                 Brush.FontSize="20"
-                                                Text="Culture"
+                                                Text="@CultureSortIndicatorText"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Center" />
                                   </Children>
@@ -501,7 +501,7 @@
                                                 HeightSizePolicy="StretchToParent"
                                                 Brush="TownManagement.Description.Title.Text"
                                                 Brush.FontSize="20"
-                                                Text="Type"
+                                                Text="@TypeSortIndicatorText"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Center" />
                                   </Children>
@@ -519,7 +519,7 @@
                                                 HeightSizePolicy="StretchToParent"
                                                 Brush="TownManagement.Description.Title.Text"
                                                 Brush.FontSize="20"
-                                                Text="Level"
+                                                Text="@LevelSortIndicatorText"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center" />
                                   </Children>
@@ -769,54 +769,6 @@
                       </Children>
                     </Widget>
                     
-                    <!-- Loading/Sorting Overlay - Positioned LAST so it renders on TOP of all content -->
-                    <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            IsVisible="@IsBusy">
-                      <Children>
-                        <!-- Semi-transparent dark overlay covering list area -->
-                        <Widget WidthSizePolicy="StretchToParent"
-                                HeightSizePolicy="StretchToParent"
-                                Sprite="BlankWhiteSquare_9"
-                                Color="#00000088" />
-                        
-                        <!-- Centered status box -->
-                        <Widget WidthSizePolicy="Fixed"
-                                HeightSizePolicy="Fixed"
-                                SuggestedWidth="300"
-                                SuggestedHeight="60"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Sprite="BlankWhiteSquare_9"
-                                Color="#3a3a3aFF">
-                          <Children>
-                            <!-- Border frame -->
-                            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                    SuggestedHeight="2" VerticalAlignment="Top"
-                                    Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                    SuggestedHeight="2" VerticalAlignment="Bottom"
-                                    Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                    SuggestedWidth="2" HorizontalAlignment="Left"
-                                    Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                    SuggestedWidth="2" HorizontalAlignment="Right"
-                                    Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                            
-                            <!-- Status text -->
-                            <TextWidget WidthSizePolicy="StretchToParent"
-                                        HeightSizePolicy="StretchToParent"
-                                        Brush="TownManagement.Description.Title.Text"
-                                        Brush.FontSize="20"
-                                        Text="@LoadingStatusText"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center" />
-                          </Children>
-                        </Widget>
-                      </Children>
-                    </Widget>
-                    
                   </Children>
                 </Widget>
                 
@@ -843,6 +795,44 @@
                     VerticalAlignment="Top"
                     Sprite="BlankWhiteSquare_9"
                     Color="#8B7355FF" />
+            
+            <!-- Status Indicator (bottom left in footer) -->
+            <Widget WidthSizePolicy="Fixed"
+                    HeightSizePolicy="Fixed"
+                    SuggestedWidth="200"
+                    SuggestedHeight="36"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    MarginLeft="25"
+                    Sprite="BlankWhiteSquare_9"
+                    Color="#252525DD">
+              <Children>
+                <!-- Border frame -->
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        SuggestedHeight="1" VerticalAlignment="Top"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        SuggestedHeight="1" VerticalAlignment="Bottom"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        SuggestedWidth="1" HorizontalAlignment="Left"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        SuggestedWidth="1" HorizontalAlignment="Right"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                
+                <!-- Status text with padding -->
+                <TextWidget WidthSizePolicy="StretchToParent"
+                            HeightSizePolicy="StretchToParent"
+                            Brush="TownManagement.Description.Title.Text"
+                            Brush.FontSize="16"
+                            Text="@LoadingStatusText"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            MarginLeft="8"
+                            MarginRight="8" />
+              </Children>
+            </Widget>
             
             <!-- Close button -->
             <ButtonWidget DoNotPassEventsToChildren="true"

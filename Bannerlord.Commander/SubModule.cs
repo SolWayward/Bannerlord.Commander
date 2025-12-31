@@ -1,4 +1,4 @@
-using Bannerlord.Commander.UI;
+using Bannerlord.Commander.UI.Screens;
 using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
@@ -7,6 +7,10 @@ using TaleWorlds.ScreenSystem;
 
 namespace Bannerlord.Commander
 {
+    /// <summary>
+    /// Main entry point for the Bannerlord.Commander mod.
+    /// Handles mod initialization and F10 hotkey to open the Commander screen.
+    /// </summary>
     public class SubModule : MBSubModuleBase
     {
         private bool _isScreenOpen;
@@ -14,7 +18,7 @@ namespace Bannerlord.Commander
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();
-            
+
             InformationManager.DisplayMessage(
                 new InformationMessage("Bannerlord.Commander loaded! Press F10 to open Commander screen.")
             );
@@ -32,25 +36,31 @@ namespace Bannerlord.Commander
         {
             base.OnApplicationTick(dt);
 
-            // Only handle input if a game is active
-            if (Game.Current == null)
+            if (!IsGameActive())
                 return;
 
-            // Don't open another screen if one is already open
             if (_isScreenOpen)
             {
-                // Check if screen was closed
-                if (!(ScreenManager.TopScreen is CommanderGauntletScreen))
-                {
-                    _isScreenOpen = false;
-                }
+                CheckIfScreenClosed();
                 return;
             }
 
-            // F10 opens the Commander screen
             if (Input.IsKeyPressed(InputKey.F10))
             {
                 OpenCommanderScreen();
+            }
+        }
+
+        private bool IsGameActive()
+        {
+            return Game.Current != null;
+        }
+
+        private void CheckIfScreenClosed()
+        {
+            if (!(ScreenManager.TopScreen is CommanderGauntletScreen))
+            {
+                _isScreenOpen = false;
             }
         }
 
