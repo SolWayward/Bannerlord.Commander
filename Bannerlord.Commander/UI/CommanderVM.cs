@@ -43,8 +43,12 @@ namespace Bannerlord.Commander.UI
     public class CommanderVM : ViewModel
     {
         // Number of heroes to add per frame during incremental loading
-        // Reduced to 10 for smoother background loading without UI freeze
-        private const int HeroesPerFrame = 10;
+        // Kept low for smooth background loading without UI freeze
+        private const int HeroesPerFrame = 20;
+        
+        // Number of items to add per frame during sort (faster since VMs already exist)
+        // Reduced from 50 to 20 to avoid UI stalls during sorting
+        private const int SortItemsPerFrame = 20;
         
         private string _titleText;
         private CommanderMode _selectedMode;
@@ -63,12 +67,18 @@ namespace Bannerlord.Commander.UI
         private MBBindingList<HeroItemVM> _heroes;
         private HeroItemVM _selectedHero;
         private bool _isLoading;
+        private bool _isSorting;
         private bool _needsHeroLoad;
         
-        // Incremental loading state
-        private List<Hero> _pendingHeroes;
+        // Incremental loading/sorting state - uses pre-sorted HeroItemVMs
+        private List<HeroItemVM> _pendingHeroVMs;
         private int _pendingHeroIndex;
         private string _loadingStatusText;
+        
+        // Deferred loading parameters
+        private string _pendingLoadQuery = "";
+        private HeroTypes _pendingLoadHeroTypes = HeroTypes.None;
+        private bool _pendingLoadMatchAll = true;
         
         // Track if this is the first time opening (for initial load)
         private bool _hasLoadedOnce;
@@ -98,7 +108,7 @@ namespace Bannerlord.Commander.UI
         }
         
         /// <summary>
-        /// Called each frame to handle deferred operations and incremental loading
+        /// Called each frame to handle deferred operations and incremental loading/sorting
         /// </summary>
         public void OnTick()
         {
@@ -109,8 +119,8 @@ namespace Bannerlord.Commander.UI
                 StartHeroLoading();
             }
             
-            // Process incremental hero loading
-            ProcessIncrementalHeroLoading();
+            // Process incremental hero loading or sorting
+            ProcessIncrementalHeroOperation();
         }
 
         private string GetVersionString()
@@ -300,60 +310,130 @@ namespace Bannerlord.Commander.UI
         #region Hero Data Loading
 
         /// <summary>
-        /// Starts the incremental hero loading process
+        /// Starts the incremental hero loading process using deferred tick-based loading.
+        /// Heroes are pre-sorted before incremental add so they appear in correct order as they load.
         /// </summary>
         private void StartHeroLoading(string query = "", HeroTypes heroTypes = HeroTypes.None, bool matchAll = true)
         {
-            if (_isLoading)
+            if (_isLoading || _isSorting)
                 return;
 
             _isLoading = true;
             _selectedHero = null;
             
-            // Clear the existing list
-            Heroes.Clear();
-
-            // Query all alive heroes using BLGM - this is fast, just creates the list
-            _pendingHeroes = HeroQueries.QueryHeroes(query, heroTypes, matchAll, includeDead: false);
-            _pendingHeroIndex = 0;
+            // Store parameters for deferred loading
+            _pendingLoadQuery = query;
+            _pendingLoadHeroTypes = heroTypes;
+            _pendingLoadMatchAll = matchAll;
             
             // Update loading status
+            LoadingStatusText = "Preparing...";
+            OnPropertyChanged(nameof(IsBusy));
+            
+            // Query all alive heroes using BLGM
+            var rawHeroes = HeroQueries.QueryHeroes(_pendingLoadQuery, _pendingLoadHeroTypes, _pendingLoadMatchAll, includeDead: false);
+            
+            // Convert ALL to HeroItemVMs immediately (fast - just object creation)
+            _pendingHeroVMs = rawHeroes.Select(h => new HeroItemVM(h, this)).ToList();
+            
+            // PRE-SORT the VMs before starting incremental add
+            // This ensures items appear in sorted order as they load (fixes Issue 3)
+            SortHeroList(_pendingHeroVMs);
+            
+            _pendingHeroIndex = 0;
+            
+            // Create fresh empty Heroes list - this resets scroll state (fixes Issue 1)
+            Heroes = new MBBindingList<HeroItemVM>();
+            
             UpdateLoadingStatus();
         }
         
         /// <summary>
-        /// Processes a batch of heroes each frame for incremental loading
+        /// Starts incremental sorting - prepares sorted list then adds incrementally.
+        /// This keeps UI responsive during sort operations (fixes Issue 2).
         /// </summary>
-        private void ProcessIncrementalHeroLoading()
+        private void StartIncrementalSort()
         {
-            if (!_isLoading || _pendingHeroes == null)
+            if (_isLoading || _isSorting)
                 return;
             
+            if (Heroes == null || Heroes.Count == 0)
+                return;
+            
+            _isSorting = true;
+            LoadingStatusText = "Sorting...";
+            OnPropertyChanged(nameof(IsBusy));
+            
+            // Extract existing VMs and sort them (fast - VMs already exist)
+            _pendingHeroVMs = Heroes.ToList();
+            SortHeroList(_pendingHeroVMs);
+            _pendingHeroIndex = 0;
+            
+            // Create fresh empty Heroes list - this resets scroll state
+            Heroes = new MBBindingList<HeroItemVM>();
+        }
+        
+        /// <summary>
+        /// Processes a batch of heroes each frame for incremental loading or sorting.
+        /// Shared logic for both operations since both just add from _pendingHeroVMs.
+        /// </summary>
+        private void ProcessIncrementalHeroOperation()
+        {
+            if (!_isLoading && !_isSorting)
+                return;
+            
+            if (_pendingHeroVMs == null)
+                return;
+            
+            // Determine batch size based on operation type
+            // Sorting can use larger batches since VMs already exist
+            int itemsPerFrame = _isSorting ? SortItemsPerFrame : HeroesPerFrame;
+            
             // Calculate how many heroes to process this frame
-            int endIndex = System.Math.Min(_pendingHeroIndex + HeroesPerFrame, _pendingHeroes.Count);
+            int endIndex = System.Math.Min(_pendingHeroIndex + itemsPerFrame, _pendingHeroVMs.Count);
             
             // Add heroes for this frame's batch
             for (int i = _pendingHeroIndex; i < endIndex; i++)
             {
-                Heroes.Add(new HeroItemVM(_pendingHeroes[i], this));
+                Heroes.Add(_pendingHeroVMs[i]);
             }
             
             _pendingHeroIndex = endIndex;
             
-            // Update loading status
-            UpdateLoadingStatus();
-            
-            // Check if loading is complete
-            if (_pendingHeroIndex >= _pendingHeroes.Count)
+            // Update status text
+            if (_isSorting)
             {
-                _isLoading = false;
-                _pendingHeroes = null;
-                _pendingHeroIndex = 0;
-                LoadingStatusText = "";
+                LoadingStatusText = $"Sorting... {_pendingHeroIndex}/{_pendingHeroVMs.Count}";
+            }
+            else
+            {
+                LoadingStatusText = $"Loading... {_pendingHeroIndex}/{_pendingHeroVMs.Count}";
+            }
+            
+            // Check if operation is complete
+            if (_pendingHeroIndex >= _pendingHeroVMs.Count)
+            {
+                CompleteHeroOperation();
+            }
+        }
+        
+        /// <summary>
+        /// Completes the current loading or sorting operation
+        /// </summary>
+        private void CompleteHeroOperation()
+        {
+            bool wasLoading = _isLoading;
+            
+            _isLoading = false;
+            _isSorting = false;
+            _pendingHeroVMs = null;
+            _pendingHeroIndex = 0;
+            LoadingStatusText = "";
+            OnPropertyChanged(nameof(IsBusy));
+            
+            if (wasLoading)
+            {
                 _hasLoadedOnce = true;
-                
-                // Apply sorting after all heroes are loaded
-                SortHeroes();
             }
         }
         
@@ -362,9 +442,9 @@ namespace Bannerlord.Commander.UI
         /// </summary>
         private void UpdateLoadingStatus()
         {
-            if (_pendingHeroes != null && _pendingHeroes.Count > 0)
+            if (_pendingHeroVMs != null && _pendingHeroVMs.Count > 0)
             {
-                LoadingStatusText = $"Loading... {_pendingHeroIndex}/{_pendingHeroes.Count}";
+                LoadingStatusText = $"Loading... {_pendingHeroIndex}/{_pendingHeroVMs.Count}";
             }
             else
             {
@@ -413,6 +493,18 @@ namespace Bannerlord.Commander.UI
         {
             get => _isLoading;
         }
+        
+        [DataSourceProperty]
+        public bool IsSorting
+        {
+            get => _isSorting;
+        }
+        
+        [DataSourceProperty]
+        public bool IsBusy
+        {
+            get => _isLoading || _isSorting;
+        }
 
         #endregion
 
@@ -440,8 +532,16 @@ namespace Bannerlord.Commander.UI
         public void ExecuteSelectHeroes()
         {
             SelectMode(CommanderMode.Heroes);
-            // Start incremental hero loading when Heroes mode is selected
-            StartHeroLoading();
+            // Use deferred loading via tick system like initial load
+            // This prevents freeze when switching tabs
+            if (_hasLoadedOnce)
+            {
+                // Reset states to allow new load
+                // Creating fresh list in StartHeroLoading fixes scrollbar issues (Issue 1)
+                _isLoading = false;
+                _isSorting = false;
+                StartHeroLoading();
+            }
         }
 
         /// <summary>
@@ -499,7 +599,8 @@ namespace Bannerlord.Commander.UI
             {
                 case CommanderMode.Heroes:
                     // Force reload heroes to get fresh game state
-                    _isLoading = false; // Reset loading state to allow new load
+                    _isLoading = false;
+                    _isSorting = false;
                     StartHeroLoading();
                     break;
                 // Add other modes as they are implemented
@@ -519,81 +620,72 @@ namespace Bannerlord.Commander.UI
         #region Sorting Methods
 
         /// <summary>
-        /// Sorts the heroes list by the specified column
+        /// Sorts a list of HeroItemVM based on current sort column and direction
         /// </summary>
-        private void SortHeroes()
+        private void SortHeroList(List<HeroItemVM> list)
         {
-            if (Heroes == null || Heroes.Count == 0)
-                return;
-
-            // Convert to list for sorting
-            var sortedList = Heroes.ToList();
-
-            // Sort based on current column and direction
             switch (_currentSortColumn)
             {
                 case HeroSortColumn.Name:
-                    sortedList = _sortAscending
-                        ? sortedList.OrderBy(h => h.Name).ToList()
-                        : sortedList.OrderByDescending(h => h.Name).ToList();
+                    list.Sort((a, b) => _sortAscending
+                        ? string.Compare(a.Name, b.Name, System.StringComparison.Ordinal)
+                        : string.Compare(b.Name, a.Name, System.StringComparison.Ordinal));
                     break;
                 
                 case HeroSortColumn.Gender:
-                    sortedList = _sortAscending
-                        ? sortedList.OrderBy(h => h.Gender).ToList()
-                        : sortedList.OrderByDescending(h => h.Gender).ToList();
+                    list.Sort((a, b) => _sortAscending
+                        ? string.Compare(a.Gender, b.Gender, System.StringComparison.Ordinal)
+                        : string.Compare(b.Gender, a.Gender, System.StringComparison.Ordinal));
                     break;
                 
                 case HeroSortColumn.Age:
-                    sortedList = _sortAscending
-                        ? sortedList.OrderBy(h => h.Age).ToList()
-                        : sortedList.OrderByDescending(h => h.Age).ToList();
+                    list.Sort((a, b) => _sortAscending
+                        ? a.Age.CompareTo(b.Age)
+                        : b.Age.CompareTo(a.Age));
                     break;
                 
                 case HeroSortColumn.Clan:
-                    sortedList = _sortAscending
-                        ? sortedList.OrderBy(h => h.Clan).ToList()
-                        : sortedList.OrderByDescending(h => h.Clan).ToList();
+                    list.Sort((a, b) => _sortAscending
+                        ? string.Compare(a.Clan, b.Clan, System.StringComparison.Ordinal)
+                        : string.Compare(b.Clan, a.Clan, System.StringComparison.Ordinal));
                     break;
                 
                 case HeroSortColumn.Kingdom:
-                    sortedList = _sortAscending
-                        ? sortedList.OrderBy(h => h.Kingdom).ToList()
-                        : sortedList.OrderByDescending(h => h.Kingdom).ToList();
+                    list.Sort((a, b) => _sortAscending
+                        ? string.Compare(a.Kingdom, b.Kingdom, System.StringComparison.Ordinal)
+                        : string.Compare(b.Kingdom, a.Kingdom, System.StringComparison.Ordinal));
                     break;
                 
                 case HeroSortColumn.Culture:
-                    sortedList = _sortAscending
-                        ? sortedList.OrderBy(h => h.Culture).ToList()
-                        : sortedList.OrderByDescending(h => h.Culture).ToList();
+                    list.Sort((a, b) => _sortAscending
+                        ? string.Compare(a.Culture, b.Culture, System.StringComparison.Ordinal)
+                        : string.Compare(b.Culture, a.Culture, System.StringComparison.Ordinal));
                     break;
                 
                 case HeroSortColumn.Type:
-                    sortedList = _sortAscending
-                        ? sortedList.OrderBy(h => h.HeroType).ToList()
-                        : sortedList.OrderByDescending(h => h.HeroType).ToList();
+                    list.Sort((a, b) => _sortAscending
+                        ? string.Compare(a.HeroType, b.HeroType, System.StringComparison.Ordinal)
+                        : string.Compare(b.HeroType, a.HeroType, System.StringComparison.Ordinal));
                     break;
                 
                 case HeroSortColumn.Level:
-                    sortedList = _sortAscending
-                        ? sortedList.OrderBy(h => h.Level).ToList()
-                        : sortedList.OrderByDescending(h => h.Level).ToList();
+                    list.Sort((a, b) => _sortAscending
+                        ? a.Level.CompareTo(b.Level)
+                        : b.Level.CompareTo(a.Level));
                     break;
-            }
-
-            // Clear and repopulate the binding list with sorted items
-            Heroes.Clear();
-            foreach (var hero in sortedList)
-            {
-                Heroes.Add(hero);
             }
         }
 
         /// <summary>
         /// Handles sorting by a column. If already sorting by this column, toggles direction.
+        /// Uses incremental sorting to keep UI responsive (fixes Issue 2).
         /// </summary>
         private void ExecuteSortByColumn(HeroSortColumn column)
         {
+            // Don't allow sorting while loading or already sorting
+            if (_isLoading || _isSorting)
+                return;
+
             // If clicking the same column, toggle direction
             if (_currentSortColumn == column)
             {
@@ -606,7 +698,8 @@ namespace Bannerlord.Commander.UI
                 _sortAscending = true;
             }
 
-            SortHeroes();
+            // Use incremental sorting instead of instant (fixes Issue 2)
+            StartIncrementalSort();
         }
 
         public void ExecuteSortByName()
