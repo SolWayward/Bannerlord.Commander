@@ -1,8 +1,10 @@
 # BL Commander
 ﻿Commander is a fully interactive in-game management system providing a GUI that uses BLGM as a framework.
 
-Here is a little early look at it. (subject to change)
-[Commander UI WIP](https://raw.githubusercontent.com/SolWayward/Bannerlord.Commander/refs/heads/main/UI_Screenshots/HeroQuery.png)
+Here is a little early look at it. (subject to change)  
+
+<img src="UI_Screenshots/HeroQuery.png" width="auto" height="auto" alt="Commander UI WIP">
+
 
 Commander will be released as a separate mod that will require BLGM.
 BLGM will continue to be a standalone console based framework, while Commander will be a GUI built on top of BLGM.
