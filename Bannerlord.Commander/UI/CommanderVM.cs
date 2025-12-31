@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.Library;
 using Bannerlord.GameMaster.Heroes;
 using TaleWorlds.CampaignSystem;
@@ -18,6 +19,21 @@ namespace Bannerlord.Commander.UI
         Troops,
         Items,
         Characters
+    }
+
+    /// <summary>
+    /// Enumeration of sortable columns in Heroes view
+    /// </summary>
+    public enum HeroSortColumn
+    {
+        Name,
+        Gender,
+        Age,
+        Clan,
+        Kingdom,
+        Culture,
+        Type,
+        Level
     }
 
     /// <summary>
@@ -56,6 +72,10 @@ namespace Bannerlord.Commander.UI
         
         // Track if this is the first time opening (for initial load)
         private bool _hasLoadedOnce;
+        
+        // Sorting state
+        private HeroSortColumn _currentSortColumn = HeroSortColumn.Name;
+        private bool _sortAscending = true;
 
         // Event to notify the screen that close was requested
         public event System.Action OnCloseRequested;
@@ -331,6 +351,9 @@ namespace Bannerlord.Commander.UI
                 _pendingHeroIndex = 0;
                 LoadingStatusText = "";
                 _hasLoadedOnce = true;
+                
+                // Apply sorting after all heroes are loaded
+                SortHeroes();
             }
         }
         
@@ -493,6 +516,141 @@ namespace Bannerlord.Commander.UI
 
         #endregion
 
+        #region Sorting Methods
+
+        /// <summary>
+        /// Sorts the heroes list by the specified column
+        /// </summary>
+        private void SortHeroes()
+        {
+            if (Heroes == null || Heroes.Count == 0)
+                return;
+
+            // Convert to list for sorting
+            var sortedList = Heroes.ToList();
+
+            // Sort based on current column and direction
+            switch (_currentSortColumn)
+            {
+                case HeroSortColumn.Name:
+                    sortedList = _sortAscending
+                        ? sortedList.OrderBy(h => h.Name).ToList()
+                        : sortedList.OrderByDescending(h => h.Name).ToList();
+                    break;
+                
+                case HeroSortColumn.Gender:
+                    sortedList = _sortAscending
+                        ? sortedList.OrderBy(h => h.Gender).ToList()
+                        : sortedList.OrderByDescending(h => h.Gender).ToList();
+                    break;
+                
+                case HeroSortColumn.Age:
+                    sortedList = _sortAscending
+                        ? sortedList.OrderBy(h => h.Age).ToList()
+                        : sortedList.OrderByDescending(h => h.Age).ToList();
+                    break;
+                
+                case HeroSortColumn.Clan:
+                    sortedList = _sortAscending
+                        ? sortedList.OrderBy(h => h.Clan).ToList()
+                        : sortedList.OrderByDescending(h => h.Clan).ToList();
+                    break;
+                
+                case HeroSortColumn.Kingdom:
+                    sortedList = _sortAscending
+                        ? sortedList.OrderBy(h => h.Kingdom).ToList()
+                        : sortedList.OrderByDescending(h => h.Kingdom).ToList();
+                    break;
+                
+                case HeroSortColumn.Culture:
+                    sortedList = _sortAscending
+                        ? sortedList.OrderBy(h => h.Culture).ToList()
+                        : sortedList.OrderByDescending(h => h.Culture).ToList();
+                    break;
+                
+                case HeroSortColumn.Type:
+                    sortedList = _sortAscending
+                        ? sortedList.OrderBy(h => h.HeroType).ToList()
+                        : sortedList.OrderByDescending(h => h.HeroType).ToList();
+                    break;
+                
+                case HeroSortColumn.Level:
+                    sortedList = _sortAscending
+                        ? sortedList.OrderBy(h => h.Level).ToList()
+                        : sortedList.OrderByDescending(h => h.Level).ToList();
+                    break;
+            }
+
+            // Clear and repopulate the binding list with sorted items
+            Heroes.Clear();
+            foreach (var hero in sortedList)
+            {
+                Heroes.Add(hero);
+            }
+        }
+
+        /// <summary>
+        /// Handles sorting by a column. If already sorting by this column, toggles direction.
+        /// </summary>
+        private void ExecuteSortByColumn(HeroSortColumn column)
+        {
+            // If clicking the same column, toggle direction
+            if (_currentSortColumn == column)
+            {
+                _sortAscending = !_sortAscending;
+            }
+            else
+            {
+                // New column, default to ascending
+                _currentSortColumn = column;
+                _sortAscending = true;
+            }
+
+            SortHeroes();
+        }
+
+        public void ExecuteSortByName()
+        {
+            ExecuteSortByColumn(HeroSortColumn.Name);
+        }
+
+        public void ExecuteSortByGender()
+        {
+            ExecuteSortByColumn(HeroSortColumn.Gender);
+        }
+
+        public void ExecuteSortByAge()
+        {
+            ExecuteSortByColumn(HeroSortColumn.Age);
+        }
+
+        public void ExecuteSortByClan()
+        {
+            ExecuteSortByColumn(HeroSortColumn.Clan);
+        }
+
+        public void ExecuteSortByKingdom()
+        {
+            ExecuteSortByColumn(HeroSortColumn.Kingdom);
+        }
+
+        public void ExecuteSortByCulture()
+        {
+            ExecuteSortByColumn(HeroSortColumn.Culture);
+        }
+
+        public void ExecuteSortByType()
+        {
+            ExecuteSortByColumn(HeroSortColumn.Type);
+        }
+
+        public void ExecuteSortByLevel()
+        {
+            ExecuteSortByColumn(HeroSortColumn.Level);
+        }
+
+        #endregion
+
         public override void OnFinalize()
         {
             base.OnFinalize();
@@ -515,6 +673,8 @@ namespace Bannerlord.Commander.UI
         private string _culture;
         private int _level;
         private string _gender;
+        private int _age;
+        private string _heroType;
         private bool _isAlive;
         private bool _isSelected;
 
@@ -531,8 +691,33 @@ namespace Bannerlord.Commander.UI
             Culture = hero.Culture?.Name?.ToString() ?? "Unknown";
             Level = hero.Level;
             Gender = hero.IsFemale ? "Female" : "Male";
+            Age = (int)hero.Age;
+            HeroType = DetermineHeroType(hero);
             IsAlive = hero.IsAlive;
             IsSelected = false;
+        }
+
+        /// <summary>
+        /// Determines the display type for a hero based on their properties
+        /// </summary>
+        private static string DetermineHeroType(Hero hero)
+        {
+            // Check child first - children are always children regardless of other status
+            if (hero.IsChild) return "Child";
+            
+            // Check faction types - bandit faction heroes
+            if (hero.Clan?.IsBanditFaction == true) return "Bandit";
+            
+            // Check minor faction - these are typically mercenary/minor faction lords
+            if (hero.Clan?.IsMinorFaction == true) return "Minor Faction";
+            
+            // Standard hero types
+            if (hero.IsLord) return "Lord";
+            if (hero.IsWanderer) return "Wanderer";
+            if (hero.IsNotable) return "Notable";
+            
+            // Fallback for any other hero type
+            return "Other";
         }
 
         /// <summary>
@@ -649,6 +834,41 @@ namespace Bannerlord.Commander.UI
                 {
                     _gender = value;
                     OnPropertyChangedWithValue(value, nameof(Gender));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public int Age
+        {
+            get => _age;
+            set
+            {
+                if (_age != value)
+                {
+                    _age = value;
+                    OnPropertyChangedWithValue(value, nameof(Age));
+                    OnPropertyChangedWithValue(value.ToString(), nameof(AgeText));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string AgeText
+        {
+            get => _age.ToString();
+        }
+
+        [DataSourceProperty]
+        public string HeroType
+        {
+            get => _heroType;
+            set
+            {
+                if (_heroType != value)
+                {
+                    _heroType = value;
+                    OnPropertyChangedWithValue(value, nameof(HeroType));
                 }
             }
         }
