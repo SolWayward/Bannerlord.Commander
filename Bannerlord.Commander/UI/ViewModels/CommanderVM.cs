@@ -38,6 +38,11 @@ namespace Bannerlord.Commander.UI.ViewModels
         /// </summary>
         private const string SortDescIndicator = " v";
 
+        /// <summary>
+        /// Minimum delay between filter operations in milliseconds to prevent excessive filtering.
+        /// </summary>
+        private const int FilterDebounceMs = 150;
+
         #endregion
 
         #region Private Fields
@@ -57,11 +62,13 @@ namespace Bannerlord.Commander.UI.ViewModels
 
         // Heroes collection
         private MBBindingList<HeroItemVM> _heroes;
+        private List<HeroItemVM> _allHeroes; // Unfiltered master list
         private HeroItemVM _selectedHero;
 
         // Loading state
         private bool _isLoading;
         private bool _isSorting;
+        private bool _isFiltering;
         private bool _needsHeroLoad;
         private bool _hasLoadedOnce;
         private string _loadingStatusText;
@@ -90,6 +97,13 @@ namespace Bannerlord.Commander.UI.ViewModels
         private string _cultureSortIndicatorText;
         private string _typeSortIndicatorText;
         private string _levelSortIndicatorText;
+
+        // Filter state - per mode storage
+        private string _filterText = "";
+        private readonly Dictionary<CommanderMode, string> _filterTextByMode = new Dictionary<CommanderMode, string>();
+        private string _pendingFilterText;
+        private bool _filterPending;
+        private DateTime _lastFilterChange = DateTime.MinValue;
 
         #endregion
 
@@ -132,6 +146,7 @@ namespace Bannerlord.Commander.UI.ViewModels
             ProcessDeferredHeroLoad();
             ProcessDeferredQuery();
             ProcessIncrementalHeroOperation();
+            ProcessDeferredFilter();
         }
 
         /// <summary>
@@ -323,6 +338,28 @@ namespace Bannerlord.Commander.UI.ViewModels
             set => SetProperty(ref _levelSortIndicatorText, value, nameof(LevelSortIndicatorText));
         }
 
+        [DataSourceProperty]
+        public string FilterText
+        {
+            get => _filterText;
+            set
+            {
+                if (_filterText != value)
+                {
+                    _filterText = value ?? "";
+                    OnPropertyChangedWithValue(value, nameof(FilterText));
+                    
+                    // Store for current mode
+                    _filterTextByMode[_selectedMode] = _filterText;
+                    
+                    // Schedule deferred filter with debounce
+                    _pendingFilterText = _filterText;
+                    _filterPending = true;
+                    _lastFilterChange = DateTime.UtcNow;
+                }
+            }
+        }
+
         #endregion
 
         #region Execute Methods (Button Click Handlers)
@@ -365,6 +402,12 @@ namespace Bannerlord.Commander.UI.ViewModels
         /// </summary>
         private void SelectMode(CommanderMode mode)
         {
+            // Save current filter text for the previous mode (if any)
+            if (_selectedMode != mode)
+            {
+                _filterTextByMode[_selectedMode] = _filterText;
+            }
+
             _selectedMode = mode;
 
             IsKingdomsSelected = mode == CommanderMode.Kingdoms;
@@ -376,6 +419,17 @@ namespace Bannerlord.Commander.UI.ViewModels
             IsCharactersSelected = mode == CommanderMode.Characters;
 
             SelectedModeName = mode.ToString();
+
+            // Restore filter text for the new mode (or empty if not set)
+            if (_filterTextByMode.TryGetValue(mode, out string savedFilter))
+            {
+                _filterText = savedFilter;
+            }
+            else
+            {
+                _filterText = "";
+            }
+            OnPropertyChangedWithValue(_filterText, nameof(FilterText));
         }
 
         #endregion
@@ -476,17 +530,46 @@ namespace Bannerlord.Commander.UI.ViewModels
 
             _isLoading = false;
             _isSorting = false;
+            _isFiltering = false;
+            
+            // Store unfiltered master list when loading completes
+            if (wasLoading && !_isFiltering)
+            {
+                _allHeroes = Heroes.ToList();
+            }
+            
             _pendingHeroVMs = null;
             _pendingHeroIndex = 0;
             
             // Show total count when operation completes
-            LoadingStatusText = $"{Heroes.Count} Heroes";
+            UpdateHeroCountStatus();
             
             OnPropertyChanged(nameof(IsBusy));
 
             if (wasLoading)
             {
                 _hasLoadedOnce = true;
+                
+                // Apply any existing filter after loading completes
+                if (!string.IsNullOrEmpty(_filterText))
+                {
+                    ApplyFilter(_filterText);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Updates the status text to show current hero count with filter info if applicable.
+        /// </summary>
+        private void UpdateHeroCountStatus()
+        {
+            if (_allHeroes != null && !string.IsNullOrEmpty(_filterText))
+            {
+                LoadingStatusText = $"{Heroes.Count} / {_allHeroes.Count} Heroes";
+            }
+            else
+            {
+                LoadingStatusText = $"{Heroes.Count} Heroes";
             }
         }
 
@@ -576,6 +659,75 @@ namespace Bannerlord.Commander.UI.ViewModels
             CultureSortIndicatorText = "Culture" + GetIndicator(HeroSortColumn.Culture);
             TypeSortIndicatorText = "Type" + GetIndicator(HeroSortColumn.Type);
             LevelSortIndicatorText = "Level" + GetIndicator(HeroSortColumn.Level);
+        }
+
+        #endregion
+
+        #region Private Methods - Filtering
+
+        /// <summary>
+        /// Processes deferred filter operations with debounce.
+        /// </summary>
+        private void ProcessDeferredFilter()
+        {
+            if (!_filterPending)
+                return;
+
+            // Wait for debounce period
+            if ((DateTime.UtcNow - _lastFilterChange).TotalMilliseconds < FilterDebounceMs)
+                return;
+
+            _filterPending = false;
+            ApplyFilter(_pendingFilterText);
+        }
+
+        /// <summary>
+        /// Applies the filter to the hero list. Filters by name (case-insensitive contains).
+        /// </summary>
+        private void ApplyFilter(string filter)
+        {
+            if (_isLoading || _isSorting)
+                return;
+
+            if (_allHeroes == null || _allHeroes.Count == 0)
+                return;
+
+            _isFiltering = true;
+
+            List<HeroItemVM> filtered;
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                // No filter - show all heroes
+                filtered = _allHeroes.ToList();
+            }
+            else
+            {
+                // Filter by name (case-insensitive)
+                string lowerFilter = filter.ToLowerInvariant();
+                filtered = _allHeroes
+                    .Where(h => h.Name != null && h.Name.ToLowerInvariant().Contains(lowerFilter))
+                    .ToList();
+            }
+
+            // Apply current sort to filtered list
+            HeroSorter.Sort(filtered, _currentSortColumn, _sortAscending);
+
+            // Clear and repopulate - this is fast since we're just reassigning references
+            Heroes = new MBBindingList<HeroItemVM>();
+            foreach (var hero in filtered)
+            {
+                Heroes.Add(hero);
+            }
+
+            // Clear selection if selected hero is no longer visible
+            if (_selectedHero != null && !filtered.Contains(_selectedHero))
+            {
+                _selectedHero.IsSelected = false;
+                _selectedHero = null;
+            }
+
+            _isFiltering = false;
+            UpdateHeroCountStatus();
         }
 
         #endregion

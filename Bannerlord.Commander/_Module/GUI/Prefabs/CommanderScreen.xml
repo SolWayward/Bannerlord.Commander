@@ -34,6 +34,63 @@
                             Brush.TextHorizontalAlignment="Center"
                             Text="@TitleText" />
             
+            <!-- Filter Input (Top Right) -->
+            <Widget WidthSizePolicy="CoverChildren"
+                    HeightSizePolicy="Fixed"
+                    SuggestedHeight="36"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    MarginRight="20">
+              <Children>
+                <!-- Filter Label -->
+                <TextWidget WidthSizePolicy="CoverChildren"
+                            HeightSizePolicy="StretchToParent"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Brush="Clan.TabControl.Text"
+                            Brush.FontSize="18"
+                            Text="Filter"
+                            MarginRight="8" />
+                
+                <!-- Filter Text Input Container -->
+                <Widget WidthSizePolicy="Fixed"
+                        HeightSizePolicy="StretchToParent"
+                        SuggestedWidth="220"
+                        MarginLeft="45"
+                        Sprite="BlankWhiteSquare_9"
+                        Color="#1a1a1aFF">
+                  <Children>
+                    <!-- Border frame for input -->
+                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                            SuggestedHeight="1" VerticalAlignment="Top"
+                            Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                            SuggestedHeight="1" VerticalAlignment="Bottom"
+                            Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                            SuggestedWidth="1" HorizontalAlignment="Left"
+                            Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                            SuggestedWidth="1" HorizontalAlignment="Right"
+                            Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                    
+                    <!-- Actual text input -->
+                    <EditableTextWidget WidthSizePolicy="StretchToParent"
+                                        HeightSizePolicy="StretchToParent"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        MarginLeft="8"
+                                        MarginRight="8"
+                                        MarginTop="4"
+                                        MarginBottom="4"
+                                        Brush="Clan.TabControl.Text"
+                                        Brush.FontSize="16"
+                                        Text="@FilterText" />
+                  </Children>
+                </Widget>
+              </Children>
+            </Widget>
+            
             <!-- Decorative bottom border line -->
             <Widget WidthSizePolicy="StretchToParent"
                     HeightSizePolicy="Fixed"
