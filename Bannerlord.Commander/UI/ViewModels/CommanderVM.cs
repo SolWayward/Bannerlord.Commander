@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using Bannerlord.Commander.UI.Enums;
 using Bannerlord.Commander.UI.Services;
 using Bannerlord.GameMaster.Heroes;
+using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 
 namespace Bannerlord.Commander.UI.ViewModels
@@ -39,9 +42,28 @@ namespace Bannerlord.Commander.UI.ViewModels
         private const string SortDescIndicator = " v";
 
         /// <summary>
-        /// Minimum delay between filter operations in milliseconds to prevent excessive filtering.
+        /// Minimum delay between filter operations in milliseconds.
+        /// Used to trigger background filtering after user stops typing.
         /// </summary>
-        private const int FilterDebounceMs = 150;
+        private const int FilterDebounceMs = 200;
+
+        /// <summary>
+        /// Number of items to show INSTANTLY after filter completes.
+        /// This ensures the user sees results immediately without any lag.
+        /// </summary>
+        private const int InstantResultCount = 40;
+
+        /// <summary>
+        /// Number of items to add per frame during incremental filter population.
+        /// Only runs when user is idle (not typing) to ensure smooth typing experience.
+        /// </summary>
+        private const int StreamBatchSize = 25;
+
+        /// <summary>
+        /// Time in ms to wait after last input before streaming more results.
+        /// While user is typing, we pause streaming to ensure 60fps textbox experience.
+        /// </summary>
+        private const int TypingDebounceMs = 200;
 
         #endregion
 
@@ -73,10 +95,15 @@ namespace Bannerlord.Commander.UI.ViewModels
         private bool _hasLoadedOnce;
         private string _loadingStatusText;
 
-        // Incremental loading state
+        // Incremental loading state - used for both initial load and filter results
         private List<HeroItemVM> _pendingHeroVMs;
         private int _pendingHeroIndex;
         private int _totalHeroCount;
+
+        // Incremental filter population state
+        private bool _incrementalFilterActive;
+        private List<HeroItemVM> _pendingFilteredHeroes;
+        private int _pendingFilterIndex;
 
         // Deferred loading parameters
         private string _pendingLoadQuery = "";
@@ -104,6 +131,22 @@ namespace Bannerlord.Commander.UI.ViewModels
         private string _pendingFilterText;
         private bool _filterPending;
         private DateTime _lastFilterChange = DateTime.MinValue;
+
+        // Background filter state - filtering runs on background thread to avoid UI stutter
+        private CancellationTokenSource _filterCts;
+        private volatile bool _backgroundFilterComplete;
+        private List<HeroItemVM> _backgroundFilterResult;
+        private readonly object _filterResultLock = new object();
+
+        // Search versioning - increments on every filter change to invalidate old searches
+        private int _currentSearchVersion = 0;
+
+        // Last input time - used for debouncing during incremental population
+        private DateTime _lastInputTime = DateTime.MinValue;
+
+        // Per-mode hero list cache to avoid reloading when switching tabs
+        private readonly Dictionary<CommanderMode, List<HeroItemVM>> _heroListByMode = new Dictionary<CommanderMode, List<HeroItemVM>>();
+        private readonly Dictionary<CommanderMode, List<HeroItemVM>> _filteredHeroListByMode = new Dictionary<CommanderMode, List<HeroItemVM>>();
 
         #endregion
 
@@ -147,6 +190,8 @@ namespace Bannerlord.Commander.UI.ViewModels
             ProcessDeferredQuery();
             ProcessIncrementalHeroOperation();
             ProcessDeferredFilter();
+            ProcessBackgroundFilterResult();
+            ProcessIncrementalFilterPopulation();
         }
 
         /// <summary>
@@ -188,6 +233,9 @@ namespace Bannerlord.Commander.UI.ViewModels
 
         public override void OnFinalize()
         {
+            // Cancel any pending background filter operation
+            CancelPendingFilter();
+
             base.OnFinalize();
             OnCloseRequested = null;
         }
@@ -280,7 +328,7 @@ namespace Bannerlord.Commander.UI.ViewModels
         public bool IsSorting => _isSorting;
 
         [DataSourceProperty]
-        public bool IsBusy => _isLoading || _isSorting;
+        public bool IsBusy => _isLoading || _isSorting || _isFiltering;
 
         [DataSourceProperty]
         public string NameSortIndicatorText
@@ -348,10 +396,21 @@ namespace Bannerlord.Commander.UI.ViewModels
                 {
                     _filterText = value ?? "";
                     OnPropertyChangedWithValue(value, nameof(FilterText));
-                    
+
                     // Store for current mode
                     _filterTextByMode[_selectedMode] = _filterText;
-                    
+
+                    // Record time for debounce logic during incremental population
+                    _lastInputTime = DateTime.UtcNow;
+
+                    // Increment search version - invalidates any old searches currently running
+                    _currentSearchVersion++;
+
+                    // IMMEDIATE STOP: Halt any list streaming from previous searches
+                    // This keeps the UI responsive for typing - no stutters from old results streaming in
+                    _incrementalFilterActive = false;
+                    _pendingFilteredHeroes = null;
+
                     // Schedule deferred filter with debounce
                     _pendingFilterText = _filterText;
                     _filterPending = true;
@@ -370,10 +429,39 @@ namespace Bannerlord.Commander.UI.ViewModels
         public void ExecuteSelectHeroes()
         {
             SelectMode(CommanderMode.Heroes);
-            if (_hasLoadedOnce)
+            // Don't reload - just restore from cache if available
+            if (_hasLoadedOnce && _heroListByMode.TryGetValue(CommanderMode.Heroes, out var cachedAllHeroes))
             {
-                ResetLoadingState();
-                StartHeroLoading();
+                _allHeroes = cachedAllHeroes;
+
+                // Restore filtered list if available, otherwise apply current filter
+                if (_filteredHeroListByMode.TryGetValue(CommanderMode.Heroes, out var cachedFiltered) && cachedFiltered != null)
+                {
+                    // Populate list BEFORE assigning to property to avoid multiple UI notifications
+                    var newList = new MBBindingList<HeroItemVM>();
+                    foreach (var hero in cachedFiltered)
+                    {
+                        newList.Add(hero);
+                    }
+                    Heroes = newList;  // Single UI update
+                    UpdateHeroCountStatus();
+                }
+                else if (!string.IsNullOrEmpty(_filterText))
+                {
+                    StartBackgroundFilter(_filterText);
+                }
+                else
+                {
+                    // No filter - show all heroes from cache
+                    // Populate list BEFORE assigning to property to avoid multiple UI notifications
+                    var newList = new MBBindingList<HeroItemVM>();
+                    foreach (var hero in cachedAllHeroes)
+                    {
+                        newList.Add(hero);
+                    }
+                    Heroes = newList;  // Single UI update
+                    UpdateHeroCountStatus();
+                }
             }
         }
 
@@ -531,29 +619,33 @@ namespace Bannerlord.Commander.UI.ViewModels
             _isLoading = false;
             _isSorting = false;
             _isFiltering = false;
-            
+
             // Store unfiltered master list when loading completes
-            if (wasLoading && !_isFiltering)
+            if (wasLoading)
             {
                 _allHeroes = Heroes.ToList();
+                // Cache the hero list for this mode
+                _heroListByMode[_selectedMode] = _allHeroes;
+                // Clear any cached filtered list since we just loaded fresh
+                _filteredHeroListByMode.Remove(_selectedMode);
             }
-            
+
             _pendingHeroVMs = null;
             _pendingHeroIndex = 0;
-            
+
             // Show total count when operation completes
             UpdateHeroCountStatus();
-            
+
             OnPropertyChanged(nameof(IsBusy));
 
             if (wasLoading)
             {
                 _hasLoadedOnce = true;
-                
+
                 // Apply any existing filter after loading completes
                 if (!string.IsNullOrEmpty(_filterText))
                 {
-                    ApplyFilter(_filterText);
+                    StartBackgroundFilter(_filterText);
                 }
             }
         }
@@ -666,6 +758,19 @@ namespace Bannerlord.Commander.UI.ViewModels
         #region Private Methods - Filtering
 
         /// <summary>
+        /// Cancels any pending background filter operation.
+        /// </summary>
+        private void CancelPendingFilter()
+        {
+            if (_filterCts != null)
+            {
+                _filterCts.Cancel();
+                _filterCts.Dispose();
+                _filterCts = null;
+            }
+        }
+
+        /// <summary>
         /// Processes deferred filter operations with debounce.
         /// </summary>
         private void ProcessDeferredFilter()
@@ -678,47 +783,131 @@ namespace Bannerlord.Commander.UI.ViewModels
                 return;
 
             _filterPending = false;
-            ApplyFilter(_pendingFilterText);
+            StartBackgroundFilter(_pendingFilterText);
         }
 
         /// <summary>
-        /// Applies the filter to the hero list. Filters by name (case-insensitive contains).
+        /// Checks if a background filter has completed and applies the results on the main thread.
         /// </summary>
-        private void ApplyFilter(string filter)
+        private void ProcessBackgroundFilterResult()
         {
+            if (!_backgroundFilterComplete)
+                return;
+
+            List<HeroItemVM> result;
+            lock (_filterResultLock)
+            {
+                if (!_backgroundFilterComplete || _backgroundFilterResult == null)
+                    return;
+
+                result = _backgroundFilterResult;
+                _backgroundFilterResult = null;
+                _backgroundFilterComplete = false;
+            }
+
+            // Apply results on main thread
+            ApplyFilterResults(result);
+        }
+
+        /// <summary>
+        /// Starts filtering on a background thread to avoid UI stutter.
+        /// The filtering and sorting happen off the main thread, then results are applied on the main thread.
+        /// Uses search versioning to cancel outdated searches automatically.
+        /// </summary>
+        private void StartBackgroundFilter(string filter)
+        {
+            // Don't start new filter if busy with other operations
             if (_isLoading || _isSorting)
                 return;
 
             if (_allHeroes == null || _allHeroes.Count == 0)
                 return;
 
+            // Cancel any previous filter operation
+            CancelPendingFilter();
+
             _isFiltering = true;
+            OnPropertyChanged(nameof(IsBusy));
 
-            List<HeroItemVM> filtered;
-            if (string.IsNullOrWhiteSpace(filter))
+            // Capture state for the background thread (thread-safe snapshot)
+            int searchVersion = _currentSearchVersion;
+            var heroesSnapshot = _allHeroes.ToList();
+            var sortColumn = _currentSortColumn;
+            var sortAscending = _sortAscending;
+
+            // Create new cancellation token
+            _filterCts = new CancellationTokenSource();
+            var token = _filterCts.Token;
+
+            // Run filter on background thread
+            Task.Run(() =>
             {
-                // No filter - show all heroes
-                filtered = _allHeroes.ToList();
-            }
-            else
-            {
-                // Filter by name (case-insensitive)
-                string lowerFilter = filter.ToLowerInvariant();
-                filtered = _allHeroes
-                    .Where(h => h.Name != null && h.Name.ToLowerInvariant().Contains(lowerFilter))
-                    .ToList();
-            }
+                try
+                {
+                    // Fast fail: If user typed again already, don't bother starting
+                    if (searchVersion != _currentSearchVersion)
+                        return;
 
-            // Apply current sort to filtered list
-            HeroSorter.Sort(filtered, _currentSortColumn, _sortAscending);
+                    List<HeroItemVM> filtered;
 
-            // Clear and repopulate - this is fast since we're just reassigning references
-            Heroes = new MBBindingList<HeroItemVM>();
-            foreach (var hero in filtered)
-            {
-                Heroes.Add(hero);
-            }
+                    if (string.IsNullOrWhiteSpace(filter))
+                    {
+                        // No filter - show all heroes
+                        filtered = heroesSnapshot.ToList();
+                    }
+                    else
+                    {
+                        // Filter by name (case-insensitive)
+                        string lowerFilter = filter.ToLowerInvariant();
+                        filtered = heroesSnapshot
+                            .Where(h => h.Name != null && h.Name.ToLowerInvariant().Contains(lowerFilter))
+                            .ToList();
+                    }
 
+                    // Check for cancellation or version mismatch before sorting
+                    if (token.IsCancellationRequested || searchVersion != _currentSearchVersion)
+                        return;
+
+                    // Sort the filtered list
+                    HeroSorter.Sort(filtered, sortColumn, sortAscending);
+
+                    // Check for cancellation or version mismatch before delivering result
+                    if (token.IsCancellationRequested || searchVersion != _currentSearchVersion)
+                        return;
+
+                    // Store result for main thread to pick up ONLY if version still matches
+                    lock (_filterResultLock)
+                    {
+                        if (searchVersion == _currentSearchVersion)
+                        {
+                            _backgroundFilterResult = filtered;
+                            _backgroundFilterComplete = true;
+                        }
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    // Filter was cancelled, ignore
+                }
+                catch (Exception)
+                {
+                    // Log error if needed, but don't crash
+                    lock (_filterResultLock)
+                    {
+                        _backgroundFilterComplete = false;
+                        _backgroundFilterResult = null;
+                    }
+                }
+            }, token);
+        }
+
+        /// <summary>
+        /// Applies filter results to the UI using the "Smooth Filtering" pattern.
+        /// Shows the first batch (InstantResultCount) immediately, then streams the rest
+        /// incrementally when the user is idle (not typing).
+        /// </summary>
+        private void ApplyFilterResults(List<HeroItemVM> filtered)
+        {
             // Clear selection if selected hero is no longer visible
             if (_selectedHero != null && !filtered.Contains(_selectedHero))
             {
@@ -726,8 +915,81 @@ namespace Bannerlord.Commander.UI.ViewModels
                 _selectedHero = null;
             }
 
-            _isFiltering = false;
-            UpdateHeroCountStatus();
+            // Cache the filtered result for this mode
+            _filteredHeroListByMode[_selectedMode] = filtered;
+
+            // THE SMOOTH PART: Create a new list with ONLY the first batch (e.g., 40 items)
+            // This happens instantly on the main thread, so the user sees results immediately.
+            var newList = new MBBindingList<HeroItemVM>();
+            int countToAdd = Math.Min(filtered.Count, InstantResultCount);
+            for (int i = 0; i < countToAdd; i++)
+            {
+                newList.Add(filtered[i]);
+            }
+
+            // Update the UI with the first batch
+            Heroes = newList;
+
+            // Queue the rest for "streaming" if there are more items
+            if (filtered.Count > InstantResultCount)
+            {
+                _pendingFilteredHeroes = filtered;
+                _pendingFilterIndex = InstantResultCount; // Start where we left off
+                _incrementalFilterActive = true;
+                // _isFiltering stays true until incremental population completes
+            }
+            else
+            {
+                // All items fit in first batch - done
+                _incrementalFilterActive = false;
+                _pendingFilteredHeroes = null;
+                _isFiltering = false;
+                OnPropertyChanged(nameof(IsBusy));
+            }
+
+            // Show status with total count
+            LoadingStatusText = $"{filtered.Count} Heroes found";
+        }
+
+        /// <summary>
+        /// Processes incremental filter result population.
+        /// Adds a batch of filtered heroes each frame, but ONLY when user is idle.
+        /// This ensures the textbox remains 60fps smooth while typing.
+        /// </summary>
+        private void ProcessIncrementalFilterPopulation()
+        {
+            if (!_incrementalFilterActive || _pendingFilteredHeroes == null)
+                return;
+
+            // DEBOUNCE: If user typed within the last TypingDebounceMs, wait.
+            // This ensures the textbox cursor remains 60fps smooth while typing.
+            double msSinceLastInput = (DateTime.UtcNow - _lastInputTime).TotalMilliseconds;
+            if (msSinceLastInput < TypingDebounceMs)
+            {
+                return;
+            }
+
+            // User is idle - stream in a small batch
+            int endIndex = Math.Min(_pendingFilterIndex + StreamBatchSize, _pendingFilteredHeroes.Count);
+
+            for (int i = _pendingFilterIndex; i < endIndex; i++)
+            {
+                Heroes.Add(_pendingFilteredHeroes[i]);
+            }
+
+            _pendingFilterIndex = endIndex;
+
+            // Check if complete
+            if (_pendingFilterIndex >= _pendingFilteredHeroes.Count)
+            {
+                _incrementalFilterActive = false;
+                _pendingFilteredHeroes = null;
+                _pendingFilterIndex = 0;
+
+                _isFiltering = false;
+                OnPropertyChanged(nameof(IsBusy));
+                UpdateHeroCountStatus();
+            }
         }
 
         #endregion

@@ -37,10 +37,10 @@
             <!-- Filter Input (Top Right) -->
             <Widget WidthSizePolicy="CoverChildren"
                     HeightSizePolicy="Fixed"
-                    SuggestedHeight="36"
+                    SuggestedHeight="28"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    MarginRight="20">
+                    MarginRight="70">
               <Children>
                 <!-- Filter Label -->
                 <TextWidget WidthSizePolicy="CoverChildren"
@@ -48,14 +48,14 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Brush="Clan.TabControl.Text"
-                            Brush.FontSize="18"
+                            Brush.FontSize="16"
                             Text="Filter"
                             MarginRight="8" />
                 
                 <!-- Filter Text Input Container -->
                 <Widget WidthSizePolicy="Fixed"
                         HeightSizePolicy="StretchToParent"
-                        SuggestedWidth="220"
+                        SuggestedWidth="250"
                         MarginLeft="45"
                         Sprite="BlankWhiteSquare_9"
                         Color="#1a1a1aFF">
@@ -79,12 +79,12 @@
                                         HeightSizePolicy="StretchToParent"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        MarginLeft="8"
-                                        MarginRight="8"
-                                        MarginTop="4"
-                                        MarginBottom="4"
+                                        MarginLeft="6"
+                                        MarginRight="6"
+                                        MarginTop="2"
+                                        MarginBottom="2"
                                         Brush="Clan.TabControl.Text"
-                                        Brush.FontSize="16"
+                                        Brush.FontSize="14"
                                         Text="@FilterText" />
                   </Children>
                 </Widget>
