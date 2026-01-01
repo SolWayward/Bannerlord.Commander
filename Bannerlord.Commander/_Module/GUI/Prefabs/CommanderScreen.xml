@@ -628,6 +628,7 @@
                                       <ItemTemplate>
                                         
                                         <!-- Hero Row as ButtonWidget for selection -->
+                                        <!-- IsHidden bound to IsFiltered for instant filtering without list rebuild -->
                                         <ButtonWidget DoNotPassEventsToChildren="true"
                                                       UpdateChildrenStates="true"
                                                       WidthSizePolicy="StretchToParent"
@@ -636,7 +637,8 @@
                                                       MarginBottom="2"
                                                       Brush="Commander.HeroRow"
                                                       Command.Click="ExecuteSelect"
-                                                      IsSelected="@IsSelected">
+                                                      IsSelected="@IsSelected"
+                                                      IsHidden="@IsFiltered">
                                           <Children>
                                             
                                             <!-- Row data layout -->

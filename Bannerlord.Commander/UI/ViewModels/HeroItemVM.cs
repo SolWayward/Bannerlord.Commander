@@ -23,6 +23,7 @@ namespace Bannerlord.Commander.UI.ViewModels
         private string _heroType;
         private bool _isAlive;
         private bool _isSelected;
+        private bool _isFiltered;
 
         /// <summary>
         /// Creates a new HeroItemVM wrapping the specified Hero
@@ -186,6 +187,17 @@ namespace Bannerlord.Commander.UI.ViewModels
         {
             get => _isSelected;
             set => SetProperty(ref _isSelected, value, nameof(IsSelected));
+        }
+
+        /// <summary>
+        /// When true, this hero should be hidden from the list (filtered out).
+        /// Bound to IsHidden in XML for instant filtering without list rebuild.
+        /// </summary>
+        [DataSourceProperty]
+        public bool IsFiltered
+        {
+            get => _isFiltered;
+            set => SetProperty(ref _isFiltered, value, nameof(IsFiltered));
         }
 
         #endregion
