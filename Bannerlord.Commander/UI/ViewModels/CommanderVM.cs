@@ -44,7 +44,7 @@ namespace Bannerlord.Commander.UI.ViewModels
         /// Minimum delay between filter operations in milliseconds.
         /// Used as debounce to avoid filtering on every keystroke.
         /// </summary>
-        private const int FilterDebounceMs = 150;
+        private const int FilterDebounceMs = 15; // Not realy needed with using native IsFiltered pattern but keeping for future safety (reduced from 150 to 15ms)
 
         #endregion
 
@@ -574,7 +574,7 @@ namespace Bannerlord.Commander.UI.ViewModels
 
         /// <summary>
         /// Handles sorting by a column. If already sorting by this column, toggles direction.
-        /// Sorting is done by rebuilding the list order (necessary for MBBindingList).
+        /// Uses in-place MBBindingList.Sort() for instant performance (native inventory pattern).
         /// </summary>
         private void ExecuteSortByColumn(HeroSortColumn column)
         {
@@ -597,28 +597,23 @@ namespace Bannerlord.Commander.UI.ViewModels
 
         /// <summary>
         /// Applies the current sort to the Heroes list.
-        /// Creates a sorted list and rebuilds Heroes in one batch.
+        /// Uses in-place sorting via MBBindingList.Sort(IComparer) for instant performance.
+        /// This matches the native inventory pattern - no list rebuild, single notification.
         /// </summary>
         private void ApplySortToList()
         {
             if (Heroes == null || Heroes.Count == 0)
                 return;
 
-            // Get current list and sort it
-            var sortedList = Heroes.ToList();
-            HeroSorter.Sort(sortedList, _currentSortColumn, _sortAscending);
+            // Get comparer for the current column and configure sort direction
+            var comparer = HeroSorter.GetComparer(_currentSortColumn);
+            comparer.SetSortMode(_sortAscending);
 
-            // Rebuild the list in sorted order
-            // This is the most efficient approach for MBBindingList
-            var newList = new MBBindingList<HeroItemVM>();
-            foreach (var hero in sortedList)
-            {
-                newList.Add(hero);
-            }
+            // Sort in-place - no list rebuild, single UI notification
+            // This is the native inventory pattern for responsive sorting
+            Heroes.Sort(comparer);
 
-            Heroes = newList;
-
-            // Re-apply filter state after sort (IsFiltered values are preserved on the VMs)
+            // Filter state (IsFiltered on each VM) is preserved through in-place sort
             UpdateHeroCountStatus();
         }
 
@@ -692,7 +687,7 @@ namespace Bannerlord.Commander.UI.ViewModels
 
                 foreach (var hero in Heroes)
                 {
-                    bool matches = hero.Name != null && 
+                    bool matches = hero.Name != null &&
                                    hero.Name.ToLowerInvariant().Contains(lowerFilter);
                     hero.IsFiltered = !matches;
 

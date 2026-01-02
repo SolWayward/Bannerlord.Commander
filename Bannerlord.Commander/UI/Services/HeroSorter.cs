@@ -7,12 +7,35 @@ namespace Bannerlord.Commander.UI.Services
 {
     /// <summary>
     /// Service class for sorting hero lists.
-    /// Encapsulates all sorting logic to keep ViewModels clean.
+    /// Uses IComparer pattern matching native inventory implementation for in-place sorting.
+    /// This allows MBBindingList.Sort() to work efficiently without rebuilding the list.
     /// </summary>
     public static class HeroSorter
     {
         /// <summary>
-        /// Sorts a list of HeroItemVM based on the specified column and direction
+        /// Gets a comparer for the specified column.
+        /// </summary>
+        /// <param name="column">The column to sort by</param>
+        /// <returns>A comparer configured for the specified column</returns>
+        public static HeroComparer GetComparer(HeroSortColumn column)
+        {
+            return column switch
+            {
+                HeroSortColumn.Name => new HeroNameComparer(),
+                HeroSortColumn.Gender => new HeroGenderComparer(),
+                HeroSortColumn.Age => new HeroAgeComparer(),
+                HeroSortColumn.Clan => new HeroClanComparer(),
+                HeroSortColumn.Kingdom => new HeroKingdomComparer(),
+                HeroSortColumn.Culture => new HeroCultureComparer(),
+                HeroSortColumn.Type => new HeroTypeComparer(),
+                HeroSortColumn.Level => new HeroLevelComparer(),
+                _ => new HeroNameComparer()
+            };
+        }
+
+        /// <summary>
+        /// Sorts a list of HeroItemVM based on the specified column and direction.
+        /// Used for initial sorting during loading before adding to MBBindingList.
         /// </summary>
         /// <param name="list">The list to sort (modified in place)</param>
         /// <param name="column">The column to sort by</param>
@@ -22,51 +45,178 @@ namespace Bannerlord.Commander.UI.Services
             if (list == null || list.Count == 0)
                 return;
 
-            Comparison<HeroItemVM> comparison = GetComparison(column, ascending);
-            list.Sort(comparison);
+            var comparer = GetComparer(column);
+            comparer.SetSortMode(ascending);
+            list.Sort(comparer);
+        }
+    }
+
+    /// <summary>
+    /// Abstract base class for hero comparers.
+    /// Follows the native inventory pattern exactly with SetSortMode for ascending/descending.
+    /// Native pattern: y.CompareTo(x) then multiply by (_isAscending ? -1 : 1)
+    /// </summary>
+    public abstract class HeroComparer : IComparer<HeroItemVM>
+    {
+        protected bool _isAscending = true;
+
+        /// <summary>
+        /// Sets the sort direction.
+        /// </summary>
+        /// <param name="isAscending">True for ascending, false for descending</param>
+        public void SetSortMode(bool isAscending)
+        {
+            _isAscending = isAscending;
         }
 
         /// <summary>
-        /// Gets the comparison delegate for the specified column and direction
+        /// Compares two heroes for sorting.
         /// </summary>
-        private static Comparison<HeroItemVM> GetComparison(HeroSortColumn column, bool ascending)
-        {
-            return column switch
-            {
-                HeroSortColumn.Name => CreateStringComparison(h => h.Name, ascending),
-                HeroSortColumn.Gender => CreateStringComparison(h => h.Gender, ascending),
-                HeroSortColumn.Age => CreateIntComparison(h => h.Age, ascending),
-                HeroSortColumn.Clan => CreateStringComparison(h => h.Clan, ascending),
-                HeroSortColumn.Kingdom => CreateStringComparison(h => h.Kingdom, ascending),
-                HeroSortColumn.Culture => CreateStringComparison(h => h.Culture, ascending),
-                HeroSortColumn.Type => CreateStringComparison(h => h.HeroType, ascending),
-                HeroSortColumn.Level => CreateIntComparison(h => h.Level, ascending),
-                _ => CreateStringComparison(h => h.Name, ascending)
-            };
-        }
+        public abstract int Compare(HeroItemVM x, HeroItemVM y);
 
         /// <summary>
-        /// Creates a string comparison delegate
+        /// Resolves equality by falling back to name comparison.
+        /// Matches native pattern: x.ItemDescription.CompareTo(y.ItemDescription)
         /// </summary>
-        private static Comparison<HeroItemVM> CreateStringComparison(Func<HeroItemVM, string> selector, bool ascending)
+        protected int ResolveEquality(HeroItemVM x, HeroItemVM y)
         {
-            return (a, b) =>
-            {
-                int result = string.Compare(selector(a), selector(b), StringComparison.Ordinal);
-                return ascending ? result : -result;
-            };
+            return (x.Name ?? "").CompareTo(y.Name ?? "");
         }
+    }
 
-        /// <summary>
-        /// Creates an integer comparison delegate
-        /// </summary>
-        private static Comparison<HeroItemVM> CreateIntComparison(Func<HeroItemVM, int> selector, bool ascending)
+    /// <summary>
+    /// Comparer for sorting heroes by name.
+    /// Matches native ItemNameComparer pattern exactly.
+    /// </summary>
+    public class HeroNameComparer : HeroComparer
+    {
+        public override int Compare(HeroItemVM x, HeroItemVM y)
         {
-            return (a, b) =>
+            // Native pattern: y.CompareTo(x), then adjust for direction
+            if (_isAscending)
             {
-                int result = selector(a).CompareTo(selector(b));
-                return ascending ? result : -result;
-            };
+                return (y.Name ?? "").CompareTo(x.Name ?? "") * -1;
+            }
+            return (y.Name ?? "").CompareTo(x.Name ?? "");
+        }
+    }
+
+    /// <summary>
+    /// Comparer for sorting heroes by gender.
+    /// </summary>
+    public class HeroGenderComparer : HeroComparer
+    {
+        public override int Compare(HeroItemVM x, HeroItemVM y)
+        {
+            // Native pattern: y.CompareTo(x)
+            int num = (y.Gender ?? "").CompareTo(x.Gender ?? "");
+            if (num != 0)
+            {
+                return num * (_isAscending ? -1 : 1);
+            }
+            return ResolveEquality(x, y);
+        }
+    }
+
+    /// <summary>
+    /// Comparer for sorting heroes by age.
+    /// </summary>
+    public class HeroAgeComparer : HeroComparer
+    {
+        public override int Compare(HeroItemVM x, HeroItemVM y)
+        {
+            // Native pattern: y.CompareTo(x)
+            int num = y.Age.CompareTo(x.Age);
+            if (num != 0)
+            {
+                return num * (_isAscending ? -1 : 1);
+            }
+            return ResolveEquality(x, y);
+        }
+    }
+
+    /// <summary>
+    /// Comparer for sorting heroes by clan.
+    /// </summary>
+    public class HeroClanComparer : HeroComparer
+    {
+        public override int Compare(HeroItemVM x, HeroItemVM y)
+        {
+            // Native pattern: y.CompareTo(x)
+            int num = (y.Clan ?? "").CompareTo(x.Clan ?? "");
+            if (num != 0)
+            {
+                return num * (_isAscending ? -1 : 1);
+            }
+            return ResolveEquality(x, y);
+        }
+    }
+
+    /// <summary>
+    /// Comparer for sorting heroes by kingdom.
+    /// </summary>
+    public class HeroKingdomComparer : HeroComparer
+    {
+        public override int Compare(HeroItemVM x, HeroItemVM y)
+        {
+            // Native pattern: y.CompareTo(x)
+            int num = (y.Kingdom ?? "").CompareTo(x.Kingdom ?? "");
+            if (num != 0)
+            {
+                return num * (_isAscending ? -1 : 1);
+            }
+            return ResolveEquality(x, y);
+        }
+    }
+
+    /// <summary>
+    /// Comparer for sorting heroes by culture.
+    /// </summary>
+    public class HeroCultureComparer : HeroComparer
+    {
+        public override int Compare(HeroItemVM x, HeroItemVM y)
+        {
+            // Native pattern: y.CompareTo(x)
+            int num = (y.Culture ?? "").CompareTo(x.Culture ?? "");
+            if (num != 0)
+            {
+                return num * (_isAscending ? -1 : 1);
+            }
+            return ResolveEquality(x, y);
+        }
+    }
+
+    /// <summary>
+    /// Comparer for sorting heroes by type.
+    /// </summary>
+    public class HeroTypeComparer : HeroComparer
+    {
+        public override int Compare(HeroItemVM x, HeroItemVM y)
+        {
+            // Native pattern: y.CompareTo(x)
+            int num = (y.HeroType ?? "").CompareTo(x.HeroType ?? "");
+            if (num != 0)
+            {
+                return num * (_isAscending ? -1 : 1);
+            }
+            return ResolveEquality(x, y);
+        }
+    }
+
+    /// <summary>
+    /// Comparer for sorting heroes by level.
+    /// </summary>
+    public class HeroLevelComparer : HeroComparer
+    {
+        public override int Compare(HeroItemVM x, HeroItemVM y)
+        {
+            // Native pattern: y.CompareTo(x)
+            int num = y.Level.CompareTo(x.Level);
+            if (num != 0)
+            {
+                return num * (_isAscending ? -1 : 1);
+            }
+            return ResolveEquality(x, y);
         }
     }
 }
