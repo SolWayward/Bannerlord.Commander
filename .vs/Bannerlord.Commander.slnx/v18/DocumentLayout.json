@@ -1,21 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\AppData\\Local\\Temp\\.vsdbgsrc\\b705a1ab37f7f260fc2004f7eaf708bbd5a47e187e971ac0341564af08e49fd1\\GauntletView.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\AppData\\Local\\Temp\\.vsdbgsrc\\9d92dc6f1b295d48b48285345a6d6befb9b5b9af860a61c84eb43f4833d096b1\\SubModuleInfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\AppData\\Local\\Temp\\.vsdbgsrc\\8d0f389d15cb4578cd87e8a3343c326b45e7cae41ecbe0cccb9836c2df23410e\\Common.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F96E9A91-6081-115B-7368-9ACB5BE352FC}|Bannerlord.Commander\\Bannerlord.Commander.csproj|c:\\users\\shadow\\source\\repos\\bannerlord.commander\\bannerlord.commander\\bannerlord.commander.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{F96E9A91-6081-115B-7368-9ACB5BE352FC}|Bannerlord.Commander\\Bannerlord.Commander.csproj|solutionrelative:bannerlord.commander\\bannerlord.commander.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -23,62 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GauntletView.cs",
-              "DocumentMoniker": "C:\\Users\\Shadow\\AppData\\Local\\Temp\\.vsdbgsrc\\b705a1ab37f7f260fc2004f7eaf708bbd5a47e187e971ac0341564af08e49fd1\\GauntletView.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\b705a1ab37f7f260fc2004f7eaf708bbd5a47e187e971ac0341564af08e49fd1\\GauntletView.cs",
-              "ToolTip": "C:\\Users\\Shadow\\AppData\\Local\\Temp\\.vsdbgsrc\\b705a1ab37f7f260fc2004f7eaf708bbd5a47e187e971ac0341564af08e49fd1\\GauntletView.cs",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\b705a1ab37f7f260fc2004f7eaf708bbd5a47e187e971ac0341564af08e49fd1\\GauntletView.cs",
-              "ViewState": "AgIAABMCAAAAAAAAAAArwCYCAAADAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-30T18:29:27.876Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Common.cs",
-              "DocumentMoniker": "C:\\Users\\Shadow\\AppData\\Local\\Temp\\.vsdbgsrc\\8d0f389d15cb4578cd87e8a3343c326b45e7cae41ecbe0cccb9836c2df23410e\\Common.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\8d0f389d15cb4578cd87e8a3343c326b45e7cae41ecbe0cccb9836c2df23410e\\Common.cs",
-              "ToolTip": "C:\\Users\\Shadow\\AppData\\Local\\Temp\\.vsdbgsrc\\8d0f389d15cb4578cd87e8a3343c326b45e7cae41ecbe0cccb9836c2df23410e\\Common.cs [Read Only]",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\8d0f389d15cb4578cd87e8a3343c326b45e7cae41ecbe0cccb9836c2df23410e\\Common.cs [Read Only]",
-              "ViewState": "AgIAAAQBAAAAAAAAAAArwBEBAAADAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-30T17:07:42.116Z",
-              "EditorCaption": " [Read Only]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SubModuleInfo.cs",
-              "DocumentMoniker": "C:\\Users\\Shadow\\AppData\\Local\\Temp\\.vsdbgsrc\\9d92dc6f1b295d48b48285345a6d6befb9b5b9af860a61c84eb43f4833d096b1\\SubModuleInfo.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\9d92dc6f1b295d48b48285345a6d6befb9b5b9af860a61c84eb43f4833d096b1\\SubModuleInfo.cs",
-              "ToolTip": "C:\\Users\\Shadow\\AppData\\Local\\Temp\\.vsdbgsrc\\9d92dc6f1b295d48b48285345a6d6befb9b5b9af860a61c84eb43f4833d096b1\\SubModuleInfo.cs [Read Only]",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\9d92dc6f1b295d48b48285345a6d6befb9b5b9af860a61c84eb43f4833d096b1\\SubModuleInfo.cs [Read Only]",
-              "ViewState": "AgIAADoAAAAAAAAAAAArwEcAAAAEAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-30T17:06:21.46Z",
-              "EditorCaption": " [Read Only]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Bannerlord.Commander.csproj",
-              "DocumentMoniker": "C:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\Bannerlord.Commander.csproj",
-              "RelativeDocumentMoniker": "Bannerlord.Commander\\Bannerlord.Commander.csproj",
-              "ToolTip": "C:\\Users\\Shadow\\source\\repos\\Bannerlord.Commander\\Bannerlord.Commander\\Bannerlord.Commander.csproj",
-              "RelativeToolTip": "Bannerlord.Commander\\Bannerlord.Commander.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-30T17:03:09.937Z"
             }
           ]
         }

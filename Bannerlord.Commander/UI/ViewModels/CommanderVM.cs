@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Bannerlord.Commander.UI.Enums;
 using Bannerlord.Commander.UI.Services;
+using Bannerlord.Commander.UI.ViewModels.HeroEditor;
 using Bannerlord.GameMaster.Heroes;
 using TaleWorlds.Library;
 
@@ -66,6 +67,9 @@ namespace Bannerlord.Commander.UI.ViewModels
         // Heroes collection - single list, filtering done via IsFiltered property
         private MBBindingList<HeroItemVM> _heroes;
         private HeroItemVM _selectedHero;
+
+        // Hero Editor
+        private HeroEditorVM _heroEditor;
 
         // Loading state
         private bool _isLoading;
@@ -130,6 +134,9 @@ namespace Bannerlord.Commander.UI.ViewModels
             TitleText = $"COMMANDER {GetVersionString()}";
             Heroes = new MBBindingList<HeroItemVM>();
 
+            // Initialize Hero Editor ViewModel
+            HeroEditor = new HeroEditorVM();
+
             // Initialize sort indicator texts
             UpdateSortIndicatorTexts();
 
@@ -174,7 +181,7 @@ namespace Bannerlord.Commander.UI.ViewModels
         }
 
         /// <summary>
-        /// Selects a hero and deselects all others
+        /// Selects a hero and deselects all others, then updates HeroEditor
         /// </summary>
         public void SelectHero(HeroItemVM hero)
         {
@@ -190,14 +197,45 @@ namespace Bannerlord.Commander.UI.ViewModels
             if (_selectedHero != null)
             {
                 _selectedHero.IsSelected = true;
+                HeroEditor?.RefreshForHero(_selectedHero.Hero);
             }
+            else
+            {
+                HeroEditor?.Clear();
+            }
+            
+            OnPropertyChanged(nameof(IsHeroSelected));
         }
 
         public override void OnFinalize()
         {
             base.OnFinalize();
+            HeroEditor?.OnFinalize();
             OnCloseRequested = null;
         }
+
+        /// <summary>
+        /// Gets the HeroEditor ViewModel for the right panel
+        /// </summary>
+        [DataSourceProperty]
+        public HeroEditorVM HeroEditor
+        {
+            get => _heroEditor;
+            private set
+            {
+                if (_heroEditor != value)
+                {
+                    _heroEditor = value;
+                    OnPropertyChangedWithValue(value, nameof(HeroEditor));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets whether a hero is currently selected (for editor panel visibility)
+        /// </summary>
+        [DataSourceProperty]
+        public bool IsHeroSelected => _selectedHero != null && HeroEditor?.IsVisible == true;
 
         #endregion
 

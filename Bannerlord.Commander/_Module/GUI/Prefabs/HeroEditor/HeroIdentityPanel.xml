@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <Window>
+    <!-- Hero Identity Panel: Editable Name and Title -->
+    <Widget DataSource="{HeroIdentity}"
+            WidthSizePolicy="Fixed"
+            HeightSizePolicy="CoverChildren"
+            SuggestedWidth="300"
+            Sprite="BlankWhiteSquare_9"
+            Color="#2a2a2aFF">
+      <Children>
+        
+        <!-- Border Frame -->
+        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                SuggestedHeight="2" VerticalAlignment="Top"
+                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                SuggestedHeight="2" VerticalAlignment="Bottom"
+                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                SuggestedWidth="2" HorizontalAlignment="Left"
+                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                SuggestedWidth="2" HorizontalAlignment="Right"
+                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        
+        <!-- Content Container -->
+        <ListPanel WidthSizePolicy="StretchToParent"
+                   HeightSizePolicy="CoverChildren"
+                   MarginTop="15"
+                   MarginBottom="15"
+                   MarginLeft="15"
+                   MarginRight="15"
+                   StackLayout.LayoutMethod="VerticalBottomToTop">
+          <Children>
+            
+            <!-- Name Label -->
+            <Widget WidthSizePolicy="StretchToParent"
+                    HeightSizePolicy="Fixed"
+                    SuggestedHeight="25"
+                    MarginBottom="5">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent"
+                           HeightSizePolicy="StretchToParent"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Brush="TownManagement.Description.Title.Text"
+                           Brush.FontSize="18"
+                           Text="Hero Name" />
+              </Children>
+            </Widget>
+            
+            <!-- Name Input Field -->
+            <Widget WidthSizePolicy="StretchToParent"
+                    HeightSizePolicy="Fixed"
+                    SuggestedHeight="30"
+                    MarginBottom="5"
+                    Sprite="BlankWhiteSquare_9"
+                    Color="#1a1a1aFF">
+              <Children>
+                <!-- Border frame for input -->
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        SuggestedHeight="1" VerticalAlignment="Top"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        SuggestedHeight="1" VerticalAlignment="Bottom"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        SuggestedWidth="1" HorizontalAlignment="Left"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        SuggestedWidth="1" HorizontalAlignment="Right"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                
+                <!-- Actual text input -->
+                <EditableTextWidget WidthSizePolicy="StretchToParent"
+                                   HeightSizePolicy="StretchToParent"
+                                   MarginLeft="6"
+                                   MarginRight="6"
+                                   MarginTop="4"
+                                   MarginBottom="4"
+                                   Brush="Clan.TabControl.Text"
+                                   Brush.FontSize="16"
+                                   Text="@HeroName" />
+              </Children>
+            </Widget>
+            
+            <!-- Save Name Button -->
+            <ButtonWidget DoNotPassEventsToChildren="true"
+                         UpdateChildrenStates="true"
+                         WidthSizePolicy="Fixed"
+                         HeightSizePolicy="Fixed"
+                         SuggestedWidth="120"
+                         SuggestedHeight="30"
+                         HorizontalAlignment="Right"
+                         MarginBottom="15"
+                         Command.Click="ExecuteSaveName">
+              <Children>
+                <Widget WidthSizePolicy="StretchToParent"
+                       HeightSizePolicy="StretchToParent"
+                       Sprite="BlankWhiteSquare_9"
+                       Color="#453920FF" />
+                <!-- Border frame -->
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        SuggestedHeight="1" VerticalAlignment="Top"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        SuggestedHeight="1" VerticalAlignment="Bottom"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        SuggestedWidth="1" HorizontalAlignment="Left"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        SuggestedWidth="1" HorizontalAlignment="Right"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <TextWidget WidthSizePolicy="StretchToParent"
+                           HeightSizePolicy="StretchToParent"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Brush="Clan.TabControl.Text"
+                           Brush.FontSize="16"
+                           Text="Save Name" />
+              </Children>
+            </ButtonWidget>
+            
+            <!-- Title Label -->
+            <Widget WidthSizePolicy="StretchToParent"
+                    HeightSizePolicy="Fixed"
+                    SuggestedHeight="25"
+                    MarginBottom="5">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent"
+                           HeightSizePolicy="StretchToParent"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Brush="TownManagement.Description.Title.Text"
+                           Brush.FontSize="18"
+                           Text="Hero Title" />
+              </Children>
+            </Widget>
+            
+            <!-- Title Input Field -->
+            <Widget WidthSizePolicy="StretchToParent"
+                    HeightSizePolicy="Fixed"
+                    SuggestedHeight="30"
+                    MarginBottom="5"
+                    Sprite="BlankWhiteSquare_9"
+                    Color="#1a1a1aFF">
+              <Children>
+                <!-- Border frame for input -->
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        SuggestedHeight="1" VerticalAlignment="Top"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        SuggestedHeight="1" VerticalAlignment="Bottom"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        SuggestedWidth="1" HorizontalAlignment="Left"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        SuggestedWidth="1" HorizontalAlignment="Right"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                
+                <!-- Actual text input -->
+                <EditableTextWidget WidthSizePolicy="StretchToParent"
+                                   HeightSizePolicy="StretchToParent"
+                                   MarginLeft="6"
+                                   MarginRight="6"
+                                   MarginTop="4"
+                                   MarginBottom="4"
+                                   Brush="Clan.TabControl.Text"
+                                   Brush.FontSize="16"
+                                   Text="@HeroTitle" />
+              </Children>
+            </Widget>
+            
+            <!-- Save Title Button -->
+            <ButtonWidget DoNotPassEventsToChildren="true"
+                         UpdateChildrenStates="true"
+                         WidthSizePolicy="Fixed"
+                         HeightSizePolicy="Fixed"
+                         SuggestedWidth="120"
+                         SuggestedHeight="30"
+                         HorizontalAlignment="Right"
+                         MarginBottom="5"
+                         Command.Click="ExecuteSaveTitle">
+              <Children>
+                <Widget WidthSizePolicy="StretchToParent"
+                       HeightSizePolicy="StretchToParent"
+                       Sprite="BlankWhiteSquare_9"
+                       Color="#453920FF" />
+                <!-- Border frame -->
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        SuggestedHeight="1" VerticalAlignment="Top"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        SuggestedHeight="1" VerticalAlignment="Bottom"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        SuggestedWidth="1" HorizontalAlignment="Left"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        SuggestedWidth="1" HorizontalAlignment="Right"
+                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <TextWidget WidthSizePolicy="StretchToParent"
+                           HeightSizePolicy="StretchToParent"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Brush="Clan.TabControl.Text"
+                           Brush.FontSize="16"
+                           Text="Save Title" />
+              </Children>
+            </ButtonWidget>
+            
+          </Children>
+        </ListPanel>
+        
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>
