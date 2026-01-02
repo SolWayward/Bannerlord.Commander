@@ -75,7 +75,8 @@
                             Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                     
                     <!-- Actual text input -->
-                    <EditableTextWidget WidthSizePolicy="StretchToParent"
+                    <EditableTextWidget Id="SearchInputWidget"
+                                        WidthSizePolicy="StretchToParent"
                                         HeightSizePolicy="StretchToParent"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"

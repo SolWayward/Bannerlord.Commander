@@ -116,6 +116,11 @@ namespace Bannerlord.Commander.UI.ViewModels
         /// </summary>
         public event Action OnCloseRequested;
 
+        /// <summary>
+        /// Event to notify the screen when filter text changes (for input restriction management)
+        /// </summary>
+        public event Action OnFilterTextChanged;
+
         #endregion
 
         #region Constructor
@@ -355,6 +360,9 @@ namespace Bannerlord.Commander.UI.ViewModels
                     _pendingFilterText = _filterText;
                     _filterPending = true;
                     _lastFilterChange = DateTime.UtcNow;
+
+                    // Notify screen that filter text changed (for input restriction management)
+                    OnFilterTextChanged?.Invoke();
                 }
             }
         }
