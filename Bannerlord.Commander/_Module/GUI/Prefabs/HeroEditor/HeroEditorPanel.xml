@@ -579,188 +579,161 @@
                                    StackLayout.LayoutMethod="HorizontalLeftToRight">
                           <Children>
                             
-                            <!-- Left Gear Slots (Armor) - Individual Slots following native pattern -->
-                            <ListPanel DataSource="{HeroEquipment}"
-                                       WidthSizePolicy="Fixed"
+                            <!-- Left Gear Slots (Armor) - Flattened binding following native pattern -->
+                            <ListPanel WidthSizePolicy="Fixed"
                                        HeightSizePolicy="StretchToParent"
-                                       SuggestedWidth="70"
-                                       MarginLeft="6"
-                                       MarginTop="6"
-                                       MarginBottom="6"
+                                       SuggestedWidth="65"
+                                       MarginLeft="4"
+                                       MarginTop="4"
+                                       MarginBottom="4"
                                        StackLayout.LayoutMethod="VerticalBottomToTop">
                               <Children>
-                                <!-- Head Slot -->
-                                <Widget DataSource="{HeadSlot}"
+                                <!-- Head Slot - Direct path binding -->
+                                <Widget DataSource="{HeroEquipment\HeadSlot}"
                                         WidthSizePolicy="Fixed"
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="4"
-                                        Sprite="Inventory\portrait_cart">
+                                        MarginBottom="3">
                                   <Children>
-                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
-                                                           HeightSizePolicy="StretchToParent"
-                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                           DataSource="{ImageIdentifier}"
-                                                           TextureProviderName="@TextureProviderName"
-                                                           AdditionalArgs="@AdditionalArgs"
-                                                           ImageId="@Id"
-                                                           IsVisible="@HasItem" />
+                                    <!-- Background - Always visible -->
                                     <Widget WidthSizePolicy="StretchToParent"
                                             HeightSizePolicy="StretchToParent"
-                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                            Sprite="@EmptySlotSprite"
-                                            IsVisible="@IsNotHasItem" />
+                                            Sprite="Inventory\portrait_cart" />
+                                    <!-- Item Image - Bound to ImageIdentifier property of HeadSlot -->
+                                    <ImageIdentifierWidget DataSource="{ImageIdentifier}"
+                                                           WidthSizePolicy="StretchToParent"
+                                                           HeightSizePolicy="StretchToParent"
+                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
+                                                           ImageId="@Id"
+                                                           AdditionalArgs="@AdditionalArgs"
+                                                           TextureProviderName="@TextureProviderName" />
                                   </Children>
                                 </Widget>
                                 
                                 <!-- Cape Slot -->
-                                <Widget DataSource="{CapeSlot}"
+                                <Widget DataSource="{HeroEquipment\CapeSlot}"
                                         WidthSizePolicy="Fixed"
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="4"
-                                        Sprite="Inventory\portrait_cart">
+                                        MarginBottom="3">
                                   <Children>
-                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
-                                                           HeightSizePolicy="StretchToParent"
-                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                           DataSource="{ImageIdentifier}"
-                                                           TextureProviderName="@TextureProviderName"
-                                                           AdditionalArgs="@AdditionalArgs"
-                                                           ImageId="@Id"
-                                                           IsVisible="@HasItem" />
                                     <Widget WidthSizePolicy="StretchToParent"
                                             HeightSizePolicy="StretchToParent"
-                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                            Sprite="@EmptySlotSprite"
-                                            IsVisible="@IsNotHasItem" />
+                                            Sprite="Inventory\portrait_cart" />
+                                    <ImageIdentifierWidget DataSource="{ImageIdentifier}"
+                                                           WidthSizePolicy="StretchToParent"
+                                                           HeightSizePolicy="StretchToParent"
+                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
+                                                           ImageId="@Id"
+                                                           AdditionalArgs="@AdditionalArgs"
+                                                           TextureProviderName="@TextureProviderName" />
                                   </Children>
                                 </Widget>
                                 
                                 <!-- Body Slot -->
-                                <Widget DataSource="{BodySlot}"
+                                <Widget DataSource="{HeroEquipment\BodySlot}"
                                         WidthSizePolicy="Fixed"
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="4"
-                                        Sprite="Inventory\portrait_cart">
+                                        MarginBottom="3">
                                   <Children>
-                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
-                                                           HeightSizePolicy="StretchToParent"
-                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                           DataSource="{ImageIdentifier}"
-                                                           TextureProviderName="@TextureProviderName"
-                                                           AdditionalArgs="@AdditionalArgs"
-                                                           ImageId="@Id"
-                                                           IsVisible="@HasItem" />
                                     <Widget WidthSizePolicy="StretchToParent"
                                             HeightSizePolicy="StretchToParent"
-                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                            Sprite="@EmptySlotSprite"
-                                            IsVisible="@IsNotHasItem" />
+                                            Sprite="Inventory\portrait_cart" />
+                                    <ImageIdentifierWidget DataSource="{ImageIdentifier}"
+                                                           WidthSizePolicy="StretchToParent"
+                                                           HeightSizePolicy="StretchToParent"
+                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
+                                                           ImageId="@Id"
+                                                           AdditionalArgs="@AdditionalArgs"
+                                                           TextureProviderName="@TextureProviderName" />
                                   </Children>
                                 </Widget>
                                 
                                 <!-- Gloves Slot -->
-                                <Widget DataSource="{GlovesSlot}"
+                                <Widget DataSource="{HeroEquipment\GlovesSlot}"
                                         WidthSizePolicy="Fixed"
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="4"
-                                        Sprite="Inventory\portrait_cart">
+                                        MarginBottom="3">
                                   <Children>
-                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
-                                                           HeightSizePolicy="StretchToParent"
-                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                           DataSource="{ImageIdentifier}"
-                                                           TextureProviderName="@TextureProviderName"
-                                                           AdditionalArgs="@AdditionalArgs"
-                                                           ImageId="@Id"
-                                                           IsVisible="@HasItem" />
                                     <Widget WidthSizePolicy="StretchToParent"
                                             HeightSizePolicy="StretchToParent"
-                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                            Sprite="@EmptySlotSprite"
-                                            IsVisible="@IsNotHasItem" />
+                                            Sprite="Inventory\portrait_cart" />
+                                    <ImageIdentifierWidget DataSource="{ImageIdentifier}"
+                                                           WidthSizePolicy="StretchToParent"
+                                                           HeightSizePolicy="StretchToParent"
+                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
+                                                           ImageId="@Id"
+                                                           AdditionalArgs="@AdditionalArgs"
+                                                           TextureProviderName="@TextureProviderName" />
                                   </Children>
                                 </Widget>
                                 
                                 <!-- Leg Slot -->
-                                <Widget DataSource="{LegSlot}"
+                                <Widget DataSource="{HeroEquipment\LegSlot}"
                                         WidthSizePolicy="Fixed"
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="4"
-                                        Sprite="Inventory\portrait_cart">
+                                        MarginBottom="3">
                                   <Children>
-                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
-                                                           HeightSizePolicy="StretchToParent"
-                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                           DataSource="{ImageIdentifier}"
-                                                           TextureProviderName="@TextureProviderName"
-                                                           AdditionalArgs="@AdditionalArgs"
-                                                           ImageId="@Id"
-                                                           IsVisible="@HasItem" />
                                     <Widget WidthSizePolicy="StretchToParent"
                                             HeightSizePolicy="StretchToParent"
-                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                            Sprite="@EmptySlotSprite"
-                                            IsVisible="@IsNotHasItem" />
+                                            Sprite="Inventory\portrait_cart" />
+                                    <ImageIdentifierWidget DataSource="{ImageIdentifier}"
+                                                           WidthSizePolicy="StretchToParent"
+                                                           HeightSizePolicy="StretchToParent"
+                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
+                                                           ImageId="@Id"
+                                                           AdditionalArgs="@AdditionalArgs"
+                                                           TextureProviderName="@TextureProviderName" />
                                   </Children>
                                 </Widget>
                                 
                                 <!-- Horse Slot -->
-                                <Widget DataSource="{HorseSlot}"
+                                <Widget DataSource="{HeroEquipment\HorseSlot}"
                                         WidthSizePolicy="Fixed"
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="4"
-                                        Sprite="Inventory\portrait_cart">
+                                        MarginBottom="3">
                                   <Children>
-                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
-                                                           HeightSizePolicy="StretchToParent"
-                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                           DataSource="{ImageIdentifier}"
-                                                           TextureProviderName="@TextureProviderName"
-                                                           AdditionalArgs="@AdditionalArgs"
-                                                           ImageId="@Id"
-                                                           IsVisible="@HasItem" />
                                     <Widget WidthSizePolicy="StretchToParent"
                                             HeightSizePolicy="StretchToParent"
-                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                            Sprite="@EmptySlotSprite"
-                                            IsVisible="@IsNotHasItem" />
+                                            Sprite="Inventory\portrait_cart" />
+                                    <ImageIdentifierWidget DataSource="{ImageIdentifier}"
+                                                           WidthSizePolicy="StretchToParent"
+                                                           HeightSizePolicy="StretchToParent"
+                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
+                                                           ImageId="@Id"
+                                                           AdditionalArgs="@AdditionalArgs"
+                                                           TextureProviderName="@TextureProviderName" />
                                   </Children>
                                 </Widget>
                                 
                                 <!-- Horse Harness Slot -->
-                                <Widget DataSource="{HorseHarnessSlot}"
+                                <Widget DataSource="{HeroEquipment\HorseHarnessSlot}"
                                         WidthSizePolicy="Fixed"
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="4"
-                                        Sprite="Inventory\portrait_cart">
+                                        MarginBottom="3">
                                   <Children>
-                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
-                                                           HeightSizePolicy="StretchToParent"
-                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                           DataSource="{ImageIdentifier}"
-                                                           TextureProviderName="@TextureProviderName"
-                                                           AdditionalArgs="@AdditionalArgs"
-                                                           ImageId="@Id"
-                                                           IsVisible="@HasItem" />
                                     <Widget WidthSizePolicy="StretchToParent"
                                             HeightSizePolicy="StretchToParent"
-                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                            Sprite="@EmptySlotSprite"
-                                            IsVisible="@IsNotHasItem" />
+                                            Sprite="Inventory\portrait_cart" />
+                                    <ImageIdentifierWidget DataSource="{ImageIdentifier}"
+                                                           WidthSizePolicy="StretchToParent"
+                                                           HeightSizePolicy="StretchToParent"
+                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
+                                                           ImageId="@Id"
+                                                           AdditionalArgs="@AdditionalArgs"
+                                                           TextureProviderName="@TextureProviderName" />
                                   </Children>
                                 </Widget>
                               </Children>
@@ -793,32 +766,31 @@
                             <ListPanel DataSource="{HeroEquipment}"
                                        WidthSizePolicy="Fixed"
                                        HeightSizePolicy="StretchToParent"
-                                       SuggestedWidth="70"
-                                       MarginRight="6"
-                                       MarginTop="6"
-                                       MarginBottom="6"
+                                       SuggestedWidth="50"
+                                       MarginRight="4"
+                                       MarginTop="4"
+                                       MarginBottom="4"
                                        StackLayout.LayoutMethod="VerticalBottomToTop">
                               <Children>
                                 <!-- Weapon 0 Slot -->
                                 <Widget DataSource="{Weapon0Slot}"
                                         WidthSizePolicy="Fixed"
                                         HeightSizePolicy="Fixed"
-                                        SuggestedWidth="65"
-                                        SuggestedHeight="65"
-                                        MarginBottom="4"
+                                        SuggestedWidth="45"
+                                        SuggestedHeight="45"
+                                        MarginBottom="2"
                                         Sprite="Inventory\portrait_cart">
                                   <Children>
-                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
+                                    <ImageIdentifierWidget DataSource="{ImageIdentifier}"
+                                                           WidthSizePolicy="StretchToParent"
                                                            HeightSizePolicy="StretchToParent"
-                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                           DataSource="{ImageIdentifier}"
-                                                           TextureProviderName="@TextureProviderName"
-                                                           AdditionalArgs="@AdditionalArgs"
+                                                           MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
                                                            ImageId="@Id"
-                                                           IsVisible="@HasItem" />
+                                                           AdditionalArgs="@AdditionalArgs"
+                                                           TextureProviderName="@TextureProviderName" />
                                     <Widget WidthSizePolicy="StretchToParent"
                                             HeightSizePolicy="StretchToParent"
-                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
+                                            MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
                                             Sprite="@EmptySlotSprite"
                                             IsVisible="@IsNotHasItem" />
                                   </Children>
@@ -828,22 +800,21 @@
                                 <Widget DataSource="{Weapon1Slot}"
                                         WidthSizePolicy="Fixed"
                                         HeightSizePolicy="Fixed"
-                                        SuggestedWidth="65"
-                                        SuggestedHeight="65"
-                                        MarginBottom="4"
+                                        SuggestedWidth="45"
+                                        SuggestedHeight="45"
+                                        MarginBottom="2"
                                         Sprite="Inventory\portrait_cart">
                                   <Children>
-                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
+                                    <ImageIdentifierWidget DataSource="{ImageIdentifier}"
+                                                           WidthSizePolicy="StretchToParent"
                                                            HeightSizePolicy="StretchToParent"
-                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                           DataSource="{ImageIdentifier}"
-                                                           TextureProviderName="@TextureProviderName"
-                                                           AdditionalArgs="@AdditionalArgs"
+                                                           MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
                                                            ImageId="@Id"
-                                                           IsVisible="@HasItem" />
+                                                           AdditionalArgs="@AdditionalArgs"
+                                                           TextureProviderName="@TextureProviderName" />
                                     <Widget WidthSizePolicy="StretchToParent"
                                             HeightSizePolicy="StretchToParent"
-                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
+                                            MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
                                             Sprite="@EmptySlotSprite"
                                             IsVisible="@IsNotHasItem" />
                                   </Children>
@@ -853,22 +824,21 @@
                                 <Widget DataSource="{Weapon2Slot}"
                                         WidthSizePolicy="Fixed"
                                         HeightSizePolicy="Fixed"
-                                        SuggestedWidth="65"
-                                        SuggestedHeight="65"
-                                        MarginBottom="4"
+                                        SuggestedWidth="45"
+                                        SuggestedHeight="45"
+                                        MarginBottom="2"
                                         Sprite="Inventory\portrait_cart">
                                   <Children>
-                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
+                                    <ImageIdentifierWidget DataSource="{ImageIdentifier}"
+                                                           WidthSizePolicy="StretchToParent"
                                                            HeightSizePolicy="StretchToParent"
-                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                           DataSource="{ImageIdentifier}"
-                                                           TextureProviderName="@TextureProviderName"
-                                                           AdditionalArgs="@AdditionalArgs"
+                                                           MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
                                                            ImageId="@Id"
-                                                           IsVisible="@HasItem" />
+                                                           AdditionalArgs="@AdditionalArgs"
+                                                           TextureProviderName="@TextureProviderName" />
                                     <Widget WidthSizePolicy="StretchToParent"
                                             HeightSizePolicy="StretchToParent"
-                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
+                                            MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
                                             Sprite="@EmptySlotSprite"
                                             IsVisible="@IsNotHasItem" />
                                   </Children>
@@ -878,22 +848,45 @@
                                 <Widget DataSource="{Weapon3Slot}"
                                         WidthSizePolicy="Fixed"
                                         HeightSizePolicy="Fixed"
-                                        SuggestedWidth="65"
-                                        SuggestedHeight="65"
-                                        MarginBottom="4"
+                                        SuggestedWidth="45"
+                                        SuggestedHeight="45"
+                                        MarginBottom="2"
                                         Sprite="Inventory\portrait_cart">
                                   <Children>
-                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
+                                    <ImageIdentifierWidget DataSource="{ImageIdentifier}"
+                                                           WidthSizePolicy="StretchToParent"
                                                            HeightSizePolicy="StretchToParent"
-                                                           MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                           DataSource="{ImageIdentifier}"
-                                                           TextureProviderName="@TextureProviderName"
-                                                           AdditionalArgs="@AdditionalArgs"
+                                                           MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
                                                            ImageId="@Id"
-                                                           IsVisible="@HasItem" />
+                                                           AdditionalArgs="@AdditionalArgs"
+                                                           TextureProviderName="@TextureProviderName" />
                                     <Widget WidthSizePolicy="StretchToParent"
                                             HeightSizePolicy="StretchToParent"
-                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
+                                            MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                                            Sprite="@EmptySlotSprite"
+                                            IsVisible="@IsNotHasItem" />
+                                  </Children>
+                                </Widget>
+                                
+                                <!-- Banner Slot -->
+                                <Widget DataSource="{BannerSlot}"
+                                        WidthSizePolicy="Fixed"
+                                        HeightSizePolicy="Fixed"
+                                        SuggestedWidth="45"
+                                        SuggestedHeight="45"
+                                        MarginBottom="2"
+                                        Sprite="Inventory\portrait_cart">
+                                  <Children>
+                                    <ImageIdentifierWidget DataSource="{ImageIdentifier}"
+                                                           WidthSizePolicy="StretchToParent"
+                                                           HeightSizePolicy="StretchToParent"
+                                                           MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                                                           ImageId="@Id"
+                                                           AdditionalArgs="@AdditionalArgs"
+                                                           TextureProviderName="@TextureProviderName" />
+                                    <Widget WidthSizePolicy="StretchToParent"
+                                            HeightSizePolicy="StretchToParent"
+                                            MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
                                             Sprite="@EmptySlotSprite"
                                             IsVisible="@IsNotHasItem" />
                                   </Children>

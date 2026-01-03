@@ -7,6 +7,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
     /// <summary>
     /// Main ViewModel for the Hero Editor Panel.
     /// Coordinates all sub-ViewModels and responds to hero selection changes.
+    /// Equipment slots are exposed at root level following native SPInventoryVM pattern.
     /// </summary>
     public class HeroEditorVM : ViewModel, IHeroSelectionHandler
     {
@@ -23,6 +24,20 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         private ClanSelectionPopupVM _clanSelectionPopup;
         private bool _isVisible;
         private string _selectedHeroStringId;
+
+        // Individual equipment slots - following native SPInventoryVM pattern
+        private EquipmentSlotVM _headSlot;
+        private EquipmentSlotVM _capeSlot;
+        private EquipmentSlotVM _bodySlot;
+        private EquipmentSlotVM _glovesSlot;
+        private EquipmentSlotVM _legSlot;
+        private EquipmentSlotVM _horseSlot;
+        private EquipmentSlotVM _horseHarnessSlot;
+        private EquipmentSlotVM _weapon0Slot;
+        private EquipmentSlotVM _weapon1Slot;
+        private EquipmentSlotVM _weapon2Slot;
+        private EquipmentSlotVM _weapon3Slot;
+        private EquipmentSlotVM _bannerSlot;
 
         #endregion
 
@@ -41,6 +56,23 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             _clanSelectionPopup = new();
             IsVisible = false;
             SelectedHeroStringId = "";
+
+            // Initialize equipment slots - following native SPInventoryVM pattern
+            HeadSlot = new();
+            CapeSlot = new();
+            BodySlot = new();
+            GlovesSlot = new();
+            LegSlot = new();
+            HorseSlot = new();
+            HorseHarnessSlot = new();
+            Weapon0Slot = new();
+            Weapon1Slot = new();
+            Weapon2Slot = new();
+            Weapon3Slot = new();
+            BannerSlot = new();
+
+            // Subscribe to equipment loadout changes
+            HeroEquipment.PropertyChanged += OnEquipmentPropertyChanged;
         }
 
         #endregion
@@ -65,6 +97,10 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 HeroSkills?.RefreshForHero(_hero);
                 HeroEquipment?.RefreshForHero(_hero);
                 HeroCharacter?.RefreshForHero(_hero);
+                
+                // Refresh equipment slots directly - following native pattern
+                RefreshEquipmentSlots();
+                
                 IsVisible = true;
             }
             else
@@ -89,6 +125,20 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             HeroSkills?.Clear();
             HeroEquipment?.Clear();
             HeroCharacter?.Clear();
+            
+            // Clear equipment slots
+            HeadSlot?.Reset();
+            CapeSlot?.Reset();
+            BodySlot?.Reset();
+            GlovesSlot?.Reset();
+            LegSlot?.Reset();
+            HorseSlot?.Reset();
+            HorseHarnessSlot?.Reset();
+            Weapon0Slot?.Reset();
+            Weapon1Slot?.Reset();
+            Weapon2Slot?.Reset();
+            Weapon3Slot?.Reset();
+            BannerSlot?.Reset();
         }
 
         /// <summary>
@@ -110,6 +160,9 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         {
             base.OnFinalize();
             
+            // Unsubscribe from events
+            HeroEquipment.PropertyChanged -= OnEquipmentPropertyChanged;
+            
             HeroInfo?.OnFinalize();
             HeroIdentity?.OnFinalize();
             HeroCultureClan?.OnFinalize();
@@ -117,6 +170,36 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             HeroSkills?.OnFinalize();
             HeroEquipment?.OnFinalize();
             HeroCharacter?.OnFinalize();
+            
+            // Finalize equipment slots
+            HeadSlot?.OnFinalize();
+            CapeSlot?.OnFinalize();
+            BodySlot?.OnFinalize();
+            GlovesSlot?.OnFinalize();
+            LegSlot?.OnFinalize();
+            HorseSlot?.OnFinalize();
+            HorseHarnessSlot?.OnFinalize();
+            Weapon0Slot?.OnFinalize();
+            Weapon1Slot?.OnFinalize();
+            Weapon2Slot?.OnFinalize();
+            Weapon3Slot?.OnFinalize();
+            BannerSlot?.OnFinalize();
+        }
+
+        #endregion
+
+        #region Private Event Handlers
+
+        /// <summary>
+        /// Handles property changes in HeroEquipmentVM to refresh equipment slots when loadout changes.
+        /// </summary>
+        private void OnEquipmentPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            // Refresh equipment slots when loadout changes
+            if (e.PropertyName == "SelectedLoadoutIndex")
+            {
+                RefreshEquipmentSlots();
+            }
         }
 
         #endregion
@@ -228,6 +311,94 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             private set => SetProperty(ref _clanSelectionPopup, value, nameof(ClanSelectionPopup));
         }
 
+        /// <summary>
+        /// Gets the head/helmet equipment slot.
+        /// Following native SPInventoryVM.CharacterHelmSlot pattern.
+        /// </summary>
+        [DataSourceProperty]
+        public EquipmentSlotVM HeadSlot
+        {
+            get => _headSlot;
+            private set => SetProperty(ref _headSlot, value, nameof(HeadSlot));
+        }
+
+        [DataSourceProperty]
+        public EquipmentSlotVM CapeSlot
+        {
+            get => _capeSlot;
+            private set => SetProperty(ref _capeSlot, value, nameof(CapeSlot));
+        }
+
+        [DataSourceProperty]
+        public EquipmentSlotVM BodySlot
+        {
+            get => _bodySlot;
+            private set => SetProperty(ref _bodySlot, value, nameof(BodySlot));
+        }
+
+        [DataSourceProperty]
+        public EquipmentSlotVM GlovesSlot
+        {
+            get => _glovesSlot;
+            private set => SetProperty(ref _glovesSlot, value, nameof(GlovesSlot));
+        }
+
+        [DataSourceProperty]
+        public EquipmentSlotVM LegSlot
+        {
+            get => _legSlot;
+            private set => SetProperty(ref _legSlot, value, nameof(LegSlot));
+        }
+
+        [DataSourceProperty]
+        public EquipmentSlotVM HorseSlot
+        {
+            get => _horseSlot;
+            private set => SetProperty(ref _horseSlot, value, nameof(HorseSlot));
+        }
+
+        [DataSourceProperty]
+        public EquipmentSlotVM HorseHarnessSlot
+        {
+            get => _horseHarnessSlot;
+            private set => SetProperty(ref _horseHarnessSlot, value, nameof(HorseHarnessSlot));
+        }
+
+        [DataSourceProperty]
+        public EquipmentSlotVM Weapon0Slot
+        {
+            get => _weapon0Slot;
+            private set => SetProperty(ref _weapon0Slot, value, nameof(Weapon0Slot));
+        }
+
+        [DataSourceProperty]
+        public EquipmentSlotVM Weapon1Slot
+        {
+            get => _weapon1Slot;
+            private set => SetProperty(ref _weapon1Slot, value, nameof(Weapon1Slot));
+        }
+
+        [DataSourceProperty]
+        public EquipmentSlotVM Weapon2Slot
+        {
+            get => _weapon2Slot;
+            private set => SetProperty(ref _weapon2Slot, value, nameof(Weapon2Slot));
+        }
+
+        [DataSourceProperty]
+        public EquipmentSlotVM Weapon3Slot
+        {
+            get => _weapon3Slot;
+            private set => SetProperty(ref _weapon3Slot, value, nameof(Weapon3Slot));
+        }
+
+        [DataSourceProperty]
+        public EquipmentSlotVM BannerSlot
+        {
+            get => _bannerSlot;
+            private set => SetProperty(ref _bannerSlot, value, nameof(BannerSlot));
+        }
+
         #endregion
 
         #region Helper Methods
@@ -269,6 +440,45 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             field = value;
             OnPropertyChangedWithValue(value, propertyName);
             return true;
+        }
+
+        /// <summary>
+        /// Refreshes equipment slots with data from current equipment loadout.
+        /// Following native SPInventoryVM.UpdateCharacterEquipment pattern.
+        /// </summary>
+        private void RefreshEquipmentSlots()
+        {
+            if (_hero == null)
+            {
+                return;
+            }
+
+            // Get the appropriate equipment based on selected loadout from HeroEquipment
+            TaleWorlds.Core.Equipment equipment = HeroEquipment.SelectedLoadoutIndex == 0 ?
+                _hero.BattleEquipment : _hero.CivilianEquipment;
+
+            if (equipment == null)
+            {
+                return;
+            }
+
+            // Update each slot following native InitializeCharacterEquipmentSlot pattern
+            HeadSlot.RefreshWith(TaleWorlds.Core.EquipmentIndex.Head, equipment[TaleWorlds.Core.EquipmentIndex.Head]);
+            CapeSlot.RefreshWith(TaleWorlds.Core.EquipmentIndex.Cape, equipment[TaleWorlds.Core.EquipmentIndex.Cape]);
+            BodySlot.RefreshWith(TaleWorlds.Core.EquipmentIndex.Body, equipment[TaleWorlds.Core.EquipmentIndex.Body]);
+            GlovesSlot.RefreshWith(TaleWorlds.Core.EquipmentIndex.Gloves, equipment[TaleWorlds.Core.EquipmentIndex.Gloves]);
+            LegSlot.RefreshWith(TaleWorlds.Core.EquipmentIndex.Leg, equipment[TaleWorlds.Core.EquipmentIndex.Leg]);
+            HorseSlot.RefreshWith(TaleWorlds.Core.EquipmentIndex.Horse, equipment[TaleWorlds.Core.EquipmentIndex.Horse]);
+            HorseHarnessSlot.RefreshWith(TaleWorlds.Core.EquipmentIndex.HorseHarness, equipment[TaleWorlds.Core.EquipmentIndex.HorseHarness]);
+
+            // Update weapon slots
+            Weapon0Slot.RefreshWith(TaleWorlds.Core.EquipmentIndex.Weapon0, equipment[TaleWorlds.Core.EquipmentIndex.Weapon0]);
+            Weapon1Slot.RefreshWith(TaleWorlds.Core.EquipmentIndex.Weapon1, equipment[TaleWorlds.Core.EquipmentIndex.Weapon1]);
+            Weapon2Slot.RefreshWith(TaleWorlds.Core.EquipmentIndex.Weapon2, equipment[TaleWorlds.Core.EquipmentIndex.Weapon2]);
+            Weapon3Slot.RefreshWith(TaleWorlds.Core.EquipmentIndex.Weapon3, equipment[TaleWorlds.Core.EquipmentIndex.Weapon3]);
+
+            // Update banner slot
+            BannerSlot.RefreshWith(TaleWorlds.Core.EquipmentIndex.ExtraWeaponSlot, equipment[TaleWorlds.Core.EquipmentIndex.ExtraWeaponSlot]);
         }
 
         #endregion
