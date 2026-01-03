@@ -36,6 +36,7 @@ bld/
 [Oo]ut/
 [Ll]og/
 [Ll]ogs/
+[Kk]nowledge/
 
 Bannerlord.Commander/[Dd]ebug/
 Bannerlord.Commander/[Dd]ebugPublic/
@@ -409,3 +410,4 @@ Bannerlord.Commander/obj/Debug/net6/Bannerlord.Commander.v1.3.13.dll
 Bannerlord.Commander/obj/Debug/net6/Bannerlord.Commander.v1.3.13.pdb
 Bannerlord.Commander/obj/Debug/net6/ref/Bannerlord.Commander.v1.3.13.dll
 Bannerlord.Commander/obj/Debug/net6/refint/Bannerlord.Commander.v1.3.13.dll
+Knowledge/ImageIdentifierVM_Vs_ItemImageIdentifierVM.md

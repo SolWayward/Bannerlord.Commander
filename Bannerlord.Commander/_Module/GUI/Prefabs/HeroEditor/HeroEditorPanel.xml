@@ -602,7 +602,7 @@
                                                            HeightSizePolicy="StretchToParent"
                                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
                                                            DataSource="{ImageIdentifier}"
-                                                           ImageTypeCode="@ImageTypeCode"
+                                                           TextureProviderName="@TextureProviderName"
                                                            AdditionalArgs="@AdditionalArgs"
                                                            ImageId="@Id"
                                                            IsVisible="@HasItem" />
@@ -627,7 +627,7 @@
                                                            HeightSizePolicy="StretchToParent"
                                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
                                                            DataSource="{ImageIdentifier}"
-                                                           ImageTypeCode="@ImageTypeCode"
+                                                           TextureProviderName="@TextureProviderName"
                                                            AdditionalArgs="@AdditionalArgs"
                                                            ImageId="@Id"
                                                            IsVisible="@HasItem" />
@@ -652,7 +652,7 @@
                                                            HeightSizePolicy="StretchToParent"
                                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
                                                            DataSource="{ImageIdentifier}"
-                                                           ImageTypeCode="@ImageTypeCode"
+                                                           TextureProviderName="@TextureProviderName"
                                                            AdditionalArgs="@AdditionalArgs"
                                                            ImageId="@Id"
                                                            IsVisible="@HasItem" />
@@ -677,7 +677,7 @@
                                                            HeightSizePolicy="StretchToParent"
                                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
                                                            DataSource="{ImageIdentifier}"
-                                                           ImageTypeCode="@ImageTypeCode"
+                                                           TextureProviderName="@TextureProviderName"
                                                            AdditionalArgs="@AdditionalArgs"
                                                            ImageId="@Id"
                                                            IsVisible="@HasItem" />
@@ -702,7 +702,7 @@
                                                            HeightSizePolicy="StretchToParent"
                                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
                                                            DataSource="{ImageIdentifier}"
-                                                           ImageTypeCode="@ImageTypeCode"
+                                                           TextureProviderName="@TextureProviderName"
                                                            AdditionalArgs="@AdditionalArgs"
                                                            ImageId="@Id"
                                                            IsVisible="@HasItem" />
@@ -727,7 +727,7 @@
                                                            HeightSizePolicy="StretchToParent"
                                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
                                                            DataSource="{ImageIdentifier}"
-                                                           ImageTypeCode="@ImageTypeCode"
+                                                           TextureProviderName="@TextureProviderName"
                                                            AdditionalArgs="@AdditionalArgs"
                                                            ImageId="@Id"
                                                            IsVisible="@HasItem" />
@@ -752,7 +752,7 @@
                                                            HeightSizePolicy="StretchToParent"
                                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
                                                            DataSource="{ImageIdentifier}"
-                                                           ImageTypeCode="@ImageTypeCode"
+                                                           TextureProviderName="@TextureProviderName"
                                                            AdditionalArgs="@AdditionalArgs"
                                                            ImageId="@Id"
                                                            IsVisible="@HasItem" />
@@ -812,7 +812,7 @@
                                                            HeightSizePolicy="StretchToParent"
                                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
                                                            DataSource="{ImageIdentifier}"
-                                                           ImageTypeCode="@ImageTypeCode"
+                                                           TextureProviderName="@TextureProviderName"
                                                            AdditionalArgs="@AdditionalArgs"
                                                            ImageId="@Id"
                                                            IsVisible="@HasItem" />
@@ -837,7 +837,7 @@
                                                            HeightSizePolicy="StretchToParent"
                                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
                                                            DataSource="{ImageIdentifier}"
-                                                           ImageTypeCode="@ImageTypeCode"
+                                                           TextureProviderName="@TextureProviderName"
                                                            AdditionalArgs="@AdditionalArgs"
                                                            ImageId="@Id"
                                                            IsVisible="@HasItem" />
@@ -862,7 +862,7 @@
                                                            HeightSizePolicy="StretchToParent"
                                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
                                                            DataSource="{ImageIdentifier}"
-                                                           ImageTypeCode="@ImageTypeCode"
+                                                           TextureProviderName="@TextureProviderName"
                                                            AdditionalArgs="@AdditionalArgs"
                                                            ImageId="@Id"
                                                            IsVisible="@HasItem" />
@@ -887,7 +887,7 @@
                                                            HeightSizePolicy="StretchToParent"
                                                            MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
                                                            DataSource="{ImageIdentifier}"
-                                                           ImageTypeCode="@ImageTypeCode"
+                                                           TextureProviderName="@TextureProviderName"
                                                            AdditionalArgs="@AdditionalArgs"
                                                            ImageId="@Id"
                                                            IsVisible="@HasItem" />
