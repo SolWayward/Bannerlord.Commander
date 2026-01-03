@@ -645,80 +645,45 @@
                                                    MarginTop="6" MarginBottom="6" MarginLeft="6" MarginRight="6"
                                                    StackLayout.LayoutMethod="HorizontalLeftToRight">
                                           <Children>
-                                            <!-- Left: Armor Gear Slots - Direct binding following native pattern -->
+                                            <!-- Left: Armor Gear Slots - Using native InventoryEquippedItemSlot prefab -->
                                             <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                                       SuggestedWidth="65" MarginRight="4" StackLayout.LayoutMethod="VerticalBottomToTop">
+                                                       SuggestedWidth="130" MarginRight="4" StackLayout.LayoutMethod="VerticalBottomToTop">
                                               <Children>
-                                                <!-- Head Slot -->
-                                                <Widget DataSource="{HeadSlot}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="60" SuggestedHeight="60" MarginBottom="6" Sprite="Inventory\portrait_cart">
-                                                  <Children>
-                                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                                DataSource="{ImageIdentifier}" ImageId="@Id"
-                                                                AdditionalArgs="@AdditionalArgs" TextureProviderName="@TextureProviderName" />
-                                                  </Children>
-                                                </Widget>
-                                                <!-- Cape Slot -->
-                                                <Widget DataSource="{CapeSlot}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="60" SuggestedHeight="60" MarginBottom="6" Sprite="Inventory\portrait_cart">
-                                                  <Children>
-                                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                                DataSource="{ImageIdentifier}" ImageId="@Id"
-                                                                AdditionalArgs="@AdditionalArgs" TextureProviderName="@TextureProviderName" />
-                                                  </Children>
-                                                </Widget>
-                                                <!-- Body Slot -->
-                                                <Widget DataSource="{BodySlot}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="60" SuggestedHeight="60" MarginBottom="6" Sprite="Inventory\portrait_cart">
-                                                  <Children>
-                                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                                DataSource="{ImageIdentifier}" ImageId="@Id"
-                                                                AdditionalArgs="@AdditionalArgs" TextureProviderName="@TextureProviderName" />
-                                                  </Children>
-                                                </Widget>
-                                                <!-- Gloves Slot -->
-                                                <Widget DataSource="{GlovesSlot}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="60" SuggestedHeight="60" MarginBottom="6" Sprite="Inventory\portrait_cart">
-                                                  <Children>
-                                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                                DataSource="{ImageIdentifier}" ImageId="@Id"
-                                                                AdditionalArgs="@AdditionalArgs" TextureProviderName="@TextureProviderName" />
-                                                  </Children>
-                                                </Widget>
-                                                <!-- Leg Slot -->
-                                                <Widget DataSource="{LegSlot}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="60" SuggestedHeight="60" MarginBottom="6" Sprite="Inventory\portrait_cart">
-                                                  <Children>
-                                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                                DataSource="{ImageIdentifier}" ImageId="@Id"
-                                                                AdditionalArgs="@AdditionalArgs" TextureProviderName="@TextureProviderName" />
-                                                  </Children>
-                                                </Widget>
-                                                <!-- Horse Slot -->
-                                                <Widget DataSource="{HorseSlot}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="60" SuggestedHeight="60" MarginBottom="6" Sprite="Inventory\portrait_cart">
-                                                  <Children>
-                                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                                DataSource="{ImageIdentifier}" ImageId="@Id"
-                                                                AdditionalArgs="@AdditionalArgs" TextureProviderName="@TextureProviderName" />
-                                                  </Children>
-                                                </Widget>
-                                                <!-- Horse Harness Slot -->
-                                                <Widget DataSource="{HorseHarnessSlot}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="60" SuggestedHeight="60" MarginBottom="6" Sprite="Inventory\portrait_cart">
-                                                  <Children>
-                                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                                DataSource="{ImageIdentifier}" ImageId="@Id"
-                                                                AdditionalArgs="@AdditionalArgs" TextureProviderName="@TextureProviderName" />
-                                                  </Children>
-                                                </Widget>
+                                                <InventoryEquippedItemSlot
+                                                    Parameter.BackgroundBrush="InventoryHelmetSlot"
+                                                    Parameter.ItemDataSource="{HeadSlot}"
+                                                    Parameter.IsRightSide="false"
+                                                    Parameter.EquipmentIndex="5" />
+                                                <InventoryEquippedItemSlot
+                                                    Parameter.BackgroundBrush="InventoryCloakSlot"
+                                                    Parameter.ItemDataSource="{CapeSlot}"
+                                                    Parameter.IsRightSide="false"
+                                                    Parameter.EquipmentIndex="9" />
+                                                <InventoryEquippedItemSlot
+                                                    Parameter.BackgroundBrush="InventoryArmorSlot"
+                                                    Parameter.ItemDataSource="{BodySlot}"
+                                                    Parameter.IsRightSide="false"
+                                                    Parameter.EquipmentIndex="6" />
+                                                <InventoryEquippedItemSlot
+                                                    Parameter.BackgroundBrush="InventoryGloveSlot"
+                                                    Parameter.ItemDataSource="{GlovesSlot}"
+                                                    Parameter.IsRightSide="false"
+                                                    Parameter.EquipmentIndex="8" />
+                                                <InventoryEquippedItemSlot
+                                                    Parameter.BackgroundBrush="InventoryBootSlot"
+                                                    Parameter.ItemDataSource="{LegSlot}"
+                                                    Parameter.IsRightSide="false"
+                                                    Parameter.EquipmentIndex="7" />
+                                                <InventoryEquippedItemSlot
+                                                    Parameter.BackgroundBrush="InventoryMountSlot"
+                                                    Parameter.ItemDataSource="{HorseSlot}"
+                                                    Parameter.IsRightSide="false"
+                                                    Parameter.EquipmentIndex="10" />
+                                                <InventoryEquippedItemSlot
+                                                    Parameter.BackgroundBrush="InventoryMountArmorSlot"
+                                                    Parameter.ItemDataSource="{HorseHarnessSlot}"
+                                                    Parameter.IsRightSide="false"
+                                                    Parameter.EquipmentIndex="11" />
                                               </Children>
                                             </ListPanel>
                                             <!-- Center: Character Model -->
@@ -734,60 +699,35 @@
                                                                         LeftHandWieldedEquipmentIndex="1" />
                                               </Children>
                                             </Widget>
-                                            <!-- Right: Weapon Gear Slots - Direct binding following native pattern -->
+                                            <!-- Right: Weapon Gear Slots - Using native InventoryEquippedItemSlot prefab -->
                                             <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                                       SuggestedWidth="65" MarginLeft="4" StackLayout.LayoutMethod="VerticalBottomToTop">
+                                                       SuggestedWidth="130" MarginLeft="4" StackLayout.LayoutMethod="VerticalBottomToTop">
                                               <Children>
-                                                <!-- Weapon 0 Slot -->
-                                                <Widget DataSource="{Weapon0Slot}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="60" SuggestedHeight="60" MarginBottom="6" Sprite="Inventory\portrait_cart">
-                                                  <Children>
-                                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                                DataSource="{ImageIdentifier}" ImageId="@Id"
-                                                                AdditionalArgs="@AdditionalArgs" TextureProviderName="@TextureProviderName" />
-                                                  </Children>
-                                                </Widget>
-                                                <!-- Weapon 1 Slot -->
-                                                <Widget DataSource="{Weapon1Slot}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="60" SuggestedHeight="60" MarginBottom="6" Sprite="Inventory\portrait_cart">
-                                                  <Children>
-                                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                                DataSource="{ImageIdentifier}" ImageId="@Id"
-                                                                AdditionalArgs="@AdditionalArgs" TextureProviderName="@TextureProviderName" />
-                                                  </Children>
-                                                </Widget>
-                                                <!-- Weapon 2 Slot -->
-                                                <Widget DataSource="{Weapon2Slot}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="60" SuggestedHeight="60" MarginBottom="6" Sprite="Inventory\portrait_cart">
-                                                  <Children>
-                                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                                DataSource="{ImageIdentifier}" ImageId="@Id"
-                                                                AdditionalArgs="@AdditionalArgs" TextureProviderName="@TextureProviderName" />
-                                                  </Children>
-                                                </Widget>
-                                                <!-- Weapon 3 Slot -->
-                                                <Widget DataSource="{Weapon3Slot}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="60" SuggestedHeight="60" MarginBottom="6" Sprite="Inventory\portrait_cart">
-                                                  <Children>
-                                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                                DataSource="{ImageIdentifier}" ImageId="@Id"
-                                                                AdditionalArgs="@AdditionalArgs" TextureProviderName="@TextureProviderName" />
-                                                  </Children>
-                                                </Widget>
-                                                <!-- Banner Slot -->
-                                                <Widget DataSource="{BannerSlot}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="60" SuggestedHeight="60" MarginBottom="6" Sprite="Inventory\portrait_cart">
-                                                  <Children>
-                                                    <ImageIdentifierWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                                DataSource="{ImageIdentifier}" ImageId="@Id"
-                                                                AdditionalArgs="@AdditionalArgs" TextureProviderName="@TextureProviderName" />
-                                                  </Children>
-                                                </Widget>
+                                                <InventoryEquippedItemSlot
+                                                    Parameter.BackgroundBrush="InventoryWeaponSlot"
+                                                    Parameter.ItemDataSource="{Weapon0Slot}"
+                                                    Parameter.IsRightSide="true"
+                                                    Parameter.EquipmentIndex="0" />
+                                                <InventoryEquippedItemSlot
+                                                    Parameter.BackgroundBrush="InventoryWeaponSlot"
+                                                    Parameter.ItemDataSource="{Weapon1Slot}"
+                                                    Parameter.IsRightSide="true"
+                                                    Parameter.EquipmentIndex="1" />
+                                                <InventoryEquippedItemSlot
+                                                    Parameter.BackgroundBrush="InventoryWeaponSlot"
+                                                    Parameter.ItemDataSource="{Weapon2Slot}"
+                                                    Parameter.IsRightSide="true"
+                                                    Parameter.EquipmentIndex="2" />
+                                                <InventoryEquippedItemSlot
+                                                    Parameter.BackgroundBrush="InventoryWeaponSlot"
+                                                    Parameter.ItemDataSource="{Weapon3Slot}"
+                                                    Parameter.IsRightSide="true"
+                                                    Parameter.EquipmentIndex="3" />
+                                                <InventoryEquippedItemSlot
+                                                    Parameter.BackgroundBrush="InventoryBannerSlot"
+                                                    Parameter.ItemDataSource="{BannerSlot}"
+                                                    Parameter.IsRightSide="true"
+                                                    Parameter.EquipmentIndex="4" />
                                               </Children>
                                             </ListPanel>
                                           </Children>
