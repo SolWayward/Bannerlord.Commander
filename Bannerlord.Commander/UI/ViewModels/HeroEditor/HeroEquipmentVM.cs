@@ -1,23 +1,33 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ViewModelCollection.ImageIdentifiers;
 using TaleWorlds.Library;
 
 namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 {
     /// <summary>
     /// ViewModel for hero equipment display.
-    /// Shows equipment slots with item icons.
+    /// Uses individual slot properties following native SPInventoryVM pattern.
     /// </summary>
     public class HeroEquipmentVM : ViewModel
     {
         #region Private Fields
 
         private Hero _hero;
-        private MBBindingList<EquipmentSlotVM> _armorSlots;
-        private MBBindingList<EquipmentSlotVM> _weaponSlots;
         private int _selectedLoadoutIndex;
         private string _loadoutName;
+        
+        // Individual slot ViewModels - following native pattern from SPInventoryVM
+        private EquipmentSlotVM _headSlot;
+        private EquipmentSlotVM _capeSlot;
+        private EquipmentSlotVM _bodySlot;
+        private EquipmentSlotVM _glovesSlot;
+        private EquipmentSlotVM _legSlot;
+        private EquipmentSlotVM _horseSlot;
+        private EquipmentSlotVM _horseHarnessSlot;
+        private EquipmentSlotVM _weapon0Slot;
+        private EquipmentSlotVM _weapon1Slot;
+        private EquipmentSlotVM _weapon2Slot;
+        private EquipmentSlotVM _weapon3Slot;
 
         #endregion
 
@@ -25,10 +35,21 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 
         public HeroEquipmentVM()
         {
-            ArmorSlots = new();
-            WeaponSlots = new();
             _selectedLoadoutIndex = 0;
             LoadoutName = "Battle";
+            
+            // Initialize all slots with empty state - following native pattern
+            HeadSlot = new();
+            CapeSlot = new();
+            BodySlot = new();
+            GlovesSlot = new();
+            LegSlot = new();
+            HorseSlot = new();
+            HorseHarnessSlot = new();
+            Weapon0Slot = new();
+            Weapon1Slot = new();
+            Weapon2Slot = new();
+            Weapon3Slot = new();
         }
 
         #endregion
@@ -59,31 +80,38 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         public void Clear()
         {
             _hero = null;
-            ArmorSlots.Clear();
-            WeaponSlots.Clear();
             _selectedLoadoutIndex = 0;
             LoadoutName = "Battle";
+            
+            // Reset all slots to empty state
+            HeadSlot.Reset();
+            CapeSlot.Reset();
+            BodySlot.Reset();
+            GlovesSlot.Reset();
+            LegSlot.Reset();
+            HorseSlot.Reset();
+            HorseHarnessSlot.Reset();
+            Weapon0Slot.Reset();
+            Weapon1Slot.Reset();
+            Weapon2Slot.Reset();
+            Weapon3Slot.Reset();
         }
 
         public override void OnFinalize()
         {
             base.OnFinalize();
             
-            if (ArmorSlots != null)
-            {
-                foreach (EquipmentSlotVM slot in ArmorSlots)
-                {
-                    slot?.OnFinalize();
-                }
-            }
-            
-            if (WeaponSlots != null)
-            {
-                foreach (EquipmentSlotVM slot in WeaponSlots)
-                {
-                    slot?.OnFinalize();
-                }
-            }
+            HeadSlot?.OnFinalize();
+            CapeSlot?.OnFinalize();
+            BodySlot?.OnFinalize();
+            GlovesSlot?.OnFinalize();
+            LegSlot?.OnFinalize();
+            HorseSlot?.OnFinalize();
+            HorseHarnessSlot?.OnFinalize();
+            Weapon0Slot?.OnFinalize();
+            Weapon1Slot?.OnFinalize();
+            Weapon2Slot?.OnFinalize();
+            Weapon3Slot?.OnFinalize();
         }
 
         #endregion
@@ -102,41 +130,202 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 
         #endregion
 
-        #region DataSource Properties
+        #region DataSource Properties - Individual Armor Slots
 
         /// <summary>
-        /// Gets the armor equipment slots (Head, Cape, Body, Gloves, Legs, Horse, Harness).
+        /// Gets the head/helmet equipment slot.
         /// </summary>
         [DataSourceProperty]
-        public MBBindingList<EquipmentSlotVM> ArmorSlots
+        public EquipmentSlotVM HeadSlot
         {
-            get => _armorSlots;
+            get => _headSlot;
             private set
             {
-                if (_armorSlots != value)
+                if (_headSlot != value)
                 {
-                    _armorSlots = value;
-                    OnPropertyChangedWithValue(value, nameof(ArmorSlots));
+                    _headSlot = value;
+                    OnPropertyChangedWithValue(value, nameof(HeadSlot));
                 }
             }
         }
 
         /// <summary>
-        /// Gets the weapon equipment slots (Weapon 1-4).
+        /// Gets the cape/cloak equipment slot.
         /// </summary>
         [DataSourceProperty]
-        public MBBindingList<EquipmentSlotVM> WeaponSlots
+        public EquipmentSlotVM CapeSlot
         {
-            get => _weaponSlots;
+            get => _capeSlot;
             private set
             {
-                if (_weaponSlots != value)
+                if (_capeSlot != value)
                 {
-                    _weaponSlots = value;
-                    OnPropertyChangedWithValue(value, nameof(WeaponSlots));
+                    _capeSlot = value;
+                    OnPropertyChangedWithValue(value, nameof(CapeSlot));
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the body armor equipment slot.
+        /// </summary>
+        [DataSourceProperty]
+        public EquipmentSlotVM BodySlot
+        {
+            get => _bodySlot;
+            private set
+            {
+                if (_bodySlot != value)
+                {
+                    _bodySlot = value;
+                    OnPropertyChangedWithValue(value, nameof(BodySlot));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the gloves equipment slot.
+        /// </summary>
+        [DataSourceProperty]
+        public EquipmentSlotVM GlovesSlot
+        {
+            get => _glovesSlot;
+            private set
+            {
+                if (_glovesSlot != value)
+                {
+                    _glovesSlot = value;
+                    OnPropertyChangedWithValue(value, nameof(GlovesSlot));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the leg armor/boots equipment slot.
+        /// </summary>
+        [DataSourceProperty]
+        public EquipmentSlotVM LegSlot
+        {
+            get => _legSlot;
+            private set
+            {
+                if (_legSlot != value)
+                {
+                    _legSlot = value;
+                    OnPropertyChangedWithValue(value, nameof(LegSlot));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the horse/mount equipment slot.
+        /// </summary>
+        [DataSourceProperty]
+        public EquipmentSlotVM HorseSlot
+        {
+            get => _horseSlot;
+            private set
+            {
+                if (_horseSlot != value)
+                {
+                    _horseSlot = value;
+                    OnPropertyChangedWithValue(value, nameof(HorseSlot));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the horse harness/armor equipment slot.
+        /// </summary>
+        [DataSourceProperty]
+        public EquipmentSlotVM HorseHarnessSlot
+        {
+            get => _horseHarnessSlot;
+            private set
+            {
+                if (_horseHarnessSlot != value)
+                {
+                    _horseHarnessSlot = value;
+                    OnPropertyChangedWithValue(value, nameof(HorseHarnessSlot));
+                }
+            }
+        }
+
+        #endregion
+
+        #region DataSource Properties - Individual Weapon Slots
+
+        /// <summary>
+        /// Gets the first weapon slot.
+        /// </summary>
+        [DataSourceProperty]
+        public EquipmentSlotVM Weapon0Slot
+        {
+            get => _weapon0Slot;
+            private set
+            {
+                if (_weapon0Slot != value)
+                {
+                    _weapon0Slot = value;
+                    OnPropertyChangedWithValue(value, nameof(Weapon0Slot));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the second weapon slot.
+        /// </summary>
+        [DataSourceProperty]
+        public EquipmentSlotVM Weapon1Slot
+        {
+            get => _weapon1Slot;
+            private set
+            {
+                if (_weapon1Slot != value)
+                {
+                    _weapon1Slot = value;
+                    OnPropertyChangedWithValue(value, nameof(Weapon1Slot));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the third weapon slot.
+        /// </summary>
+        [DataSourceProperty]
+        public EquipmentSlotVM Weapon2Slot
+        {
+            get => _weapon2Slot;
+            private set
+            {
+                if (_weapon2Slot != value)
+                {
+                    _weapon2Slot = value;
+                    OnPropertyChangedWithValue(value, nameof(Weapon2Slot));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the fourth weapon slot.
+        /// </summary>
+        [DataSourceProperty]
+        public EquipmentSlotVM Weapon3Slot
+        {
+            get => _weapon3Slot;
+            private set
+            {
+                if (_weapon3Slot != value)
+                {
+                    _weapon3Slot = value;
+                    OnPropertyChangedWithValue(value, nameof(Weapon3Slot));
+                }
+            }
+        }
+
+        #endregion
+
+        #region DataSource Properties - General
 
         /// <summary>
         /// Gets the current loadout name (Battle or Civilian).
@@ -161,209 +350,42 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 
         /// <summary>
         /// Refreshes the equipment display based on the selected loadout.
+        /// Following native SPInventoryVM.UpdateCharacterEquipment pattern.
         /// </summary>
         private void RefreshEquipment()
         {
-            ArmorSlots.Clear();
-            WeaponSlots.Clear();
-            
             if (_hero == null)
+            {
+                Clear();
                 return;
+            }
             
             // Get the appropriate equipment based on selected loadout
             Equipment equipment = _selectedLoadoutIndex == 0 ?
                 _hero.BattleEquipment : _hero.CivilianEquipment;
             
             if (equipment == null)
+            {
+                Clear();
                 return;
+            }
             
-            // Add armor slots (displayed on the left side)
-            ArmorSlots.Add(new(EquipmentIndex.Head, equipment[EquipmentIndex.Head]));
-            ArmorSlots.Add(new(EquipmentIndex.Cape, equipment[EquipmentIndex.Cape]));
-            ArmorSlots.Add(new(EquipmentIndex.Body, equipment[EquipmentIndex.Body]));
-            ArmorSlots.Add(new(EquipmentIndex.Gloves, equipment[EquipmentIndex.Gloves]));
-            ArmorSlots.Add(new(EquipmentIndex.Leg, equipment[EquipmentIndex.Leg]));
-            ArmorSlots.Add(new(EquipmentIndex.Horse, equipment[EquipmentIndex.Horse]));
-            ArmorSlots.Add(new(EquipmentIndex.HorseHarness, equipment[EquipmentIndex.HorseHarness]));
+            // Update each armor slot following native InitializeCharacterEquipmentSlot pattern
+            HeadSlot.RefreshWith(EquipmentIndex.Head, equipment[EquipmentIndex.Head]);
+            CapeSlot.RefreshWith(EquipmentIndex.Cape, equipment[EquipmentIndex.Cape]);
+            BodySlot.RefreshWith(EquipmentIndex.Body, equipment[EquipmentIndex.Body]);
+            GlovesSlot.RefreshWith(EquipmentIndex.Gloves, equipment[EquipmentIndex.Gloves]);
+            LegSlot.RefreshWith(EquipmentIndex.Leg, equipment[EquipmentIndex.Leg]);
+            HorseSlot.RefreshWith(EquipmentIndex.Horse, equipment[EquipmentIndex.Horse]);
+            HorseHarnessSlot.RefreshWith(EquipmentIndex.HorseHarness, equipment[EquipmentIndex.HorseHarness]);
             
-            // Add weapon slots (displayed on the right side)
-            WeaponSlots.Add(new(EquipmentIndex.Weapon0, equipment[EquipmentIndex.Weapon0]));
-            WeaponSlots.Add(new(EquipmentIndex.Weapon1, equipment[EquipmentIndex.Weapon1]));
-            WeaponSlots.Add(new(EquipmentIndex.Weapon2, equipment[EquipmentIndex.Weapon2]));
-            WeaponSlots.Add(new(EquipmentIndex.Weapon3, equipment[EquipmentIndex.Weapon3]));
+            // Update each weapon slot
+            Weapon0Slot.RefreshWith(EquipmentIndex.Weapon0, equipment[EquipmentIndex.Weapon0]);
+            Weapon1Slot.RefreshWith(EquipmentIndex.Weapon1, equipment[EquipmentIndex.Weapon1]);
+            Weapon2Slot.RefreshWith(EquipmentIndex.Weapon2, equipment[EquipmentIndex.Weapon2]);
+            Weapon3Slot.RefreshWith(EquipmentIndex.Weapon3, equipment[EquipmentIndex.Weapon3]);
         }
 
         #endregion
-    }
-
-    /// <summary>
-    /// ViewModel representing a single equipment slot with image identifier.
-    /// </summary>
-    public class EquipmentSlotVM : ViewModel
-    {
-        #region Private Fields
-
-        private EquipmentIndex _slotIndex;
-        private string _slotName;
-        private string _itemName;
-        private bool _hasItem;
-        private ItemImageIdentifierVM _imageIdentifier;
-        private int _itemModifier;
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Creates a new equipment slot ViewModel.
-        /// </summary>
-        /// <param name="index">The equipment slot index</param>
-        /// <param name="element">The equipment element in this slot</param>
-        public EquipmentSlotVM(EquipmentIndex index, EquipmentElement element)
-        {
-            _slotIndex = index;
-            SlotName = GetSlotName(index);
-            
-            if (element.Item != null)
-            {
-                HasItem = true;
-                ItemName = element.Item.Name?.ToString() ?? "Unknown";
-                ItemModifier = element.ItemModifier != null ? 1 : 0;
-                
-                // Create ItemImageIdentifierVM for item display
-                ImageIdentifier = new ItemImageIdentifierVM(element.Item, "");
-            }
-            else
-            {
-                HasItem = false;
-                ItemName = "Empty";
-                ItemModifier = 0;
-                ImageIdentifier = new ItemImageIdentifierVM(null, "");
-            }
-        }
-
-        #endregion
-
-        #region DataSource Properties
-
-        /// <summary>
-        /// Gets the slot name.
-        /// </summary>
-        [DataSourceProperty]
-        public string SlotName
-        {
-            get => _slotName;
-            private set
-            {
-                if (_slotName != value)
-                {
-                    _slotName = value;
-                    OnPropertyChangedWithValue(value, nameof(SlotName));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the item name.
-        /// </summary>
-        [DataSourceProperty]
-        public string ItemName
-        {
-            get => _itemName;
-            private set
-            {
-                if (_itemName != value)
-                {
-                    _itemName = value;
-                    OnPropertyChangedWithValue(value, nameof(ItemName));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets whether this slot has an item.
-        /// </summary>
-        [DataSourceProperty]
-        public bool HasItem
-        {
-            get => _hasItem;
-            private set
-            {
-                if (_hasItem != value)
-                {
-                    _hasItem = value;
-                    OnPropertyChanged(nameof(HasItem));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the image identifier for displaying the item icon.
-        /// </summary>
-        [DataSourceProperty]
-        public ItemImageIdentifierVM ImageIdentifier
-        {
-            get => _imageIdentifier;
-            private set
-            {
-                if (_imageIdentifier != value)
-                {
-                    _imageIdentifier = value;
-                    OnPropertyChangedWithValue(value, nameof(ImageIdentifier));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets item modifier tier (0 = none, 1+ = has modifier).
-        /// </summary>
-        [DataSourceProperty]
-        public int ItemModifier
-        {
-            get => _itemModifier;
-            private set
-            {
-                if (_itemModifier != value)
-                {
-                    _itemModifier = value;
-                    OnPropertyChanged(nameof(ItemModifier));
-                }
-            }
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        /// <summary>
-        /// Gets a display name for the equipment slot.
-        /// </summary>
-        private string GetSlotName(EquipmentIndex index)
-        {
-            return index switch
-            {
-                EquipmentIndex.Head => "Head",
-                EquipmentIndex.Cape => "Cape",
-                EquipmentIndex.Body => "Body",
-                EquipmentIndex.Gloves => "Gloves",
-                EquipmentIndex.Leg => "Legs",
-                EquipmentIndex.Horse => "Horse",
-                EquipmentIndex.HorseHarness => "Harness",
-                EquipmentIndex.Weapon0 => "Weapon 1",
-                EquipmentIndex.Weapon1 => "Weapon 2",
-                EquipmentIndex.Weapon2 => "Weapon 3",
-                EquipmentIndex.Weapon3 => "Weapon 4",
-                EquipmentIndex.NumEquipmentSetSlots => "Banner",
-                _ => "Unknown"
-            };
-        }
-
-        #endregion
-
-        public override void OnFinalize()
-        {
-            base.OnFinalize();
-            ImageIdentifier?.OnFinalize();
-        }
     }
 }

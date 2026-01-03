@@ -1,0 +1,271 @@
+using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection.ImageIdentifiers;
+using TaleWorlds.Library;
+
+namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
+{
+    /// <summary>
+    /// ViewModel representing a single equipment slot with image identifier.
+    /// Follows native SPItemVM pattern - only creates ImageIdentifier when item exists.
+    /// </summary>
+    public class EquipmentSlotVM : ViewModel
+    {
+        #region Private Fields
+
+        private EquipmentIndex _slotIndex;
+        private string _slotName;
+        private string _itemName;
+        private bool _hasItem;
+        private ItemImageIdentifierVM _imageIdentifier;
+        private int _itemModifier;
+        private string _emptySlotSprite;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Creates a new empty equipment slot ViewModel.
+        /// Following native SPItemVM default constructor pattern.
+        /// </summary>
+        public EquipmentSlotVM()
+        {
+            _slotIndex = EquipmentIndex.None;
+            _slotName = "";
+            _itemName = "";
+            _hasItem = false;
+            _imageIdentifier = null;  // NULL for empty slots - prevents crash
+            _itemModifier = 0;
+            _emptySlotSprite = "Inventory\\empty_head_slot";
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Refreshes this slot with new equipment data.
+        /// Following native SPItemVM.RefreshWith pattern.
+        /// </summary>
+        /// <param name="index">The equipment slot index</param>
+        /// <param name="element">The equipment element in this slot</param>
+        public void RefreshWith(EquipmentIndex index, EquipmentElement element)
+        {
+            _slotIndex = index;
+            SlotName = GetSlotName(index);
+            EmptySlotSprite = GetEmptySlotSprite(index);
+
+            if (!element.IsEmpty && element.Item != null)
+            {
+                HasItem = true;
+                ItemName = element.Item.Name?.ToString() ?? "Unknown";
+                ItemModifier = element.ItemModifier != null ? 1 : 0;
+
+                // Create ItemImageIdentifierVM ONLY when we have a valid item
+                // This is the key fix - native game never creates ImageIdentifier for empty slots
+                ImageIdentifier = new ItemImageIdentifierVM(element.Item, "");
+            }
+            else
+            {
+                HasItem = false;
+                ItemName = "";
+                ItemModifier = 0;
+
+                // Set to null for empty slots - prevents ItemImageTextureProvider crash
+                ImageIdentifier = null;
+            }
+        }
+
+        /// <summary>
+        /// Resets this slot to empty state.
+        /// </summary>
+        public void Reset()
+        {
+            _slotIndex = EquipmentIndex.None;
+            SlotName = "";
+            HasItem = false;
+            ItemName = "";
+            ItemModifier = 0;
+            ImageIdentifier = null;
+            EmptySlotSprite = "Inventory\\empty_head_slot";
+        }
+
+        public override void OnFinalize()
+        {
+            base.OnFinalize();
+            ImageIdentifier?.OnFinalize();
+            _imageIdentifier = null;
+        }
+
+        #endregion
+
+        #region DataSource Properties
+
+        /// <summary>
+        /// Gets the slot name.
+        /// </summary>
+        [DataSourceProperty]
+        public string SlotName
+        {
+            get => _slotName;
+            private set
+            {
+                if (_slotName != value)
+                {
+                    _slotName = value;
+                    OnPropertyChangedWithValue(value, nameof(SlotName));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the item name.
+        /// </summary>
+        [DataSourceProperty]
+        public string ItemName
+        {
+            get => _itemName;
+            private set
+            {
+                if (_itemName != value)
+                {
+                    _itemName = value;
+                    OnPropertyChangedWithValue(value, nameof(ItemName));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets whether this slot has an item.
+        /// Used to toggle visibility between item image and empty slot sprite.
+        /// </summary>
+        [DataSourceProperty]
+        public bool HasItem
+        {
+            get => _hasItem;
+            private set
+            {
+                if (_hasItem != value)
+                {
+                    _hasItem = value;
+                    OnPropertyChanged(nameof(HasItem));
+                    OnPropertyChanged(nameof(IsNotHasItem));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets whether this slot does NOT have an item.
+        /// Used for visibility binding on empty slot sprite.
+        /// </summary>
+        [DataSourceProperty]
+        public bool IsNotHasItem => !_hasItem;
+
+        /// <summary>
+        /// Gets the image identifier for displaying the item icon.
+        /// NULL when slot is empty - this is the key to preventing the crash.
+        /// </summary>
+        [DataSourceProperty]
+        public ItemImageIdentifierVM ImageIdentifier
+        {
+            get => _imageIdentifier;
+            private set
+            {
+                if (_imageIdentifier != value)
+                {
+                    _imageIdentifier?.OnFinalize();
+                    _imageIdentifier = value;
+                    OnPropertyChangedWithValue(value, nameof(ImageIdentifier));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets item modifier tier (0 = none, 1+ = has modifier).
+        /// </summary>
+        [DataSourceProperty]
+        public int ItemModifier
+        {
+            get => _itemModifier;
+            private set
+            {
+                if (_itemModifier != value)
+                {
+                    _itemModifier = value;
+                    OnPropertyChanged(nameof(ItemModifier));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the sprite to display when slot is empty.
+        /// Different sprites for different slot types (head, body, weapon, etc.)
+        /// </summary>
+        [DataSourceProperty]
+        public string EmptySlotSprite
+        {
+            get => _emptySlotSprite;
+            private set
+            {
+                if (_emptySlotSprite != value)
+                {
+                    _emptySlotSprite = value;
+                    OnPropertyChangedWithValue(value, nameof(EmptySlotSprite));
+                }
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        /// <summary>
+        /// Gets a display name for the equipment slot.
+        /// </summary>
+        private static string GetSlotName(EquipmentIndex index)
+        {
+            return index switch
+            {
+                EquipmentIndex.Head => "Head",
+                EquipmentIndex.Cape => "Cape",
+                EquipmentIndex.Body => "Body",
+                EquipmentIndex.Gloves => "Gloves",
+                EquipmentIndex.Leg => "Legs",
+                EquipmentIndex.Horse => "Horse",
+                EquipmentIndex.HorseHarness => "Harness",
+                EquipmentIndex.Weapon0 => "Weapon 1",
+                EquipmentIndex.Weapon1 => "Weapon 2",
+                EquipmentIndex.Weapon2 => "Weapon 3",
+                EquipmentIndex.Weapon3 => "Weapon 4",
+                EquipmentIndex.ExtraWeaponSlot => "Banner",
+                _ => "Unknown"
+            };
+        }
+
+        /// <summary>
+        /// Gets the appropriate empty slot sprite for the equipment slot type.
+        /// These are the native game sprites used in the inventory screen.
+        /// </summary>
+        private static string GetEmptySlotSprite(EquipmentIndex index)
+        {
+            return index switch
+            {
+                EquipmentIndex.Head => "Inventory\\empty_head_slot",
+                EquipmentIndex.Cape => "Inventory\\empty_cape_slot",
+                EquipmentIndex.Body => "Inventory\\empty_body_slot",
+                EquipmentIndex.Gloves => "Inventory\\empty_glove_slot",
+                EquipmentIndex.Leg => "Inventory\\empty_boot_slot",
+                EquipmentIndex.Horse => "Inventory\\empty_horse_slot",
+                EquipmentIndex.HorseHarness => "Inventory\\empty_saddle_slot",
+                EquipmentIndex.Weapon0 => "Inventory\\empty_weapon_slot",
+                EquipmentIndex.Weapon1 => "Inventory\\empty_weapon_slot",
+                EquipmentIndex.Weapon2 => "Inventory\\empty_weapon_slot",
+                EquipmentIndex.Weapon3 => "Inventory\\empty_weapon_slot",
+                EquipmentIndex.ExtraWeaponSlot => "Inventory\\empty_banner_slot",
+                _ => "Inventory\\empty_weapon_slot"
+            };
+        }
+
+        #endregion
+    }
+}

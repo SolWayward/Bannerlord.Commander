@@ -67,14 +67,10 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 BirthDateText = $"Born: {GetBirthDateDisplay(_hero)}";
 
                 IsDead = !_hero.IsAlive;
-                if (IsDead && _hero.DeathDay != null)
-                {
-                    DeathDateText = $"Death: {GetDeathDateDisplay(_hero)}";
-                }
-                else
-                {
-                    DeathDateText = "Death: -";
-                }
+                
+                // Show death date if one is set, regardless of whether hero is currently dead
+                string deathDisplay = GetDeathDateDisplay(_hero);
+                DeathDateText = deathDisplay != "-" ? $"Death: {deathDisplay}" : "Death: -";
             }
             else
             {
