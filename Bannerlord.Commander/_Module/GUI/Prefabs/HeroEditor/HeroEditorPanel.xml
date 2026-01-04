@@ -3,250 +3,250 @@
     <!-- Hero Editor Panel - Enhanced Layout with Character Model, Portrait, and Gear Slots -->
     <!-- Layout: LEFT (info/clan/party) | CENTER (portrait/model/gear) | RIGHT (skills with icons) -->
     <Widget DataSource="{..}"
-            WidthSizePolicy="StretchToParent"
-            HeightSizePolicy="StretchToParent"
-            Sprite="BlankWhiteSquare_9"
-            Color="#2a2a2aFF">
+      WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="StretchToParent"
+      Sprite="BlankWhiteSquare_9"
+      Color="#2a2a2aFF">
       <Children>
-        
+
         <!-- Border Frame -->
         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                SuggestedHeight="2" VerticalAlignment="Top"
-                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+          SuggestedHeight="2" VerticalAlignment="Top"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                SuggestedHeight="2" VerticalAlignment="Bottom"
-                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+          SuggestedHeight="2" VerticalAlignment="Bottom"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                SuggestedWidth="2" HorizontalAlignment="Left"
-                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+          SuggestedWidth="2" HorizontalAlignment="Left"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                SuggestedWidth="2" HorizontalAlignment="Right"
-                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        
+          SuggestedWidth="2" HorizontalAlignment="Right"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
         <!-- Main 3-Column Horizontal Layout -->
         <ListPanel WidthSizePolicy="StretchToParent"
-                   HeightSizePolicy="StretchToParent"
-                   MarginTop="8"
-                   MarginBottom="8"
-                   MarginLeft="8"
-                   MarginRight="8"
-                   StackLayout.LayoutMethod="HorizontalLeftToRight">
+          HeightSizePolicy="StretchToParent"
+          MarginTop="8"
+          MarginBottom="8"
+          MarginLeft="8"
+          MarginRight="8"
+          StackLayout.LayoutMethod="HorizontalLeftToRight">
           <Children>
-            
+
             <!-- ==================== LEFT COLUMN ==================== -->
             <!-- Name/Title, Basic Info, Clan/Kingdom, Party Controls -->
             <Widget WidthSizePolicy="Fixed"
-                    HeightSizePolicy="StretchToParent"
-                    SuggestedWidth="240"
-                    MarginRight="8">
+              HeightSizePolicy="StretchToParent"
+              SuggestedWidth="240"
+              MarginRight="8">
               <Children>
                 <ListPanel WidthSizePolicy="StretchToParent"
-                           HeightSizePolicy="StretchToParent"
-                           StackLayout.LayoutMethod="VerticalBottomToTop">
+                  HeightSizePolicy="StretchToParent"
+                  StackLayout.LayoutMethod="VerticalBottomToTop">
                   <Children>
-                    
+
                     <!-- Name/Title Inputs -->
                     <ListPanel WidthSizePolicy="StretchToParent"
-                               HeightSizePolicy="Fixed"
-                               SuggestedHeight="60"
-                               MarginBottom="8"
-                               StackLayout.LayoutMethod="VerticalBottomToTop">
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="60"
+                      MarginBottom="8"
+                      StackLayout.LayoutMethod="VerticalBottomToTop">
                       <Children>
                         <!-- Name Input -->
                         <Widget DataSource="{HeroIdentity}"
-                                WidthSizePolicy="StretchToParent"
-                                HeightSizePolicy="Fixed"
-                                SuggestedHeight="26"
-                                MarginBottom="4"
-                                Sprite="BlankWhiteSquare_9"
-                                Color="#1a1a1aFF">
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="Fixed"
+                          SuggestedHeight="26"
+                          MarginBottom="4"
+                          Sprite="BlankWhiteSquare_9"
+                          Color="#1a1a1aFF">
                           <Children>
                             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                    SuggestedHeight="2" VerticalAlignment="Top"
-                                    Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                              SuggestedHeight="2" VerticalAlignment="Top"
+                              Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                    SuggestedHeight="2" VerticalAlignment="Bottom"
-                                    Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                              SuggestedHeight="2" VerticalAlignment="Bottom"
+                              Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                    SuggestedWidth="2" HorizontalAlignment="Left"
-                                    Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                              SuggestedWidth="2" HorizontalAlignment="Left"
+                              Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                    SuggestedWidth="2" HorizontalAlignment="Right"
-                                    Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                              SuggestedWidth="2" HorizontalAlignment="Right"
+                              Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                             <TextWidget WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="StretchToParent"
-                                        SuggestedWidth="45"
-                                        MarginLeft="6"
-                                        VerticalAlignment="Center"
-                                        Brush="Clan.TabControl.Text"
-                                        Brush.FontSize="13"
-                                        Text="Name:" />
+                              HeightSizePolicy="StretchToParent"
+                              SuggestedWidth="45"
+                              MarginLeft="6"
+                              VerticalAlignment="Center"
+                              Brush="Clan.TabControl.Text"
+                              Brush.FontSize="13"
+                              Text="Name:" />
                             <EditableTextWidget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="54"
-                                                MarginRight="6"
-                                                MarginTop="4"
-                                                MarginBottom="4"
-                                                Brush="Clan.TabControl.Text"
-                                                Brush.FontSize="13"
-                                                Text="@HeroName" />
+                              HeightSizePolicy="StretchToParent"
+                              MarginLeft="54"
+                              MarginRight="6"
+                              MarginTop="4"
+                              MarginBottom="4"
+                              Brush="Clan.TabControl.Text"
+                              Brush.FontSize="13"
+                              Text="@HeroName" />
                           </Children>
                         </Widget>
-                        
+
                         <!-- Title Input -->
                         <Widget DataSource="{HeroIdentity}"
-                                WidthSizePolicy="StretchToParent"
-                                HeightSizePolicy="Fixed"
-                                SuggestedHeight="26"
-                                Sprite="BlankWhiteSquare_9"
-                                Color="#1a1a1aFF">
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="Fixed"
+                          SuggestedHeight="26"
+                          Sprite="BlankWhiteSquare_9"
+                          Color="#1a1a1aFF">
                           <Children>
                             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                    SuggestedHeight="2" VerticalAlignment="Top"
-                                    Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                              SuggestedHeight="2" VerticalAlignment="Top"
+                              Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                    SuggestedHeight="2" VerticalAlignment="Bottom"
-                                    Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                              SuggestedHeight="2" VerticalAlignment="Bottom"
+                              Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                    SuggestedWidth="2" HorizontalAlignment="Left"
-                                    Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                              SuggestedWidth="2" HorizontalAlignment="Left"
+                              Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                    SuggestedWidth="2" HorizontalAlignment="Right"
-                                    Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                              SuggestedWidth="2" HorizontalAlignment="Right"
+                              Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                             <TextWidget WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="StretchToParent"
-                                        SuggestedWidth="45"
-                                        MarginLeft="6"
-                                        VerticalAlignment="Center"
-                                        Brush="Clan.TabControl.Text"
-                                        Brush.FontSize="13"
-                                        Text="Title:" />
+                              HeightSizePolicy="StretchToParent"
+                              SuggestedWidth="45"
+                              MarginLeft="6"
+                              VerticalAlignment="Center"
+                              Brush="Clan.TabControl.Text"
+                              Brush.FontSize="13"
+                              Text="Title:" />
                             <EditableTextWidget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="54"
-                                                MarginRight="6"
-                                                MarginTop="4"
-                                                MarginBottom="4"
-                                                Brush="Clan.TabControl.Text"
-                                                Brush.FontSize="13"
-                                                Text="@HeroTitle" />
+                              HeightSizePolicy="StretchToParent"
+                              MarginLeft="54"
+                              MarginRight="6"
+                              MarginTop="4"
+                              MarginBottom="4"
+                              Brush="Clan.TabControl.Text"
+                              Brush.FontSize="13"
+                              Text="@HeroTitle" />
                           </Children>
                         </Widget>
                       </Children>
                     </ListPanel>
-                    
+
                     <!-- Clan/Kingdom Section with Banner -->
                     <Widget DataSource="{HeroCultureClan}"
-                            WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="Fixed"
-                            SuggestedHeight="140"
-                            MarginBottom="8"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#1a1a1aFF">
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="140"
+                      MarginBottom="8"
+                      Sprite="BlankWhiteSquare_9"
+                      Color="#1a1a1aFF">
                       <Children>
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                SuggestedHeight="2" VerticalAlignment="Top"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedHeight="2" VerticalAlignment="Top"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                SuggestedHeight="2" VerticalAlignment="Bottom"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedHeight="2" VerticalAlignment="Bottom"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                SuggestedWidth="2" HorizontalAlignment="Left"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedWidth="2" HorizontalAlignment="Left"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                SuggestedWidth="2" HorizontalAlignment="Right"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        
+                          SuggestedWidth="2" HorizontalAlignment="Right"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
                         <ListPanel WidthSizePolicy="StretchToParent"
-                                   HeightSizePolicy="StretchToParent"
-                                   MarginTop="6"
-                                   MarginBottom="6"
-                                   MarginLeft="6"
-                                   MarginRight="6"
-                                   StackLayout.LayoutMethod="HorizontalLeftToRight">
+                          HeightSizePolicy="StretchToParent"
+                          MarginTop="6"
+                          MarginBottom="6"
+                          MarginLeft="6"
+                          MarginRight="6"
+                          StackLayout.LayoutMethod="HorizontalLeftToRight">
                           <Children>
                             <!-- Clan Banner -->
                             <Widget WidthSizePolicy="Fixed"
-                                    HeightSizePolicy="Fixed"
-                                    SuggestedWidth="100"
-                                    SuggestedHeight="120"
-                                    MarginRight="8">
+                              HeightSizePolicy="Fixed"
+                              SuggestedWidth="100"
+                              SuggestedHeight="120"
+                              MarginRight="8">
                               <Children>
                                 <MaskedTextureWidget DataSource="{HeroInfo\ClanBanner}"
-                                                     WidthSizePolicy="StretchToParent"
-                                                     HeightSizePolicy="StretchToParent"
-                                                     Brush="Clan.TornBanner"
-                                                     AdditionalArgs="@AdditionalArgs"
-                                                     ImageId="@Id"
-                                                     TextureProviderName="@TextureProviderName" />
+                                  WidthSizePolicy="StretchToParent"
+                                  HeightSizePolicy="StretchToParent"
+                                  Brush="Clan.TornBanner"
+                                  AdditionalArgs="@AdditionalArgs"
+                                  ImageId="@Id"
+                                  TextureProviderName="@TextureProviderName" />
                               </Children>
                             </Widget>
-                            
+
                             <!-- Clan/Kingdom Info -->
                             <ListPanel WidthSizePolicy="StretchToParent"
-                                       HeightSizePolicy="StretchToParent"
-                                       StackLayout.LayoutMethod="VerticalBottomToTop">
+                              HeightSizePolicy="StretchToParent"
+                              StackLayout.LayoutMethod="VerticalBottomToTop">
                               <Children>
                                 <!-- Clan Name -->
                                 <ListPanel WidthSizePolicy="StretchToParent"
-                                           HeightSizePolicy="Fixed"
-                                           SuggestedHeight="18"
-                                           MarginBottom="4"
-                                           StackLayout.LayoutMethod="HorizontalLeftToRight">
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedHeight="18"
+                                  MarginBottom="4"
+                                  StackLayout.LayoutMethod="HorizontalLeftToRight">
                                   <Children>
                                     <TextWidget WidthSizePolicy="CoverChildren"
-                                                HeightSizePolicy="StretchToParent"
-                                                Brush="Clan.TabControl.Text"
-                                                Brush.FontSize="12"
-                                                Text="Clan: " />
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="Clan.TabControl.Text"
+                                      Brush.FontSize="12"
+                                      Text="Clan: " />
                                     <TextWidget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                Brush="Clan.TabControl.Text"
-                                                Brush.FontSize="12"
-                                                Text="@ClanName" />
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="Clan.TabControl.Text"
+                                      Brush.FontSize="12"
+                                      Text="@ClanName" />
                                   </Children>
                                 </ListPanel>
-                                
+
                                 <!-- Kingdom Name -->
                                 <ListPanel WidthSizePolicy="StretchToParent"
-                                           HeightSizePolicy="Fixed"
-                                           SuggestedHeight="18"
-                                           MarginBottom="4"
-                                           StackLayout.LayoutMethod="HorizontalLeftToRight">
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedHeight="18"
+                                  MarginBottom="4"
+                                  StackLayout.LayoutMethod="HorizontalLeftToRight">
                                   <Children>
                                     <TextWidget WidthSizePolicy="CoverChildren"
-                                                HeightSizePolicy="StretchToParent"
-                                                Brush="Clan.TabControl.Text"
-                                                Brush.FontSize="12"
-                                                Text="Kingdom: " />
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="Clan.TabControl.Text"
+                                      Brush.FontSize="12"
+                                      Text="Kingdom: " />
                                     <TextWidget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                Brush="Clan.TabControl.Text"
-                                                Brush.FontSize="12"
-                                                Text="@KingdomName" />
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="Clan.TabControl.Text"
+                                      Brush.FontSize="12"
+                                      Text="@KingdomName" />
                                   </Children>
                                 </ListPanel>
-                                
+
                                 <!-- Select Clan Button -->
                                 <ButtonWidget DoNotPassEventsToChildren="true"
-                                              WidthSizePolicy="Fixed"
-                                              HeightSizePolicy="Fixed"
-                                              SuggestedWidth="110"
-                                              SuggestedHeight="24"
-                                              MarginTop="8"
-                                              Command.Click="ExecuteOpenClanSelection">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="110"
+                                  SuggestedHeight="24"
+                                  MarginTop="8"
+                                  Command.Click="ExecuteOpenClanSelection">
                                   <Children>
                                     <Widget WidthSizePolicy="StretchToParent"
-                                            HeightSizePolicy="StretchToParent"
-                                            Sprite="BlankWhiteSquare_9"
-                                            Color="#453920FF" />
+                                      HeightSizePolicy="StretchToParent"
+                                      Sprite="BlankWhiteSquare_9"
+                                      Color="#453920FF" />
                                     <TextWidget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                Brush="Clan.TabControl.Text"
-                                                Brush.FontSize="12"
-                                                Text="Select Clan" />
+                                      HeightSizePolicy="StretchToParent"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Brush="Clan.TabControl.Text"
+                                      Brush.FontSize="12"
+                                      Text="Select Clan" />
                                   </Children>
                                 </ButtonWidget>
                               </Children>
@@ -255,1072 +255,1095 @@
                         </ListPanel>
                       </Children>
                     </Widget>
-                    
+
                     <!-- Basic Info: Gender, Age, Born, Death, Culture -->
                     <Widget DataSource="{HeroInfo}"
-                            WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="Fixed"
-                            SuggestedHeight="90"
-                            MarginBottom="8"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#1a1a1aFF">
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="90"
+                      MarginBottom="8"
+                      Sprite="BlankWhiteSquare_9"
+                      Color="#1a1a1aFF">
                       <Children>
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                SuggestedHeight="2" VerticalAlignment="Top"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedHeight="2" VerticalAlignment="Top"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                SuggestedHeight="2" VerticalAlignment="Bottom"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedHeight="2" VerticalAlignment="Bottom"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                SuggestedWidth="2" HorizontalAlignment="Left"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedWidth="2" HorizontalAlignment="Left"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                SuggestedWidth="2" HorizontalAlignment="Right"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        
+                          SuggestedWidth="2" HorizontalAlignment="Right"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
                         <ListPanel WidthSizePolicy="StretchToParent"
-                                   HeightSizePolicy="StretchToParent"
-                                   MarginTop="4"
-                                   MarginLeft="6"
-                                   MarginRight="6"
-                                   StackLayout.LayoutMethod="VerticalBottomToTop">
+                          HeightSizePolicy="StretchToParent"
+                          MarginTop="4"
+                          MarginLeft="6"
+                          MarginRight="6"
+                          StackLayout.LayoutMethod="VerticalBottomToTop">
                           <Children>
                             <!-- Gender: Male  Age: 25 -->
                             <ListPanel WidthSizePolicy="StretchToParent"
-                                       HeightSizePolicy="Fixed"
-                                       SuggestedHeight="16"
-                                       MarginBottom="4"
-                                       StackLayout.LayoutMethod="HorizontalLeftToRight">
+                              HeightSizePolicy="Fixed"
+                              SuggestedHeight="16"
+                              MarginBottom="4"
+                              StackLayout.LayoutMethod="HorizontalLeftToRight">
                               <Children>
                                 <TextWidget WidthSizePolicy="CoverChildren"
-                                            HeightSizePolicy="StretchToParent"
-                                            Brush="Clan.TabControl.Text"
-                                            Brush.FontSize="12"
-                                            Text="Gender: " />
+                                  HeightSizePolicy="StretchToParent"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="12"
+                                  Text="Gender: " />
                                 <TextWidget WidthSizePolicy="CoverChildren"
-                                            HeightSizePolicy="StretchToParent"
-                                            Brush="Clan.TabControl.Text"
-                                            Brush.FontSize="12"
-                                            Text="@Gender" />
+                                  HeightSizePolicy="StretchToParent"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="12"
+                                  Text="@Gender" />
                                 <TextWidget WidthSizePolicy="CoverChildren"
-                                            HeightSizePolicy="StretchToParent"
-                                            MarginLeft="15"
-                                            Brush="Clan.TabControl.Text"
-                                            Brush.FontSize="12"
-                                            Text="Age: " />
+                                  HeightSizePolicy="StretchToParent"
+                                  MarginLeft="15"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="12"
+                                  Text="Age: " />
                                 <TextWidget WidthSizePolicy="CoverChildren"
-                                            HeightSizePolicy="StretchToParent"
-                                            Brush="Clan.TabControl.Text"
-                                            Brush.FontSize="12"
-                                            Text="@AgeText" />
+                                  HeightSizePolicy="StretchToParent"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="12"
+                                  Text="@AgeText" />
                               </Children>
                             </ListPanel>
-                            
+
                             <!-- Date Born -->
                             <ListPanel WidthSizePolicy="StretchToParent"
-                                       HeightSizePolicy="Fixed"
-                                       SuggestedHeight="16"
-                                       MarginBottom="4"
-                                       StackLayout.LayoutMethod="HorizontalLeftToRight">
+                              HeightSizePolicy="Fixed"
+                              SuggestedHeight="16"
+                              MarginBottom="4"
+                              StackLayout.LayoutMethod="HorizontalLeftToRight">
                               <Children>
                                 <TextWidget WidthSizePolicy="CoverChildren"
-                                            HeightSizePolicy="StretchToParent"
-                                            Brush="Clan.TabControl.Text"
-                                            Brush.FontSize="12"
-                                            Text="Born: " />
+                                  HeightSizePolicy="StretchToParent"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="12"
+                                  Text="Born: " />
                                 <TextWidget WidthSizePolicy="CoverChildren"
-                                            HeightSizePolicy="StretchToParent"
-                                            Brush="Clan.TabControl.Text"
-                                            Brush.FontSize="12"
-                                            Text="@BirthDateText" />
+                                  HeightSizePolicy="StretchToParent"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="12"
+                                  Text="@BirthDateText" />
                               </Children>
                             </ListPanel>
-                            
+
                             <!-- Death Date -->
                             <ListPanel WidthSizePolicy="StretchToParent"
-                                       HeightSizePolicy="Fixed"
-                                       SuggestedHeight="16"
-                                       MarginBottom="4"
-                                       StackLayout.LayoutMethod="HorizontalLeftToRight">
+                              HeightSizePolicy="Fixed"
+                              SuggestedHeight="16"
+                              MarginBottom="4"
+                              StackLayout.LayoutMethod="HorizontalLeftToRight">
                               <Children>
                                 <TextWidget WidthSizePolicy="CoverChildren"
-                                            HeightSizePolicy="StretchToParent"
-                                            Brush="Clan.TabControl.Text"
-                                            Brush.FontSize="12"
-                                            Text="Death: " />
+                                  HeightSizePolicy="StretchToParent"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="12"
+                                  Text="Death: " />
                                 <TextWidget WidthSizePolicy="CoverChildren"
-                                            HeightSizePolicy="StretchToParent"
-                                            Brush="Clan.TabControl.Text"
-                                            Brush.FontSize="12"
-                                            Text="@DeathDateText" />
+                                  HeightSizePolicy="StretchToParent"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="12"
+                                  Text="@DeathDateText" />
                               </Children>
                             </ListPanel>
-                            
+
                             <!-- Culture -->
                             <ListPanel DataSource="{HeroCultureClan}"
-                                       WidthSizePolicy="StretchToParent"
-                                       HeightSizePolicy="Fixed"
-                                       SuggestedHeight="16"
-                                       StackLayout.LayoutMethod="HorizontalLeftToRight">
+                              WidthSizePolicy="StretchToParent"
+                              HeightSizePolicy="Fixed"
+                              SuggestedHeight="16"
+                              StackLayout.LayoutMethod="HorizontalLeftToRight">
                               <Children>
                                 <TextWidget WidthSizePolicy="CoverChildren"
-                                            HeightSizePolicy="StretchToParent"
-                                            Brush="Clan.TabControl.Text"
-                                            Brush.FontSize="12"
-                                            Text="Culture: " />
+                                  HeightSizePolicy="StretchToParent"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="12"
+                                  Text="Culture: " />
                                 <TextWidget WidthSizePolicy="CoverChildren"
-                                            HeightSizePolicy="StretchToParent"
-                                            Brush="Clan.TabControl.Text"
-                                            Brush.FontSize="12"
-                                            Text="@CultureName" />
+                                  HeightSizePolicy="StretchToParent"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="12"
+                                  Text="@CultureName" />
                               </Children>
                             </ListPanel>
-                            
+
                           </Children>
                         </ListPanel>
-                        
+
                       </Children>
                     </Widget>
-                    
+
                     <!-- Party Controls -->
                     <Widget DataSource="{HeroParty}"
-                            WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="Fixed"
-                            SuggestedHeight="70"
-                            MarginBottom="8"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#1a1a1aFF">
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="70"
+                      MarginBottom="8"
+                      Sprite="BlankWhiteSquare_9"
+                      Color="#1a1a1aFF">
                       <Children>
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                SuggestedHeight="2" VerticalAlignment="Top"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedHeight="2" VerticalAlignment="Top"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                SuggestedHeight="2" VerticalAlignment="Bottom"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedHeight="2" VerticalAlignment="Bottom"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                SuggestedWidth="2" HorizontalAlignment="Left"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedWidth="2" HorizontalAlignment="Left"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                SuggestedWidth="2" HorizontalAlignment="Right"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        
+                          SuggestedWidth="2" HorizontalAlignment="Right"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
                         <ListPanel WidthSizePolicy="StretchToParent"
-                                   HeightSizePolicy="StretchToParent"
-                                   MarginTop="4"
-                                   MarginBottom="4"
-                                   MarginLeft="4"
-                                   MarginRight="4"
-                                   StackLayout.LayoutMethod="VerticalBottomToTop">
+                          HeightSizePolicy="StretchToParent"
+                          MarginTop="4"
+                          MarginBottom="4"
+                          MarginLeft="4"
+                          MarginRight="4"
+                          StackLayout.LayoutMethod="VerticalBottomToTop">
                           <Children>
                             <!-- Party Status -->
                             <TextWidget WidthSizePolicy="StretchToParent"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedHeight="18"
-                                        MarginBottom="4"
-                                        Brush="Clan.TabControl.Text"
-                                        Brush.FontSize="11"
-                                        Brush.TextHorizontalAlignment="Center"
-                                        Text="@PartyStatusText" />
-                            
+                              HeightSizePolicy="Fixed"
+                              SuggestedHeight="18"
+                              MarginBottom="4"
+                              Brush="Clan.TabControl.Text"
+                              Brush.FontSize="11"
+                              Brush.TextHorizontalAlignment="Center"
+                              Text="@PartyStatusText" />
+
                             <!-- Party Buttons Row -->
                             <ListPanel WidthSizePolicy="StretchToParent"
-                                       HeightSizePolicy="Fixed"
-                                       SuggestedHeight="22"
-                                       MarginBottom="2"
-                                       StackLayout.LayoutMethod="HorizontalLeftToRight">
+                              HeightSizePolicy="Fixed"
+                              SuggestedHeight="22"
+                              MarginBottom="2"
+                              StackLayout.LayoutMethod="HorizontalLeftToRight">
                               <Children>
                                 <ButtonWidget DoNotPassEventsToChildren="true"
-                                              WidthSizePolicy="StretchToParent"
-                                              HeightSizePolicy="StretchToParent"
-                                              MarginRight="2"
-                                              Command.Click="ExecuteDisbandParty"
-                                              IsEnabled="@CanDisbandParty">
+                                  WidthSizePolicy="StretchToParent"
+                                  HeightSizePolicy="StretchToParent"
+                                  MarginRight="2"
+                                  Command.Click="ExecuteDisbandParty"
+                                  IsEnabled="@CanDisbandParty">
                                   <Children>
                                     <Widget WidthSizePolicy="StretchToParent"
-                                            HeightSizePolicy="StretchToParent"
-                                            Sprite="BlankWhiteSquare_9"
-                                            Color="#453920FF" />
+                                      HeightSizePolicy="StretchToParent"
+                                      Sprite="BlankWhiteSquare_9"
+                                      Color="#453920FF" />
                                     <TextWidget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                Brush="Clan.TabControl.Text"
-                                                Brush.FontSize="11"
-                                                Text="Disband" />
+                                      HeightSizePolicy="StretchToParent"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Brush="Clan.TabControl.Text"
+                                      Brush.FontSize="11"
+                                      Text="Disband" />
                                   </Children>
                                 </ButtonWidget>
                                 <ButtonWidget DoNotPassEventsToChildren="true"
-                                              WidthSizePolicy="StretchToParent"
-                                              HeightSizePolicy="StretchToParent"
-                                              MarginLeft="2"
-                                              Command.Click="ExecuteToggleParty">
+                                  WidthSizePolicy="StretchToParent"
+                                  HeightSizePolicy="StretchToParent"
+                                  MarginLeft="2"
+                                  Command.Click="ExecuteToggleParty">
                                   <Children>
                                     <Widget WidthSizePolicy="StretchToParent"
-                                            HeightSizePolicy="StretchToParent"
-                                            Sprite="BlankWhiteSquare_9"
-                                            Color="#453920FF" />
+                                      HeightSizePolicy="StretchToParent"
+                                      Sprite="BlankWhiteSquare_9"
+                                      Color="#453920FF" />
                                     <TextWidget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                Brush="Clan.TabControl.Text"
-                                                Brush.FontSize="10"
-                                                Text="@TogglePartyButtonText" />
+                                      HeightSizePolicy="StretchToParent"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Brush="Clan.TabControl.Text"
+                                      Brush.FontSize="10"
+                                      Text="@TogglePartyButtonText" />
                                   </Children>
                                 </ButtonWidget>
                               </Children>
                             </ListPanel>
-                            
+
                             <!-- Edit Party Button -->
                             <ButtonWidget DoNotPassEventsToChildren="true"
-                                          WidthSizePolicy="StretchToParent"
-                                          HeightSizePolicy="Fixed"
-                                          SuggestedHeight="22"
-                                          Command.Click="ExecuteEditParty"
-                                          IsEnabled="@CanEditParty">
+                              WidthSizePolicy="StretchToParent"
+                              HeightSizePolicy="Fixed"
+                              SuggestedHeight="22"
+                              Command.Click="ExecuteEditParty"
+                              IsEnabled="@CanEditParty">
                               <Children>
                                 <Widget WidthSizePolicy="StretchToParent"
-                                        HeightSizePolicy="StretchToParent"
-                                        Sprite="BlankWhiteSquare_9"
-                                        Color="#453920FF" />
+                                  HeightSizePolicy="StretchToParent"
+                                  Sprite="BlankWhiteSquare_9"
+                                  Color="#453920FF" />
                                 <TextWidget WidthSizePolicy="StretchToParent"
-                                            HeightSizePolicy="StretchToParent"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Brush="Clan.TabControl.Text"
-                                            Brush.FontSize="11"
-                                            Text="Edit Party" />
+                                  HeightSizePolicy="StretchToParent"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="11"
+                                  Text="Edit Party" />
                               </Children>
                             </ButtonWidget>
-                            
+
                           </Children>
                         </ListPanel>
-                        
+
                       </Children>
                     </Widget>
-                    
+
                   </Children>
                 </ListPanel>
               </Children>
             </Widget>
             <!-- END LEFT COLUMN -->
-            
+
             <!-- ==================== CENTER COLUMN ==================== -->
             <!-- Portrait, Character Model, and Gear Slots -->
             <Widget WidthSizePolicy="StretchToParent"
-                    HeightSizePolicy="StretchToParent"
-                    MarginLeft="8"
-                    MarginRight="8">
+              HeightSizePolicy="StretchToParent"
+              MarginLeft="8"
+              MarginRight="8">
               <Children>
                 <ListPanel WidthSizePolicy="StretchToParent"
-                           HeightSizePolicy="StretchToParent"
-                           StackLayout.LayoutMethod="VerticalBottomToTop">
+                  HeightSizePolicy="StretchToParent"
+                  StackLayout.LayoutMethod="VerticalBottomToTop">
                   <Children>
-                    
+
                     <!-- Top: Portrait -->
                     <Widget DataSource="{HeroInfo}"
-                            WidthSizePolicy="Fixed"
-                            HeightSizePolicy="Fixed"
-                            SuggestedWidth="150"
-                            SuggestedHeight="180"
-                            HorizontalAlignment="Center"
-                            MarginBottom="8"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#1a1a1aFF">
+                      WidthSizePolicy="Fixed"
+                      HeightSizePolicy="Fixed"
+                      SuggestedWidth="150"
+                      SuggestedHeight="180"
+                      HorizontalAlignment="Center"
+                      MarginBottom="8"
+                      Sprite="BlankWhiteSquare_9"
+                      Color="#1a1a1aFF">
                       <Children>
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                SuggestedHeight="2" VerticalAlignment="Top"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedHeight="2" VerticalAlignment="Top"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                SuggestedHeight="2" VerticalAlignment="Bottom"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedHeight="2" VerticalAlignment="Bottom"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                SuggestedWidth="2" HorizontalAlignment="Left"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedWidth="2" HorizontalAlignment="Left"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                SuggestedWidth="2" HorizontalAlignment="Right"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        
+                          SuggestedWidth="2" HorizontalAlignment="Right"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
                         <!-- Portrait Image -->
                         <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
-                                               HeightSizePolicy="StretchToParent"
-                                               MarginTop="4"
-                                               MarginBottom="4"
-                                               MarginLeft="4"
-                                               MarginRight="4"
-                                               DataSource="{PortraitImage}"
-                                               ImageTypeCode="@ImageTypeCode"
-                                               AdditionalArgs="@AdditionalArgs"
-                                               ImageId="@Id" />
+                          HeightSizePolicy="StretchToParent"
+                          MarginTop="4"
+                          MarginBottom="4"
+                          MarginLeft="4"
+                          MarginRight="4"
+                          DataSource="{PortraitImage}"
+                          ImageTypeCode="@ImageTypeCode"
+                          AdditionalArgs="@AdditionalArgs"
+                          ImageId="@Id" />
                       </Children>
                     </Widget>
-                    
+
                     <!-- Middle: Character Model + Gear Slots -->
                     <Widget WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="StretchToParent"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#1a1a1aFF">
+                      HeightSizePolicy="StretchToParent"
+                      Sprite="BlankWhiteSquare_9"
+                      Color="#1a1a1aFF">
                       <Children>
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                SuggestedHeight="2" VerticalAlignment="Top"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedHeight="2" VerticalAlignment="Top"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                SuggestedHeight="2" VerticalAlignment="Bottom"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedHeight="2" VerticalAlignment="Bottom"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                SuggestedWidth="2" HorizontalAlignment="Left"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedWidth="2" HorizontalAlignment="Left"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                SuggestedWidth="2" HorizontalAlignment="Right"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        
+                          SuggestedWidth="2" HorizontalAlignment="Right"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
                         <ListPanel WidthSizePolicy="StretchToParent"
-                                   HeightSizePolicy="StretchToParent"
-                                   StackLayout.LayoutMethod="HorizontalLeftToRight">
+                          HeightSizePolicy="StretchToParent"
+                          StackLayout.LayoutMethod="HorizontalLeftToRight">
                           <Children>
-                            
-                            <!-- Left Gear Slots (Armor) - Using Native InventoryEquippedItemSlotWidget -->
+
+                            <!-- Left Gear Slots (Armor) - Using Native
+                            InventoryEquippedItemSlotWidget -->
                             <ListPanel WidthSizePolicy="Fixed"
-                                       HeightSizePolicy="StretchToParent"
-                                       SuggestedWidth="65"
-                                       MarginLeft="4"
-                                       MarginTop="4"
-                                       MarginBottom="4"
-                                       StackLayout.LayoutMethod="VerticalBottomToTop">
+                              HeightSizePolicy="StretchToParent"
+                              SuggestedWidth="65"
+                              MarginLeft="4"
+                              MarginTop="4"
+                              MarginBottom="4"
+                              StackLayout.LayoutMethod="VerticalBottomToTop">
                               <Children>
                                 <!-- Head Slot -->
                                 <Widget DataSource="{HeadSlot}"
-                                        WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedWidth="65"
-                                        SuggestedHeight="65"
-                                        MarginBottom="3"
-                                        Command.Click="ExecuteSelectSlot">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="65"
+                                  SuggestedHeight="65"
+                                  MarginBottom="3"
+                                  Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="HeadBackground"
-                                                 WidthSizePolicy="StretchToParent"
-                                                 HeightSizePolicy="StretchToParent"
-                                                 Brush="InventoryHelmetSlot" />
+                                      WidthSizePolicy="StretchToParent"
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="InventoryHelmetSlot" />
                                     <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
-                                                                  HeightSizePolicy="StretchToParent"
-                                                                  Background="..\HeadBackground"
-                                                                  ImageIdentifier="ImageIdentifier"
-                                                                  IsSelected="@IsSelected">
+                                      HeightSizePolicy="StretchToParent"
+                                      Background="..\HeadBackground"
+                                      ImageIdentifier="ImageIdentifier"
+                                      IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                Sprite="Inventory\portrait_cart"/>
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          Sprite="Inventory\portrait_cart" />
                                         <ImageIdentifierWidget Id="ImageIdentifier"
-                                                               DataSource="{ImageIdentifier}"
-                                                               WidthSizePolicy="StretchToParent"
-                                                               HeightSizePolicy="StretchToParent"
-                                                               MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                               ImageId="@Id"
-                                                               AdditionalArgs="@AdditionalArgs"
-                                                               TextureProviderName="@TextureProviderName" />
+                                          DataSource="{ImageIdentifier}"
+                                          WidthSizePolicy="StretchToParent"
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          ImageId="@Id"
+                                          AdditionalArgs="@AdditionalArgs"
+                                          TextureProviderName="@TextureProviderName" />
                                       </Children>
                                     </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
-                                
+
                                 <!-- Cape Slot -->
                                 <Widget DataSource="{CapeSlot}"
-                                        WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedWidth="65"
-                                        SuggestedHeight="65"
-                                        MarginBottom="3" Command.Click="ExecuteSelectSlot">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="65"
+                                  SuggestedHeight="65"
+                                  MarginBottom="3" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="CapeBackground"
-                                                 WidthSizePolicy="StretchToParent"
-                                                 HeightSizePolicy="StretchToParent"
-                                                 Brush="InventoryCloakSlot" />
+                                      WidthSizePolicy="StretchToParent"
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="InventoryCloakSlot" />
                                     <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
-                                                                     HeightSizePolicy="StretchToParent"
-                                                                     TargetEquipmentIndex="1"
-                                                                     ItemType="@TypeName"
-                                                                     Background="..\CapeBackground"
-                                                                     ImageIdentifier="ImageIdentifier"
-                                                                     IsSelected="@IsSelected">
+                                      HeightSizePolicy="StretchToParent"
+                                      TargetEquipmentIndex="1"
+                                      ItemType="@TypeName"
+                                      Background="..\CapeBackground"
+                                      ImageIdentifier="ImageIdentifier"
+                                      IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                Sprite="Inventory\portrait_cart"/>
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          Sprite="Inventory\portrait_cart" />
                                         <ImageIdentifierWidget Id="ImageIdentifier"
-                                                               DataSource="{ImageIdentifier}"
-                                                               WidthSizePolicy="StretchToParent"
-                                                               HeightSizePolicy="StretchToParent"
-                                                               MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                               ImageId="@Id"
-                                                               AdditionalArgs="@AdditionalArgs"
-                                                               TextureProviderName="@TextureProviderName" />
+                                          DataSource="{ImageIdentifier}"
+                                          WidthSizePolicy="StretchToParent"
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          ImageId="@Id"
+                                          AdditionalArgs="@AdditionalArgs"
+                                          TextureProviderName="@TextureProviderName" />
                                       </Children>
                                     </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
-                                
+
                                 <!-- Body Slot -->
                                 <Widget DataSource="{BodySlot}"
-                                        WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedWidth="65"
-                                        SuggestedHeight="65"
-                                        MarginBottom="3" Command.Click="ExecuteSelectSlot">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="65"
+                                  SuggestedHeight="65"
+                                  MarginBottom="3" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="BodyBackground"
-                                                 WidthSizePolicy="StretchToParent"
-                                                 HeightSizePolicy="StretchToParent"
-                                                 Brush="InventoryArmorSlot" />
+                                      WidthSizePolicy="StretchToParent"
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="InventoryArmorSlot" />
                                     <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
-                                                                     HeightSizePolicy="StretchToParent"
-                                                                     TargetEquipmentIndex="2"
-                                                                     ItemType="@TypeName"
-                                                                     Background="..\BodyBackground"
-                                                                     ImageIdentifier="ImageIdentifier"
-                                                                     IsSelected="@IsSelected">
+                                      HeightSizePolicy="StretchToParent"
+                                      TargetEquipmentIndex="2"
+                                      ItemType="@TypeName"
+                                      Background="..\BodyBackground"
+                                      ImageIdentifier="ImageIdentifier"
+                                      IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                Sprite="Inventory\portrait_cart"/>
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          Sprite="Inventory\portrait_cart" />
                                         <ImageIdentifierWidget Id="ImageIdentifier"
-                                                               DataSource="{ImageIdentifier}"
-                                                               WidthSizePolicy="StretchToParent"
-                                                               HeightSizePolicy="StretchToParent"
-                                                               MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                               ImageId="@Id"
-                                                               AdditionalArgs="@AdditionalArgs"
-                                                               TextureProviderName="@TextureProviderName" />
+                                          DataSource="{ImageIdentifier}"
+                                          WidthSizePolicy="StretchToParent"
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          ImageId="@Id"
+                                          AdditionalArgs="@AdditionalArgs"
+                                          TextureProviderName="@TextureProviderName" />
                                       </Children>
                                     </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
-                                
+
                                 <!-- Gloves Slot -->
                                 <Widget DataSource="{GlovesSlot}"
-                                        WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedWidth="65"
-                                        SuggestedHeight="65"
-                                        MarginBottom="3" Command.Click="ExecuteSelectSlot">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="65"
+                                  SuggestedHeight="65"
+                                  MarginBottom="3" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="GlovesBackground"
-                                                 WidthSizePolicy="StretchToParent"
-                                                 HeightSizePolicy="StretchToParent"
-                                                 Brush="InventoryGloveSlot" />
+                                      WidthSizePolicy="StretchToParent"
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="InventoryGloveSlot" />
                                     <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
-                                                                     HeightSizePolicy="StretchToParent"
-                                                                     TargetEquipmentIndex="3"
-                                                                     ItemType="@TypeName"
-                                                                     Background="..\GlovesBackground"
-                                                                     ImageIdentifier="ImageIdentifier"
-                                                                     IsSelected="@IsSelected">
+                                      HeightSizePolicy="StretchToParent"
+                                      TargetEquipmentIndex="3"
+                                      ItemType="@TypeName"
+                                      Background="..\GlovesBackground"
+                                      ImageIdentifier="ImageIdentifier"
+                                      IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                Sprite="Inventory\portrait_cart"/>
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          Sprite="Inventory\portrait_cart" />
                                         <ImageIdentifierWidget Id="ImageIdentifier"
-                                                               DataSource="{ImageIdentifier}"
-                                                               WidthSizePolicy="StretchToParent"
-                                                               HeightSizePolicy="StretchToParent"
-                                                               MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                               ImageId="@Id"
-                                                               AdditionalArgs="@AdditionalArgs"
-                                                               TextureProviderName="@TextureProviderName" />
+                                          DataSource="{ImageIdentifier}"
+                                          WidthSizePolicy="StretchToParent"
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          ImageId="@Id"
+                                          AdditionalArgs="@AdditionalArgs"
+                                          TextureProviderName="@TextureProviderName" />
                                       </Children>
                                     </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
-                                
+
                                 <!-- Leg Slot -->
                                 <Widget DataSource="{LegSlot}"
-                                        WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedWidth="65"
-                                        SuggestedHeight="65"
-                                        MarginBottom="3" Command.Click="ExecuteSelectSlot">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="65"
+                                  SuggestedHeight="65"
+                                  MarginBottom="3" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="LegBackground"
-                                                 WidthSizePolicy="StretchToParent"
-                                                 HeightSizePolicy="StretchToParent"
-                                                 Brush="InventoryWeaponSlot" />
+                                      WidthSizePolicy="StretchToParent"
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="InventoryWeaponSlot" />
                                     <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
-                                                                     HeightSizePolicy="StretchToParent"
-                                                                     TargetEquipmentIndex="4"
-                                                                     ItemType="@TypeName"
-                                                                     Background="..\LegBackground"
-                                                                     ImageIdentifier="ImageIdentifier"
-                                                                     IsSelected="@IsSelected">
+                                      HeightSizePolicy="StretchToParent"
+                                      TargetEquipmentIndex="4"
+                                      ItemType="@TypeName"
+                                      Background="..\LegBackground"
+                                      ImageIdentifier="ImageIdentifier"
+                                      IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                Sprite="Inventory\portrait_cart"/>
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          Sprite="Inventory\portrait_cart" />
                                         <ImageIdentifierWidget Id="ImageIdentifier"
-                                                               DataSource="{ImageIdentifier}"
-                                                               WidthSizePolicy="StretchToParent"
-                                                               HeightSizePolicy="StretchToParent"
-                                                               MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                               ImageId="@Id"
-                                                               AdditionalArgs="@AdditionalArgs"
-                                                               TextureProviderName="@TextureProviderName" />
+                                          DataSource="{ImageIdentifier}"
+                                          WidthSizePolicy="StretchToParent"
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          ImageId="@Id"
+                                          AdditionalArgs="@AdditionalArgs"
+                                          TextureProviderName="@TextureProviderName" />
                                       </Children>
                                     </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
-                                
+
                                 <!-- Horse Slot -->
                                 <Widget DataSource="{HorseSlot}"
-                                        WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedWidth="65"
-                                        SuggestedHeight="65"
-                                        MarginBottom="3" Command.Click="ExecuteSelectSlot">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="65"
+                                  SuggestedHeight="65"
+                                  MarginBottom="3" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="HorseBackground"
-                                                 WidthSizePolicy="StretchToParent"
-                                                 HeightSizePolicy="StretchToParent"
-                                                 Brush="InventoryWeaponSlot" />
+                                      WidthSizePolicy="StretchToParent"
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="InventoryWeaponSlot" />
                                     <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
-                                                                     HeightSizePolicy="StretchToParent"
-                                                                     TargetEquipmentIndex="10"
-                                                                     ItemType="@TypeName"
-                                                                     Background="..\HorseBackground"
-                                                                     ImageIdentifier="ImageIdentifier"
-                                                                     IsSelected="@IsSelected">
+                                      HeightSizePolicy="StretchToParent"
+                                      TargetEquipmentIndex="10"
+                                      ItemType="@TypeName"
+                                      Background="..\HorseBackground"
+                                      ImageIdentifier="ImageIdentifier"
+                                      IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                Sprite="Inventory\portrait_cart"/>
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          Sprite="Inventory\portrait_cart" />
                                         <ImageIdentifierWidget Id="ImageIdentifier"
-                                                               DataSource="{ImageIdentifier}"
-                                                               WidthSizePolicy="StretchToParent"
-                                                               HeightSizePolicy="StretchToParent"
-                                                               MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                               ImageId="@Id"
-                                                               AdditionalArgs="@AdditionalArgs"
-                                                               TextureProviderName="@TextureProviderName" />
+                                          DataSource="{ImageIdentifier}"
+                                          WidthSizePolicy="StretchToParent"
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          ImageId="@Id"
+                                          AdditionalArgs="@AdditionalArgs"
+                                          TextureProviderName="@TextureProviderName" />
                                       </Children>
                                     </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
-                                
+
                                 <!-- Horse Harness Slot -->
                                 <Widget DataSource="{HorseHarnessSlot}"
-                                        WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedWidth="65"
-                                        SuggestedHeight="65"
-                                        MarginBottom="3" Command.Click="ExecuteSelectSlot">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="65"
+                                  SuggestedHeight="65"
+                                  MarginBottom="3" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="HarnessBackground"
-                                                 WidthSizePolicy="StretchToParent"
-                                                 HeightSizePolicy="StretchToParent"
-                                                 Brush="InventoryWeaponSlot" />
+                                      WidthSizePolicy="StretchToParent"
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="InventoryWeaponSlot" />
                                     <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
-                                                                     HeightSizePolicy="StretchToParent"
-                                                                     TargetEquipmentIndex="11"
-                                                                     ItemType="@TypeName"
-                                                                     Background="..\HarnessBackground"
-                                                                     ImageIdentifier="ImageIdentifier"
-                                                                     IsSelected="@IsSelected">
+                                      HeightSizePolicy="StretchToParent"
+                                      TargetEquipmentIndex="11"
+                                      ItemType="@TypeName"
+                                      Background="..\HarnessBackground"
+                                      ImageIdentifier="ImageIdentifier"
+                                      IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                Sprite="Inventory\portrait_cart"/>
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          Sprite="Inventory\portrait_cart" />
                                         <ImageIdentifierWidget Id="ImageIdentifier"
-                                                               DataSource="{ImageIdentifier}"
-                                                               WidthSizePolicy="StretchToParent"
-                                                               HeightSizePolicy="StretchToParent"
-                                                               MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4"
-                                                               ImageId="@Id"
-                                                               AdditionalArgs="@AdditionalArgs"
-                                                               TextureProviderName="@TextureProviderName" />
+                                          DataSource="{ImageIdentifier}"
+                                          WidthSizePolicy="StretchToParent"
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="3" MarginRight="4" MarginTop="3"
+                                          MarginBottom="4"
+                                          ImageId="@Id"
+                                          AdditionalArgs="@AdditionalArgs"
+                                          TextureProviderName="@TextureProviderName" />
                                       </Children>
                                     </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                               </Children>
                             </ListPanel>
-                            
+
                             <!-- Center: Character Model -->
                             <Widget DataSource="{HeroCharacter}"
-                                    WidthSizePolicy="StretchToParent"
-                                    HeightSizePolicy="StretchToParent">
+                              WidthSizePolicy="StretchToParent"
+                              HeightSizePolicy="StretchToParent">
                               <Children>
                                 <CharacterTableauWidget WidthSizePolicy="StretchToParent"
-                                                        HeightSizePolicy="StretchToParent"
-                                                        BodyProperties="@BodyProperties"
-                                                        StanceIndex="@StanceIndex"
-                                                        IsFemale="@IsFemale"
-                                                        EquipmentCode="@EquipmentCode"
-                                                        BannerCodeText="@BannerCodeText"
-                                                        CharStringId="@CharStringId"
-                                                        MountCreationKey="@MountCreationKey"
-                                                        ArmorColor1="@ArmorColor1"
-                                                        ArmorColor2="@ArmorColor2"
-                                                        Race="@Race"
-                                                        IsEquipmentAnimActive="true"
-                                                        RightHandWieldedEquipmentIndex="0"
-                                                        LeftHandWieldedEquipmentIndex="1" />
+                                  HeightSizePolicy="StretchToParent"
+                                  BodyProperties="@BodyProperties"
+                                  StanceIndex="@StanceIndex"
+                                  IsFemale="@IsFemale"
+                                  EquipmentCode="@EquipmentCode"
+                                  BannerCodeText="@BannerCodeText"
+                                  CharStringId="@CharStringId"
+                                  MountCreationKey="@MountCreationKey"
+                                  ArmorColor1="@ArmorColor1"
+                                  ArmorColor2="@ArmorColor2"
+                                  Race="@Race"
+                                  IsEquipmentAnimActive="true"
+                                  RightHandWieldedEquipmentIndex="0"
+                                  LeftHandWieldedEquipmentIndex="1" />
                               </Children>
                             </Widget>
-                            
-                            <!-- Right Gear Slots (Weapons) - Using Native InventoryEquippedItemSlotWidget -->
+
+                            <!-- Right Gear Slots (Weapons) - Using Native
+                            InventoryEquippedItemSlotWidget -->
                             <ListPanel WidthSizePolicy="Fixed"
-                                       HeightSizePolicy="StretchToParent"
-                                       SuggestedWidth="50"
-                                       MarginRight="4"
-                                       MarginTop="4"
-                                       MarginBottom="4"
-                                       StackLayout.LayoutMethod="VerticalBottomToTop">
+                              HeightSizePolicy="StretchToParent"
+                              SuggestedWidth="50"
+                              MarginRight="4"
+                              MarginTop="4"
+                              MarginBottom="4"
+                              StackLayout.LayoutMethod="VerticalBottomToTop">
                               <Children>
                                 <!-- Weapon 0 Slot -->
                                 <Widget DataSource="{Weapon0Slot}"
-                                        WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedWidth="45"
-                                        SuggestedHeight="45"
-                                        MarginBottom="2" Command.Click="ExecuteSelectSlot">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="45"
+                                  SuggestedHeight="45"
+                                  MarginBottom="2" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="Weapon0Background"
-                                                 WidthSizePolicy="StretchToParent"
-                                                 HeightSizePolicy="StretchToParent"
-                                                 Brush="InventoryWeaponSlot" />
+                                      WidthSizePolicy="StretchToParent"
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="InventoryWeaponSlot" />
                                     <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
-                                                                     HeightSizePolicy="StretchToParent"
-                                                                     TargetEquipmentIndex="5"
-                                                                     ItemType="@TypeName"
-                                                                     Background="..\Weapon0Background"
-                                                                     ImageIdentifier="ImageIdentifier"
-                                                                     IsSelected="@IsSelected">
+                                      HeightSizePolicy="StretchToParent"
+                                      TargetEquipmentIndex="5"
+                                      ItemType="@TypeName"
+                                      Background="..\Weapon0Background"
+                                      ImageIdentifier="ImageIdentifier"
+                                      IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
-                                                Sprite="Inventory\portrait_cart"/>
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="2" MarginRight="2" MarginTop="2"
+                                          MarginBottom="2"
+                                          Sprite="Inventory\portrait_cart" />
                                         <ImageIdentifierWidget Id="ImageIdentifier"
-                                                               DataSource="{ImageIdentifier}"
-                                                               WidthSizePolicy="StretchToParent"
-                                                               HeightSizePolicy="StretchToParent"
-                                                               MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
-                                                               ImageId="@Id"
-                                                               AdditionalArgs="@AdditionalArgs"
-                                                               TextureProviderName="@TextureProviderName" />
+                                          DataSource="{ImageIdentifier}"
+                                          WidthSizePolicy="StretchToParent"
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="2" MarginRight="2" MarginTop="2"
+                                          MarginBottom="2"
+                                          ImageId="@Id"
+                                          AdditionalArgs="@AdditionalArgs"
+                                          TextureProviderName="@TextureProviderName" />
                                       </Children>
                                     </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
-                                
+
                                 <!-- Weapon 1 Slot -->
                                 <Widget DataSource="{Weapon1Slot}"
-                                        WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedWidth="45"
-                                        SuggestedHeight="45"
-                                        MarginBottom="2" Command.Click="ExecuteSelectSlot">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="45"
+                                  SuggestedHeight="45"
+                                  MarginBottom="2" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="Weapon1Background"
-                                                 WidthSizePolicy="StretchToParent"
-                                                 HeightSizePolicy="StretchToParent"
-                                                 Brush="InventoryWeaponSlot" />
+                                      WidthSizePolicy="StretchToParent"
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="InventoryWeaponSlot" />
                                     <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
-                                                                     HeightSizePolicy="StretchToParent"
-                                                                     TargetEquipmentIndex="6"
-                                                                     ItemType="@TypeName"
-                                                                     Background="..\Weapon1Background"
-                                                                     ImageIdentifier="ImageIdentifier"
-                                                                     IsSelected="@IsSelected">
+                                      HeightSizePolicy="StretchToParent"
+                                      TargetEquipmentIndex="6"
+                                      ItemType="@TypeName"
+                                      Background="..\Weapon1Background"
+                                      ImageIdentifier="ImageIdentifier"
+                                      IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
-                                                Sprite="Inventory\portrait_cart"/>
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="2" MarginRight="2" MarginTop="2"
+                                          MarginBottom="2"
+                                          Sprite="Inventory\portrait_cart" />
                                         <ImageIdentifierWidget Id="ImageIdentifier"
-                                                               DataSource="{ImageIdentifier}"
-                                                               WidthSizePolicy="StretchToParent"
-                                                               HeightSizePolicy="StretchToParent"
-                                                               MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
-                                                               ImageId="@Id"
-                                                               AdditionalArgs="@AdditionalArgs"
-                                                               TextureProviderName="@TextureProviderName" />
+                                          DataSource="{ImageIdentifier}"
+                                          WidthSizePolicy="StretchToParent"
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="2" MarginRight="2" MarginTop="2"
+                                          MarginBottom="2"
+                                          ImageId="@Id"
+                                          AdditionalArgs="@AdditionalArgs"
+                                          TextureProviderName="@TextureProviderName" />
                                       </Children>
                                     </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
-                                
+
                                 <!-- Weapon 2 Slot -->
                                 <Widget DataSource="{Weapon2Slot}"
-                                        WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedWidth="45"
-                                        SuggestedHeight="45"
-                                        MarginBottom="2" Command.Click="ExecuteSelectSlot">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="45"
+                                  SuggestedHeight="45"
+                                  MarginBottom="2" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="Weapon2Background"
-                                                 WidthSizePolicy="StretchToParent"
-                                                 HeightSizePolicy="StretchToParent"
-                                                 Brush="InventoryWeaponSlot" />
+                                      WidthSizePolicy="StretchToParent"
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="InventoryWeaponSlot" />
                                     <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
-                                                                     HeightSizePolicy="StretchToParent"
-                                                                     TargetEquipmentIndex="7"
-                                                                     ItemType="@TypeName"
-                                                                     Background="..\Weapon2Background"
-                                                                     ImageIdentifier="ImageIdentifier"
-                                                                     IsSelected="@IsSelected">
+                                      HeightSizePolicy="StretchToParent"
+                                      TargetEquipmentIndex="7"
+                                      ItemType="@TypeName"
+                                      Background="..\Weapon2Background"
+                                      ImageIdentifier="ImageIdentifier"
+                                      IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
-                                                Sprite="Inventory\portrait_cart"/>
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="2" MarginRight="2" MarginTop="2"
+                                          MarginBottom="2"
+                                          Sprite="Inventory\portrait_cart" />
                                         <ImageIdentifierWidget Id="ImageIdentifier"
-                                                               DataSource="{ImageIdentifier}"
-                                                               WidthSizePolicy="StretchToParent"
-                                                               HeightSizePolicy="StretchToParent"
-                                                               MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
-                                                               ImageId="@Id"
-                                                               AdditionalArgs="@AdditionalArgs"
-                                                               TextureProviderName="@TextureProviderName" />
+                                          DataSource="{ImageIdentifier}"
+                                          WidthSizePolicy="StretchToParent"
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="2" MarginRight="2" MarginTop="2"
+                                          MarginBottom="2"
+                                          ImageId="@Id"
+                                          AdditionalArgs="@AdditionalArgs"
+                                          TextureProviderName="@TextureProviderName" />
                                       </Children>
                                     </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
-                                
+
                                 <!-- Weapon 3 Slot -->
                                 <Widget DataSource="{Weapon3Slot}"
-                                        WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedWidth="45"
-                                        SuggestedHeight="45"
-                                        MarginBottom="2" Command.Click="ExecuteSelectSlot">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="45"
+                                  SuggestedHeight="45"
+                                  MarginBottom="2" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="Weapon3Background"
-                                                 WidthSizePolicy="StretchToParent"
-                                                 HeightSizePolicy="StretchToParent"
-                                                 Brush="InventoryWeaponSlot" />
+                                      WidthSizePolicy="StretchToParent"
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="InventoryWeaponSlot" />
                                     <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
-                                                                     HeightSizePolicy="StretchToParent"
-                                                                     TargetEquipmentIndex="8"
-                                                                     ItemType="@TypeName"
-                                                                     Background="..\Weapon3Background"
-                                                                     ImageIdentifier="ImageIdentifier"
-                                                                     IsSelected="@IsSelected">
+                                      HeightSizePolicy="StretchToParent"
+                                      TargetEquipmentIndex="8"
+                                      ItemType="@TypeName"
+                                      Background="..\Weapon3Background"
+                                      ImageIdentifier="ImageIdentifier"
+                                      IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
-                                                Sprite="Inventory\portrait_cart"/>
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="2" MarginRight="2" MarginTop="2"
+                                          MarginBottom="2"
+                                          Sprite="Inventory\portrait_cart" />
                                         <ImageIdentifierWidget Id="ImageIdentifier"
-                                                               DataSource="{ImageIdentifier}"
-                                                               WidthSizePolicy="StretchToParent"
-                                                               HeightSizePolicy="StretchToParent"
-                                                               MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
-                                                               ImageId="@Id"
-                                                               AdditionalArgs="@AdditionalArgs"
-                                                               TextureProviderName="@TextureProviderName" />
+                                          DataSource="{ImageIdentifier}"
+                                          WidthSizePolicy="StretchToParent"
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="2" MarginRight="2" MarginTop="2"
+                                          MarginBottom="2"
+                                          ImageId="@Id"
+                                          AdditionalArgs="@AdditionalArgs"
+                                          TextureProviderName="@TextureProviderName" />
                                       </Children>
                                     </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
-                                
+
                                 <!-- Banner Slot -->
                                 <Widget DataSource="{BannerSlot}"
-                                        WidthSizePolicy="Fixed"
-                                        HeightSizePolicy="Fixed"
-                                        SuggestedWidth="45"
-                                        SuggestedHeight="45"
-                                        MarginBottom="2" Command.Click="ExecuteSelectSlot">
+                                  WidthSizePolicy="Fixed"
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedWidth="45"
+                                  SuggestedHeight="45"
+                                  MarginBottom="2" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="BannerBackground"
-                                                 WidthSizePolicy="StretchToParent"
-                                                 HeightSizePolicy="StretchToParent"
-                                                 Brush="InventoryWeaponSlot" />
+                                      WidthSizePolicy="StretchToParent"
+                                      HeightSizePolicy="StretchToParent"
+                                      Brush="InventoryWeaponSlot" />
                                     <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
-                                                                     HeightSizePolicy="StretchToParent"
-                                                                     TargetEquipmentIndex="9"
-                                                                     ItemType="@TypeName"
-                                                                     Background="..\BannerBackground"
-                                                                     ImageIdentifier="ImageIdentifier"
-                                                                     IsSelected="@IsSelected">
+                                      HeightSizePolicy="StretchToParent"
+                                      TargetEquipmentIndex="9"
+                                      ItemType="@TypeName"
+                                      Background="..\BannerBackground"
+                                      ImageIdentifier="ImageIdentifier"
+                                      IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
-                                                Sprite="Inventory\portrait_cart"/>
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="2" MarginRight="2" MarginTop="2"
+                                          MarginBottom="2"
+                                          Sprite="Inventory\portrait_cart" />
                                         <ImageIdentifierWidget Id="ImageIdentifier"
-                                                               DataSource="{ImageIdentifier}"
-                                                               WidthSizePolicy="StretchToParent"
-                                                               HeightSizePolicy="StretchToParent"
-                                                               MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
-                                                               ImageId="@Id"
-                                                               AdditionalArgs="@AdditionalArgs"
-                                                               TextureProviderName="@TextureProviderName" />
+                                          DataSource="{ImageIdentifier}"
+                                          WidthSizePolicy="StretchToParent"
+                                          HeightSizePolicy="StretchToParent"
+                                          MarginLeft="2" MarginRight="2" MarginTop="2"
+                                          MarginBottom="2"
+                                          ImageId="@Id"
+                                          AdditionalArgs="@AdditionalArgs"
+                                          TextureProviderName="@TextureProviderName" />
                                       </Children>
                                     </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                               </Children>
                             </ListPanel>
-                            
+
                           </Children>
                         </ListPanel>
                       </Children>
                     </Widget>
-                    
+
                     <!-- Bottom: Equipment Loadout Selector -->
-                    <Widget DataSource="{HeroEquipment}"
-                            WidthSizePolicy="StretchToParent"
-                            HeightSizePolicy="Fixed"
-                            SuggestedHeight="32"
-                            Sprite="BlankWhiteSquare_9"
-                            Color="#1a1a1aFF">
+                    <Widget DataSource="{HeroInventory}"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="32"
+                      Sprite="BlankWhiteSquare_9"
+                      Color="#1a1a1aFF">
                       <Children>
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                SuggestedHeight="2" VerticalAlignment="Top"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedHeight="2" VerticalAlignment="Top"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                                SuggestedHeight="2" VerticalAlignment="Bottom"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedHeight="2" VerticalAlignment="Bottom"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                SuggestedWidth="2" HorizontalAlignment="Left"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          SuggestedWidth="2" HorizontalAlignment="Left"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                                SuggestedWidth="2" HorizontalAlignment="Right"
-                                Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        
+                          SuggestedWidth="2" HorizontalAlignment="Right"
+                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
                         <ListPanel WidthSizePolicy="CoverChildren"
-                                   HeightSizePolicy="StretchToParent"
-                                   HorizontalAlignment="Center"
-                                   StackLayout.LayoutMethod="HorizontalLeftToRight">
+                          HeightSizePolicy="StretchToParent"
+                          HorizontalAlignment="Center"
+                          StackLayout.LayoutMethod="HorizontalLeftToRight">
                           <Children>
                             <TextWidget WidthSizePolicy="CoverChildren"
-                                        HeightSizePolicy="StretchToParent"
-                                        MarginRight="8"
-                                        VerticalAlignment="Center"
-                                        Brush="TownManagement.Description.Title.Text"
-                                        Brush.FontSize="14"
-                                        Text="Loadout:" />
+                              HeightSizePolicy="StretchToParent"
+                              MarginRight="8"
+                              VerticalAlignment="Center"
+                              Brush="TownManagement.Description.Title.Text"
+                              Brush.FontSize="14"
+                              Text="Loadout:" />
                             <ButtonWidget DoNotPassEventsToChildren="true"
-                                          WidthSizePolicy="CoverChildren"
-                                          HeightSizePolicy="Fixed"
-                                          SuggestedHeight="24"
-                                          VerticalAlignment="Center"
-                                          Command.Click="ExecuteToggleLoadout">
+                              WidthSizePolicy="CoverChildren"
+                              HeightSizePolicy="Fixed"
+                              SuggestedHeight="24"
+                              VerticalAlignment="Center"
+                              Command.Click="ExecuteToggleLoadout">
                               <Children>
                                 <Widget WidthSizePolicy="StretchToParent"
-                                        HeightSizePolicy="StretchToParent"
-                                        Sprite="BlankWhiteSquare_9"
-                                        Color="#453920FF" />
+                                  HeightSizePolicy="StretchToParent"
+                                  Sprite="BlankWhiteSquare_9"
+                                  Color="#453920FF" />
                                 <TextWidget WidthSizePolicy="CoverChildren"
-                                            HeightSizePolicy="StretchToParent"
-                                            MarginLeft="12"
-                                            MarginRight="12"
-                                            VerticalAlignment="Center"
-                                            Brush="Clan.TabControl.Text"
-                                            Brush.FontSize="13"
-                                            Text="@LoadoutName" />
+                                  HeightSizePolicy="StretchToParent"
+                                  MarginLeft="12"
+                                  MarginRight="12"
+                                  VerticalAlignment="Center"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="13"
+                                  Text="@LoadoutName" />
                               </Children>
                             </ButtonWidget>
                           </Children>
                         </ListPanel>
                       </Children>
                     </Widget>
-                    
+
                   </Children>
                 </ListPanel>
               </Children>
             </Widget>
             <!-- END CENTER COLUMN -->
-            
+
             <!-- ==================== RIGHT COLUMN ==================== -->
             <!-- Compact Skills Grid with Icons -->
             <Widget DataSource="{HeroSkills}"
-                    WidthSizePolicy="Fixed"
-                    HeightSizePolicy="StretchToParent"
-                    SuggestedWidth="280"
-                    MarginLeft="8"
-                    Sprite="BlankWhiteSquare_9"
-                    Color="#1a1a1aFF">
+              WidthSizePolicy="Fixed"
+              HeightSizePolicy="StretchToParent"
+              SuggestedWidth="280"
+              MarginLeft="8"
+              Sprite="BlankWhiteSquare_9"
+              Color="#1a1a1aFF">
               <Children>
                 <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                        SuggestedHeight="2" VerticalAlignment="Top"
-                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                  SuggestedHeight="2" VerticalAlignment="Top"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                 <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                        SuggestedHeight="2" VerticalAlignment="Bottom"
-                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                  SuggestedHeight="2" VerticalAlignment="Bottom"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                        SuggestedWidth="2" HorizontalAlignment="Left"
-                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                  SuggestedWidth="2" HorizontalAlignment="Left"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                 <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                        SuggestedWidth="2" HorizontalAlignment="Right"
-                        Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                
+                  SuggestedWidth="2" HorizontalAlignment="Right"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
                 <ListPanel WidthSizePolicy="StretchToParent"
-                           HeightSizePolicy="StretchToParent"
-                           MarginTop="6"
-                           MarginBottom="6"
-                           MarginLeft="6"
-                           MarginRight="6"
-                           StackLayout.LayoutMethod="VerticalBottomToTop">
+                  HeightSizePolicy="StretchToParent"
+                  MarginTop="6"
+                  MarginBottom="6"
+                  MarginLeft="6"
+                  MarginRight="6"
+                  StackLayout.LayoutMethod="VerticalBottomToTop">
                   <Children>
-                    
+
                     <!-- Level Header -->
                     <ListPanel WidthSizePolicy="StretchToParent"
-                               HeightSizePolicy="Fixed"
-                               SuggestedHeight="22"
-                               MarginBottom="8"
-                               StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="22"
+                      MarginBottom="8"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
                       <Children>
                         <TextWidget WidthSizePolicy="CoverChildren"
-                                    HeightSizePolicy="StretchToParent"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Brush="TownManagement.Description.Title.Text"
-                                    Brush.FontSize="16"
-                                    Text="Level " />
+                          HeightSizePolicy="StretchToParent"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Brush="TownManagement.Description.Title.Text"
+                          Brush.FontSize="16"
+                          Text="Level " />
                         <TextWidget WidthSizePolicy="CoverChildren"
-                                    HeightSizePolicy="StretchToParent"
-                                    VerticalAlignment="Center"
-                                    Brush="TownManagement.Description.Value.Text"
-                                    Brush.FontSize="16"
-                                    IntText="@Level" />
+                          HeightSizePolicy="StretchToParent"
+                          VerticalAlignment="Center"
+                          Brush="TownManagement.Description.Value.Text"
+                          Brush.FontSize="16"
+                          IntText="@Level" />
                       </Children>
                     </ListPanel>
-                    
+
                     <!-- Attribute Groups (6 rows, each with 3 skills) -->
                     <ListPanel WidthSizePolicy="StretchToParent"
-                               HeightSizePolicy="StretchToParent"
-                               DataSource="{AttributeGroups}"
-                               StackLayout.LayoutMethod="VerticalBottomToTop">
+                      HeightSizePolicy="StretchToParent"
+                      DataSource="{AttributeGroups}"
+                      StackLayout.LayoutMethod="VerticalBottomToTop">
                       <ItemTemplate>
                         <!-- Single Attribute Row -->
                         <Widget WidthSizePolicy="StretchToParent"
-                                HeightSizePolicy="Fixed"
-                                SuggestedHeight="70"
-                                MarginBottom="4">
+                          HeightSizePolicy="Fixed"
+                          SuggestedHeight="70"
+                          MarginBottom="4">
                           <Children>
                             <ListPanel WidthSizePolicy="StretchToParent"
-                                       HeightSizePolicy="StretchToParent"
-                                       StackLayout.LayoutMethod="VerticalBottomToTop">
+                              HeightSizePolicy="StretchToParent"
+                              StackLayout.LayoutMethod="VerticalBottomToTop">
                               <Children>
-                                
+
                                 <!-- Attribute Name Header -->
                                 <ListPanel WidthSizePolicy="StretchToParent"
-                                           HeightSizePolicy="Fixed"
-                                           SuggestedHeight="18"
-                                           MarginBottom="2"
-                                           StackLayout.LayoutMethod="HorizontalLeftToRight"
-                                           Sprite="BlankWhiteSquare_9"
-                                           Color="#3a3a3aFF">
+                                  HeightSizePolicy="Fixed"
+                                  SuggestedHeight="18"
+                                  MarginBottom="2"
+                                  StackLayout.LayoutMethod="HorizontalLeftToRight"
+                                  Sprite="BlankWhiteSquare_9"
+                                  Color="#3a3a3aFF">
                                   <Children>
                                     <TextWidget WidthSizePolicy="CoverChildren"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="4"
-                                                VerticalAlignment="Center"
-                                                Brush="Clan.TabControl.Text"
-                                                Brush.FontSize="12"
-                                                Text="@AttributeName" />
+                                      HeightSizePolicy="StretchToParent"
+                                      MarginLeft="4"
+                                      VerticalAlignment="Center"
+                                      Brush="Clan.TabControl.Text"
+                                      Brush.FontSize="12"
+                                      Text="@AttributeName" />
                                     <TextWidget WidthSizePolicy="CoverChildren"
-                                                HeightSizePolicy="StretchToParent"
-                                                MarginLeft="4"
-                                                VerticalAlignment="Center"
-                                                Brush="Clan.TabControl.Text"
-                                                Brush.FontSize="10"
-                                                IntText="@AttributeValue" />
+                                      HeightSizePolicy="StretchToParent"
+                                      MarginLeft="4"
+                                      VerticalAlignment="Center"
+                                      Brush="Clan.TabControl.Text"
+                                      Brush.FontSize="10"
+                                      IntText="@AttributeValue" />
                                   </Children>
                                 </ListPanel>
-                                
+
                                 <!-- 3 Skills Horizontal -->
                                 <ListPanel WidthSizePolicy="StretchToParent"
-                                           HeightSizePolicy="StretchToParent"
-                                           DataSource="{Skills}"
-                                           StackLayout.LayoutMethod="HorizontalLeftToRight">
+                                  HeightSizePolicy="StretchToParent"
+                                  DataSource="{Skills}"
+                                  StackLayout.LayoutMethod="HorizontalLeftToRight">
                                   <ItemTemplate>
                                     <!-- Single Skill Box with Icon -->
                                     <Widget WidthSizePolicy="Fixed"
-                                            HeightSizePolicy="StretchToParent"
-                                            SuggestedWidth="85"
-                                            MarginRight="2">
+                                      HeightSizePolicy="StretchToParent"
+                                      SuggestedWidth="85"
+                                      MarginRight="2">
                                       <Children>
                                         <ListPanel WidthSizePolicy="StretchToParent"
-                                                   HeightSizePolicy="StretchToParent"
-                                                   HorizontalAlignment="Center"
-                                                   StackLayout.LayoutMethod="VerticalBottomToTop">
+                                          HeightSizePolicy="StretchToParent"
+                                          HorizontalAlignment="Center"
+                                          StackLayout.LayoutMethod="VerticalBottomToTop">
                                           <Children>
                                             <!-- Skill Icon with Value Overlay -->
                                             <SkillIconVisualWidget WidthSizePolicy="Fixed"
-                                                                   HeightSizePolicy="Fixed"
-                                                                   SuggestedWidth="40"
-                                                                   SuggestedHeight="40"
-                                                                   HorizontalAlignment="Center"
-                                                                   MarginBottom="2"
-                                                                   SkillId="@SkillId"
-                                                                   UseSmallVariation="true">
+                                              HeightSizePolicy="Fixed"
+                                              SuggestedWidth="40"
+                                              SuggestedHeight="40"
+                                              HorizontalAlignment="Center"
+                                              MarginBottom="2"
+                                              SkillId="@SkillId"
+                                              UseSmallVariation="true">
                                               <Children>
                                                 <!-- Skill Value Overlay -->
                                                 <Widget WidthSizePolicy="Fixed"
-                                                        HeightSizePolicy="Fixed"
-                                                        SuggestedWidth="24"
-                                                        SuggestedHeight="18"
-                                                        HorizontalAlignment="Center"
-                                                        VerticalAlignment="Bottom"
-                                                        MarginBottom="2"
-                                                        Sprite="BlankWhiteSquare_9"
-                                                        Color="#00000099">
+                                                  HeightSizePolicy="Fixed"
+                                                  SuggestedWidth="24"
+                                                  SuggestedHeight="18"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Bottom"
+                                                  MarginBottom="2"
+                                                  Sprite="BlankWhiteSquare_9"
+                                                  Color="#00000099">
                                                   <Children>
                                                     <TextWidget WidthSizePolicy="StretchToParent"
-                                                                HeightSizePolicy="StretchToParent"
-                                                                HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"
-                                                                Brush="Clan.TabControl.Text"
-                                                                Brush.FontSize="11"
-                                                                IntText="@SkillValue" />
+                                                      HeightSizePolicy="StretchToParent"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      Brush="Clan.TabControl.Text"
+                                                      Brush.FontSize="11"
+                                                      IntText="@SkillValue" />
                                                   </Children>
                                                 </Widget>
                                               </Children>
                                             </SkillIconVisualWidget>
                                             <!-- Skill Name -->
                                             <TextWidget WidthSizePolicy="StretchToParent"
-                                                        HeightSizePolicy="Fixed"
-                                                        SuggestedHeight="14"
-                                                        HorizontalAlignment="Center"
-                                                        Brush="Clan.TabControl.Text"
-                                                        Brush.FontSize="9"
-                                                        Brush.TextHorizontalAlignment="Center"
-                                                        Text="@SkillName" />
+                                              HeightSizePolicy="Fixed"
+                                              SuggestedHeight="14"
+                                              HorizontalAlignment="Center"
+                                              Brush="Clan.TabControl.Text"
+                                              Brush.FontSize="9"
+                                              Brush.TextHorizontalAlignment="Center"
+                                              Text="@SkillName" />
                                           </Children>
                                         </ListPanel>
                                       </Children>
                                     </Widget>
                                   </ItemTemplate>
                                 </ListPanel>
-                                
+
                               </Children>
                             </ListPanel>
                           </Children>
                         </Widget>
                       </ItemTemplate>
                     </ListPanel>
-                    
+
                   </Children>
                 </ListPanel>
-                
+
               </Children>
             </Widget>
             <!-- END RIGHT COLUMN -->
-            
+
           </Children>
         </ListPanel>
-        
+
       </Children>
     </Widget>
   </Window>
 </Prefab>
-
-
-
