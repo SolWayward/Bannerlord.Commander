@@ -1,0 +1,471 @@
+<Prefab>
+  <!-- LEFT COLUMN: Hero Info, Identity, Clan, and Party Controls -->
+  <Parameters>
+  </Parameters>
+  <Window>
+    <Widget WidthSizePolicy="Fixed"
+      HeightSizePolicy="StretchToParent"
+      SuggestedWidth="240"
+      MarginRight="8">
+      <Children>
+        <ListPanel WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          StackLayout.LayoutMethod="VerticalBottomToTop">
+          <Children>
+
+            <!-- ==================== NAME/TITLE INPUTS ==================== -->
+            <ListPanel WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed"
+              SuggestedHeight="60"
+              MarginBottom="8"
+              StackLayout.LayoutMethod="VerticalBottomToTop">
+              <Children>
+                <!-- Name Input -->
+                <Widget DataSource="{HeroIdentity}"
+                  WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="Fixed"
+                  SuggestedHeight="26"
+                  MarginBottom="4"
+                  Sprite="BlankWhiteSquare_9"
+                  Color="#1a1a1aFF">
+                  <Children>
+                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="2" VerticalAlignment="Top"
+                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="2" VerticalAlignment="Bottom"
+                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                      SuggestedWidth="2" HorizontalAlignment="Left"
+                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                      SuggestedWidth="2" HorizontalAlignment="Right"
+                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                    <TextWidget WidthSizePolicy="Fixed"
+                      HeightSizePolicy="StretchToParent"
+                      SuggestedWidth="45"
+                      MarginLeft="6"
+                      VerticalAlignment="Center"
+                      Brush="Clan.TabControl.Text"
+                      Brush.FontSize="13"
+                      Text="Name:" />
+                    <EditableTextWidget WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      MarginLeft="54"
+                      MarginRight="6"
+                      MarginTop="4"
+                      MarginBottom="4"
+                      Brush="Clan.TabControl.Text"
+                      Brush.FontSize="13"
+                      Text="@HeroName" />
+                  </Children>
+                </Widget>
+
+                <!-- Title Input -->
+                <Widget DataSource="{HeroIdentity}"
+                  WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="Fixed"
+                  SuggestedHeight="26"
+                  Sprite="BlankWhiteSquare_9"
+                  Color="#1a1a1aFF">
+                  <Children>
+                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="2" VerticalAlignment="Top"
+                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="2" VerticalAlignment="Bottom"
+                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                      SuggestedWidth="2" HorizontalAlignment="Left"
+                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                      SuggestedWidth="2" HorizontalAlignment="Right"
+                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                    <TextWidget WidthSizePolicy="Fixed"
+                      HeightSizePolicy="StretchToParent"
+                      SuggestedWidth="45"
+                      MarginLeft="6"
+                      VerticalAlignment="Center"
+                      Brush="Clan.TabControl.Text"
+                      Brush.FontSize="13"
+                      Text="Title:" />
+                    <EditableTextWidget WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      MarginLeft="54"
+                      MarginRight="6"
+                      MarginTop="4"
+                      MarginBottom="4"
+                      Brush="Clan.TabControl.Text"
+                      Brush.FontSize="13"
+                      Text="@HeroTitle" />
+                  </Children>
+                </Widget>
+              </Children>
+            </ListPanel>
+
+            <!-- ==================== CLAN/KINGDOM SECTION ==================== -->
+            <Widget DataSource="{HeroCultureClan}"
+              WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed"
+              SuggestedHeight="140"
+              MarginBottom="8"
+              Sprite="BlankWhiteSquare_9"
+              Color="#1a1a1aFF">
+              <Children>
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="2" VerticalAlignment="Top"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="2" VerticalAlignment="Bottom"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="2" HorizontalAlignment="Left"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="2" HorizontalAlignment="Right"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
+                <ListPanel WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  MarginTop="6"
+                  MarginBottom="6"
+                  MarginLeft="6"
+                  MarginRight="6"
+                  StackLayout.LayoutMethod="HorizontalLeftToRight">
+                  <Children>
+                    <!-- Clan Banner -->
+                    <Widget WidthSizePolicy="Fixed"
+                      HeightSizePolicy="Fixed"
+                      SuggestedWidth="100"
+                      SuggestedHeight="120"
+                      MarginRight="8">
+                      <Children>
+                        <MaskedTextureWidget DataSource="{HeroInfo\ClanBanner}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TornBanner"
+                          AdditionalArgs="@AdditionalArgs"
+                          ImageId="@Id"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </Widget>
+
+                    <!-- Clan/Kingdom Info -->
+                    <ListPanel WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      StackLayout.LayoutMethod="VerticalBottomToTop">
+                      <Children>
+                        <!-- Clan Name -->
+                        <ListPanel WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="Fixed"
+                          SuggestedHeight="18"
+                          MarginBottom="4"
+                          StackLayout.LayoutMethod="HorizontalLeftToRight">
+                          <Children>
+                            <TextWidget WidthSizePolicy="CoverChildren"
+                              HeightSizePolicy="StretchToParent"
+                              Brush="Clan.TabControl.Text"
+                              Brush.FontSize="12"
+                              Text="Clan: " />
+                            <TextWidget WidthSizePolicy="StretchToParent"
+                              HeightSizePolicy="StretchToParent"
+                              Brush="Clan.TabControl.Text"
+                              Brush.FontSize="12"
+                              Text="@ClanName" />
+                          </Children>
+                        </ListPanel>
+
+                        <!-- Kingdom Name -->
+                        <ListPanel WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="Fixed"
+                          SuggestedHeight="18"
+                          MarginBottom="4"
+                          StackLayout.LayoutMethod="HorizontalLeftToRight">
+                          <Children>
+                            <TextWidget WidthSizePolicy="CoverChildren"
+                              HeightSizePolicy="StretchToParent"
+                              Brush="Clan.TabControl.Text"
+                              Brush.FontSize="12"
+                              Text="Kingdom: " />
+                            <TextWidget WidthSizePolicy="StretchToParent"
+                              HeightSizePolicy="StretchToParent"
+                              Brush="Clan.TabControl.Text"
+                              Brush.FontSize="12"
+                              Text="@KingdomName" />
+                          </Children>
+                        </ListPanel>
+
+                        <!-- Select Clan Button -->
+                        <ButtonWidget DoNotPassEventsToChildren="true"
+                          WidthSizePolicy="Fixed"
+                          HeightSizePolicy="Fixed"
+                          SuggestedWidth="110"
+                          SuggestedHeight="24"
+                          MarginTop="8"
+                          Command.Click="ExecuteOpenClanSelection">
+                          <Children>
+                            <Widget WidthSizePolicy="StretchToParent"
+                              HeightSizePolicy="StretchToParent"
+                              Sprite="BlankWhiteSquare_9"
+                              Color="#453920FF" />
+                            <TextWidget WidthSizePolicy="StretchToParent"
+                              HeightSizePolicy="StretchToParent"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Brush="Clan.TabControl.Text"
+                              Brush.FontSize="12"
+                              Text="Select Clan" />
+                          </Children>
+                        </ButtonWidget>
+                      </Children>
+                    </ListPanel>
+                  </Children>
+                </ListPanel>
+              </Children>
+            </Widget>
+
+            <!-- ==================== BASIC INFO ==================== -->
+            <Widget DataSource="{HeroInfo}"
+              WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed"
+              SuggestedHeight="90"
+              MarginBottom="8"
+              Sprite="BlankWhiteSquare_9"
+              Color="#1a1a1aFF">
+              <Children>
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="2" VerticalAlignment="Top"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="2" VerticalAlignment="Bottom"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="2" HorizontalAlignment="Left"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="2" HorizontalAlignment="Right"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
+                <ListPanel WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  MarginTop="4"
+                  MarginLeft="6"
+                  MarginRight="6"
+                  StackLayout.LayoutMethod="VerticalBottomToTop">
+                  <Children>
+                    <!-- Gender & Age -->
+                    <ListPanel WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="16"
+                      MarginBottom="4"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <TextWidget WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="12"
+                          Text="Gender: " />
+                        <TextWidget WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="12"
+                          Text="@Gender" />
+                        <TextWidget WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="15"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="12"
+                          Text="Age: " />
+                        <TextWidget WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="12"
+                          Text="@AgeText" />
+                      </Children>
+                    </ListPanel>
+
+                    <!-- Birth Date -->
+                    <ListPanel WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="16"
+                      MarginBottom="4"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <TextWidget WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="12"
+                          Text="Born: " />
+                        <TextWidget WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="12"
+                          Text="@BirthDateText" />
+                      </Children>
+                    </ListPanel>
+
+                    <!-- Death Date -->
+                    <ListPanel WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="16"
+                      MarginBottom="4"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <TextWidget WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="12"
+                          Text="Death: " />
+                        <TextWidget WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="12"
+                          Text="@DeathDateText" />
+                      </Children>
+                    </ListPanel>
+
+                    <!-- Culture -->
+                    <ListPanel DataSource="{HeroCultureClan}"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="16"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <TextWidget WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="12"
+                          Text="Culture: " />
+                        <TextWidget WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="12"
+                          Text="@CultureName" />
+                      </Children>
+                    </ListPanel>
+                  </Children>
+                </ListPanel>
+              </Children>
+            </Widget>
+
+            <!-- ==================== PARTY CONTROLS ==================== -->
+            <Widget DataSource="{HeroParty}"
+              WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed"
+              SuggestedHeight="70"
+              MarginBottom="8"
+              Sprite="BlankWhiteSquare_9"
+              Color="#1a1a1aFF">
+              <Children>
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="2" VerticalAlignment="Top"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="2" VerticalAlignment="Bottom"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="2" HorizontalAlignment="Left"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="2" HorizontalAlignment="Right"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
+                <ListPanel WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  MarginTop="4"
+                  MarginBottom="4"
+                  MarginLeft="4"
+                  MarginRight="4"
+                  StackLayout.LayoutMethod="VerticalBottomToTop">
+                  <Children>
+                    <!-- Party Status -->
+                    <TextWidget WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="18"
+                      MarginBottom="4"
+                      Brush="Clan.TabControl.Text"
+                      Brush.FontSize="11"
+                      Brush.TextHorizontalAlignment="Center"
+                      Text="@PartyStatusText" />
+
+                    <!-- Party Buttons Row -->
+                    <ListPanel WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="22"
+                      MarginBottom="2"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <ButtonWidget DoNotPassEventsToChildren="true"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginRight="2"
+                          Command.Click="ExecuteDisbandParty"
+                          IsEnabled="@CanDisbandParty">
+                          <Children>
+                            <Widget WidthSizePolicy="StretchToParent"
+                              HeightSizePolicy="StretchToParent"
+                              Sprite="BlankWhiteSquare_9"
+                              Color="#453920FF" />
+                            <TextWidget WidthSizePolicy="StretchToParent"
+                              HeightSizePolicy="StretchToParent"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Brush="Clan.TabControl.Text"
+                              Brush.FontSize="11"
+                              Text="Disband" />
+                          </Children>
+                        </ButtonWidget>
+                        <ButtonWidget DoNotPassEventsToChildren="true"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2"
+                          Command.Click="ExecuteToggleParty">
+                          <Children>
+                            <Widget WidthSizePolicy="StretchToParent"
+                              HeightSizePolicy="StretchToParent"
+                              Sprite="BlankWhiteSquare_9"
+                              Color="#453920FF" />
+                            <TextWidget WidthSizePolicy="StretchToParent"
+                              HeightSizePolicy="StretchToParent"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Brush="Clan.TabControl.Text"
+                              Brush.FontSize="10"
+                              Text="@TogglePartyButtonText" />
+                          </Children>
+                        </ButtonWidget>
+                      </Children>
+                    </ListPanel>
+
+                    <!-- Edit Party Button -->
+                    <ButtonWidget DoNotPassEventsToChildren="true"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="22"
+                      Command.Click="ExecuteEditParty"
+                      IsEnabled="@CanEditParty">
+                      <Children>
+                        <Widget WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          Sprite="BlankWhiteSquare_9"
+                          Color="#453920FF" />
+                        <TextWidget WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="11"
+                          Text="Edit Party" />
+                      </Children>
+                    </ButtonWidget>
+                  </Children>
+                </ListPanel>
+              </Children>
+            </Widget>
+
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>
