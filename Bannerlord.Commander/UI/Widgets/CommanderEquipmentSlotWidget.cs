@@ -5,19 +5,18 @@ using TaleWorlds.MountAndBlade.GauntletUI.Widgets;
 namespace Bannerlord.Commander.UI.Widgets
 {
     /// <summary>
-    /// Custom equipment slot widget that renders backgrounds and manages selection state
-    /// without the InventoryScreenWidget dependency that causes crashes.
-    /// 
-    /// Does NOT extend ButtonWidget - click handling is via Command.Click on parent Widget.
+    /// Custom equipment slot widget that renders backgrounds and manages selection state.
+    /// Follows the native InventoryEquippedItemSlotWidget pattern exactly.
+    ///
+    /// Click handling is via Command.Click on parent Widget (not ButtonWidget).
     /// Preserves async item loading by keeping ImageIdentifierWidget as child.
     /// </summary>
     public class CommanderEquipmentSlotWidget : Widget
     {
-        private BrushWidget _background;
+        private Widget _background;
         private ImageIdentifierWidget _imageIdentifier;
         private bool _isSelected;
         private bool _lastSelectedState;
-        private bool _isInitialized;
 
         public CommanderEquipmentSlotWidget(UIContext context) : base(context)
         {
@@ -27,33 +26,35 @@ namespace Bannerlord.Commander.UI.Widgets
         {
             base.OnLateUpdate(dt);
 
-            // Initialize background state once after binding resolution
-            if (_background != null && !_isInitialized)
-            {
-                _background.SetState("Default");
-                _isInitialized = true;
-            }
-
             // Update background state when selection changes
+            // Native uses OnUpdate, but OnLateUpdate is fine for non-critical UI updates
             if (_background != null && _lastSelectedState != _isSelected)
             {
                 _background.SetState(_isSelected ? "Selected" : "Default");
                 _lastSelectedState = _isSelected;
             }
+        }
 
-            // Hide widget when no image is present (like native InventoryEquippedItemSlotWidget does)
-            if (_imageIdentifier != null)
+        /// <summary>
+        /// PropertyChanged event handler for ImageIdentifier.
+        /// Hides the widget when no item image is present.
+        /// Follows native InventoryEquippedItemSlotWidget pattern.
+        /// </summary>
+        private void ImageIdentifierOnPropertyChanged(PropertyOwnerObject owner, string propertyName, object value)
+        {
+            if (propertyName == "ImageId")
             {
-                base.IsHidden = string.IsNullOrEmpty(_imageIdentifier.ImageId);
+                base.IsHidden = string.IsNullOrEmpty((string)value);
             }
         }
 
         /// <summary>
-        /// Reference to the background BrushWidget that displays slot background sprite.
+        /// Reference to the background Widget that displays slot background sprite.
         /// Set via Background="..\BackgroundId" in XML.
+        /// Changed to Widget (not BrushWidget) to match native pattern.
         /// </summary>
         [Editor(false)]
-        public BrushWidget Background
+        public Widget Background
         {
             get => _background;
             set
@@ -61,20 +62,18 @@ namespace Bannerlord.Commander.UI.Widgets
                 if (_background != value)
                 {
                     _background = value;
-                    if (_background != null)
-                    {
-                        // Add Selected state to brush so SetState() can toggle it
-                        _background.AddState("Selected");
-                    }
-                    OnPropertyChanged<BrushWidget>(value, nameof(Background));
-                    _isInitialized = false; // Re-initialize with new background
+                    // CRITICAL: AddState registers "Selected" state with the widget
+                    // so that SetState("Selected") can activate it later.
+                    // This is required even though the Brush defines the "Selected" style.
+                    _background.AddState("Selected");
+                    OnPropertyChanged<Widget>(value, nameof(Background));
                 }
             }
         }
 
         /// <summary>
         /// Reference to the ImageIdentifierWidget child that displays the item image.
-        /// Used to auto-hide the slot when no item is present.
+        /// Subscribes to PropertyChanged to detect when ImageId changes.
         /// Set via ImageIdentifier="ImageIdentifier" in XML.
         /// </summary>
         [Editor(false)]
@@ -85,7 +84,20 @@ namespace Bannerlord.Commander.UI.Widgets
             {
                 if (_imageIdentifier != value)
                 {
+                    // Unsubscribe from old widget
+                    if (_imageIdentifier != null)
+                    {
+                        _imageIdentifier.PropertyChanged -= ImageIdentifierOnPropertyChanged;
+                    }
+                    
                     _imageIdentifier = value;
+                    
+                    // Subscribe to new widget
+                    if (_imageIdentifier != null)
+                    {
+                        _imageIdentifier.PropertyChanged += ImageIdentifierOnPropertyChanged;
+                    }
+                    
                     OnPropertyChanged<ImageIdentifierWidget>(value, nameof(ImageIdentifier));
                 }
             }
@@ -93,7 +105,7 @@ namespace Bannerlord.Commander.UI.Widgets
 
         /// <summary>
         /// Whether this slot is currently selected.
-        /// Controls background brush state (Default vs Selected).
+        /// Controls background widget state (Default vs Selected).
         /// Bound to ViewModel's IsSelected property.
         /// </summary>
         [Editor(false)]

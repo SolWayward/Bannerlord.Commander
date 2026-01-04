@@ -90,8 +90,7 @@
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="65"
                           SuggestedHeight="65"
-                          MarginBottom="3"
-                          Command.Click="ExecuteSelectSlot">
+                          MarginBottom="3">
                           <Children>
                             <BrushWidget Id="HeadBackground"
                               WidthSizePolicy="StretchToParent"
@@ -99,6 +98,8 @@
                               Brush="InventoryHelmetSlot" />
                             <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
+                              DoNotPassEventsToChildren="true"
+                              Command.Click="ExecuteSelectSlot"
                               Background="..\HeadBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
@@ -136,8 +137,6 @@
                               Brush="InventoryCloakSlot" />
                             <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              TargetEquipmentIndex="1"
-                              ItemType="@TypeName"
                               Background="..\CapeBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
@@ -175,8 +174,6 @@
                               Brush="InventoryArmorSlot" />
                             <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              TargetEquipmentIndex="2"
-                              ItemType="@TypeName"
                               Background="..\BodyBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
@@ -214,8 +211,6 @@
                               Brush="InventoryGloveSlot" />
                             <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              TargetEquipmentIndex="3"
-                              ItemType="@TypeName"
                               Background="..\GlovesBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
@@ -250,11 +245,9 @@
                             <BrushWidget Id="LegBackground"
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              Brush="InventoryWeaponSlot" />
+                              Brush="InventoryBootSlot" />
                             <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              TargetEquipmentIndex="4"
-                              ItemType="@TypeName"
                               Background="..\LegBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
@@ -289,11 +282,9 @@
                             <BrushWidget Id="HorseBackground"
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              Brush="InventoryWeaponSlot" />
+                              Brush="InventoryMountSlot" />
                             <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              TargetEquipmentIndex="10"
-                              ItemType="@TypeName"
                               Background="..\HorseBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
@@ -328,11 +319,9 @@
                             <BrushWidget Id="HarnessBackground"
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              Brush="InventoryWeaponSlot" />
+                              Brush="InventoryMountArmorSlot" />
                             <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              TargetEquipmentIndex="11"
-                              ItemType="@TypeName"
                               Background="..\HarnessBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
@@ -404,8 +393,6 @@
                               Brush="InventoryWeaponSlot" />
                             <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              TargetEquipmentIndex="5"
-                              ItemType="@TypeName"
                               Background="..\Weapon0Background"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
@@ -443,8 +430,6 @@
                               Brush="InventoryWeaponSlot" />
                             <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              TargetEquipmentIndex="6"
-                              ItemType="@TypeName"
                               Background="..\Weapon1Background"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
@@ -482,8 +467,6 @@
                               Brush="InventoryWeaponSlot" />
                             <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              TargetEquipmentIndex="7"
-                              ItemType="@TypeName"
                               Background="..\Weapon2Background"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
@@ -521,8 +504,6 @@
                               Brush="InventoryWeaponSlot" />
                             <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              TargetEquipmentIndex="8"
-                              ItemType="@TypeName"
                               Background="..\Weapon3Background"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
@@ -557,11 +538,9 @@
                             <BrushWidget Id="BannerBackground"
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              Brush="InventoryWeaponSlot" />
+                              Brush="InventoryBannerSlot" />
                             <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              TargetEquipmentIndex="9"
-                              ItemType="@TypeName"
                               Background="..\BannerBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">

@@ -6,6 +6,7 @@ using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.ScreenSystem;
+using TaleWorlds.TwoDimension;
 
 namespace Bannerlord.Commander.UI.Screens
 {
@@ -40,6 +41,9 @@ namespace Bannerlord.Commander.UI.Screens
 
             AddLayer(_gauntletLayer);
 
+            // Load required sprite categories
+            LoadSprites();
+
             // Enable all Input (Game seems to ignore this but just in case)
             _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
             _gauntletLayer.IsFocusLayer = true;
@@ -68,6 +72,15 @@ namespace Bannerlord.Commander.UI.Screens
             _gauntletLayer = null;
 
             base.OnFinalize();
+        }
+
+        /// <summary>
+        /// Load required sprite categories
+        /// </summary>
+        void LoadSprites()
+        {
+            SpriteCategory inventoryCategory = UIResourceManager.SpriteData.SpriteCategories["ui_inventory"];
+            inventoryCategory.Load(UIResourceManager.ResourceContext, UIResourceManager.ResourceDepot);
         }
 
         /// <summary>
