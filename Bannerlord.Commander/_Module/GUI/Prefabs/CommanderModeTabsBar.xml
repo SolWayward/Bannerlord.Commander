@@ -1,0 +1,106 @@
+<Prefab>
+  <Parameters>
+  </Parameters>
+  <Window>
+    <Widget Id="CommanderModeTabsBar" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+    SuggestedHeight="42"
+    MarginTop="60" Sprite="BlankWhiteSquare_9" Color="#1E1E1EFF">
+    <Children>
+      <ListPanel Id="ModeTabsList" WidthSizePolicy="CoverChildren"
+        HeightSizePolicy="StretchToParent"
+        HorizontalAlignment="Center" VerticalAlignment="Bottom"
+        LayoutImp.LayoutMethod="HorizontalLeftToRight">
+        <Children>
+          <ButtonWidget Id="KingdomsTabButton" DoNotPassEventsToChildren="true"
+            UpdateChildrenStates="true"
+            WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="180"
+            SuggestedHeight="40"
+            MarginLeft="2" MarginRight="2" Brush="Commander.Tab.Button"
+            Command.Click="ExecuteSelectKingdoms" IsSelected="@IsKingdomsSelected">
+            <Children>
+              <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                Brush="Clan.TabControl.Text" Text="Kingdoms"
+                HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Children>
+          </ButtonWidget>
+          <ButtonWidget Id="ClansTabButton" DoNotPassEventsToChildren="true"
+            UpdateChildrenStates="true"
+            WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="180"
+            SuggestedHeight="40"
+            MarginLeft="2" MarginRight="2" Brush="Commander.Tab.Button"
+            Command.Click="ExecuteSelectClans" IsSelected="@IsClansSelected">
+            <Children>
+              <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                Brush="Clan.TabControl.Text" Text="Clans"
+                HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Children>
+          </ButtonWidget>
+          <ButtonWidget Id="HeroesTabButton" DoNotPassEventsToChildren="true"
+            UpdateChildrenStates="true"
+            WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="180"
+            SuggestedHeight="40"
+            MarginLeft="2" MarginRight="2" Brush="Commander.Tab.Button"
+            Command.Click="ExecuteSelectHeroes" IsSelected="@IsHeroesSelected">
+            <Children>
+              <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                Brush="Clan.TabControl.Text" Text="Heroes"
+                HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Children>
+          </ButtonWidget>
+          <ButtonWidget Id="SettlementsTabButton" DoNotPassEventsToChildren="true"
+            UpdateChildrenStates="true"
+            WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="180"
+            SuggestedHeight="40"
+            MarginLeft="2" MarginRight="2" Brush="Commander.Tab.Button"
+            Command.Click="ExecuteSelectSettlements" IsSelected="@IsSettlementsSelected">
+            <Children>
+              <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                Brush="Clan.TabControl.Text" Text="Settlements"
+                HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Children>
+          </ButtonWidget>
+          <ButtonWidget Id="TroopsTabButton" DoNotPassEventsToChildren="true"
+            UpdateChildrenStates="true"
+            WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="180"
+            SuggestedHeight="40"
+            MarginLeft="2" MarginRight="2" Brush="Commander.Tab.Button"
+            Command.Click="ExecuteSelectTroops" IsSelected="@IsTroopsSelected">
+            <Children>
+              <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                Brush="Clan.TabControl.Text" Text="Troops"
+                HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Children>
+          </ButtonWidget>
+          <ButtonWidget Id="ItemsTabButton" DoNotPassEventsToChildren="true"
+            UpdateChildrenStates="true"
+            WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="180"
+            SuggestedHeight="40"
+            MarginLeft="2" MarginRight="2" Brush="Commander.Tab.Button"
+            Command.Click="ExecuteSelectItems" IsSelected="@IsItemsSelected">
+            <Children>
+              <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                Brush="Clan.TabControl.Text" Text="Items"
+                HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Children>
+          </ButtonWidget>
+          <ButtonWidget Id="CharactersTabButton" DoNotPassEventsToChildren="true"
+            UpdateChildrenStates="true"
+            WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="180"
+            SuggestedHeight="40"
+            MarginLeft="2" MarginRight="2" Brush="Commander.Tab.Button"
+            Command.Click="ExecuteSelectCharacters" IsSelected="@IsCharactersSelected">
+            <Children>
+              <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                Brush="Clan.TabControl.Text" Text="Characters"
+                HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Children>
+          </ButtonWidget>
+        </Children>
+      </ListPanel>
+      <Widget Id="ModeTabsBottomBorder" WidthSizePolicy="StretchToParent"
+        HeightSizePolicy="Fixed" SuggestedHeight="2"
+        VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#3D3D3DFF" />
+    </Children>
+    </Widget>
+  </Window>
+</Prefab>

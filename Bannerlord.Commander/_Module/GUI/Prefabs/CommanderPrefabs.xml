@@ -2,21 +2,45 @@
 <Prefab xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../schemas/gauntletui.xsd">
   
-  <!-- Hero Editor Left Column Component -->
+  <!-- Common Components -->
+  <Widget Id="Commander.HeaderBar">
+    <Children>
+      <CommanderHeaderBar />
+    </Children>
+  </Widget>
+
+  <Widget Id="Commander.ModeTabsBar">
+    <Children>
+      <CommanderModeTabsBar />
+    </Children>
+  </Widget>
+
+  <Widget Id="Commander.FooterBar">
+    <Children>
+      <CommanderFooterBar />
+    </Children>
+  </Widget>
+
+  <!-- Heroes Mode Components -->
+  <Widget Id="HeroesMode.ListPanel">
+    <Children>
+      <CommanderHeroListPanel />
+    </Children>
+  </Widget>
+
+  <!-- Hero Editor Components -->
   <Widget Id="HeroEditor.InfoColumn">
     <Children>
       <HeroInfoColumn />
     </Children>
   </Widget>
 
-  <!-- Hero Editor Center Column Component -->
   <Widget Id="HeroEditor.CharacterColumn">
     <Children>
       <HeroCharacterColumn />
     </Children>
   </Widget>
 
-  <!-- Hero Editor Right Column Component -->
   <Widget Id="HeroEditor.SkillsColumn">
     <Children>
       <HeroSkillsColumn />

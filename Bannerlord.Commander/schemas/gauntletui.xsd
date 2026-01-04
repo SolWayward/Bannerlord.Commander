@@ -168,6 +168,10 @@
       <xs:element name="HeroCharacterColumn" type="WidgetType"/>
       <xs:element name="HeroSkillsColumn" type="WidgetType"/>
       <xs:element name="SkillIconVisualWidget" type="WidgetType"/>
+      <xs:element name="CommanderHeaderBar" type="WidgetType"/>
+      <xs:element name="CommanderModeTabsBar" type="WidgetType"/>
+      <xs:element name="CommanderFooterBar" type="WidgetType"/>
+      <xs:element name="CommanderHeroListPanel" type="WidgetType"/>
     </xs:choice>
   </xs:group>
   

@@ -1,0 +1,53 @@
+<Prefab>
+  <Parameters>
+  </Parameters>
+  <Window>
+    <Widget Id="CommanderHeaderBar" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+      SuggestedHeight="60"
+      VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#2a2a2aFF">
+      <Children>
+        <Widget Id="HeaderTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2"
+          VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <RichTextWidget Id="TitleText" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          HorizontalAlignment="Center" VerticalAlignment="Center"
+          Brush="TownManagement.Description.Title.Text" Brush.FontSize="28"
+          Brush.TextHorizontalAlignment="Center" Text="@TitleText" />
+        <Widget Id="FilterContainer" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed"
+          SuggestedHeight="28"
+          HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="70">
+          <Children>
+            <TextWidget Id="FilterLabel" WidthSizePolicy="CoverChildren"
+              HeightSizePolicy="StretchToParent"
+              Brush="Clan.TabControl.Text" Brush.FontSize="16" Text="Filter" MarginRight="8" />
+            <Widget Id="FilterInputContainer" WidthSizePolicy="Fixed"
+              HeightSizePolicy="StretchToParent" SuggestedWidth="250"
+              MarginLeft="45" Sprite="BlankWhiteSquare_9" Color="#1a1a1aFF">
+              <Children>
+                <Widget Id="FilterTopBorder" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="Fixed" SuggestedHeight="2"
+                  VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget Id="FilterBottomBorder" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="Fixed" SuggestedHeight="2"
+                  VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget Id="FilterLeftBorder" WidthSizePolicy="Fixed"
+                  HeightSizePolicy="StretchToParent" SuggestedWidth="2"
+                  HorizontalAlignment="Left" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget Id="FilterRightBorder" WidthSizePolicy="Fixed"
+                  HeightSizePolicy="StretchToParent" SuggestedWidth="2"
+                  HorizontalAlignment="Right" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <EditableTextWidget Id="SearchInputWidget" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent" MarginLeft="6" MarginRight="6"
+                  Brush="Clan.TabControl.Text" Brush.FontSize="14" Text="@FilterText" />
+              </Children>
+            </Widget>
+          </Children>
+        </Widget>
+        <Widget Id="HeaderBottomBorder" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="Fixed" SuggestedHeight="2"
+          VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

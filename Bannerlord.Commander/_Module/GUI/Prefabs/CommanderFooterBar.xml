@@ -1,0 +1,37 @@
+<Prefab>
+  <Parameters>
+  </Parameters>
+  <Window>
+    <Widget Id="CommanderFooterBar" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+    SuggestedHeight="50"
+    VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#2a2a2aFF">
+    <Children>
+      <Widget Id="FooterTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        SuggestedHeight="2"
+        VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+      <Widget Id="LoadingStatusContainer" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+        SuggestedWidth="200" SuggestedHeight="36"
+        HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="25"
+        Sprite="BlankWhiteSquare_9" Color="#252525DD">
+        <Children>
+          <TextWidget Id="LoadingStatusText" WidthSizePolicy="StretchToParent"
+            HeightSizePolicy="StretchToParent"
+            Brush="TownManagement.Description.Title.Text" Brush.FontSize="16"
+            Text="@LoadingStatusText" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Children>
+      </Widget>
+      <ButtonWidget Id="CloseButton" DoNotPassEventsToChildren="true"
+        UpdateChildrenStates="true"
+        WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="120"
+        SuggestedHeight="36"
+        HorizontalAlignment="Center" VerticalAlignment="Center" Command.Click="ExecuteClose">
+        <Children>
+          <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            Brush="Clan.TabControl.Text" Text="Close" />
+        </Children>
+      </ButtonWidget>
+    </Children>
+    </Widget>
+  </Window>
+</Prefab>
