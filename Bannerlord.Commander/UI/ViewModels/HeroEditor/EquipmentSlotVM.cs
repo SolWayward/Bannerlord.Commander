@@ -19,6 +19,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         private ItemImageIdentifierVM _imageIdentifier;
         private int _itemModifier;
         private string _emptySlotSprite;
+        private bool _isSelected;
 
         #endregion
 
@@ -42,6 +43,18 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Command handler for slot selection.
+        /// Toggles the IsSelected state for this slot.
+        /// Future enhancement: Implement equipment management UI when slot is selected.
+        /// </summary>
+        public void ExecuteSelectSlot()
+        {
+            IsSelected = !IsSelected;
+            // TODO: Future enhancement - open equipment selection/management UI
+            // This will be implemented when equipment management features are added
+        }
 
         /// <summary>
         /// Refreshes this slot with new equipment data.
@@ -88,6 +101,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             ItemModifier = 0;
             ImageIdentifier = null;
             EmptySlotSprite = "Inventory\\empty_head_slot";
+            IsSelected = false;
         }
 
         public override void OnFinalize()
@@ -211,6 +225,25 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 {
                     _emptySlotSprite = value;
                     OnPropertyChangedWithValue(value, nameof(EmptySlotSprite));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether this equipment slot is currently selected.
+        /// Used by CommanderEquipmentSlotWidget to control background state (Default vs Selected).
+        /// Can be set externally for future slot selection/management features.
+        /// </summary>
+        [DataSourceProperty]
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                if (_isSelected != value)
+                {
+                    _isSelected = value;
+                    OnPropertyChanged(nameof(IsSelected));
                 }
             }
         }

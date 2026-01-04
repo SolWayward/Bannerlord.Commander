@@ -594,20 +594,18 @@
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="3">
+                                        MarginBottom="3"
+                                        Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="HeadBackground"
                                                  WidthSizePolicy="StretchToParent"
                                                  HeightSizePolicy="StretchToParent"
                                                  Brush="InventoryHelmetSlot" />
-                                    <InventoryEquippedItemSlotWidget Id="HeadSlotWidget"
-                                                                     WidthSizePolicy="StretchToParent"
-                                                                     HeightSizePolicy="StretchToParent"
-                                                                     TargetEquipmentIndex="0"
-                                                                     ItemType="@TypeName"
-                                                                     Background="..\HeadBackground"
-                                                                     ImageIdentifier="ImageIdentifier"
-                                                                     IsSelected="@IsSelected">
+                                    <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                                                                  HeightSizePolicy="StretchToParent"
+                                                                  Background="..\HeadBackground"
+                                                                  ImageIdentifier="ImageIdentifier"
+                                                                  IsSelected="@IsSelected">
                                       <Children>
                                         <Widget WidthSizePolicy="StretchToParent"
                                                 HeightSizePolicy="StretchToParent"
@@ -622,7 +620,7 @@
                                                                AdditionalArgs="@AdditionalArgs"
                                                                TextureProviderName="@TextureProviderName" />
                                       </Children>
-                                    </InventoryEquippedItemSlotWidget>
+                                    </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                                 
@@ -632,13 +630,13 @@
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="3">
+                                        MarginBottom="3" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="CapeBackground"
                                                  WidthSizePolicy="StretchToParent"
                                                  HeightSizePolicy="StretchToParent"
                                                  Brush="InventoryCloakSlot" />
-                                    <InventoryEquippedItemSlotWidget WidthSizePolicy="StretchToParent"
+                                    <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                                                                      HeightSizePolicy="StretchToParent"
                                                                      TargetEquipmentIndex="1"
                                                                      ItemType="@TypeName"
@@ -659,7 +657,7 @@
                                                                AdditionalArgs="@AdditionalArgs"
                                                                TextureProviderName="@TextureProviderName" />
                                       </Children>
-                                    </InventoryEquippedItemSlotWidget>
+                                    </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                                 
@@ -669,13 +667,13 @@
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="3">
+                                        MarginBottom="3" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="BodyBackground"
                                                  WidthSizePolicy="StretchToParent"
                                                  HeightSizePolicy="StretchToParent"
                                                  Brush="InventoryArmorSlot" />
-                                    <InventoryEquippedItemSlotWidget WidthSizePolicy="StretchToParent"
+                                    <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                                                                      HeightSizePolicy="StretchToParent"
                                                                      TargetEquipmentIndex="2"
                                                                      ItemType="@TypeName"
@@ -696,7 +694,7 @@
                                                                AdditionalArgs="@AdditionalArgs"
                                                                TextureProviderName="@TextureProviderName" />
                                       </Children>
-                                    </InventoryEquippedItemSlotWidget>
+                                    </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                                 
@@ -706,13 +704,13 @@
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="3">
+                                        MarginBottom="3" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="GlovesBackground"
                                                  WidthSizePolicy="StretchToParent"
                                                  HeightSizePolicy="StretchToParent"
                                                  Brush="InventoryGloveSlot" />
-                                    <InventoryEquippedItemSlotWidget WidthSizePolicy="StretchToParent"
+                                    <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                                                                      HeightSizePolicy="StretchToParent"
                                                                      TargetEquipmentIndex="3"
                                                                      ItemType="@TypeName"
@@ -733,7 +731,7 @@
                                                                AdditionalArgs="@AdditionalArgs"
                                                                TextureProviderName="@TextureProviderName" />
                                       </Children>
-                                    </InventoryEquippedItemSlotWidget>
+                                    </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                                 
@@ -743,13 +741,13 @@
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="3">
+                                        MarginBottom="3" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="LegBackground"
                                                  WidthSizePolicy="StretchToParent"
                                                  HeightSizePolicy="StretchToParent"
                                                  Brush="InventoryWeaponSlot" />
-                                    <InventoryEquippedItemSlotWidget WidthSizePolicy="StretchToParent"
+                                    <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                                                                      HeightSizePolicy="StretchToParent"
                                                                      TargetEquipmentIndex="4"
                                                                      ItemType="@TypeName"
@@ -770,7 +768,7 @@
                                                                AdditionalArgs="@AdditionalArgs"
                                                                TextureProviderName="@TextureProviderName" />
                                       </Children>
-                                    </InventoryEquippedItemSlotWidget>
+                                    </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                                 
@@ -780,13 +778,13 @@
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="3">
+                                        MarginBottom="3" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="HorseBackground"
                                                  WidthSizePolicy="StretchToParent"
                                                  HeightSizePolicy="StretchToParent"
                                                  Brush="InventoryWeaponSlot" />
-                                    <InventoryEquippedItemSlotWidget WidthSizePolicy="StretchToParent"
+                                    <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                                                                      HeightSizePolicy="StretchToParent"
                                                                      TargetEquipmentIndex="10"
                                                                      ItemType="@TypeName"
@@ -807,7 +805,7 @@
                                                                AdditionalArgs="@AdditionalArgs"
                                                                TextureProviderName="@TextureProviderName" />
                                       </Children>
-                                    </InventoryEquippedItemSlotWidget>
+                                    </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                                 
@@ -817,13 +815,13 @@
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="65"
                                         SuggestedHeight="65"
-                                        MarginBottom="3">
+                                        MarginBottom="3" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="HarnessBackground"
                                                  WidthSizePolicy="StretchToParent"
                                                  HeightSizePolicy="StretchToParent"
                                                  Brush="InventoryWeaponSlot" />
-                                    <InventoryEquippedItemSlotWidget WidthSizePolicy="StretchToParent"
+                                    <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                                                                      HeightSizePolicy="StretchToParent"
                                                                      TargetEquipmentIndex="11"
                                                                      ItemType="@TypeName"
@@ -844,7 +842,7 @@
                                                                AdditionalArgs="@AdditionalArgs"
                                                                TextureProviderName="@TextureProviderName" />
                                       </Children>
-                                    </InventoryEquippedItemSlotWidget>
+                                    </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                               </Children>
@@ -888,13 +886,13 @@
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="45"
                                         SuggestedHeight="45"
-                                        MarginBottom="2">
+                                        MarginBottom="2" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="Weapon0Background"
                                                  WidthSizePolicy="StretchToParent"
                                                  HeightSizePolicy="StretchToParent"
                                                  Brush="InventoryWeaponSlot" />
-                                    <InventoryEquippedItemSlotWidget WidthSizePolicy="StretchToParent"
+                                    <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                                                                      HeightSizePolicy="StretchToParent"
                                                                      TargetEquipmentIndex="5"
                                                                      ItemType="@TypeName"
@@ -915,7 +913,7 @@
                                                                AdditionalArgs="@AdditionalArgs"
                                                                TextureProviderName="@TextureProviderName" />
                                       </Children>
-                                    </InventoryEquippedItemSlotWidget>
+                                    </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                                 
@@ -925,13 +923,13 @@
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="45"
                                         SuggestedHeight="45"
-                                        MarginBottom="2">
+                                        MarginBottom="2" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="Weapon1Background"
                                                  WidthSizePolicy="StretchToParent"
                                                  HeightSizePolicy="StretchToParent"
                                                  Brush="InventoryWeaponSlot" />
-                                    <InventoryEquippedItemSlotWidget WidthSizePolicy="StretchToParent"
+                                    <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                                                                      HeightSizePolicy="StretchToParent"
                                                                      TargetEquipmentIndex="6"
                                                                      ItemType="@TypeName"
@@ -952,7 +950,7 @@
                                                                AdditionalArgs="@AdditionalArgs"
                                                                TextureProviderName="@TextureProviderName" />
                                       </Children>
-                                    </InventoryEquippedItemSlotWidget>
+                                    </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                                 
@@ -962,13 +960,13 @@
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="45"
                                         SuggestedHeight="45"
-                                        MarginBottom="2">
+                                        MarginBottom="2" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="Weapon2Background"
                                                  WidthSizePolicy="StretchToParent"
                                                  HeightSizePolicy="StretchToParent"
                                                  Brush="InventoryWeaponSlot" />
-                                    <InventoryEquippedItemSlotWidget WidthSizePolicy="StretchToParent"
+                                    <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                                                                      HeightSizePolicy="StretchToParent"
                                                                      TargetEquipmentIndex="7"
                                                                      ItemType="@TypeName"
@@ -989,7 +987,7 @@
                                                                AdditionalArgs="@AdditionalArgs"
                                                                TextureProviderName="@TextureProviderName" />
                                       </Children>
-                                    </InventoryEquippedItemSlotWidget>
+                                    </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                                 
@@ -999,13 +997,13 @@
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="45"
                                         SuggestedHeight="45"
-                                        MarginBottom="2">
+                                        MarginBottom="2" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="Weapon3Background"
                                                  WidthSizePolicy="StretchToParent"
                                                  HeightSizePolicy="StretchToParent"
                                                  Brush="InventoryWeaponSlot" />
-                                    <InventoryEquippedItemSlotWidget WidthSizePolicy="StretchToParent"
+                                    <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                                                                      HeightSizePolicy="StretchToParent"
                                                                      TargetEquipmentIndex="8"
                                                                      ItemType="@TypeName"
@@ -1026,7 +1024,7 @@
                                                                AdditionalArgs="@AdditionalArgs"
                                                                TextureProviderName="@TextureProviderName" />
                                       </Children>
-                                    </InventoryEquippedItemSlotWidget>
+                                    </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                                 
@@ -1036,13 +1034,13 @@
                                         HeightSizePolicy="Fixed"
                                         SuggestedWidth="45"
                                         SuggestedHeight="45"
-                                        MarginBottom="2">
+                                        MarginBottom="2" Command.Click="ExecuteSelectSlot">
                                   <Children>
                                     <BrushWidget Id="BannerBackground"
                                                  WidthSizePolicy="StretchToParent"
                                                  HeightSizePolicy="StretchToParent"
                                                  Brush="InventoryWeaponSlot" />
-                                    <InventoryEquippedItemSlotWidget WidthSizePolicy="StretchToParent"
+                                    <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
                                                                      HeightSizePolicy="StretchToParent"
                                                                      TargetEquipmentIndex="9"
                                                                      ItemType="@TypeName"
@@ -1063,7 +1061,7 @@
                                                                AdditionalArgs="@AdditionalArgs"
                                                                TextureProviderName="@TextureProviderName" />
                                       </Children>
-                                    </InventoryEquippedItemSlotWidget>
+                                    </CommanderEquipmentSlotWidget>
                                   </Children>
                                 </Widget>
                               </Children>
@@ -1323,5 +1321,6 @@
     </Widget>
   </Window>
 </Prefab>
+
 
 

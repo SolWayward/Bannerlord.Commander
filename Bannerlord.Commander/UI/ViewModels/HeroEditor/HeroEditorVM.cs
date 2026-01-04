@@ -1,8 +1,6 @@
 using System;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
 using TaleWorlds.Core;
-using TaleWorlds.Core.ViewModelCollection.ImageIdentifiers;
 using TaleWorlds.Library;
 
 namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
@@ -10,7 +8,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
     /// <summary>
     /// Main ViewModel for the Hero Editor Panel.
     /// Coordinates all sub-ViewModels and responds to hero selection changes.
-    /// Equipment slots use native SPItemVM for full compatibility with native widgets.
+    /// Equipment slots use custom EquipmentSlotVM for standalone equipment display without InventoryLogic dependency.
     /// </summary>
     public class HeroEditorVM : ViewModel, IHeroSelectionHandler
     {
@@ -28,19 +26,19 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         private bool _isVisible;
         private string _selectedHeroStringId;
 
-        // Individual equipment slots using native SPItemVM for proper widget compatibility
-        private SPItemVM _headSlot;
-        private SPItemVM _capeSlot;
-        private SPItemVM _bodySlot;
-        private SPItemVM _glovesSlot;
-        private SPItemVM _legSlot;
-        private SPItemVM _horseSlot;
-        private SPItemVM _horseHarnessSlot;
-        private SPItemVM _weapon0Slot;
-        private SPItemVM _weapon1Slot;
-        private SPItemVM _weapon2Slot;
-        private SPItemVM _weapon3Slot;
-        private SPItemVM _bannerSlot;
+        // Individual equipment slots using custom EquipmentSlotVM for standalone equipment display
+        private EquipmentSlotVM _headSlot;
+        private EquipmentSlotVM _capeSlot;
+        private EquipmentSlotVM _bodySlot;
+        private EquipmentSlotVM _glovesSlot;
+        private EquipmentSlotVM _legSlot;
+        private EquipmentSlotVM _horseSlot;
+        private EquipmentSlotVM _horseHarnessSlot;
+        private EquipmentSlotVM _weapon0Slot;
+        private EquipmentSlotVM _weapon1Slot;
+        private EquipmentSlotVM _weapon2Slot;
+        private EquipmentSlotVM _weapon3Slot;
+        private EquipmentSlotVM _bannerSlot;
 
         #endregion
 
@@ -60,7 +58,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             IsVisible = false;
             SelectedHeroStringId = "";
 
-            // Initialize equipment slots - following native SPInventoryVM pattern
+            // Initialize equipment slots with custom EquipmentSlotVM
             HeadSlot = new();
             CapeSlot = new();
             BodySlot = new();
@@ -89,7 +87,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         public void RefreshForHero(Hero hero)
         {
             _hero = hero;
-            
+
             if (_hero != null)
             {
                 SelectedHeroStringId = _hero.StringId ?? "";
@@ -100,10 +98,10 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 HeroSkills?.RefreshForHero(_hero);
                 HeroEquipment?.RefreshForHero(_hero);
                 HeroCharacter?.RefreshForHero(_hero);
-                
+
                 // Refresh equipment slots directly - following native pattern
                 RefreshEquipmentSlots();
-                
+
                 IsVisible = true;
             }
             else
@@ -120,7 +118,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             _hero = null;
             IsVisible = false;
             SelectedHeroStringId = "";
-            
+
             HeroInfo?.Clear();
             HeroIdentity?.Clear();
             HeroCultureClan?.Clear();
@@ -128,20 +126,20 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             HeroSkills?.Clear();
             HeroEquipment?.Clear();
             HeroCharacter?.Clear();
-            
-            // Reset equipment slots to empty - using native SPItemVM empty constructor
-            HeadSlot = new();
-            CapeSlot = new();
-            BodySlot = new();
-            GlovesSlot = new();
-            LegSlot = new();
-            HorseSlot = new();
-            HorseHarnessSlot = new();
-            Weapon0Slot = new();
-            Weapon1Slot = new();
-            Weapon2Slot = new();
-            Weapon3Slot = new();
-            BannerSlot = new();
+
+            // Reset equipment slots to empty state
+            HeadSlot.Reset();
+            CapeSlot.Reset();
+            BodySlot.Reset();
+            GlovesSlot.Reset();
+            LegSlot.Reset();
+            HorseSlot.Reset();
+            HorseHarnessSlot.Reset();
+            Weapon0Slot.Reset();
+            Weapon1Slot.Reset();
+            Weapon2Slot.Reset();
+            Weapon3Slot.Reset();
+            BannerSlot.Reset();
         }
 
         /// <summary>
@@ -162,10 +160,10 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         public override void OnFinalize()
         {
             base.OnFinalize();
-            
+
             // Unsubscribe from events
             HeroEquipment.PropertyChanged -= OnEquipmentPropertyChanged;
-            
+
             HeroInfo?.OnFinalize();
             HeroIdentity?.OnFinalize();
             HeroCultureClan?.OnFinalize();
@@ -173,7 +171,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             HeroSkills?.OnFinalize();
             HeroEquipment?.OnFinalize();
             HeroCharacter?.OnFinalize();
-            
+
             // Finalize equipment slots
             HeadSlot?.OnFinalize();
             CapeSlot?.OnFinalize();
@@ -315,88 +313,87 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         }
 
         /// <summary>
-        /// Gets the head/helmet equipment slot using native SPItemVM.
-        /// Following native SPInventoryVM.CharacterHelmSlot pattern.
+        /// Gets the head/helmet equipment slot.
         /// </summary>
         [DataSourceProperty]
-        public SPItemVM HeadSlot
+        public EquipmentSlotVM HeadSlot
         {
             get => _headSlot;
             private set => SetProperty(ref _headSlot, value, nameof(HeadSlot));
         }
 
         [DataSourceProperty]
-        public SPItemVM CapeSlot
+        public EquipmentSlotVM CapeSlot
         {
             get => _capeSlot;
             private set => SetProperty(ref _capeSlot, value, nameof(CapeSlot));
         }
 
         [DataSourceProperty]
-        public SPItemVM BodySlot
+        public EquipmentSlotVM BodySlot
         {
             get => _bodySlot;
             private set => SetProperty(ref _bodySlot, value, nameof(BodySlot));
         }
 
         [DataSourceProperty]
-        public SPItemVM GlovesSlot
+        public EquipmentSlotVM GlovesSlot
         {
             get => _glovesSlot;
             private set => SetProperty(ref _glovesSlot, value, nameof(GlovesSlot));
         }
 
         [DataSourceProperty]
-        public SPItemVM LegSlot
+        public EquipmentSlotVM LegSlot
         {
             get => _legSlot;
             private set => SetProperty(ref _legSlot, value, nameof(LegSlot));
         }
 
         [DataSourceProperty]
-        public SPItemVM HorseSlot
+        public EquipmentSlotVM HorseSlot
         {
             get => _horseSlot;
             private set => SetProperty(ref _horseSlot, value, nameof(HorseSlot));
         }
 
         [DataSourceProperty]
-        public SPItemVM HorseHarnessSlot
+        public EquipmentSlotVM HorseHarnessSlot
         {
             get => _horseHarnessSlot;
             private set => SetProperty(ref _horseHarnessSlot, value, nameof(HorseHarnessSlot));
         }
 
         [DataSourceProperty]
-        public SPItemVM Weapon0Slot
+        public EquipmentSlotVM Weapon0Slot
         {
             get => _weapon0Slot;
             private set => SetProperty(ref _weapon0Slot, value, nameof(Weapon0Slot));
         }
 
         [DataSourceProperty]
-        public SPItemVM Weapon1Slot
+        public EquipmentSlotVM Weapon1Slot
         {
             get => _weapon1Slot;
             private set => SetProperty(ref _weapon1Slot, value, nameof(Weapon1Slot));
         }
 
         [DataSourceProperty]
-        public SPItemVM Weapon2Slot
+        public EquipmentSlotVM Weapon2Slot
         {
             get => _weapon2Slot;
             private set => SetProperty(ref _weapon2Slot, value, nameof(Weapon2Slot));
         }
 
         [DataSourceProperty]
-        public SPItemVM Weapon3Slot
+        public EquipmentSlotVM Weapon3Slot
         {
             get => _weapon3Slot;
             private set => SetProperty(ref _weapon3Slot, value, nameof(Weapon3Slot));
         }
 
         [DataSourceProperty]
-        public SPItemVM BannerSlot
+        public EquipmentSlotVM BannerSlot
         {
             get => _bannerSlot;
             private set => SetProperty(ref _bannerSlot, value, nameof(BannerSlot));
@@ -447,7 +444,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 
         /// <summary>
         /// Refreshes equipment slots with data from current equipment loadout.
-        /// Creates new SPItemVM instances for each slot using native pattern.
+        /// Uses EquipmentSlotVM.RefreshWith() to update existing slot instances.
         /// </summary>
         private void RefreshEquipmentSlots()
         {
@@ -465,79 +462,23 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 return;
             }
 
-            // Update each slot - creating new SPItemVM instances for proper native compatibility
-            HeadSlot = CreateEquipmentSlotVM(equipment[EquipmentIndex.Head], EquipmentIndex.Head);
-            CapeSlot = CreateEquipmentSlotVM(equipment[EquipmentIndex.Cape], EquipmentIndex.Cape);
-            BodySlot = CreateEquipmentSlotVM(equipment[EquipmentIndex.Body], EquipmentIndex.Body);
-            GlovesSlot = CreateEquipmentSlotVM(equipment[EquipmentIndex.Gloves], EquipmentIndex.Gloves);
-            LegSlot = CreateEquipmentSlotVM(equipment[EquipmentIndex.Leg], EquipmentIndex.Leg);
-            HorseSlot = CreateEquipmentSlotVM(equipment[EquipmentIndex.Horse], EquipmentIndex.Horse);
-            HorseHarnessSlot = CreateEquipmentSlotVM(equipment[EquipmentIndex.HorseHarness], EquipmentIndex.HorseHarness);
+            // Update each slot using EquipmentSlotVM.RefreshWith()
+            HeadSlot.RefreshWith(EquipmentIndex.Head, equipment[EquipmentIndex.Head]);
+            CapeSlot.RefreshWith(EquipmentIndex.Cape, equipment[EquipmentIndex.Cape]);
+            BodySlot.RefreshWith(EquipmentIndex.Body, equipment[EquipmentIndex.Body]);
+            GlovesSlot.RefreshWith(EquipmentIndex.Gloves, equipment[EquipmentIndex.Gloves]);
+            LegSlot.RefreshWith(EquipmentIndex.Leg, equipment[EquipmentIndex.Leg]);
+            HorseSlot.RefreshWith(EquipmentIndex.Horse, equipment[EquipmentIndex.Horse]);
+            HorseHarnessSlot.RefreshWith(EquipmentIndex.HorseHarness, equipment[EquipmentIndex.HorseHarness]);
 
             // Update weapon slots
-            Weapon0Slot = CreateEquipmentSlotVM(equipment[EquipmentIndex.Weapon0], EquipmentIndex.Weapon0);
-            Weapon1Slot = CreateEquipmentSlotVM(equipment[EquipmentIndex.Weapon1], EquipmentIndex.Weapon1);
-            Weapon2Slot = CreateEquipmentSlotVM(equipment[EquipmentIndex.Weapon2], EquipmentIndex.Weapon2);
-            Weapon3Slot = CreateEquipmentSlotVM(equipment[EquipmentIndex.Weapon3], EquipmentIndex.Weapon3);
+            Weapon0Slot.RefreshWith(EquipmentIndex.Weapon0, equipment[EquipmentIndex.Weapon0]);
+            Weapon1Slot.RefreshWith(EquipmentIndex.Weapon1, equipment[EquipmentIndex.Weapon1]);
+            Weapon2Slot.RefreshWith(EquipmentIndex.Weapon2, equipment[EquipmentIndex.Weapon2]);
+            Weapon3Slot.RefreshWith(EquipmentIndex.Weapon3, equipment[EquipmentIndex.Weapon3]);
 
             // Update banner slot
-            BannerSlot = CreateEquipmentSlotVM(equipment[EquipmentIndex.ExtraWeaponSlot], EquipmentIndex.ExtraWeaponSlot);
-        }
-
-        /// <summary>
-        /// Creates an SPItemVM from an equipment element.
-        /// Uses native pattern: empty constructor for empty slots, manual property setup for equipped items.
-        /// </summary>
-        /// <param name="element">Equipment element to create slot for</param>
-        /// <param name="index">Equipment index for type identification</param>
-        /// <returns>New SPItemVM instance configured for the slot</returns>
-        private SPItemVM CreateEquipmentSlotVM(EquipmentElement element, EquipmentIndex index)
-        {
-            SPItemVM slot = new();
-            
-            if (!element.IsEmpty && element.Item != null)
-            {
-                // Populate slot with item data - following native SPItemVM initialization pattern
-                // Native SPItemVM sets these properties (lines 28-29, 60-64 in decompiled code)
-                slot.StringId = element.Item.StringId ?? "";
-                slot.ImageIdentifier = new ItemImageIdentifierVM(element.Item, "");
-                slot.ItemDescription = element.GetModifiedItemName()?.ToString() ?? element.Item.Name?.ToString() ?? "Unknown";
-                slot.TypeName = GetEquipmentTypeName(index);
-            }
-            else
-            {
-                // Empty slot - following native SPItemVM empty constructor pattern (lines 26-31)
-                // Native sets StringId = "", ImageIdentifier = new ItemImageIdentifierVM(null, "")
-                slot.StringId = "";
-                slot.ImageIdentifier = new ItemImageIdentifierVM(null, "");
-                slot.ItemDescription = "";
-                slot.TypeName = GetEquipmentTypeName(index);
-            }
-
-            return slot;
-        }
-
-        /// <summary>
-        /// Gets a display name for the equipment slot type.
-        /// </summary>
-        private static string GetEquipmentTypeName(EquipmentIndex index)
-        {
-            return index switch
-            {
-                EquipmentIndex.Head => "Head",
-                EquipmentIndex.Cape => "Cape",
-                EquipmentIndex.Body => "Body",
-                EquipmentIndex.Gloves => "Gloves",
-                EquipmentIndex.Leg => "Legs",
-                EquipmentIndex.Horse => "Horse",
-                EquipmentIndex.HorseHarness => "Harness",
-                EquipmentIndex.Weapon0 => "Weapon 1",
-                EquipmentIndex.Weapon1 => "Weapon 2",
-                EquipmentIndex.Weapon2 => "Weapon 3",
-                EquipmentIndex.Weapon3 => "Weapon 4",
-                EquipmentIndex.ExtraWeaponSlot => "Banner",
-                _ => ""
-            };
+            BannerSlot.RefreshWith(EquipmentIndex.ExtraWeaponSlot, equipment[EquipmentIndex.ExtraWeaponSlot]);
         }
 
         #endregion

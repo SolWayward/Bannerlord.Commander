@@ -61,6 +61,11 @@
     <PackageReference Include="BUTR.Harmony.Analyzer" Version="1.0.1.50" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
   </ItemGroup>
 
+  <!-- System.Numerics.Vectors required for ImageIdentifierWidget (TextureWidget uses Vector2) -->
+  <ItemGroup Condition="$(TargetFramework) == 'net472'">
+    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+  </ItemGroup>
+
   <!-- Bannerlord.GameMaster references for Steam/GOG/Epic (net472) -->
   <ItemGroup Condition="$(TargetFramework) == 'net472'">
     <Reference Include="Bannerlord.GameMaster">
