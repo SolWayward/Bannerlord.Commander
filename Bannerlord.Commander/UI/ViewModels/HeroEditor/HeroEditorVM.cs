@@ -100,7 +100,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         /// <summary>
         /// Implementation of IHeroSelectionHandler - called when a hero is selected.
         /// </summary>
-        public void SelectHero(HeroItemVM hero)
+        public void SelectHero(CommanderHeroVM hero)
         {
             if (hero != null)
             {

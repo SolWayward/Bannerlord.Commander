@@ -40,7 +40,7 @@ namespace Bannerlord.Commander.UI.Services
         /// <param name="list">The list to sort (modified in place)</param>
         /// <param name="column">The column to sort by</param>
         /// <param name="ascending">True for ascending order, false for descending</param>
-        public static void Sort(List<HeroItemVM> list, HeroSortColumn column, bool ascending)
+        public static void Sort(List<CommanderHeroVM> list, HeroSortColumn column, bool ascending)
         {
             if (list == null || list.Count == 0)
                 return;
@@ -56,7 +56,7 @@ namespace Bannerlord.Commander.UI.Services
     /// Follows the native inventory pattern exactly with SetSortMode for ascending/descending.
     /// Native pattern: y.CompareTo(x) then multiply by (_isAscending ? -1 : 1)
     /// </summary>
-    public abstract class HeroComparer : IComparer<HeroItemVM>
+    public abstract class HeroComparer : IComparer<CommanderHeroVM>
     {
         protected bool _isAscending = true;
 
@@ -72,13 +72,13 @@ namespace Bannerlord.Commander.UI.Services
         /// <summary>
         /// Compares two heroes for sorting.
         /// </summary>
-        public abstract int Compare(HeroItemVM x, HeroItemVM y);
+        public abstract int Compare(CommanderHeroVM x, CommanderHeroVM y);
 
         /// <summary>
         /// Resolves equality by falling back to name comparison.
         /// Matches native pattern: x.ItemDescription.CompareTo(y.ItemDescription)
         /// </summary>
-        protected int ResolveEquality(HeroItemVM x, HeroItemVM y)
+        protected int ResolveEquality(CommanderHeroVM x, CommanderHeroVM y)
         {
             return (x.Name ?? "").CompareTo(y.Name ?? "");
         }
@@ -90,7 +90,7 @@ namespace Bannerlord.Commander.UI.Services
     /// </summary>
     public class HeroNameComparer : HeroComparer
     {
-        public override int Compare(HeroItemVM x, HeroItemVM y)
+        public override int Compare(CommanderHeroVM x, CommanderHeroVM y)
         {
             // Native pattern: y.CompareTo(x), then adjust for direction
             if (_isAscending)
@@ -106,7 +106,7 @@ namespace Bannerlord.Commander.UI.Services
     /// </summary>
     public class HeroGenderComparer : HeroComparer
     {
-        public override int Compare(HeroItemVM x, HeroItemVM y)
+        public override int Compare(CommanderHeroVM x, CommanderHeroVM y)
         {
             // Native pattern: y.CompareTo(x)
             int num = (y.Gender ?? "").CompareTo(x.Gender ?? "");
@@ -123,7 +123,7 @@ namespace Bannerlord.Commander.UI.Services
     /// </summary>
     public class HeroAgeComparer : HeroComparer
     {
-        public override int Compare(HeroItemVM x, HeroItemVM y)
+        public override int Compare(CommanderHeroVM x, CommanderHeroVM y)
         {
             // Native pattern: y.CompareTo(x)
             int num = y.Age.CompareTo(x.Age);
@@ -140,7 +140,7 @@ namespace Bannerlord.Commander.UI.Services
     /// </summary>
     public class HeroClanComparer : HeroComparer
     {
-        public override int Compare(HeroItemVM x, HeroItemVM y)
+        public override int Compare(CommanderHeroVM x, CommanderHeroVM y)
         {
             // Native pattern: y.CompareTo(x)
             int num = (y.Clan ?? "").CompareTo(x.Clan ?? "");
@@ -157,7 +157,7 @@ namespace Bannerlord.Commander.UI.Services
     /// </summary>
     public class HeroKingdomComparer : HeroComparer
     {
-        public override int Compare(HeroItemVM x, HeroItemVM y)
+        public override int Compare(CommanderHeroVM x, CommanderHeroVM y)
         {
             // Native pattern: y.CompareTo(x)
             int num = (y.Kingdom ?? "").CompareTo(x.Kingdom ?? "");
@@ -174,7 +174,7 @@ namespace Bannerlord.Commander.UI.Services
     /// </summary>
     public class HeroCultureComparer : HeroComparer
     {
-        public override int Compare(HeroItemVM x, HeroItemVM y)
+        public override int Compare(CommanderHeroVM x, CommanderHeroVM y)
         {
             // Native pattern: y.CompareTo(x)
             int num = (y.Culture ?? "").CompareTo(x.Culture ?? "");
@@ -191,7 +191,7 @@ namespace Bannerlord.Commander.UI.Services
     /// </summary>
     public class HeroTypeComparer : HeroComparer
     {
-        public override int Compare(HeroItemVM x, HeroItemVM y)
+        public override int Compare(CommanderHeroVM x, CommanderHeroVM y)
         {
             // Native pattern: y.CompareTo(x)
             int num = (y.HeroType ?? "").CompareTo(x.HeroType ?? "");
@@ -208,7 +208,7 @@ namespace Bannerlord.Commander.UI.Services
     /// </summary>
     public class HeroLevelComparer : HeroComparer
     {
-        public override int Compare(HeroItemVM x, HeroItemVM y)
+        public override int Compare(CommanderHeroVM x, CommanderHeroVM y)
         {
             // Native pattern: y.CompareTo(x)
             int num = y.Level.CompareTo(x.Level);

@@ -7,11 +7,11 @@ namespace Bannerlord.Commander.UI.ViewModels
     /// ViewModel for individual hero items in the list.
     /// Wraps TaleWorlds.CampaignSystem.Hero for UI data binding.
     /// </summary>
-    public class HeroItemVM : ViewModel
+    public class CommanderHeroVM : ViewModel
     {
         private readonly Hero _hero;
         private readonly IHeroSelectionHandler _selectionHandler;
-        
+
         private string _name;
         private string _id;
         private string _clan;
@@ -30,11 +30,11 @@ namespace Bannerlord.Commander.UI.ViewModels
         /// </summary>
         /// <param name="hero">The Hero to wrap</param>
         /// <param name="selectionHandler">Handler for selection events</param>
-        public HeroItemVM(Hero hero, IHeroSelectionHandler selectionHandler)
+        public CommanderHeroVM(Hero hero, IHeroSelectionHandler selectionHandler)
         {
             _hero = hero;
             _selectionHandler = selectionHandler;
-            
+
             InitializeFromHero(hero);
         }
 
@@ -63,18 +63,18 @@ namespace Bannerlord.Commander.UI.ViewModels
         {
             // Check child first - children are always children regardless of other status
             if (hero.IsChild) return "Child";
-            
+
             // Check faction types - bandit faction heroes
             if (hero.Clan?.IsBanditFaction == true) return "Bandit";
-            
+
             // Check minor faction - these are typically mercenary/minor faction lords
             if (hero.Clan?.IsMinorFaction == true) return "Minor Faction";
-            
+
             // Standard hero types
             if (hero.IsLord) return "Lord";
             if (hero.IsWanderer) return "Wanderer";
             if (hero.IsNotable) return "Notable";
-            
+
             // Fallback for any other hero type
             return "Other";
         }

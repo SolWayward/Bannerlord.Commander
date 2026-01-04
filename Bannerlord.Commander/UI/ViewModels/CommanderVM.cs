@@ -65,8 +65,8 @@ namespace Bannerlord.Commander.UI.ViewModels
         private bool _isCharactersSelected;
 
         // Heroes collection - single list, filtering done via IsFiltered property
-        private MBBindingList<HeroItemVM> _heroes;
-        private HeroItemVM _selectedHero;
+        private MBBindingList<CommanderHeroVM> _heroes;
+        private CommanderHeroVM _selectedHero;
 
         // Hero Editor
         private HeroEditorVM _heroEditor;
@@ -78,7 +78,7 @@ namespace Bannerlord.Commander.UI.ViewModels
         private string _loadingStatusText;
 
         // Incremental loading state
-        private List<HeroItemVM> _pendingHeroVMs;
+        private List<CommanderHeroVM> _pendingHeroVMs;
         private int _pendingHeroIndex;
 
         // Deferred loading parameters
@@ -132,7 +132,7 @@ namespace Bannerlord.Commander.UI.ViewModels
         public CommanderVM()
         {
             TitleText = $"COMMANDER {GetVersionString()}";
-            Heroes = new MBBindingList<HeroItemVM>();
+            Heroes = new MBBindingList<CommanderHeroVM>();
 
             // Initialize Hero Editor ViewModel
             HeroEditor = new HeroEditorVM();
@@ -183,7 +183,7 @@ namespace Bannerlord.Commander.UI.ViewModels
         /// <summary>
         /// Selects a hero and deselects all others, then updates HeroEditor
         /// </summary>
-        public void SelectHero(HeroItemVM hero)
+        public void SelectHero(CommanderHeroVM hero)
         {
             if (_selectedHero == hero)
                 return;
@@ -203,7 +203,7 @@ namespace Bannerlord.Commander.UI.ViewModels
             {
                 HeroEditor?.Clear();
             }
-            
+
             OnPropertyChanged(nameof(IsHeroSelected));
         }
 
@@ -305,7 +305,7 @@ namespace Bannerlord.Commander.UI.ViewModels
         }
 
         [DataSourceProperty]
-        public MBBindingList<HeroItemVM> Heroes
+        public MBBindingList<CommanderHeroVM> Heroes
         {
             get => _heroes;
             set => SetProperty(ref _heroes, value, nameof(Heroes));
@@ -506,7 +506,7 @@ namespace Bannerlord.Commander.UI.ViewModels
             _pendingLoadHeroTypes = heroTypes;
             _pendingLoadMatchAll = matchAll;
 
-            Heroes = new MBBindingList<HeroItemVM>();
+            Heroes = new MBBindingList<CommanderHeroVM>();
             _isLoading = true;
             _selectedHero = null;
             LoadingStatusText = "Loading...";
@@ -525,7 +525,7 @@ namespace Bannerlord.Commander.UI.ViewModels
                 _pendingLoadMatchAll,
                 includeDead: false);
 
-            _pendingHeroVMs = rawHeroes.Select(h => new HeroItemVM(h, this)).ToList();
+            _pendingHeroVMs = rawHeroes.Select(h => new CommanderHeroVM(h, this)).ToList();
 
             // Pre-sort the heroes before adding to list
             HeroSorter.Sort(_pendingHeroVMs, _currentSortColumn, _sortAscending);
@@ -798,7 +798,7 @@ namespace Bannerlord.Commander.UI.ViewModels
         /// <summary>
         /// Helper method for MBBindingList property setters
         /// </summary>
-        private bool SetProperty(ref MBBindingList<HeroItemVM> field, MBBindingList<HeroItemVM> value, string propertyName)
+        private bool SetProperty(ref MBBindingList<CommanderHeroVM> field, MBBindingList<CommanderHeroVM> value, string propertyName)
         {
             if (field == value)
                 return false;
