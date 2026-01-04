@@ -4,14 +4,91 @@
   <!-- Root Elements -->
   <xs:element name="Prefab" type="PrefabType"/>
   <xs:element name="Window" type="WindowType"/>
+  <xs:element name="Brushes" type="BrushesType"/>
   
   <!-- Complex Types -->
+  <xs:complexType name="BrushesType">
+    <xs:sequence>
+      <xs:element name="Brush" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Layers" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="BrushLayer" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:attribute name="Name" type="xs:string" use="required"/>
+                      <xs:attribute name="Sprite" type="xs:string"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Styles" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="Style" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="BrushLayer" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:attribute name="Name" type="xs:string" use="required"/>
+                            <xs:attribute name="AlphaFactor" type="xs:float"/>
+                            <xs:attribute name="Color" type="xs:string"/>
+                            <xs:attribute name="ColorFactor" type="xs:float"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attribute name="Name" type="xs:string" use="required"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="SoundProperties" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="EventSounds" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="EventSound" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:attribute name="EventName" type="xs:string" use="required"/>
+                            <xs:attribute name="Audio" type="xs:string" use="required"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="Name" type="xs:string" use="required"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
   <xs:complexType name="PrefabType">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Parameters" type="ParametersType"/>
       <xs:element name="Window" type="WindowType"/>
       <xs:element name="Widget" type="WidgetType"/>
       <xs:element name="Constants" type="ConstantsType"/>
     </xs:choice>
+  </xs:complexType>
+  
+  <xs:complexType name="ParametersType">
+    <xs:sequence>
+      <xs:element name="Parameter" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attribute name="Name" type="xs:string" use="required"/>
+          <xs:attribute name="Type" type="xs:string" use="required"/>
+          <xs:attribute name="Default" type="xs:string"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
   
   <xs:complexType name="ConstantsType">
@@ -35,12 +112,19 @@
   <xs:complexType name="WidgetType" mixed="true">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
       <xs:element name="Children" type="ChildrenType"/>
+      <xs:element name="ItemTemplate" type="ItemTemplateType"/>
       <xs:group ref="WidgetElements"/>
     </xs:choice>
     <xs:attributeGroup ref="CommonAttributes"/>
   </xs:complexType>
   
   <xs:complexType name="ChildrenType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:group ref="WidgetElements"/>
+    </xs:choice>
+  </xs:complexType>
+  
+  <xs:complexType name="ItemTemplateType">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
       <xs:group ref="WidgetElements"/>
     </xs:choice>
@@ -75,6 +159,15 @@
       <xs:element name="TabbedPanel" type="WidgetType"/>
       <xs:element name="Tree" type="WidgetType"/>
       <xs:element name="Container" type="WidgetType"/>
+      <xs:element name="ScrollbarWidget" type="WidgetType"/>
+      <xs:element name="ImageIdentifierWidget" type="WidgetType"/>
+      <xs:element name="CommanderEquipmentSlotWidget" type="WidgetType"/>
+      <xs:element name="CharacterTableauWidget" type="WidgetType"/>
+      <xs:element name="InventoryEquippedItemSlot" type="WidgetType"/>
+      <xs:element name="HeroInfoColumn" type="WidgetType"/>
+      <xs:element name="HeroCharacterColumn" type="WidgetType"/>
+      <xs:element name="HeroSkillsColumn" type="WidgetType"/>
+      <xs:element name="SkillIconVisualWidget" type="WidgetType"/>
     </xs:choice>
   </xs:group>
   
@@ -85,9 +178,9 @@
     <xs:attribute name="DataSource" type="xs:string"/>
     <xs:attribute name="DoNotAcceptEvents" type="xs:boolean"/>
     <xs:attribute name="DoNotPassEventsToChildren" type="xs:boolean"/>
-    <xs:attribute name="IsEnabled" type="xs:boolean"/>
-    <xs:attribute name="IsVisible" type="xs:boolean"/>
-    <xs:attribute name="IsHidden" type="xs:boolean"/>
+    <xs:attribute name="IsEnabled" type="BooleanOrBindingType"/>
+    <xs:attribute name="IsVisible" type="BooleanOrBindingType"/>
+    <xs:attribute name="IsHidden" type="BooleanOrBindingType"/>
     
     <!-- Size Properties -->
     <xs:attribute name="WidthSizePolicy" type="SizePolicyType"/>

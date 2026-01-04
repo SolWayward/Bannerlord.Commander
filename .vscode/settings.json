@@ -54,12 +54,8 @@
   // XML catalog for schema validation
   "xml.fileAssociations": [
     {
-      "pattern": "**/GUI/**/*.xml",
-      "systemId": "Bannerlord.Commander/schemas/gauntletui.xsd"
-    },
-    {
-      "pattern": "**/GUI/Prefabs/*.xml",
-      "systemId": "Bannerlord.Commander/schemas/gauntletui.xsd"
+      "pattern": "**/_Module/GUI/**/*.xml",
+      "systemId": "file:///c:/Users/Shadow/source/repos/Bannerlord.Commander/Bannerlord.Commander/schemas/gauntletui.xsd"
     }
   ]
 }
