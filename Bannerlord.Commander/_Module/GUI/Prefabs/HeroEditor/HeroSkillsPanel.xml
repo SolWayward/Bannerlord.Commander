@@ -2,7 +2,7 @@
 <Prefab>
   <Window>
     <!-- Hero Skills Panel: All 18 Skills Grouped by 6 Attributes -->
-    <Widget DataSource="{HeroSkills}"
+    <Widget Id="SkillsPanelRoot" DataSource="{HeroSkills}"
             WidthSizePolicy="StretchToParent"
             HeightSizePolicy="CoverChildren"
             Sprite="BlankWhiteSquare_9"
@@ -10,21 +10,21 @@
       <Children>
         
         <!-- Border Frame -->
-        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <Widget Id="SkillsPanelTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                 SuggestedHeight="2" VerticalAlignment="Top"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <Widget Id="SkillsPanelBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                 SuggestedHeight="2" VerticalAlignment="Bottom"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+        <Widget Id="SkillsPanelLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                 SuggestedWidth="2" HorizontalAlignment="Left"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+        <Widget Id="SkillsPanelRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                 SuggestedWidth="2" HorizontalAlignment="Right"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
         
         <!-- Content Container -->
-        <ListPanel WidthSizePolicy="StretchToParent"
+        <ListPanel Id="SkillsPanelContent" WidthSizePolicy="StretchToParent"
                    HeightSizePolicy="CoverChildren"
                    MarginTop="15"
                    MarginBottom="15"
@@ -34,19 +34,19 @@
           <Children>
             
             <!-- Level Display -->
-            <Widget WidthSizePolicy="StretchToParent"
+            <Widget Id="LevelDisplayContainer" WidthSizePolicy="StretchToParent"
                     HeightSizePolicy="Fixed"
                     SuggestedHeight="30"
                     MarginBottom="15">
               <Children>
-                <TextWidget WidthSizePolicy="CoverChildren"
+                <TextWidget Id="LevelLabel" WidthSizePolicy="CoverChildren"
                            HeightSizePolicy="StretchToParent"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Brush="TownManagement.Description.Title.Text"
                            Brush.FontSize="22"
                            Text="Level: " />
-                <TextWidget WidthSizePolicy="CoverChildren"
+                <TextWidget Id="LevelValue" WidthSizePolicy="CoverChildren"
                            HeightSizePolicy="StretchToParent"
                            MarginLeft="80"
                            HorizontalAlignment="Center"
@@ -58,57 +58,57 @@
             </Widget>
             
             <!-- Attribute Groups List (Simplified - no scrollbar for now) -->
-            <ListPanel WidthSizePolicy="StretchToParent"
+            <ListPanel Id="AttributeGroupsList" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="CoverChildren"
                       DataSource="{AttributeGroups}"
                       StackLayout.LayoutMethod="VerticalBottomToTop">
-              <Children>
+              <ItemTemplate>
                 <!-- Attribute Group Item Template -->
-                <Widget WidthSizePolicy="StretchToParent"
+                <Widget Id="AttributeGroupContainer" WidthSizePolicy="StretchToParent"
                        HeightSizePolicy="CoverChildren"
                        MarginBottom="20">
                   <Children>
-                    <ListPanel WidthSizePolicy="StretchToParent"
+                    <ListPanel Id="AttributeGroupLayout" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="CoverChildren"
                               StackLayout.LayoutMethod="VerticalBottomToTop">
                       <Children>
                         
                         <!-- Attribute Header -->
-                        <Widget WidthSizePolicy="StretchToParent"
+                        <Widget Id="AttributeHeader" WidthSizePolicy="StretchToParent"
                                 HeightSizePolicy="Fixed"
                                 SuggestedHeight="30"
                                 MarginBottom="10"
                                 Sprite="BlankWhiteSquare_9"
                                 Color="#3a3a3aFF">
                           <Children>
-                            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                            <Widget Id="AttributeHeaderDivider" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                                     SuggestedHeight="1" VerticalAlignment="Bottom"
                                     Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                            <ListPanel WidthSizePolicy="StretchToParent"
+                            <ListPanel Id="AttributeHeaderPanel" WidthSizePolicy="StretchToParent"
                                       HeightSizePolicy="StretchToParent"
                                       MarginLeft="10"
                                       StackLayout.LayoutMethod="HorizontalLeftToRight">
                               <Children>
-                                <TextWidget WidthSizePolicy="CoverChildren"
+                                <TextWidget Id="AttributeName" WidthSizePolicy="CoverChildren"
                                            HeightSizePolicy="StretchToParent"
                                            VerticalAlignment="Center"
                                            Brush="TownManagement.Description.Title.Text"
                                            Brush.FontSize="18"
                                            Text="@AttributeName" />
-                                <TextWidget WidthSizePolicy="CoverChildren"
+                                <TextWidget Id="AttributeValueOpenParen" WidthSizePolicy="CoverChildren"
                                            HeightSizePolicy="StretchToParent"
                                            MarginLeft="10"
                                            VerticalAlignment="Center"
                                            Brush="TownManagement.Description.Value.Text"
                                            Brush.FontSize="18"
                                            Text=" (" />
-                                <TextWidget WidthSizePolicy="CoverChildren"
+                                <TextWidget Id="AttributeValue" WidthSizePolicy="CoverChildren"
                                            HeightSizePolicy="StretchToParent"
                                            VerticalAlignment="Center"
                                            Brush="TownManagement.Description.Value.Text"
                                            Brush.FontSize="18"
                                            IntText="@AttributeValue" />
-                                <TextWidget WidthSizePolicy="CoverChildren"
+                                <TextWidget Id="AttributeValueCloseParen" WidthSizePolicy="CoverChildren"
                                            HeightSizePolicy="StretchToParent"
                                            VerticalAlignment="Center"
                                            Brush="TownManagement.Description.Value.Text"
@@ -120,26 +120,26 @@
                         </Widget>
                         
                         <!-- Skills Grid (3 columns) -->
-                        <GridWidget WidthSizePolicy="StretchToParent"
+                        <GridWidget Id="SkillsGrid" WidthSizePolicy="StretchToParent"
                                    HeightSizePolicy="CoverChildren"
                                    ColumnCount="3"
                                    DefaultCellWidth="150"
                                    DefaultCellHeight="90"
                                    DataSource="{Skills}">
-                          <Children>
+                          <ItemTemplate>
                             <!-- Skill Item -->
-                            <Widget WidthSizePolicy="Fixed"
+                            <Widget Id="SkillItemContainer" WidthSizePolicy="Fixed"
                                    HeightSizePolicy="Fixed"
                                    SuggestedWidth="140"
                                    SuggestedHeight="80">
                               <Children>
-                                <ListPanel WidthSizePolicy="CoverChildren"
+                                <ListPanel Id="SkillItemLayout" WidthSizePolicy="CoverChildren"
                                           HeightSizePolicy="CoverChildren"
                                           HorizontalAlignment="Center"
                                           StackLayout.LayoutMethod="VerticalBottomToTop">
                                   <Children>
                                     <!-- Skill Icon (Placeholder - actual icon rendering may need custom widget) -->
-                                    <Widget WidthSizePolicy="Fixed"
+                                    <Widget Id="SkillIconContainer" WidthSizePolicy="Fixed"
                                            HeightSizePolicy="Fixed"
                                            SuggestedWidth="50"
                                            SuggestedHeight="50"
@@ -148,7 +148,7 @@
                                            Sprite="BlankWhiteSquare_9"
                                            Color="#453920FF">
                                       <Children>
-                                        <TextWidget WidthSizePolicy="StretchToParent"
+                                        <TextWidget Id="SkillValueText" WidthSizePolicy="StretchToParent"
                                                    HeightSizePolicy="StretchToParent"
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
@@ -158,7 +158,7 @@
                                       </Children>
                                     </Widget>
                                     <!-- Skill Name -->
-                                    <TextWidget WidthSizePolicy="Fixed"
+                                    <TextWidget Id="SkillNameText" WidthSizePolicy="Fixed"
                                                HeightSizePolicy="Fixed"
                                                SuggestedWidth="130"
                                                SuggestedHeight="20"
@@ -171,14 +171,14 @@
                                 </ListPanel>
                               </Children>
                             </Widget>
-                          </Children>
+                          </ItemTemplate>
                         </GridWidget>
                         
                       </Children>
                     </ListPanel>
                   </Children>
                 </Widget>
-              </Children>
+              </ItemTemplate>
             </ListPanel>
             
           </Children>

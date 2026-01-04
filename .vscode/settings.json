@@ -1,7 +1,7 @@
 {
   // XML Configuration
   "xml.format.enabled": true,
-  "xml.format.splitAttributes": false,
+  "xml.format.splitAttributes": "preserve",
   "xml.format.joinContentLines": false,
   "xml.format.preserveEmptyContent": true,
   "xml.format.preservedNewlines": 2,
@@ -47,9 +47,17 @@
     "**/.vs": true
   },
   
+"xml.colors": [
+  {
+    "pattern": "**/_Module/GUI/**/*.xml",
+    "expressions": [
+      { "xpath": "//@Color" }
+    ]
+  }
+],
+
   // Workspace specific settings
   "files.encoding": "utf8",
-  "files.eol": "\n",
   
   // XML catalog for schema validation
   "xml.fileAssociations": [

@@ -1,14 +1,14 @@
 <Prefab>
   <Window>
     <!-- Full screen overlay for clan selection popup -->
-    <Widget DataSource="{ClanSelectionPopup}"
+    <Widget Id="ClanSelectionPopupRoot" DataSource="{ClanSelectionPopup}"
             WidthSizePolicy="StretchToParent"
             HeightSizePolicy="StretchToParent"
             IsVisible="@IsVisible">
       <Children>
         
         <!-- Dark semi-transparent background overlay -->
-        <ButtonWidget DoNotPassEventsToChildren="true"
+        <ButtonWidget Id="BackgroundOverlay" DoNotPassEventsToChildren="true"
                       WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
                       Sprite="BlankWhiteSquare_9"
@@ -16,7 +16,7 @@
                       Command.Click="ExecuteClose" />
         
         <!-- Popup container (centered) -->
-        <Widget WidthSizePolicy="Fixed"
+        <Widget Id="PopupContainer" WidthSizePolicy="Fixed"
                 HeightSizePolicy="Fixed"
                 SuggestedWidth="900"
                 SuggestedHeight="800"
@@ -27,21 +27,21 @@
           <Children>
             
             <!-- Border Frame -->
-            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+            <Widget Id="PopupTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                     SuggestedHeight="2" VerticalAlignment="Top"
                     Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+            <Widget Id="PopupBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                     SuggestedHeight="2" VerticalAlignment="Bottom"
                     Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+            <Widget Id="PopupLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                     SuggestedWidth="2" HorizontalAlignment="Left"
                     Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+            <Widget Id="PopupRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                     SuggestedWidth="2" HorizontalAlignment="Right"
                     Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
             
             <!-- Content Container -->
-            <ListPanel WidthSizePolicy="StretchToParent"
+            <ListPanel Id="PopupContentPanel" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
                       MarginTop="15"
                       MarginBottom="15"
@@ -51,12 +51,12 @@
               <Children>
                 
                 <!-- Header -->
-                <Widget WidthSizePolicy="StretchToParent"
+                <Widget Id="HeaderContainer" WidthSizePolicy="StretchToParent"
                         HeightSizePolicy="Fixed"
                         SuggestedHeight="50"
                         MarginBottom="15">
                   <Children>
-                    <TextWidget WidthSizePolicy="StretchToParent"
+                    <TextWidget Id="HeaderTitle" WidthSizePolicy="StretchToParent"
                                HeightSizePolicy="StretchToParent"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
@@ -67,12 +67,12 @@
                 </Widget>
                 
                 <!-- Filter Input -->
-                <Widget WidthSizePolicy="StretchToParent"
+                <Widget Id="FilterInputContainer" WidthSizePolicy="StretchToParent"
                         HeightSizePolicy="Fixed"
                         SuggestedHeight="40"
                         MarginBottom="15">
                   <Children>
-                    <TextWidget WidthSizePolicy="Fixed"
+                    <TextWidget Id="FilterLabel" WidthSizePolicy="Fixed"
                                HeightSizePolicy="StretchToParent"
                                SuggestedWidth="80"
                                HorizontalAlignment="Left"
@@ -81,27 +81,27 @@
                                Brush.FontSize="18"
                                Text="Filter:" />
                     
-                    <Widget WidthSizePolicy="StretchToParent"
+                    <Widget Id="FilterInputBox" WidthSizePolicy="StretchToParent"
                             HeightSizePolicy="StretchToParent"
                             MarginLeft="90"
                             Sprite="BlankWhiteSquare_9"
                             Color="#1a1a1aFF">
                       <Children>
                         <!-- Border frame -->
-                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        <Widget Id="FilterInputTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                                 SuggestedHeight="1" VerticalAlignment="Top"
                                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        <Widget Id="FilterInputBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                                 SuggestedHeight="1" VerticalAlignment="Bottom"
                                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        <Widget Id="FilterInputLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                                 SuggestedWidth="1" HorizontalAlignment="Left"
                                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        <Widget Id="FilterInputRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                                 SuggestedWidth="1" HorizontalAlignment="Right"
                                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                         
-                        <EditableTextWidget WidthSizePolicy="StretchToParent"
+                        <EditableTextWidget Id="FilterInput" WidthSizePolicy="StretchToParent"
                                            HeightSizePolicy="StretchToParent"
                                            MarginLeft="6"
                                            MarginRight="6"
@@ -116,7 +116,7 @@
                 </Widget>
                 
                 <!-- Scrollable Clan List -->
-                <Widget WidthSizePolicy="StretchToParent"
+                <Widget Id="ClanListContainer" WidthSizePolicy="StretchToParent"
                         HeightSizePolicy="StretchToParent"
                         MarginBottom="15">
                   <Children>
@@ -142,10 +142,10 @@
                                       HeightSizePolicy="CoverChildren"
                                       DataSource="{Clans}"
                                       StackLayout.LayoutMethod="VerticalBottomToTop">
-                              <Children>
+                              <ItemTemplate>
                                 
                                 <!-- Clan Item Template -->
-                                <ButtonWidget DoNotPassEventsToChildren="true"
+                                <ButtonWidget Id="ClanItemButton" DoNotPassEventsToChildren="true"
                                              UpdateChildrenStates="true"
                                              WidthSizePolicy="StretchToParent"
                                              HeightSizePolicy="Fixed"
@@ -155,7 +155,7 @@
                                              Command.Click="ExecuteSelect">
                                   <Children>
                                     
-                                    <ListPanel WidthSizePolicy="StretchToParent"
+                                    <ListPanel Id="ClanItemLayout" WidthSizePolicy="StretchToParent"
                                               HeightSizePolicy="StretchToParent"
                                               MarginLeft="10"
                                               MarginRight="10"
@@ -165,7 +165,7 @@
                                       <Children>
                                         
                                         <!-- Clan Banner -->
-                                        <Widget WidthSizePolicy="Fixed"
+                                        <Widget Id="ClanBannerContainer" WidthSizePolicy="Fixed"
                                                 HeightSizePolicy="Fixed"
                                                 SuggestedWidth="80"
                                                 SuggestedHeight="80"
@@ -182,18 +182,18 @@
                                         </Widget>
                                         
                                         <!-- Clan Info -->
-                                        <ListPanel WidthSizePolicy="StretchToParent"
+                                        <ListPanel Id="ClanInfoLayout" WidthSizePolicy="StretchToParent"
                                                   HeightSizePolicy="StretchToParent"
                                                   StackLayout.LayoutMethod="VerticalBottomToTop">
                                           <Children>
                                             
                                             <!-- Clan Name -->
-                                            <Widget WidthSizePolicy="StretchToParent"
+                                            <Widget Id="ClanNameContainer" WidthSizePolicy="StretchToParent"
                                                     HeightSizePolicy="Fixed"
                                                     SuggestedHeight="28"
                                                     MarginBottom="5">
                                               <Children>
-                                                <TextWidget WidthSizePolicy="StretchToParent"
+                                                <TextWidget Id="ClanNameText" WidthSizePolicy="StretchToParent"
                                                            HeightSizePolicy="StretchToParent"
                                                            HorizontalAlignment="Left"
                                                            VerticalAlignment="Center"
@@ -204,12 +204,12 @@
                                             </Widget>
                                             
                                             <!-- Kingdom Name -->
-                                            <Widget WidthSizePolicy="StretchToParent"
+                                            <Widget Id="KingdomNameContainer" WidthSizePolicy="StretchToParent"
                                                     HeightSizePolicy="Fixed"
                                                     SuggestedHeight="22"
                                                     MarginBottom="3">
                                               <Children>
-                                                <TextWidget WidthSizePolicy="Fixed"
+                                                <TextWidget Id="KingdomLabel" WidthSizePolicy="Fixed"
                                                            HeightSizePolicy="StretchToParent"
                                                            SuggestedWidth="90"
                                                            HorizontalAlignment="Left"
@@ -217,7 +217,7 @@
                                                            Brush="Clan.TabControl.Text"
                                                            Brush.FontSize="16"
                                                            Text="Kingdom:" />
-                                                <TextWidget WidthSizePolicy="StretchToParent"
+                                                <TextWidget Id="KingdomNameText" WidthSizePolicy="StretchToParent"
                                                            HeightSizePolicy="StretchToParent"
                                                            MarginLeft="95"
                                                            HorizontalAlignment="Left"
@@ -229,16 +229,16 @@
                                             </Widget>
                                             
                                             <!-- Tier and Member Count -->
-                                            <ListPanel WidthSizePolicy="StretchToParent"
+                                            <ListPanel Id="TierMemberRow" WidthSizePolicy="StretchToParent"
                                                       HeightSizePolicy="Fixed"
                                                       SuggestedHeight="22"
                                                       StackLayout.LayoutMethod="HorizontalLeftToRight">
                                               <Children>
-                                                <Widget WidthSizePolicy="CoverChildren"
+                                                <Widget Id="TierContainer" WidthSizePolicy="CoverChildren"
                                                         HeightSizePolicy="StretchToParent"
                                                         MarginRight="20">
                                                   <Children>
-                                                    <TextWidget WidthSizePolicy="CoverChildren"
+                                                    <TextWidget Id="TierText" WidthSizePolicy="CoverChildren"
                                                                HeightSizePolicy="StretchToParent"
                                                                VerticalAlignment="Center"
                                                                Brush="Clan.TabControl.Text"
@@ -246,16 +246,16 @@
                                                                Text="@TierText" />
                                                   </Children>
                                                 </Widget>
-                                                <Widget WidthSizePolicy="CoverChildren"
+                                                <Widget Id="MemberCountContainer" WidthSizePolicy="CoverChildren"
                                                         HeightSizePolicy="StretchToParent">
                                                   <Children>
-                                                    <TextWidget WidthSizePolicy="CoverChildren"
+                                                    <TextWidget Id="MembersLabel" WidthSizePolicy="CoverChildren"
                                                                HeightSizePolicy="StretchToParent"
                                                                VerticalAlignment="Center"
                                                                Brush="Clan.TabControl.Text"
                                                                Brush.FontSize="16"
                                                                Text="Members: " />
-                                                    <TextWidget WidthSizePolicy="CoverChildren"
+                                                    <TextWidget Id="MemberCountText" WidthSizePolicy="CoverChildren"
                                                                HeightSizePolicy="StretchToParent"
                                                                MarginLeft="75"
                                                                VerticalAlignment="Center"
@@ -276,7 +276,7 @@
                                   </Children>
                                 </ButtonWidget>
                                 
-                              </Children>
+                              </ItemTemplate>
                             </ListPanel>
                             
                           </Children>
@@ -321,7 +321,7 @@
                 </Widget>
                 
                 <!-- Close Button -->
-                <ButtonWidget DoNotPassEventsToChildren="true"
+                <ButtonWidget Id="CloseButton" DoNotPassEventsToChildren="true"
                              UpdateChildrenStates="true"
                              WidthSizePolicy="Fixed"
                              HeightSizePolicy="Fixed"
@@ -330,24 +330,24 @@
                              HorizontalAlignment="Center"
                              Command.Click="ExecuteClose">
                   <Children>
-                    <Widget WidthSizePolicy="StretchToParent"
+                    <Widget Id="CloseButtonBackground" WidthSizePolicy="StretchToParent"
                            HeightSizePolicy="StretchToParent"
                            Sprite="BlankWhiteSquare_9"
                            Color="#453920FF" />
                     <!-- Border frame -->
-                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                    <Widget Id="CloseButtonTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                             SuggestedHeight="1" VerticalAlignment="Top"
                             Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                    <Widget Id="CloseButtonBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                             SuggestedHeight="1" VerticalAlignment="Bottom"
                             Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                    <Widget Id="CloseButtonLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                             SuggestedWidth="1" HorizontalAlignment="Left"
                             Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                    <Widget Id="CloseButtonRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                             SuggestedWidth="1" HorizontalAlignment="Right"
                             Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                    <TextWidget WidthSizePolicy="StretchToParent"
+                    <TextWidget Id="CloseButtonText" WidthSizePolicy="StretchToParent"
                                HeightSizePolicy="StretchToParent"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"

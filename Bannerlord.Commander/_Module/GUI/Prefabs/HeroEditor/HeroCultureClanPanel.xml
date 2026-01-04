@@ -2,7 +2,7 @@
 <Prefab>
   <Window>
     <!-- Hero Culture/Clan Panel: Culture Dropdown and Clan Banner/Info -->
-    <Widget DataSource="{HeroCultureClan}"
+    <Widget Id="CultureClanPanelRoot" DataSource="{HeroCultureClan}"
             WidthSizePolicy="Fixed"
             HeightSizePolicy="CoverChildren"
             SuggestedWidth="330"
@@ -11,21 +11,21 @@
       <Children>
         
         <!-- Border Frame -->
-        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <Widget Id="CultureClanTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                 SuggestedHeight="2" VerticalAlignment="Top"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <Widget Id="CultureClanBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                 SuggestedHeight="2" VerticalAlignment="Bottom"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+        <Widget Id="CultureClanLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                 SuggestedWidth="2" HorizontalAlignment="Left"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+        <Widget Id="CultureClanRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                 SuggestedWidth="2" HorizontalAlignment="Right"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
         
         <!-- Content Container -->
-        <ListPanel WidthSizePolicy="StretchToParent"
+        <ListPanel Id="CultureClanContent" WidthSizePolicy="StretchToParent"
                    HeightSizePolicy="CoverChildren"
                    MarginTop="15"
                    MarginBottom="15"
@@ -35,12 +35,12 @@
           <Children>
             
             <!-- Culture Section -->
-            <Widget WidthSizePolicy="StretchToParent"
+            <Widget Id="CultureSectionContainer" WidthSizePolicy="StretchToParent"
                     HeightSizePolicy="Fixed"
                     SuggestedHeight="25"
                     MarginBottom="5">
               <Children>
-                <TextWidget WidthSizePolicy="StretchToParent"
+                <TextWidget Id="CultureSectionTitle" WidthSizePolicy="StretchToParent"
                            HeightSizePolicy="StretchToParent"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -51,34 +51,34 @@
             </Widget>
             
             <!-- Culture Dropdown (Simplified) -->
-            <ListPanel WidthSizePolicy="StretchToParent"
+            <ListPanel Id="CultureDropdownPanel" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="Fixed"
                       SuggestedHeight="35"
                       MarginBottom="15"
                       DataSource="{Cultures}"
                       StackLayout.LayoutMethod="HorizontalLeftToRight">
               <Children>
-                <Widget WidthSizePolicy="StretchToParent"
+                <Widget Id="CultureDropdownContainer" WidthSizePolicy="StretchToParent"
                        HeightSizePolicy="StretchToParent"
                        Sprite="BlankWhiteSquare_9"
                        Color="#1a1a1aFF">
                   <Children>
                     <!-- Border frame -->
-                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                    <Widget Id="CultureDropdownTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                             SuggestedHeight="1" VerticalAlignment="Top"
                             Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                    <Widget Id="CultureDropdownBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                             SuggestedHeight="1" VerticalAlignment="Bottom"
                             Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                    <Widget Id="CultureDropdownLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                             SuggestedWidth="1" HorizontalAlignment="Left"
                             Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                    <Widget Id="CultureDropdownRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                             SuggestedWidth="1" HorizontalAlignment="Right"
                             Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                     
                     <!-- Display selected culture text -->
-                    <TextWidget WidthSizePolicy="StretchToParent"
+                    <TextWidget Id="SelectedCultureText" WidthSizePolicy="StretchToParent"
                                HeightSizePolicy="StretchToParent"
                                MarginLeft="10"
                                HorizontalAlignment="Left"
@@ -93,12 +93,12 @@
             </ListPanel>
             
             <!-- Clan Banner Section -->
-            <Widget WidthSizePolicy="StretchToParent"
+            <Widget Id="ClanSectionContainer" WidthSizePolicy="StretchToParent"
                     HeightSizePolicy="Fixed"
                     SuggestedHeight="25"
                     MarginBottom="5">
               <Children>
-                <TextWidget WidthSizePolicy="StretchToParent"
+                <TextWidget Id="ClanSectionTitle" WidthSizePolicy="StretchToParent"
                            HeightSizePolicy="StretchToParent"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -109,14 +109,14 @@
             </Widget>
             
             <!-- Clan Banner and Info -->
-            <ListPanel WidthSizePolicy="StretchToParent"
+            <ListPanel Id="ClanBannerInfoLayout" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="CoverChildren"
                       MarginBottom="10"
                       StackLayout.LayoutMethod="HorizontalLeftToRight">
               <Children>
                 
                 <!-- Clan Banner (Clickable) -->
-                <ButtonWidget DoNotPassEventsToChildren="true"
+                <ButtonWidget Id="ClanBannerButton" DoNotPassEventsToChildren="true"
                              UpdateChildrenStates="true"
                              WidthSizePolicy="Fixed"
                              HeightSizePolicy="Fixed"
@@ -136,18 +136,18 @@
                 </ButtonWidget>
                 
                 <!-- Clan Info Text -->
-                <ListPanel WidthSizePolicy="StretchToParent"
+                <ListPanel Id="ClanInfoLayout" WidthSizePolicy="StretchToParent"
                           HeightSizePolicy="CoverChildren"
                           StackLayout.LayoutMethod="VerticalBottomToTop">
                   <Children>
                     
                     <!-- Clan Name -->
-                    <Widget WidthSizePolicy="StretchToParent"
+                    <Widget Id="ClanNameRow" WidthSizePolicy="StretchToParent"
                             HeightSizePolicy="Fixed"
                             SuggestedHeight="25"
                             MarginBottom="5">
                       <Children>
-                        <TextWidget WidthSizePolicy="Fixed"
+                        <TextWidget Id="ClanNameLabel" WidthSizePolicy="Fixed"
                                    HeightSizePolicy="StretchToParent"
                                    SuggestedWidth="80"
                                    HorizontalAlignment="Left"
@@ -155,7 +155,7 @@
                                    Brush="Clan.TabControl.Text"
                                    Brush.FontSize="16"
                                    Text="Clan:" />
-                        <TextWidget WidthSizePolicy="StretchToParent"
+                        <TextWidget Id="ClanNameValue" WidthSizePolicy="StretchToParent"
                                    HeightSizePolicy="StretchToParent"
                                    MarginLeft="85"
                                    HorizontalAlignment="Left"
@@ -167,12 +167,12 @@
                     </Widget>
                     
                     <!-- Kingdom Name -->
-                    <Widget WidthSizePolicy="StretchToParent"
+                    <Widget Id="KingdomNameRow" WidthSizePolicy="StretchToParent"
                             HeightSizePolicy="Fixed"
                             SuggestedHeight="25"
                             MarginBottom="5">
                       <Children>
-                        <TextWidget WidthSizePolicy="Fixed"
+                        <TextWidget Id="KingdomNameLabel" WidthSizePolicy="Fixed"
                                    HeightSizePolicy="StretchToParent"
                                    SuggestedWidth="80"
                                    HorizontalAlignment="Left"
@@ -180,7 +180,7 @@
                                    Brush="Clan.TabControl.Text"
                                    Brush.FontSize="16"
                                    Text="Kingdom:" />
-                        <TextWidget WidthSizePolicy="StretchToParent"
+                        <TextWidget Id="KingdomNameValue" WidthSizePolicy="StretchToParent"
                                    HeightSizePolicy="StretchToParent"
                                    MarginLeft="85"
                                    HorizontalAlignment="Left"
@@ -192,7 +192,7 @@
                     </Widget>
                     
                     <!-- Select Clan Button -->
-                    <ButtonWidget DoNotPassEventsToChildren="true"
+                    <ButtonWidget Id="SelectClanButton" DoNotPassEventsToChildren="true"
                                  UpdateChildrenStates="true"
                                  WidthSizePolicy="Fixed"
                                  HeightSizePolicy="Fixed"
@@ -202,24 +202,24 @@
                                  MarginTop="10"
                                  Command.Click="ExecuteOpenClanSelection">
                       <Children>
-                        <Widget WidthSizePolicy="StretchToParent"
+                        <Widget Id="SelectClanButtonBackground" WidthSizePolicy="StretchToParent"
                                HeightSizePolicy="StretchToParent"
                                Sprite="BlankWhiteSquare_9"
                                Color="#453920FF" />
                         <!-- Border frame -->
-                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        <Widget Id="SelectClanTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                                 SuggestedHeight="1" VerticalAlignment="Top"
                                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                        <Widget Id="SelectClanBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                                 SuggestedHeight="1" VerticalAlignment="Bottom"
                                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        <Widget Id="SelectClanLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                                 SuggestedWidth="1" HorizontalAlignment="Left"
                                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                        <Widget Id="SelectClanRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                                 SuggestedWidth="1" HorizontalAlignment="Right"
                                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <TextWidget WidthSizePolicy="StretchToParent"
+                        <TextWidget Id="SelectClanButtonText" WidthSizePolicy="StretchToParent"
                                    HeightSizePolicy="StretchToParent"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"

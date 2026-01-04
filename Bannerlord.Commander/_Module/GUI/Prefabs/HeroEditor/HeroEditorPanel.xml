@@ -9,7 +9,7 @@
     <!--   - HeroSkillsColumn.xml (~200 lines)                                                                       -->
     <!-- ============================================================================================================ -->
     
-    <Widget DataSource="{..}"
+    <Widget Id="HeroEditorRoot" DataSource="{..}"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="StretchToParent"
       Sprite="BlankWhiteSquare_9"
@@ -17,21 +17,21 @@
       <Children>
 
         <!-- ==================== BORDER FRAME ==================== -->
-        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <Widget Id="EditorTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Top"
           Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <Widget Id="EditorBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Bottom"
           Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+        <Widget Id="EditorLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
           SuggestedWidth="2" HorizontalAlignment="Left"
           Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+        <Widget Id="EditorRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
           SuggestedWidth="2" HorizontalAlignment="Right"
           Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
 
         <!-- ==================== MAIN 3-COLUMN LAYOUT ==================== -->
-        <ListPanel WidthSizePolicy="StretchToParent"
+        <ListPanel Id="EditorColumnsLayout" WidthSizePolicy="StretchToParent"
           HeightSizePolicy="StretchToParent"
           MarginTop="8"
           MarginBottom="8"

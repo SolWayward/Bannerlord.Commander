@@ -2,7 +2,7 @@
 <Prefab>
   <Window>
     <!-- Hero Identity Panel: Editable Name and Title -->
-    <Widget DataSource="{HeroIdentity}"
+    <Widget Id="IdentityPanelRoot" DataSource="{HeroIdentity}"
             WidthSizePolicy="Fixed"
             HeightSizePolicy="CoverChildren"
             SuggestedWidth="300"
@@ -11,21 +11,21 @@
       <Children>
         
         <!-- Border Frame -->
-        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <Widget Id="IdentityTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                 SuggestedHeight="2" VerticalAlignment="Top"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <Widget Id="IdentityBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                 SuggestedHeight="2" VerticalAlignment="Bottom"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+        <Widget Id="IdentityLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                 SuggestedWidth="2" HorizontalAlignment="Left"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+        <Widget Id="IdentityRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                 SuggestedWidth="2" HorizontalAlignment="Right"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
         
         <!-- Content Container -->
-        <ListPanel WidthSizePolicy="StretchToParent"
+        <ListPanel Id="IdentityContentPanel" WidthSizePolicy="StretchToParent"
                    HeightSizePolicy="CoverChildren"
                    MarginTop="15"
                    MarginBottom="15"
@@ -35,12 +35,12 @@
           <Children>
             
             <!-- Name Label -->
-            <Widget WidthSizePolicy="StretchToParent"
+            <Widget Id="NameLabelContainer" WidthSizePolicy="StretchToParent"
                     HeightSizePolicy="Fixed"
                     SuggestedHeight="25"
                     MarginBottom="5">
               <Children>
-                <TextWidget WidthSizePolicy="StretchToParent"
+                <TextWidget Id="NameLabel" WidthSizePolicy="StretchToParent"
                            HeightSizePolicy="StretchToParent"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -51,7 +51,7 @@
             </Widget>
             
             <!-- Name Input Field -->
-            <Widget WidthSizePolicy="StretchToParent"
+            <Widget Id="NameInputContainer" WidthSizePolicy="StretchToParent"
                     HeightSizePolicy="Fixed"
                     SuggestedHeight="30"
                     MarginBottom="5"
@@ -59,21 +59,21 @@
                     Color="#1a1a1aFF">
               <Children>
                 <!-- Border frame for input -->
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="NameInputTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                         SuggestedHeight="1" VerticalAlignment="Top"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="NameInputBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                         SuggestedHeight="1" VerticalAlignment="Bottom"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="NameInputLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                         SuggestedWidth="1" HorizontalAlignment="Left"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="NameInputRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                         SuggestedWidth="1" HorizontalAlignment="Right"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                 
                 <!-- Actual text input -->
-                <EditableTextWidget WidthSizePolicy="StretchToParent"
+                <EditableTextWidget Id="NameInput" WidthSizePolicy="StretchToParent"
                                    HeightSizePolicy="StretchToParent"
                                    MarginLeft="6"
                                    MarginRight="6"
@@ -86,7 +86,7 @@
             </Widget>
             
             <!-- Save Name Button -->
-            <ButtonWidget DoNotPassEventsToChildren="true"
+            <ButtonWidget Id="SaveNameButton" DoNotPassEventsToChildren="true"
                          UpdateChildrenStates="true"
                          WidthSizePolicy="Fixed"
                          HeightSizePolicy="Fixed"
@@ -96,24 +96,24 @@
                          MarginBottom="15"
                          Command.Click="ExecuteSaveName">
               <Children>
-                <Widget WidthSizePolicy="StretchToParent"
+                <Widget Id="SaveNameButtonBackground" WidthSizePolicy="StretchToParent"
                        HeightSizePolicy="StretchToParent"
                        Sprite="BlankWhiteSquare_9"
                        Color="#453920FF" />
                 <!-- Border frame -->
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="SaveNameTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                         SuggestedHeight="1" VerticalAlignment="Top"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="SaveNameBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                         SuggestedHeight="1" VerticalAlignment="Bottom"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="SaveNameLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                         SuggestedWidth="1" HorizontalAlignment="Left"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="SaveNameRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                         SuggestedWidth="1" HorizontalAlignment="Right"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <TextWidget WidthSizePolicy="StretchToParent"
+                <TextWidget Id="SaveNameText" WidthSizePolicy="StretchToParent"
                            HeightSizePolicy="StretchToParent"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
@@ -124,12 +124,12 @@
             </ButtonWidget>
             
             <!-- Title Label -->
-            <Widget WidthSizePolicy="StretchToParent"
+            <Widget Id="TitleLabelContainer" WidthSizePolicy="StretchToParent"
                     HeightSizePolicy="Fixed"
                     SuggestedHeight="25"
                     MarginBottom="5">
               <Children>
-                <TextWidget WidthSizePolicy="StretchToParent"
+                <TextWidget Id="TitleLabel" WidthSizePolicy="StretchToParent"
                            HeightSizePolicy="StretchToParent"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -140,7 +140,7 @@
             </Widget>
             
             <!-- Title Input Field -->
-            <Widget WidthSizePolicy="StretchToParent"
+            <Widget Id="TitleInputContainer" WidthSizePolicy="StretchToParent"
                     HeightSizePolicy="Fixed"
                     SuggestedHeight="30"
                     MarginBottom="5"
@@ -148,21 +148,21 @@
                     Color="#1a1a1aFF">
               <Children>
                 <!-- Border frame for input -->
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="TitleInputTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                         SuggestedHeight="1" VerticalAlignment="Top"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="TitleInputBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                         SuggestedHeight="1" VerticalAlignment="Bottom"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="TitleInputLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                         SuggestedWidth="1" HorizontalAlignment="Left"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="TitleInputRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                         SuggestedWidth="1" HorizontalAlignment="Right"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
                 
                 <!-- Actual text input -->
-                <EditableTextWidget WidthSizePolicy="StretchToParent"
+                <EditableTextWidget Id="TitleInput" WidthSizePolicy="StretchToParent"
                                    HeightSizePolicy="StretchToParent"
                                    MarginLeft="6"
                                    MarginRight="6"
@@ -175,7 +175,7 @@
             </Widget>
             
             <!-- Save Title Button -->
-            <ButtonWidget DoNotPassEventsToChildren="true"
+            <ButtonWidget Id="SaveTitleButton" DoNotPassEventsToChildren="true"
                          UpdateChildrenStates="true"
                          WidthSizePolicy="Fixed"
                          HeightSizePolicy="Fixed"
@@ -185,24 +185,24 @@
                          MarginBottom="5"
                          Command.Click="ExecuteSaveTitle">
               <Children>
-                <Widget WidthSizePolicy="StretchToParent"
+                <Widget Id="SaveTitleButtonBackground" WidthSizePolicy="StretchToParent"
                        HeightSizePolicy="StretchToParent"
                        Sprite="BlankWhiteSquare_9"
                        Color="#453920FF" />
                 <!-- Border frame -->
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="SaveTitleTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                         SuggestedHeight="1" VerticalAlignment="Top"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="SaveTitleBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                         SuggestedHeight="1" VerticalAlignment="Bottom"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="SaveTitleLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                         SuggestedWidth="1" HorizontalAlignment="Left"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="SaveTitleRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                         SuggestedWidth="1" HorizontalAlignment="Right"
                         Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <TextWidget WidthSizePolicy="StretchToParent"
+                <TextWidget Id="SaveTitleText" WidthSizePolicy="StretchToParent"
                            HeightSizePolicy="StretchToParent"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"

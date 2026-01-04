@@ -2,7 +2,7 @@
 <Prefab>
   <Window>
     <!-- Hero Info Panel: Portrait and Read-Only Information -->
-    <Widget DataSource="{HeroInfo}"
+    <Widget Id="HeroInfoPanelRoot" DataSource="{HeroInfo}"
             WidthSizePolicy="Fixed"
             HeightSizePolicy="CoverChildren"
             SuggestedWidth="250"
@@ -11,21 +11,21 @@
       <Children>
         
         <!-- Border Frame -->
-        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <Widget Id="InfoPanelTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                 SuggestedHeight="2" VerticalAlignment="Top"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <Widget Id="InfoPanelBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                 SuggestedHeight="2" VerticalAlignment="Bottom"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+        <Widget Id="InfoPanelLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                 SuggestedWidth="2" HorizontalAlignment="Left"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+        <Widget Id="InfoPanelRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                 SuggestedWidth="2" HorizontalAlignment="Right"
                 Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
         
         <!-- Content Container -->
-        <ListPanel WidthSizePolicy="StretchToParent"
+        <ListPanel Id="InfoPanelContent" WidthSizePolicy="StretchToParent"
                    HeightSizePolicy="CoverChildren"
                    MarginTop="15"
                    MarginBottom="15"
@@ -35,30 +35,29 @@
           <Children>
             
             <!-- Portrait - Using ImageWidget with DataSource binding -->
-            <Widget WidthSizePolicy="Fixed"
+            <Widget Id="PortraitContainer" WidthSizePolicy="Fixed"
                     HeightSizePolicy="Fixed"
                     SuggestedWidth="200"
                     SuggestedHeight="200"
                     HorizontalAlignment="Center"
                     MarginBottom="10">
               <Children>
-                <ImageWidget WidthSizePolicy="StretchToParent"
+                <ImageWidget Id="PortraitImage" WidthSizePolicy="StretchToParent"
                             HeightSizePolicy="StretchToParent"
                             DataSource="{PortraitImage}"
                             ImageTypeCode="@ImageTypeCode"
                             AdditionalArgs="@AdditionalArgs"
-                            ImageId="@ImageId"
-                            Id="@Id" />
+                            ImageId="@ImageId" />
               </Children>
             </Widget>
             
             <!-- Gender -->
-            <Widget WidthSizePolicy="StretchToParent"
+            <Widget Id="GenderRow" WidthSizePolicy="StretchToParent"
                     HeightSizePolicy="Fixed"
                     SuggestedHeight="25"
                     MarginBottom="5">
               <Children>
-                <TextWidget WidthSizePolicy="Fixed"
+                <TextWidget Id="GenderLabel" WidthSizePolicy="Fixed"
                            HeightSizePolicy="StretchToParent"
                            SuggestedWidth="80"
                            HorizontalAlignment="Left"
@@ -66,7 +65,7 @@
                            Brush="Clan.TabControl.Text"
                            Brush.FontSize="16"
                            Text="Gender:" />
-                <TextWidget WidthSizePolicy="StretchToParent"
+                <TextWidget Id="GenderValue" WidthSizePolicy="StretchToParent"
                            HeightSizePolicy="StretchToParent"
                            MarginLeft="85"
                            HorizontalAlignment="Left"
@@ -78,12 +77,12 @@
             </Widget>
             
             <!-- Age -->
-            <Widget WidthSizePolicy="StretchToParent"
+            <Widget Id="AgeRow" WidthSizePolicy="StretchToParent"
                     HeightSizePolicy="Fixed"
                     SuggestedHeight="25"
                     MarginBottom="5">
               <Children>
-                <TextWidget WidthSizePolicy="Fixed"
+                <TextWidget Id="AgeLabel" WidthSizePolicy="Fixed"
                            HeightSizePolicy="StretchToParent"
                            SuggestedWidth="80"
                            HorizontalAlignment="Left"
@@ -91,7 +90,7 @@
                            Brush="Clan.TabControl.Text"
                            Brush.FontSize="16"
                            Text="Age:" />
-                <TextWidget WidthSizePolicy="StretchToParent"
+                <TextWidget Id="AgeValue" WidthSizePolicy="StretchToParent"
                            HeightSizePolicy="StretchToParent"
                            MarginLeft="85"
                            HorizontalAlignment="Left"
@@ -103,12 +102,12 @@
             </Widget>
             
             <!-- Birth Date -->
-            <Widget WidthSizePolicy="StretchToParent"
+            <Widget Id="BirthDateRow" WidthSizePolicy="StretchToParent"
                     HeightSizePolicy="Fixed"
                     SuggestedHeight="25"
                     MarginBottom="5">
               <Children>
-                <TextWidget WidthSizePolicy="Fixed"
+                <TextWidget Id="BirthDateLabel" WidthSizePolicy="Fixed"
                            HeightSizePolicy="StretchToParent"
                            SuggestedWidth="80"
                            HorizontalAlignment="Left"
@@ -116,7 +115,7 @@
                            Brush="Clan.TabControl.Text"
                            Brush.FontSize="16"
                            Text="Born:" />
-                <TextWidget WidthSizePolicy="StretchToParent"
+                <TextWidget Id="BirthDateValue" WidthSizePolicy="StretchToParent"
                            HeightSizePolicy="StretchToParent"
                            MarginLeft="85"
                            HorizontalAlignment="Left"
@@ -128,12 +127,12 @@
             </Widget>
             
             <!-- Death Date -->
-            <Widget WidthSizePolicy="StretchToParent"
+            <Widget Id="DeathDateRow" WidthSizePolicy="StretchToParent"
                     HeightSizePolicy="Fixed"
                     SuggestedHeight="25"
                     MarginBottom="5">
               <Children>
-                <TextWidget WidthSizePolicy="Fixed"
+                <TextWidget Id="DeathDateLabel" WidthSizePolicy="Fixed"
                            HeightSizePolicy="StretchToParent"
                            SuggestedWidth="80"
                            HorizontalAlignment="Left"
@@ -141,7 +140,7 @@
                            Brush="Clan.TabControl.Text"
                            Brush.FontSize="16"
                            Text="Death:" />
-                <TextWidget WidthSizePolicy="StretchToParent"
+                <TextWidget Id="DeathDateValue" WidthSizePolicy="StretchToParent"
                            HeightSizePolicy="StretchToParent"
                            MarginLeft="85"
                            HorizontalAlignment="Left"

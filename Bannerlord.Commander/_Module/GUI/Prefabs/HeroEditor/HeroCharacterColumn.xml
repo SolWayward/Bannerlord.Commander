@@ -3,18 +3,18 @@
   <Parameters>
   </Parameters>
   <Window>
-    <Widget WidthSizePolicy="StretchToParent"
+    <Widget Id="CharacterColumnRoot" WidthSizePolicy="StretchToParent"
       HeightSizePolicy="StretchToParent"
       MarginLeft="8"
       MarginRight="8">
       <Children>
-        <ListPanel WidthSizePolicy="StretchToParent"
+        <ListPanel Id="CharacterColumnPanel" WidthSizePolicy="StretchToParent"
           HeightSizePolicy="StretchToParent"
           StackLayout.LayoutMethod="VerticalBottomToTop">
           <Children>
 
             <!-- ==================== PORTRAIT ==================== -->
-            <Widget DataSource="{HeroInfo}"
+            <Widget Id="PortraitContainer" DataSource="{HeroInfo}"
               WidthSizePolicy="Fixed"
               HeightSizePolicy="Fixed"
               SuggestedWidth="150"
@@ -24,21 +24,21 @@
               Sprite="BlankWhiteSquare_9"
               Color="#1a1a1aFF">
               <Children>
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="PortraitTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                   SuggestedHeight="2" VerticalAlignment="Top"
                   Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="PortraitBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                   SuggestedHeight="2" VerticalAlignment="Bottom"
                   Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="PortraitLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                   SuggestedWidth="2" HorizontalAlignment="Left"
                   Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="PortraitRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                   SuggestedWidth="2" HorizontalAlignment="Right"
                   Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
 
                 <!-- Portrait Image -->
-                <ImageIdentifierWidget WidthSizePolicy="StretchToParent"
+                <ImageIdentifierWidget Id="PortraitImage" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
                   MarginTop="4"
                   MarginBottom="4"
@@ -52,31 +52,31 @@
             </Widget>
 
             <!-- ==================== CHARACTER MODEL + EQUIPMENT SLOTS ==================== -->
-            <Widget WidthSizePolicy="StretchToParent"
+            <Widget Id="CharacterModelContainer" WidthSizePolicy="StretchToParent"
               HeightSizePolicy="StretchToParent"
               Sprite="BlankWhiteSquare_9"
               Color="#1a1a1aFF">
               <Children>
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="ModelTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                   SuggestedHeight="2" VerticalAlignment="Top"
                   Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="ModelBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                   SuggestedHeight="2" VerticalAlignment="Bottom"
                   Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="ModelLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                   SuggestedWidth="2" HorizontalAlignment="Left"
                   Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="ModelRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                   SuggestedWidth="2" HorizontalAlignment="Right"
                   Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
 
-                <ListPanel WidthSizePolicy="StretchToParent"
+                <ListPanel Id="ModelEquipmentLayout" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
                   StackLayout.LayoutMethod="HorizontalLeftToRight">
                   <Children>
 
                     <!-- ==================== LEFT ARMOR SLOTS ==================== -->
-                    <ListPanel WidthSizePolicy="Fixed"
+                    <ListPanel Id="ArmorSlotsList" WidthSizePolicy="Fixed"
                       HeightSizePolicy="StretchToParent"
                       SuggestedWidth="65"
                       MarginLeft="4"
@@ -85,7 +85,7 @@
                       StackLayout.LayoutMethod="VerticalBottomToTop">
                       <Children>
                         <!-- Head Slot -->
-                        <Widget DataSource="{HeadSlot}"
+                        <Widget Id="HeadSlotContainer" DataSource="{HeadSlot}"
                           WidthSizePolicy="Fixed"
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="65"
@@ -96,7 +96,7 @@
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Brush="InventoryHelmetSlot" />
-                            <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                            <CommanderEquipmentSlotWidget Id="HeadSlotWidget" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               DoNotPassEventsToChildren="true"
                               Command.Click="ExecuteSelectSlot"
@@ -104,7 +104,7 @@
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
                               <Children>
-                                <Widget WidthSizePolicy="StretchToParent"
+                                <Widget Id="HeadSlotPlaceholder" WidthSizePolicy="StretchToParent"
                                   HeightSizePolicy="StretchToParent"
                                   MarginLeft="3" MarginRight="4" MarginTop="3"
                                   MarginBottom="4"
@@ -124,7 +124,7 @@
                         </Widget>
 
                         <!-- Cape Slot -->
-                        <Widget DataSource="{CapeSlot}"
+                        <Widget Id="CapeSlotContainer" DataSource="{CapeSlot}"
                           WidthSizePolicy="Fixed"
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="65"
@@ -135,13 +135,13 @@
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Brush="InventoryCloakSlot" />
-                            <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                            <CommanderEquipmentSlotWidget Id="CapeSlotWidget" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Background="..\CapeBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
                               <Children>
-                                <Widget WidthSizePolicy="StretchToParent"
+                                <Widget Id="CapeSlotPlaceholder" WidthSizePolicy="StretchToParent"
                                   HeightSizePolicy="StretchToParent"
                                   MarginLeft="3" MarginRight="4" MarginTop="3"
                                   MarginBottom="4"
@@ -161,7 +161,7 @@
                         </Widget>
 
                         <!-- Body Slot -->
-                        <Widget DataSource="{BodySlot}"
+                        <Widget Id="BodySlotContainer" DataSource="{BodySlot}"
                           WidthSizePolicy="Fixed"
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="65"
@@ -172,13 +172,13 @@
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Brush="InventoryArmorSlot" />
-                            <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                            <CommanderEquipmentSlotWidget Id="BodySlotWidget" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Background="..\BodyBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
                               <Children>
-                                <Widget WidthSizePolicy="StretchToParent"
+                                <Widget Id="BodySlotPlaceholder" WidthSizePolicy="StretchToParent"
                                   HeightSizePolicy="StretchToParent"
                                   MarginLeft="3" MarginRight="4" MarginTop="3"
                                   MarginBottom="4"
@@ -198,7 +198,7 @@
                         </Widget>
 
                         <!-- Gloves Slot -->
-                        <Widget DataSource="{GlovesSlot}"
+                        <Widget Id="GlovesSlotContainer" DataSource="{GlovesSlot}"
                           WidthSizePolicy="Fixed"
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="65"
@@ -209,13 +209,13 @@
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Brush="InventoryGloveSlot" />
-                            <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                            <CommanderEquipmentSlotWidget Id="GlovesSlotWidget" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Background="..\GlovesBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
                               <Children>
-                                <Widget WidthSizePolicy="StretchToParent"
+                                <Widget Id="GlovesSlotPlaceholder" WidthSizePolicy="StretchToParent"
                                   HeightSizePolicy="StretchToParent"
                                   MarginLeft="3" MarginRight="4" MarginTop="3"
                                   MarginBottom="4"
@@ -235,7 +235,7 @@
                         </Widget>
 
                         <!-- Leg Slot -->
-                        <Widget DataSource="{LegSlot}"
+                        <Widget Id="LegSlotContainer" DataSource="{LegSlot}"
                           WidthSizePolicy="Fixed"
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="65"
@@ -246,13 +246,13 @@
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Brush="InventoryBootSlot" />
-                            <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                            <CommanderEquipmentSlotWidget Id="LegSlotWidget" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Background="..\LegBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
                               <Children>
-                                <Widget WidthSizePolicy="StretchToParent"
+                                <Widget Id="LegSlotPlaceholder" WidthSizePolicy="StretchToParent"
                                   HeightSizePolicy="StretchToParent"
                                   MarginLeft="3" MarginRight="4" MarginTop="3"
                                   MarginBottom="4"
@@ -272,7 +272,7 @@
                         </Widget>
 
                         <!-- Horse Slot -->
-                        <Widget DataSource="{HorseSlot}"
+                        <Widget Id="HorseSlotContainer" DataSource="{HorseSlot}"
                           WidthSizePolicy="Fixed"
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="65"
@@ -283,13 +283,13 @@
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Brush="InventoryMountSlot" />
-                            <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                            <CommanderEquipmentSlotWidget Id="HorseSlotWidget" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Background="..\HorseBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
                               <Children>
-                                <Widget WidthSizePolicy="StretchToParent"
+                                <Widget Id="HorseSlotPlaceholder" WidthSizePolicy="StretchToParent"
                                   HeightSizePolicy="StretchToParent"
                                   MarginLeft="3" MarginRight="4" MarginTop="3"
                                   MarginBottom="4"
@@ -309,7 +309,7 @@
                         </Widget>
 
                         <!-- Horse Harness Slot -->
-                        <Widget DataSource="{HorseHarnessSlot}"
+                        <Widget Id="HarnessSlotContainer" DataSource="{HorseHarnessSlot}"
                           WidthSizePolicy="Fixed"
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="65"
@@ -320,13 +320,13 @@
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Brush="InventoryMountArmorSlot" />
-                            <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                            <CommanderEquipmentSlotWidget Id="HarnessSlotWidget" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Background="..\HarnessBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
                               <Children>
-                                <Widget WidthSizePolicy="StretchToParent"
+                                <Widget Id="HarnessSlotPlaceholder" WidthSizePolicy="StretchToParent"
                                   HeightSizePolicy="StretchToParent"
                                   MarginLeft="3" MarginRight="4" MarginTop="3"
                                   MarginBottom="4"
@@ -348,11 +348,11 @@
                     </ListPanel>
 
                     <!-- ==================== CHARACTER MODEL ==================== -->
-                    <Widget DataSource="{HeroCharacter}"
+                    <Widget Id="CharacterModelWidget" DataSource="{HeroCharacter}"
                       WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent">
                       <Children>
-                        <CharacterTableauWidget WidthSizePolicy="StretchToParent"
+                        <CharacterTableauWidget Id="CharacterTableau" WidthSizePolicy="StretchToParent"
                           HeightSizePolicy="StretchToParent"
                           BodyProperties="@BodyProperties"
                           StanceIndex="@StanceIndex"
@@ -371,7 +371,7 @@
                     </Widget>
 
                     <!-- ==================== RIGHT WEAPON SLOTS ==================== -->
-                    <ListPanel WidthSizePolicy="Fixed"
+                    <ListPanel Id="WeaponSlotsList" WidthSizePolicy="Fixed"
                       HeightSizePolicy="StretchToParent"
                       SuggestedWidth="50"
                       MarginRight="4"
@@ -380,7 +380,7 @@
                       StackLayout.LayoutMethod="VerticalBottomToTop">
                       <Children>
                         <!-- Weapon 0 Slot -->
-                        <Widget DataSource="{Weapon0Slot}"
+                        <Widget Id="Weapon0SlotContainer" DataSource="{Weapon0Slot}"
                           WidthSizePolicy="Fixed"
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="45"
@@ -391,13 +391,13 @@
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Brush="InventoryWeaponSlot" />
-                            <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                            <CommanderEquipmentSlotWidget Id="Weapon0SlotWidget" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Background="..\Weapon0Background"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
                               <Children>
-                                <Widget WidthSizePolicy="StretchToParent"
+                                <Widget Id="Weapon0SlotPlaceholder" WidthSizePolicy="StretchToParent"
                                   HeightSizePolicy="StretchToParent"
                                   MarginLeft="2" MarginRight="2" MarginTop="2"
                                   MarginBottom="2"
@@ -417,7 +417,7 @@
                         </Widget>
 
                         <!-- Weapon 1 Slot -->
-                        <Widget DataSource="{Weapon1Slot}"
+                        <Widget Id="Weapon1SlotContainer" DataSource="{Weapon1Slot}"
                           WidthSizePolicy="Fixed"
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="45"
@@ -428,13 +428,13 @@
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Brush="InventoryWeaponSlot" />
-                            <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                            <CommanderEquipmentSlotWidget Id="Weapon1SlotWidget" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Background="..\Weapon1Background"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
                               <Children>
-                                <Widget WidthSizePolicy="StretchToParent"
+                                <Widget Id="Weapon1SlotPlaceholder" WidthSizePolicy="StretchToParent"
                                   HeightSizePolicy="StretchToParent"
                                   MarginLeft="2" MarginRight="2" MarginTop="2"
                                   MarginBottom="2"
@@ -454,7 +454,7 @@
                         </Widget>
 
                         <!-- Weapon 2 Slot -->
-                        <Widget DataSource="{Weapon2Slot}"
+                        <Widget Id="Weapon2SlotContainer" DataSource="{Weapon2Slot}"
                           WidthSizePolicy="Fixed"
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="45"
@@ -465,13 +465,13 @@
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Brush="InventoryWeaponSlot" />
-                            <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                            <CommanderEquipmentSlotWidget Id="Weapon2SlotWidget" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Background="..\Weapon2Background"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
                               <Children>
-                                <Widget WidthSizePolicy="StretchToParent"
+                                <Widget Id="Weapon2SlotPlaceholder" WidthSizePolicy="StretchToParent"
                                   HeightSizePolicy="StretchToParent"
                                   MarginLeft="2" MarginRight="2" MarginTop="2"
                                   MarginBottom="2"
@@ -491,7 +491,7 @@
                         </Widget>
 
                         <!-- Weapon 3 Slot -->
-                        <Widget DataSource="{Weapon3Slot}"
+                        <Widget Id="Weapon3SlotContainer" DataSource="{Weapon3Slot}"
                           WidthSizePolicy="Fixed"
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="45"
@@ -502,13 +502,13 @@
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Brush="InventoryWeaponSlot" />
-                            <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                            <CommanderEquipmentSlotWidget Id="Weapon3SlotWidget" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Background="..\Weapon3Background"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
                               <Children>
-                                <Widget WidthSizePolicy="StretchToParent"
+                                <Widget Id="Weapon3SlotPlaceholder" WidthSizePolicy="StretchToParent"
                                   HeightSizePolicy="StretchToParent"
                                   MarginLeft="2" MarginRight="2" MarginTop="2"
                                   MarginBottom="2"
@@ -528,7 +528,7 @@
                         </Widget>
 
                         <!-- Banner Slot -->
-                        <Widget DataSource="{BannerSlot}"
+                        <Widget Id="BannerSlotContainer" DataSource="{BannerSlot}"
                           WidthSizePolicy="Fixed"
                           HeightSizePolicy="Fixed"
                           SuggestedWidth="45"
@@ -539,13 +539,13 @@
                               WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Brush="InventoryBannerSlot" />
-                            <CommanderEquipmentSlotWidget WidthSizePolicy="StretchToParent"
+                            <CommanderEquipmentSlotWidget Id="BannerSlotWidget" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
                               Background="..\BannerBackground"
                               ImageIdentifier="ImageIdentifier"
                               IsSelected="@IsSelected">
                               <Children>
-                                <Widget WidthSizePolicy="StretchToParent"
+                                <Widget Id="BannerSlotPlaceholder" WidthSizePolicy="StretchToParent"
                                   HeightSizePolicy="StretchToParent"
                                   MarginLeft="2" MarginRight="2" MarginTop="2"
                                   MarginBottom="2"
@@ -572,50 +572,50 @@
             </Widget>
 
             <!-- ==================== LOADOUT SELECTOR ==================== -->
-            <Widget DataSource="{HeroInventory}"
+            <Widget Id="LoadoutSelectorContainer" DataSource="{HeroInventory}"
               WidthSizePolicy="StretchToParent"
               HeightSizePolicy="Fixed"
               SuggestedHeight="32"
               Sprite="BlankWhiteSquare_9"
               Color="#1a1a1aFF">
               <Children>
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="LoadoutTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                   SuggestedHeight="2" VerticalAlignment="Top"
                   Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <Widget Id="LoadoutBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                   SuggestedHeight="2" VerticalAlignment="Bottom"
                   Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="LoadoutLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                   SuggestedWidth="2" HorizontalAlignment="Left"
                   Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                <Widget Id="LoadoutRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                   SuggestedWidth="2" HorizontalAlignment="Right"
                   Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
 
-                <ListPanel WidthSizePolicy="CoverChildren"
+                <ListPanel Id="LoadoutSelectorPanel" WidthSizePolicy="CoverChildren"
                   HeightSizePolicy="StretchToParent"
                   HorizontalAlignment="Center"
                   StackLayout.LayoutMethod="HorizontalLeftToRight">
                   <Children>
-                    <TextWidget WidthSizePolicy="CoverChildren"
+                    <TextWidget Id="LoadoutLabel" WidthSizePolicy="CoverChildren"
                       HeightSizePolicy="StretchToParent"
                       MarginRight="8"
                       VerticalAlignment="Center"
                       Brush="TownManagement.Description.Title.Text"
                       Brush.FontSize="14"
                       Text="Loadout:" />
-                    <ButtonWidget DoNotPassEventsToChildren="true"
+                    <ButtonWidget Id="LoadoutToggleButton" DoNotPassEventsToChildren="true"
                       WidthSizePolicy="CoverChildren"
                       HeightSizePolicy="Fixed"
                       SuggestedHeight="24"
                       VerticalAlignment="Center"
                       Command.Click="ExecuteToggleLoadout">
                       <Children>
-                        <Widget WidthSizePolicy="StretchToParent"
+                        <Widget Id="LoadoutButtonBackground" WidthSizePolicy="StretchToParent"
                           HeightSizePolicy="StretchToParent"
                           Sprite="BlankWhiteSquare_9"
                           Color="#453920FF" />
-                        <TextWidget WidthSizePolicy="CoverChildren"
+                        <TextWidget Id="LoadoutNameText" WidthSizePolicy="CoverChildren"
                           HeightSizePolicy="StretchToParent"
                           MarginLeft="12"
                           MarginRight="12"
