@@ -1,0 +1,24 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroEditorColumn1"
+      WidthSizePolicy="Fixed"
+      SuggestedWidth="320"
+      HeightSizePolicy="StretchToParent"
+      MarginRight="4">
+      <Children>
+        <ListPanel Id="Column1Layout"
+          WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          StackLayout.LayoutMethod="VerticalBottomToTop">
+          <Children>
+            <HeroPortraitPanel />
+            <HeroNameInputPanel />
+            <HeroTitleInputPanel />
+            <HeroCharacterPanel />
+            <HeroPartyPanel />
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

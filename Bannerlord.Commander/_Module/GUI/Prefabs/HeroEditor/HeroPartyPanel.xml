@@ -1,0 +1,114 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroPartyPanel" DataSource="{HeroParty}"
+      WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="Fixed"
+      SuggestedHeight="80"
+      MarginBottom="8"
+      Sprite="BlankWhiteSquare_9"
+      Color="#1a1a1aFF">
+      <Children>
+        <Widget Id="PartyTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Top"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="PartyBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Bottom"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="PartyLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="2" HorizontalAlignment="Left"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="PartyRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="2" HorizontalAlignment="Right"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        
+        <ListPanel Id="PartyContent" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          MarginTop="4"
+          MarginBottom="4"
+          MarginLeft="4"
+          MarginRight="4"
+          StackLayout.LayoutMethod="VerticalBottomToTop">
+          <Children>
+            <TextWidget Id="PartyStatusText" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed"
+              SuggestedHeight="18"
+              MarginBottom="4"
+              Brush="Clan.TabControl.Text"
+              Brush.FontSize="11"
+              Brush.TextHorizontalAlignment="Center"
+              Text="@PartyStatusText" />
+            
+            <ListPanel Id="PartyButtonsRow" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed"
+              SuggestedHeight="24"
+              MarginBottom="2"
+              StackLayout.LayoutMethod="HorizontalLeftToRight">
+              <Children>
+                <ButtonWidget Id="DisbandPartyButton" DoNotPassEventsToChildren="true"
+                  WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  MarginRight="2"
+                  Command.Click="ExecuteDisbandParty"
+                  IsEnabled="@CanDisbandParty">
+                  <Children>
+                    <Widget Id="DisbandBg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Sprite="BlankWhiteSquare_9"
+                      Color="#453920FF" />
+                    <TextWidget Id="DisbandText" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Brush="Clan.TabControl.Text"
+                      Brush.FontSize="11"
+                      Text="Disband" />
+                  </Children>
+                </ButtonWidget>
+                <ButtonWidget Id="TogglePartyButton" DoNotPassEventsToChildren="true"
+                  WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  MarginLeft="2"
+                  Command.Click="ExecuteToggleParty">
+                  <Children>
+                    <Widget Id="ToggleBg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Sprite="BlankWhiteSquare_9"
+                      Color="#453920FF" />
+                    <TextWidget Id="ToggleText" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Brush="Clan.TabControl.Text"
+                      Brush.FontSize="10"
+                      Text="@TogglePartyButtonText" />
+                  </Children>
+                </ButtonWidget>
+              </Children>
+            </ListPanel>
+            
+            <ButtonWidget Id="EditPartyButton" DoNotPassEventsToChildren="true"
+              WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed"
+              SuggestedHeight="24"
+              Command.Click="ExecuteEditParty"
+              IsEnabled="@CanEditParty">
+              <Children>
+                <Widget Id="EditPartyBg" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  Sprite="BlankWhiteSquare_9"
+                  Color="#453920FF" />
+                <TextWidget Id="EditPartyText" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="11"
+                  Text="Edit Party" />
+              </Children>
+            </ButtonWidget>
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

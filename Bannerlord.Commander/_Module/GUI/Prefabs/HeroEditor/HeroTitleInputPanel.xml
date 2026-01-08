@@ -1,0 +1,44 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroTitleInputPanel" DataSource="{HeroIdentity}"
+      WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="Fixed"
+      SuggestedHeight="30"
+      MarginBottom="8"
+      Sprite="BlankWhiteSquare_9"
+      Color="#1a1a1aFF">
+      <Children>
+        <Widget Id="TitlePanelTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Top"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="TitlePanelBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Bottom"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="TitlePanelLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="2" HorizontalAlignment="Left"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="TitlePanelRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="2" HorizontalAlignment="Right"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        
+        <TextWidget Id="TitleLabel" WidthSizePolicy="Fixed"
+          HeightSizePolicy="StretchToParent"
+          SuggestedWidth="50"
+          MarginLeft="6"
+          VerticalAlignment="Center"
+          Brush="Clan.TabControl.Text"
+          Brush.FontSize="13"
+          Text="Title:" />
+        <EditableTextWidget Id="TitleInput" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          MarginLeft="58"
+          MarginRight="6"
+          MarginTop="4"
+          MarginBottom="4"
+          Brush="Clan.TabControl.Text"
+          Brush.FontSize="13"
+          Text="@HeroTitle" />
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

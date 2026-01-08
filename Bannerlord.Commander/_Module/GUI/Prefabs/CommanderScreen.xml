@@ -17,70 +17,15 @@
           <Children>
 
             <!-- HEROES MODE -->
-            <Widget Id="HeroesMode" WidthSizePolicy="StretchToParent"
-              HeightSizePolicy="StretchToParent"
-              IsVisible="@IsHeroesSelected">
-              <Children>
-                <ListPanel Id="HeroesLayoutPanel" WidthSizePolicy="StretchToParent"
-                  HeightSizePolicy="StretchToParent"
-                  StackLayout.LayoutMethod="HorizontalLeftToRight">
-                  <Children>
-
-                    <!-- LEFT: Hero List -->
-                    <CommanderHeroListPanel />
-
-                    <!-- RIGHT: Hero Editor -->
-                    <Widget Id="HeroEditorContainer" DataSource="{HeroEditor}"
-                      WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                      SuggestedWidth="900" IsVisible="@IsVisible" Sprite="BlankWhiteSquare_9"
-                      Color="#2a2a2aFF">
-                      <Children>
-                        <Widget Id="EditorTopBorder" WidthSizePolicy="StretchToParent"
-                          HeightSizePolicy="Fixed" SuggestedHeight="2"
-                          VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <Widget Id="EditorBottomBorder" WidthSizePolicy="StretchToParent"
-                          HeightSizePolicy="Fixed" SuggestedHeight="2"
-                          VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <Widget Id="EditorLeftBorder" WidthSizePolicy="Fixed"
-                          HeightSizePolicy="StretchToParent" SuggestedWidth="2"
-                          HorizontalAlignment="Left" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <Widget Id="EditorRightBorder" WidthSizePolicy="Fixed"
-                          HeightSizePolicy="StretchToParent" SuggestedWidth="2"
-                          HorizontalAlignment="Right" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-
-                        <!-- 3-Column Layout -->
-                        <ListPanel Id="EditorColumnsPanel" WidthSizePolicy="StretchToParent"
-                          HeightSizePolicy="StretchToParent"
-                          MarginTop="8" MarginBottom="8" MarginLeft="8" MarginRight="8"
-                          StackLayout.LayoutMethod="HorizontalLeftToRight">
-                          <Children>
-
-                            <!-- LEFT COLUMN: Portrait + Info + Equipment -->
-                            <HeroInfoColumn />
-
-                            <!-- CENTER COLUMN: Clan Banner + Character Model with Gear Slots + Loadout -->
-                            <HeroCharacterColumn />
-
-                            <!-- RIGHT COLUMN: Skills Grid -->
-                            <HeroSkillsColumn />
-
-                          </Children>
-                        </ListPanel>
-                      </Children>
-                    </Widget>
-
-                  </Children>
-                </ListPanel>
-              </Children>
-            </Widget>
+            <HeroesModePanel />
 
             <!-- Future modes will be added here -->
-            <!-- KINGDOMS MODE -->
-            <!-- CLANS MODE -->
-            <!-- SETTLEMENTS MODE -->
-            <!-- TROOPS MODE -->
-            <!-- ITEMS MODE -->
-            <!-- CHARACTERS MODE -->
+            <!-- <KingdomsModePanel /> -->
+            <!-- <ClansModePanel /> -->
+            <!-- <SettlementsModePanel /> -->
+            <!-- <TroopsModePanel /> -->
+            <!-- <ItemsModePanel /> -->
+            <!-- <CharactersModePanel /> -->
 
           </Children>
         </Widget>

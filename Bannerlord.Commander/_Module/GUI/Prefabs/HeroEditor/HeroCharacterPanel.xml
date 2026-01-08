@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <Window>
+    <Widget Id="HeroCharacterPanel"
+  WidthSizePolicy="StretchToParent"
+  HeightSizePolicy="StretchToParent"
+  Sprite="BlankWhiteSquare_9"
+  Color="#1a1a1aFF">
+  <Children>
+    <Widget Id="CharPanelTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+      SuggestedHeight="2" VerticalAlignment="Top"
+      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+    <Widget Id="CharPanelBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+      SuggestedHeight="2" VerticalAlignment="Bottom"
+      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+    <Widget Id="CharPanelLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+      SuggestedWidth="2" HorizontalAlignment="Left"
+      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+    <Widget Id="CharPanelRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+      SuggestedWidth="2" HorizontalAlignment="Right"
+      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+    
+    <ListPanel Id="CharacterPanelLayout" WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="StretchToParent"
+      StackLayout.LayoutMethod="VerticalBottomToTop">
+      <Children>
+        
+        <!-- EQUIPMENT AND MODEL SECTION -->
+        <ListPanel Id="ModelEquipmentLayout" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          StackLayout.LayoutMethod="HorizontalLeftToRight">
+          <Children>
+            
+            <!-- LEFT: ARMOR SLOTS (7 slots vertical) -->
+            <ListPanel Id="ArmorSlotsColumn" WidthSizePolicy="Fixed"
+              HeightSizePolicy="StretchToParent"
+              SuggestedWidth="55"
+              MarginLeft="4"
+              MarginTop="4"
+              MarginBottom="4"
+              StackLayout.LayoutMethod="VerticalBottomToTop">
+              <Children>
+                
+                <!-- Head Slot -->
+                <Widget Id="HeadSlotContainer" DataSource="{HeadSlot}"
+                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                  SuggestedWidth="50" SuggestedHeight="50"
+                  MarginBottom="2">
+                  <Children>
+                    <BrushWidget Id="HeadBg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Brush="InventoryHelmetSlot" />
+                    <CommanderEquipmentSlotWidget Id="HeadSlotWidget"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      DoNotPassEventsToChildren="true"
+                      Command.Click="ExecuteSelectSlot"
+                      Background="..\HeadBg"
+                      ImageIdentifier="HeadImage"
+                      IsSelected="@IsSelected">
+                      <Children>
+                        <Widget Id="HeadPlaceholder" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          Sprite="Inventory\portrait_cart" />
+                        <ImageIdentifierWidget Id="HeadImage"
+                          DataSource="{ImageIdentifier}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          ImageId="@Id"
+                          AdditionalArgs="@AdditionalArgs"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </CommanderEquipmentSlotWidget>
+                  </Children>
+                </Widget>
+                
+                <!-- Cape Slot -->
+                <Widget Id="CapeSlotContainer" DataSource="{CapeSlot}"
+                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                  SuggestedWidth="50" SuggestedHeight="50"
+                  MarginBottom="2">
+                  <Children>
+                    <BrushWidget Id="CapeBg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Brush="InventoryArmorSlot" />
+                    <CommanderEquipmentSlotWidget Id="CapeSlotWidget"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      DoNotPassEventsToChildren="true"
+                      Command.Click="ExecuteSelectSlot"
+                      Background="..\CapeBg"
+                      ImageIdentifier="CapeImage"
+                      IsSelected="@IsSelected">
+                      <Children>
+                        <Widget Id="CapePlaceholder" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          Sprite="Inventory\portrait_cart" />
+                        <ImageIdentifierWidget Id="CapeImage"
+                          DataSource="{ImageIdentifier}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          ImageId="@Id"
+                          AdditionalArgs="@AdditionalArgs"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </CommanderEquipmentSlotWidget>
+                  </Children>
+                </Widget>
+                
+                <!-- Body Slot -->
+                <Widget Id="BodySlotContainer" DataSource="{BodySlot}"
+                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                  SuggestedWidth="50" SuggestedHeight="50"
+                  MarginBottom="2">
+                  <Children>
+                    <BrushWidget Id="BodyBg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Brush="InventoryArmorSlot" />
+                    <CommanderEquipmentSlotWidget Id="BodySlotWidget"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      DoNotPassEventsToChildren="true"
+                      Command.Click="ExecuteSelectSlot"
+                      Background="..\BodyBg"
+                      ImageIdentifier="BodyImage"
+                      IsSelected="@IsSelected">
+                      <Children>
+                        <Widget Id="BodyPlaceholder" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          Sprite="Inventory\portrait_cart" />
+                        <ImageIdentifierWidget Id="BodyImage"
+                          DataSource="{ImageIdentifier}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          ImageId="@Id"
+                          AdditionalArgs="@AdditionalArgs"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </CommanderEquipmentSlotWidget>
+                  </Children>
+                </Widget>
+                
+                <!-- Gloves Slot -->
+                <Widget Id="GlovesSlotContainer" DataSource="{GlovesSlot}"
+                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                  SuggestedWidth="50" SuggestedHeight="50"
+                  MarginBottom="2">
+                  <Children>
+                    <BrushWidget Id="GlovesBg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Brush="InventoryGlovesSlot" />
+                    <CommanderEquipmentSlotWidget Id="GlovesSlotWidget"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      DoNotPassEventsToChildren="true"
+                      Command.Click="ExecuteSelectSlot"
+                      Background="..\GlovesBg"
+                      ImageIdentifier="GlovesImage"
+                      IsSelected="@IsSelected">
+                      <Children>
+                        <Widget Id="GlovesPlaceholder" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          Sprite="Inventory\portrait_cart" />
+                        <ImageIdentifierWidget Id="GlovesImage"
+                          DataSource="{ImageIdentifier}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          ImageId="@Id"
+                          AdditionalArgs="@AdditionalArgs"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </CommanderEquipmentSlotWidget>
+                  </Children>
+                </Widget>
+                
+                <!-- Leg Slot -->
+                <Widget Id="LegSlotContainer" DataSource="{LegSlot}"
+                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                  SuggestedWidth="50" SuggestedHeight="50"
+                  MarginBottom="2">
+                  <Children>
+                    <BrushWidget Id="LegBg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Brush="InventoryBootsSlot" />
+                    <CommanderEquipmentSlotWidget Id="LegSlotWidget"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      DoNotPassEventsToChildren="true"
+                      Command.Click="ExecuteSelectSlot"
+                      Background="..\LegBg"
+                      ImageIdentifier="LegImage"
+                      IsSelected="@IsSelected">
+                      <Children>
+                        <Widget Id="LegPlaceholder" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          Sprite="Inventory\portrait_cart" />
+                        <ImageIdentifierWidget Id="LegImage"
+                          DataSource="{ImageIdentifier}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          ImageId="@Id"
+                          AdditionalArgs="@AdditionalArgs"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </CommanderEquipmentSlotWidget>
+                  </Children>
+                </Widget>
+                
+                <!-- Horse Slot -->
+                <Widget Id="HorseSlotContainer" DataSource="{HorseSlot}"
+                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                  SuggestedWidth="50" SuggestedHeight="50"
+                  MarginBottom="2">
+                  <Children>
+                    <BrushWidget Id="HorseBg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Brush="InventoryHorseSlot" />
+                    <CommanderEquipmentSlotWidget Id="HorseSlotWidget"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      DoNotPassEventsToChildren="true"
+                      Command.Click="ExecuteSelectSlot"
+                      Background="..\HorseBg"
+                      ImageIdentifier="HorseImage"
+                      IsSelected="@IsSelected">
+                      <Children>
+                        <Widget Id="HorsePlaceholder" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          Sprite="Inventory\portrait_cart" />
+                        <ImageIdentifierWidget Id="HorseImage"
+                          DataSource="{ImageIdentifier}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          ImageId="@Id"
+                          AdditionalArgs="@AdditionalArgs"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </CommanderEquipmentSlotWidget>
+                  </Children>
+                </Widget>
+                
+                <!-- Horse Harness Slot -->
+                <Widget Id="HorseHarnessSlotContainer" DataSource="{HorseHarnessSlot}"
+                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                  SuggestedWidth="50" SuggestedHeight="50"
+                  MarginBottom="2">
+                  <Children>
+                    <BrushWidget Id="HorseHarnessBg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Brush="InventoryHorseArmorSlot" />
+                    <CommanderEquipmentSlotWidget Id="HorseHarnessSlotWidget"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      DoNotPassEventsToChildren="true"
+                      Command.Click="ExecuteSelectSlot"
+                      Background="..\HorseHarnessBg"
+                      ImageIdentifier="HorseHarnessImage"
+                      IsSelected="@IsSelected">
+                      <Children>
+                        <Widget Id="HorseHarnessPlaceholder" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          Sprite="Inventory\portrait_cart" />
+                        <ImageIdentifierWidget Id="HorseHarnessImage"
+                          DataSource="{ImageIdentifier}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          ImageId="@Id"
+                          AdditionalArgs="@AdditionalArgs"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </CommanderEquipmentSlotWidget>
+                  </Children>
+                </Widget>
+                
+              </Children>
+            </ListPanel>
+            
+            <!-- CENTER: CHARACTER MODEL -->
+            <Widget Id="CharacterModelWidget" DataSource="{HeroCharacter}"
+              WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="StretchToParent">
+              <Children>
+                <CharacterTableauWidget Id="CharacterTableau"
+                  WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  BodyProperties="@BodyProperties"
+                  StanceIndex="@StanceIndex"
+                  IsFemale="@IsFemale"
+                  EquipmentCode="@EquipmentCode"
+                  BannerCodeText="@BannerCodeText"
+                  CharStringId="@CharStringId"
+                  MountCreationKey="@MountCreationKey"
+                  ArmorColor1="@ArmorColor1"
+                  ArmorColor2="@ArmorColor2"
+                  Race="@Race"
+                  IsEquipmentAnimActive="true"
+                  RightHandWieldedEquipmentIndex="0"
+                  LeftHandWieldedEquipmentIndex="1" />
+              </Children>
+            </Widget>
+            
+            <!-- RIGHT: WEAPON SLOTS (5 slots vertical) -->
+            <ListPanel Id="WeaponSlotsColumn" WidthSizePolicy="Fixed"
+              HeightSizePolicy="StretchToParent"
+              SuggestedWidth="45"
+              MarginRight="4"
+              MarginTop="4"
+              MarginBottom="4"
+              StackLayout.LayoutMethod="VerticalBottomToTop">
+              <Children>
+                
+                <!-- Weapon0 Slot -->
+                <Widget Id="Weapon0SlotContainer" DataSource="{Weapon0Slot}"
+                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                  SuggestedWidth="40" SuggestedHeight="40"
+                  MarginBottom="2">
+                  <Children>
+                    <BrushWidget Id="Weapon0Bg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Brush="InventoryWeaponSlot" />
+                    <CommanderEquipmentSlotWidget Id="Weapon0SlotWidget"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      DoNotPassEventsToChildren="true"
+                      Command.Click="ExecuteSelectSlot"
+                      Background="..\Weapon0Bg"
+                      ImageIdentifier="Weapon0Image"
+                      IsSelected="@IsSelected">
+                      <Children>
+                        <Widget Id="Weapon0Placeholder" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          Sprite="Inventory\portrait_cart" />
+                        <ImageIdentifierWidget Id="Weapon0Image"
+                          DataSource="{ImageIdentifier}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          ImageId="@Id"
+                          AdditionalArgs="@AdditionalArgs"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </CommanderEquipmentSlotWidget>
+                  </Children>
+                </Widget>
+                
+                <!-- Weapon1 Slot -->
+                <Widget Id="Weapon1SlotContainer" DataSource="{Weapon1Slot}"
+                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                  SuggestedWidth="40" SuggestedHeight="40"
+                  MarginBottom="2">
+                  <Children>
+                    <BrushWidget Id="Weapon1Bg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Brush="InventoryWeaponSlot" />
+                    <CommanderEquipmentSlotWidget Id="Weapon1SlotWidget"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      DoNotPassEventsToChildren="true"
+                      Command.Click="ExecuteSelectSlot"
+                      Background="..\Weapon1Bg"
+                      ImageIdentifier="Weapon1Image"
+                      IsSelected="@IsSelected">
+                      <Children>
+                        <Widget Id="Weapon1Placeholder" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          Sprite="Inventory\portrait_cart" />
+                        <ImageIdentifierWidget Id="Weapon1Image"
+                          DataSource="{ImageIdentifier}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          ImageId="@Id"
+                          AdditionalArgs="@AdditionalArgs"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </CommanderEquipmentSlotWidget>
+                  </Children>
+                </Widget>
+                
+                <!-- Weapon2 Slot -->
+                <Widget Id="Weapon2SlotContainer" DataSource="{Weapon2Slot}"
+                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                  SuggestedWidth="40" SuggestedHeight="40"
+                  MarginBottom="2">
+                  <Children>
+                    <BrushWidget Id="Weapon2Bg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Brush="InventoryWeaponSlot" />
+                    <CommanderEquipmentSlotWidget Id="Weapon2SlotWidget"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      DoNotPassEventsToChildren="true"
+                      Command.Click="ExecuteSelectSlot"
+                      Background="..\Weapon2Bg"
+                      ImageIdentifier="Weapon2Image"
+                      IsSelected="@IsSelected">
+                      <Children>
+                        <Widget Id="Weapon2Placeholder" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          Sprite="Inventory\portrait_cart" />
+                        <ImageIdentifierWidget Id="Weapon2Image"
+                          DataSource="{ImageIdentifier}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          ImageId="@Id"
+                          AdditionalArgs="@AdditionalArgs"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </CommanderEquipmentSlotWidget>
+                  </Children>
+                </Widget>
+                
+                <!-- Weapon3 Slot -->
+                <Widget Id="Weapon3SlotContainer" DataSource="{Weapon3Slot}"
+                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                  SuggestedWidth="40" SuggestedHeight="40"
+                  MarginBottom="2">
+                  <Children>
+                    <BrushWidget Id="Weapon3Bg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Brush="InventoryWeaponSlot" />
+                    <CommanderEquipmentSlotWidget Id="Weapon3SlotWidget"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      DoNotPassEventsToChildren="true"
+                      Command.Click="ExecuteSelectSlot"
+                      Background="..\Weapon3Bg"
+                      ImageIdentifier="Weapon3Image"
+                      IsSelected="@IsSelected">
+                      <Children>
+                        <Widget Id="Weapon3Placeholder" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          Sprite="Inventory\portrait_cart" />
+                        <ImageIdentifierWidget Id="Weapon3Image"
+                          DataSource="{ImageIdentifier}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          ImageId="@Id"
+                          AdditionalArgs="@AdditionalArgs"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </CommanderEquipmentSlotWidget>
+                  </Children>
+                </Widget>
+                
+                <!-- Banner Slot -->
+                <Widget Id="BannerSlotContainer" DataSource="{BannerSlot}"
+                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                  SuggestedWidth="40" SuggestedHeight="40"
+                  MarginBottom="2">
+                  <Children>
+                    <BrushWidget Id="BannerBg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Brush="InventoryWeaponSlot" />
+                    <CommanderEquipmentSlotWidget Id="BannerSlotWidget"
+                      WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      DoNotPassEventsToChildren="true"
+                      Command.Click="ExecuteSelectSlot"
+                      Background="..\BannerBg"
+                      ImageIdentifier="BannerImage"
+                      IsSelected="@IsSelected">
+                      <Children>
+                        <Widget Id="BannerPlaceholder" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          Sprite="Inventory\portrait_cart" />
+                        <ImageIdentifierWidget Id="BannerImage"
+                          DataSource="{ImageIdentifier}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
+                          ImageId="@Id"
+                          AdditionalArgs="@AdditionalArgs"
+                          TextureProviderName="@TextureProviderName" />
+                      </Children>
+                    </CommanderEquipmentSlotWidget>
+                  </Children>
+                </Widget>
+                
+              </Children>
+            </ListPanel>
+            
+          </Children>
+        </ListPanel>
+        
+        <!-- LOADOUT SELECTOR -->
+        <Widget Id="LoadoutContainer" DataSource="{HeroInventory}"
+          WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="Fixed"
+          SuggestedHeight="32">
+          <Children>
+            <ListPanel Id="LoadoutPanel" WidthSizePolicy="CoverChildren"
+              HeightSizePolicy="StretchToParent"
+              HorizontalAlignment="Center"
+              StackLayout.LayoutMethod="HorizontalLeftToRight">
+              <Children>
+                <TextWidget Id="LoadoutLabel" WidthSizePolicy="CoverChildren"
+                  HeightSizePolicy="StretchToParent"
+                  MarginRight="8"
+                  VerticalAlignment="Center"
+                  Brush="TownManagement.Description.Title.Text"
+                  Brush.FontSize="12"
+                  Text="Loadout:" />
+                <ButtonWidget Id="LoadoutToggleBtn" DoNotPassEventsToChildren="true"
+                  WidthSizePolicy="CoverChildren"
+                  HeightSizePolicy="Fixed"
+                  SuggestedHeight="22"
+                  VerticalAlignment="Center"
+                  Command.Click="ExecuteToggleLoadout">
+                  <Children>
+                    <Widget Id="LoadoutBtnBg" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      Sprite="BlankWhiteSquare_9"
+                      Color="#453920FF" />
+                    <TextWidget Id="LoadoutName" WidthSizePolicy="CoverChildren"
+                      HeightSizePolicy="StretchToParent"
+                      MarginLeft="10"
+                      MarginRight="10"
+                      VerticalAlignment="Center"
+                      Brush="Clan.TabControl.Text"
+                      Brush.FontSize="11"
+                      Text="@LoadoutName" />
+                  </Children>
+                </ButtonWidget>
+              </Children>
+            </ListPanel>
+          </Children>
+        </Widget>
+        
+      </Children>
+    </ListPanel>
+  </Children>
+</Widget>
+  </Window>
+</Prefab>

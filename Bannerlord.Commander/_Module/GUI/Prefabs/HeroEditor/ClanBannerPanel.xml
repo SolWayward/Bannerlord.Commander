@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <Window>
+    <Widget Id="ClanBannerPanel" DataSource="{HeroCultureClan}"
+  WidthSizePolicy="StretchToParent"
+  HeightSizePolicy="Fixed"
+  SuggestedHeight="120"
+  MarginBottom="4"
+  Sprite="BlankWhiteSquare_9"
+  Color="#1a1a1aFF">
+  <Children>
+    <Widget Id="BannerPanelTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+      SuggestedHeight="2" VerticalAlignment="Top"
+      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+    <Widget Id="BannerPanelBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+      SuggestedHeight="2" VerticalAlignment="Bottom"
+      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+    <Widget Id="BannerPanelLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+      SuggestedWidth="2" HorizontalAlignment="Left"
+      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+    <Widget Id="BannerPanelRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+      SuggestedWidth="2" HorizontalAlignment="Right"
+      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+    
+    <Widget Id="ClanBannerContainer" WidthSizePolicy="Fixed"
+      HeightSizePolicy="Fixed"
+      SuggestedWidth="100"
+      SuggestedHeight="110"
+      HorizontalAlignment="Center"
+      VerticalAlignment="Center">
+      <Children>
+        <MaskedTextureWidget Id="ClanBannerImage" DataSource="{HeroInfo\ClanBanner}"
+          WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          Brush="Clan.TornBanner"
+          AdditionalArgs="@AdditionalArgs"
+          ImageId="@Id"
+          TextureProviderName="@TextureProviderName" />
+      </Children>
+    </Widget>
+  </Children>
+</Widget>
+  </Window>
+</Prefab>

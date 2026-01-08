@@ -1,36 +1,15 @@
+<!-- ============================================================================================================ -->
+<!-- HERO EDITOR PANEL - 2-Column Layout                                                                     -->
+<!-- Column prefabs are located in separate files for maintainability:                                           -->
+<!--   - HeroEditorColumn1.xml (Portrait, Name, Title, Character Model, Party)                                   -->
+<!--   - HeroEditorColumn2.xml (Banner, Clan, Kingdom, Identity, Skills)                                         -->
+<!-- ============================================================================================================ -->
+
 <Prefab>
   <Window>
-    <!-- ============================================================================================================ -->
-    <!-- HERO EDITOR PANEL - Main Container                                                                          -->
-    <!-- Three-column layout: Info/Clan/Party | Character/Equipment | Skills                                         -->
-    <!-- Column prefabs are located in separate files for maintainability:                                           -->
-    <!--   - HeroInfoColumn.xml (~470 lines)                                                                         -->
-    <!--   - HeroCharacterColumn.xml (~620 lines)                                                                    -->
-    <!--   - HeroSkillsColumn.xml (~200 lines)                                                                       -->
-    <!-- ============================================================================================================ -->
-    
-    <Widget Id="HeroEditorRoot" DataSource="{..}"
-      WidthSizePolicy="StretchToParent"
-      HeightSizePolicy="StretchToParent"
-      Sprite="BlankWhiteSquare_9"
-      Color="#2a2a2aFF">
+    <Widget Id="HeroEditorPanel" WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="StretchToParent">
       <Children>
-
-        <!-- ==================== BORDER FRAME ==================== -->
-        <Widget Id="EditorTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-          SuggestedHeight="2" VerticalAlignment="Top"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="EditorBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-          SuggestedHeight="2" VerticalAlignment="Bottom"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="EditorLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-          SuggestedWidth="2" HorizontalAlignment="Left"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="EditorRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-          SuggestedWidth="2" HorizontalAlignment="Right"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-
-        <!-- ==================== MAIN 3-COLUMN LAYOUT ==================== -->
         <ListPanel Id="EditorColumnsLayout" WidthSizePolicy="StretchToParent"
           HeightSizePolicy="StretchToParent"
           MarginTop="8"
@@ -40,18 +19,14 @@
           StackLayout.LayoutMethod="HorizontalLeftToRight">
           <Children>
 
-            <!-- LEFT COLUMN: Info, Clan, Party Controls (HeroInfoColumn.xml) -->
-            <HeroInfoColumn />
+            <!-- LEFT COLUMN: Portrait, Name, Title, Character Model, Party -->
+            <HeroEditorColumn1 />
 
-            <!-- CENTER COLUMN: Portrait, Character Model, Equipment Slots (HeroCharacterColumn.xml) -->
-            <HeroCharacterColumn />
-
-            <!-- RIGHT COLUMN: Skills Grid (HeroSkillsColumn.xml) -->
-            <HeroSkillsColumn />
+            <!-- RIGHT COLUMN: Banner, Clan, Kingdom, Identity, Skills -->
+            <HeroEditorColumn2 />
 
           </Children>
         </ListPanel>
-
       </Children>
     </Widget>
   </Window>

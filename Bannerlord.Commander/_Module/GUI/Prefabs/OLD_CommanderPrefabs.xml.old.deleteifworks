@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../schemas/gauntletui.xsd">
+  
+  <!-- Common Components -->
+  <Widget Id="Commander.HeaderBar">
+    <Children>
+      <CommanderHeaderBar />
+    </Children>
+  </Widget>
+
+  <Widget Id="Commander.ModeTabsBar">
+    <Children>
+      <CommanderModeTabsBar />
+    </Children>
+  </Widget>
+
+  <Widget Id="Commander.FooterBar">
+    <Children>
+      <CommanderFooterBar />
+    </Children>
+  </Widget>
+
+  <!-- Heroes Mode Components -->
+  <Widget Id="HeroesMode.ListPanel">
+    <Children>
+      <CommanderHeroListPanel />
+    </Children>
+  </Widget>
+
+  <!-- Hero Editor Columns (2-column layout) -->
+  <Widget Id="HeroEditor.Column1">
+    <Children>
+      <HeroEditorColumn1 />
+    </Children>
+  </Widget>
+
+  <Widget Id="HeroEditor.Column2">
+    <Children>
+      <HeroEditorColumn2 />
+    </Children>
+  </Widget>
+
+  <!-- Hero Editor Panels - Column 1 -->
+  <Widget Id="HeroEditor.PortraitPanel">
+    <Children>
+      <HeroPortraitPanel />
+    </Children>
+  </Widget>
+
+  <Widget Id="HeroEditor.NameInputPanel">
+    <Children>
+      <HeroNameInputPanel />
+    </Children>
+  </Widget>
+
+  <Widget Id="HeroEditor.TitleInputPanel">
+    <Children>
+      <HeroTitleInputPanel />
+    </Children>
+  </Widget>
+
+  <Widget Id="HeroEditor.CharacterPanel">
+    <Children>
+      <HeroCharacterPanel />
+    </Children>
+  </Widget>
+
+  <Widget Id="HeroEditor.PartyPanel">
+    <Children>
+      <HeroPartyPanel />
+    </Children>
+  </Widget>
+
+  <!-- Hero Editor Panels - Column 2 -->
+  <Widget Id="HeroEditor.ClanBannerPanel">
+    <Children>
+      <ClanBannerPanel />
+    </Children>
+  </Widget>
+
+  <Widget Id="HeroEditor.ClanNameReadonlyPanel">
+    <Children>
+      <HeroClanNameReadonlyPanel />
+    </Children>
+  </Widget>
+
+  <Widget Id="HeroEditor.KingdomReadonlyPanel">
+    <Children>
+      <HeroKingdomReadonlyPanel />
+    </Children>
+  </Widget>
+
+  <Widget Id="HeroEditor.IdentityInfoPanel">
+    <Children>
+      <HeroIdentityInfoPanel />
+    </Children>
+  </Widget>
+
+  <Widget Id="HeroEditor.ReservedSpacePanel">
+    <Children>
+      <HeroReservedSpacePanel />
+    </Children>
+  </Widget>
+
+  <Widget Id="HeroEditor.SkillsAttributesPanel">
+    <Children>
+      <HeroSkillsAttributesPanel />
+    </Children>
+  </Widget>
+
+</Prefab>

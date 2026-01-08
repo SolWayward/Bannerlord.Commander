@@ -16,7 +16,7 @@
   
   // XML formatter settings
   "[xml]": {
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.defaultFormatter": "redhat.vscode-xml",
     "editor.tabSize": 2,
     "editor.insertSpaces": true
@@ -61,9 +61,11 @@
   
   // XML catalog for schema validation
   "xml.fileAssociations": [
+    
     {
       "pattern": "**/_Module/GUI/**/*.xml",
       "systemId": "file:///c:/Users/Shadow/source/repos/Bannerlord.Commander/Bannerlord.Commander/schemas/gauntletui.xsd"
     }
   ]
+  
 }

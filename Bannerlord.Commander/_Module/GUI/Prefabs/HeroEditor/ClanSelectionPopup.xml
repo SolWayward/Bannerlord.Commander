@@ -1,12 +1,11 @@
 <Prefab>
   <Window>
-    <!-- Full screen overlay for clan selection popup -->
-    <Widget Id="ClanSelectionPopupRoot" DataSource="{ClanSelectionPopup}"
-      WidthSizePolicy="StretchToParent"
-      HeightSizePolicy="StretchToParent"
-      IsVisible="@IsVisible">
+    <Widget Id="ClanSelectionPopup" DataSource="{ClanSelectionPopup}"
+  WidthSizePolicy="StretchToParent"
+  HeightSizePolicy="StretchToParent"
+  IsVisible="@IsVisible">
       <Children>
-        <!-- Dark semi-transparent background overlay -->
+    <!-- Dark semi-transparent background overlay -->
         <ButtonWidget Id="BackgroundOverlay" DoNotPassEventsToChildren="true"
           WidthSizePolicy="StretchToParent"
           HeightSizePolicy="StretchToParent"
@@ -14,7 +13,7 @@
           Color="#000000AA"
           Command.Click="ExecuteClose" />
 
-        <!-- Popup container (centered) -->
+    <!-- Popup container (centered) -->
         <Widget Id="PopupContainer" WidthSizePolicy="Fixed"
           HeightSizePolicy="Fixed"
           SuggestedWidth="900"
@@ -25,7 +24,7 @@
           Color="#2a2a2aFF">
           <Children>
 
-            <!-- Border Frame -->
+        <!-- Border Frame -->
             <Widget Id="PopupTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
               SuggestedHeight="2" VerticalAlignment="Top"
               Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
@@ -40,7 +39,7 @@
               SuggestedWidth="2" HorizontalAlignment="Right"
               Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
 
-            <!-- Content Container -->
+        <!-- Content Container -->
             <ListPanel Id="PopupContentPanel" WidthSizePolicy="StretchToParent"
               HeightSizePolicy="StretchToParent"
               MarginTop="15"
@@ -50,7 +49,7 @@
               StackLayout.LayoutMethod="VerticalBottomToTop">
               <Children>
 
-                <!-- Header -->
+            <!-- Header -->
                 <Widget Id="HeaderContainer" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="Fixed"
                   SuggestedHeight="50"
@@ -66,7 +65,7 @@
                   </Children>
                 </Widget>
 
-                <!-- Filter Input -->
+            <!-- Filter Input -->
                 <Widget Id="FilterInputContainer" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="Fixed"
                   SuggestedHeight="40"
@@ -87,7 +86,7 @@
                       Sprite="BlankWhiteSquare_9"
                       Color="#1a1a1aFF">
                       <Children>
-                        <!-- Border frame -->
+                    <!-- Border frame -->
                         <Widget Id="FilterInputTopBorder" WidthSizePolicy="StretchToParent"
                           HeightSizePolicy="Fixed"
                           SuggestedHeight="1" VerticalAlignment="Top"
@@ -119,7 +118,7 @@
                   </Children>
                 </Widget>
 
-                <!-- Scrollable Clan List -->
+            <!-- Scrollable Clan List -->
                 <Widget Id="ClanListContainer" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
                   MarginBottom="15">
@@ -148,7 +147,7 @@
                               StackLayout.LayoutMethod="VerticalBottomToTop">
                               <ItemTemplate>
 
-                                <!-- Clan Item Template -->
+                            <!-- Clan Item Template -->
                                 <ButtonWidget Id="ClanItemButton" DoNotPassEventsToChildren="true"
                                   UpdateChildrenStates="true"
                                   WidthSizePolicy="StretchToParent"
@@ -168,7 +167,7 @@
                                       StackLayout.LayoutMethod="HorizontalLeftToRight">
                                       <Children>
 
-                                        <!-- Clan Banner -->
+                                    <!-- Clan Banner -->
                                         <Widget Id="ClanBannerContainer" WidthSizePolicy="Fixed"
                                           HeightSizePolicy="Fixed"
                                           SuggestedWidth="80"
@@ -185,14 +184,14 @@
                                           </Children>
                                         </Widget>
 
-                                        <!-- Clan Info -->
+                                    <!-- Clan Info -->
                                         <ListPanel Id="ClanInfoLayout"
                                           WidthSizePolicy="StretchToParent"
                                           HeightSizePolicy="StretchToParent"
                                           StackLayout.LayoutMethod="VerticalBottomToTop">
                                           <Children>
 
-                                            <!-- Clan Name -->
+                                        <!-- Clan Name -->
                                             <Widget Id="ClanNameContainer"
                                               WidthSizePolicy="StretchToParent"
                                               HeightSizePolicy="Fixed"
@@ -210,7 +209,7 @@
                                               </Children>
                                             </Widget>
 
-                                            <!-- Kingdom Name -->
+                                        <!-- Kingdom Name -->
                                             <Widget Id="KingdomNameContainer"
                                               WidthSizePolicy="StretchToParent"
                                               HeightSizePolicy="Fixed"
@@ -238,7 +237,7 @@
                                               </Children>
                                             </Widget>
 
-                                            <!-- Tier and Member Count -->
+                                        <!-- Tier and Member Count -->
                                             <ListPanel Id="TierMemberRow"
                                               WidthSizePolicy="StretchToParent"
                                               HeightSizePolicy="Fixed"
@@ -301,7 +300,7 @@
                       </Children>
                     </ScrollablePanel>
 
-                    <!-- Scrollbar Container -->
+                <!-- Scrollbar Container -->
                     <Widget Id="ClanScrollbarContainer"
                       WidthSizePolicy="Fixed"
                       HeightSizePolicy="StretchToParent"
@@ -336,7 +335,7 @@
                   </Children>
                 </Widget>
 
-                <!-- Close Button -->
+            <!-- Close Button -->
                 <ButtonWidget Id="CloseButton" DoNotPassEventsToChildren="true"
                   UpdateChildrenStates="true"
                   WidthSizePolicy="Fixed"
@@ -350,7 +349,7 @@
                       HeightSizePolicy="StretchToParent"
                       Sprite="BlankWhiteSquare_9"
                       Color="#453920FF" />
-                    <!-- Border frame -->
+                <!-- Border frame -->
                     <Widget Id="CloseButtonTopBorder" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="Fixed"
                       SuggestedHeight="1" VerticalAlignment="Top"

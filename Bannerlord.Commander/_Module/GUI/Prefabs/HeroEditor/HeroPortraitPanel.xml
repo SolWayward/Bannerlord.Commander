@@ -1,0 +1,39 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroPortraitPanel" DataSource="{HeroInfo}"
+      WidthSizePolicy="Fixed"
+      HeightSizePolicy="Fixed"
+      SuggestedWidth="150"
+      SuggestedHeight="180"
+      HorizontalAlignment="Center"
+      MarginBottom="8"
+      Sprite="BlankWhiteSquare_9"
+      Color="#1a1a1aFF">
+      <Children>
+        <Widget Id="PortraitTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Top"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="PortraitBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Bottom"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="PortraitLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="2" HorizontalAlignment="Left"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="PortraitRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="2" HorizontalAlignment="Right"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        
+        <ImageIdentifierWidget Id="PortraitImage" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          MarginTop="4"
+          MarginBottom="4"
+          MarginLeft="4"
+          MarginRight="4"
+          DataSource="{PortraitImage}"
+          ImageTypeCode="@ImageTypeCode"
+          AdditionalArgs="@AdditionalArgs"
+          ImageId="@Id" />
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

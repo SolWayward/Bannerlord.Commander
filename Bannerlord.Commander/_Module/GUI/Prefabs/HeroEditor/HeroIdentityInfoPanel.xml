@@ -1,0 +1,123 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroIdentityInfoPanel" DataSource="{HeroInfo}"
+      WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="Fixed"
+      SuggestedHeight="110"
+      MarginBottom="4"
+      Sprite="BlankWhiteSquare_9"
+      Color="#1a1a1aFF">
+      <Children>
+        <Widget Id="IdentityInfoTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Top"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="IdentityInfoBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Bottom"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="IdentityInfoLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="2" HorizontalAlignment="Left"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="IdentityInfoRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="2" HorizontalAlignment="Right"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        
+        <ListPanel Id="IdentityContent" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          MarginTop="4"
+          MarginBottom="4"
+          MarginLeft="6"
+          MarginRight="6"
+          StackLayout.LayoutMethod="VerticalBottomToTop">
+          <Children>
+            <ListPanel Id="GenderAgeRow" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed"
+              SuggestedHeight="18"
+              MarginBottom="2"
+              StackLayout.LayoutMethod="HorizontalLeftToRight">
+              <Children>
+                <TextWidget Id="GenderLabel" WidthSizePolicy="CoverChildren"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="11"
+                  Text="Gender: " />
+                <TextWidget Id="GenderValue" WidthSizePolicy="CoverChildren"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="11"
+                  Text="@Gender" />
+                <TextWidget Id="AgeLabel" WidthSizePolicy="CoverChildren"
+                  HeightSizePolicy="StretchToParent"
+                  MarginLeft="20"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="11"
+                  Text="Age: " />
+                <TextWidget Id="AgeValue" WidthSizePolicy="CoverChildren"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="11"
+                  Text="@AgeText" />
+              </Children>
+            </ListPanel>
+            
+            <ListPanel Id="BirthRow" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed"
+              SuggestedHeight="18"
+              MarginBottom="2"
+              StackLayout.LayoutMethod="HorizontalLeftToRight">
+              <Children>
+                <TextWidget Id="BirthLabel" WidthSizePolicy="CoverChildren"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="11"
+                  Text="Born: " />
+                <TextWidget Id="BirthValue" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="11"
+                  Text="@BirthDateText" />
+              </Children>
+            </ListPanel>
+            
+            <ListPanel Id="DeathRow" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed"
+              SuggestedHeight="18"
+              MarginBottom="2"
+              StackLayout.LayoutMethod="HorizontalLeftToRight">
+              <Children>
+                <TextWidget Id="DeathLabel" WidthSizePolicy="CoverChildren"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="11"
+                  Text="Death: " />
+                <TextWidget Id="DeathValue" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="11"
+                  Text="@DeathDateText" />
+              </Children>
+            </ListPanel>
+            
+            <ListPanel Id="CultureRow" DataSource="{HeroCultureClan}"
+              WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed"
+              SuggestedHeight="18"
+              StackLayout.LayoutMethod="HorizontalLeftToRight">
+              <Children>
+                <TextWidget Id="CultureLabel" WidthSizePolicy="CoverChildren"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="11"
+                  Text="Culture: " />
+                <TextWidget Id="CultureValue" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="11"
+                  Text="@CultureName" />
+              </Children>
+            </ListPanel>
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

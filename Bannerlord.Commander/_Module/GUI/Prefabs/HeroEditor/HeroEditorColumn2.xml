@@ -1,0 +1,24 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroEditorColumn2"
+      WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="StretchToParent"
+      MarginLeft="4">
+      <Children>
+        <ListPanel Id="Column2Layout"
+          WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          StackLayout.LayoutMethod="VerticalBottomToTop">
+          <Children>
+            <ClanBannerPanel />
+            <HeroClanNameReadonlyPanel />
+            <HeroKingdomReadonlyPanel />
+            <HeroIdentityInfoPanel />
+            <HeroReservedSpacePanel />
+            <HeroSkillsAttributesPanel />
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

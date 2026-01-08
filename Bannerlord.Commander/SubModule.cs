@@ -1,5 +1,7 @@
 using Bannerlord.Commander.UI.Screens;
 using TaleWorlds.Core;
+using TaleWorlds.GauntletUI.BaseTypes;
+using TaleWorlds.GauntletUI.PrefabSystem;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;

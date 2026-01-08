@@ -1,0 +1,49 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroKingdomReadonlyPanel" DataSource="{HeroCultureClan}"
+      WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="Fixed"
+      SuggestedHeight="30"
+      MarginBottom="4"
+      Sprite="BlankWhiteSquare_9"
+      Color="#1a1a1aFF">
+      <Children>
+        <Widget Id="KingdomReadTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Top"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="KingdomReadBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Bottom"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="KingdomReadLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="2" HorizontalAlignment="Left"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="KingdomReadRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="2" HorizontalAlignment="Right"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        
+        <ListPanel Id="KingdomContent" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          MarginTop="4"
+          MarginBottom="4"
+          MarginLeft="6"
+          MarginRight="6"
+          StackLayout.LayoutMethod="HorizontalLeftToRight">
+          <Children>
+            <TextWidget Id="KingdomLabel" WidthSizePolicy="CoverChildren"
+              HeightSizePolicy="StretchToParent"
+              VerticalAlignment="Center"
+              Brush="Clan.TabControl.Text"
+              Brush.FontSize="11"
+              Text="Kingdom: " />
+            <TextWidget Id="KingdomNameText" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="StretchToParent"
+              VerticalAlignment="Center"
+              Brush="Clan.TabControl.Text"
+              Brush.FontSize="13"
+              Text="@KingdomName" />
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

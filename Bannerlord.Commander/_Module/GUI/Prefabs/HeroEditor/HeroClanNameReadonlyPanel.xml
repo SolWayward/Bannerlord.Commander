@@ -1,0 +1,49 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroClanNameReadonlyPanel" DataSource="{HeroCultureClan}"
+      WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="Fixed"
+      SuggestedHeight="35"
+      MarginBottom="4"
+      Sprite="BlankWhiteSquare_9"
+      Color="#1a1a1aFF">
+      <Children>
+        <Widget Id="ClanNameTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Top"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="ClanNameBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Bottom"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="ClanNameLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="2" HorizontalAlignment="Left"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        <Widget Id="ClanNameRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="2" HorizontalAlignment="Right"
+          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        
+        <ListPanel Id="ClanNameContent" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          MarginTop="4"
+          MarginBottom="4"
+          MarginLeft="6"
+          MarginRight="6"
+          StackLayout.LayoutMethod="HorizontalLeftToRight">
+          <Children>
+            <TextWidget Id="ClanLabel" WidthSizePolicy="CoverChildren"
+              HeightSizePolicy="StretchToParent"
+              VerticalAlignment="Center"
+              Brush="Clan.TabControl.Text"
+              Brush.FontSize="11"
+              Text="Clan: " />
+            <TextWidget Id="ClanNameText" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="StretchToParent"
+              VerticalAlignment="Center"
+              Brush="Clan.TabControl.Text"
+              Brush.FontSize="13"
+              Text="@ClanName" />
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

@@ -7,18 +7,20 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <LangVersion>10.0</LangVersion>
     <Nullable>disable</Nullable>
-    <!-- Suppress unused variable warnings for EXLauncher template code -->
-    <NoWarn>$(NoWarn);CS0168</NoWarn>
 
     <BuildForWindows>false</BuildForWindows>
     <BuildForWindowsStore>false</BuildForWindowsStore>
-  
+
     <ModuleId>$(MSBuildProjectName)</ModuleId>
     <ModuleName>$(MSBuildProjectName)</ModuleName>
     <ModuleUrl></ModuleUrl>
     <GameFolder>$(BANNERLORD_GAME_DIR)</GameFolder>
+
     <!-- Module manually override GameVersion -->
     <OverrideGameVersion>v1.3.13</OverrideGameVersion>
+
+    <!-- Suppress unused variable warnings for EXLauncher template code -->
+    <NoWarn>$(NoWarn);CS0168</NoWarn>
   </PropertyGroup>
 
   <!--
@@ -38,7 +40,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework) == 'net472'">
-  <!-- Steam/GOG/Epic versions of the game -->
+    <!-- Steam/GOG/Epic versions of the game -->
     <BuildForWindows>true</BuildForWindows>
   </PropertyGroup>
   <PropertyGroup Condition="$(TargetFramework) == 'net6'">
@@ -57,8 +59,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" PrivateAssets="all" IncludeAssets="compile" />
-    <PackageReference Include="BUTR.Harmony.Analyzer" Version="1.0.1.50" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" PrivateAssets="all"
+      IncludeAssets="compile" />
+    <PackageReference Include="BUTR.Harmony.Analyzer" Version="1.0.1.50" PrivateAssets="all"
+      IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
   </ItemGroup>
 
   <!-- System.Numerics.Vectors required for ImageIdentifierWidget (TextureWidget uses Vector2) -->
@@ -79,7 +83,6 @@
     <Reference Include="Bannerlord.GameMaster">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.GameMaster\bin\Gaming.Desktop.x64_Shipping_Client\Bannerlord.GameMaster.v1.3.13.dll</HintPath>
       <Private>false</Private>
- </Reference>
+    </Reference>
   </ItemGroup>
-  
 </Project>

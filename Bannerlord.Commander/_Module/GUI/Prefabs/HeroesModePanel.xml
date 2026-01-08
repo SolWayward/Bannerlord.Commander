@@ -1,0 +1,49 @@
+<!-- ============================================================================================================ -->
+<!-- HEROES MODE PANEL - Complete Heroes Mode UI                                                             -->
+<!-- Contains: Hero List (left) + Hero Editor Container (right)                                              -->
+<!-- ============================================================================================================ -->
+
+<Prefab>
+  <Window>
+    <Widget Id="HeroesModePanel" WidthSizePolicy="StretchToParent"
+  HeightSizePolicy="StretchToParent"
+  IsVisible="@IsHeroesSelected">
+  <Children>
+    <ListPanel Id="HeroesLayoutPanel" WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="StretchToParent"
+      StackLayout.LayoutMethod="HorizontalLeftToRight">
+      <Children>
+
+        <!-- LEFT: Hero List -->
+        <CommanderHeroListPanel />
+
+        <!-- RIGHT: Hero Editor -->
+        <Widget Id="HeroEditorContainer" DataSource="{HeroEditor}"
+          WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="900" IsVisible="@IsVisible" Sprite="BlankWhiteSquare_9"
+          Color="#2a2a2aFF">
+          <Children>
+            <Widget Id="EditorTopBorder" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed" SuggestedHeight="2"
+              VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+            <Widget Id="EditorBottomBorder" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed" SuggestedHeight="2"
+              VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+            <Widget Id="EditorLeftBorder" WidthSizePolicy="Fixed"
+              HeightSizePolicy="StretchToParent" SuggestedWidth="2"
+              HorizontalAlignment="Left" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+            <Widget Id="EditorRightBorder" WidthSizePolicy="Fixed"
+              HeightSizePolicy="StretchToParent" SuggestedWidth="2"
+              HorizontalAlignment="Right" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
+            <!-- Hero Editor Panel -->
+            <HeroEditorPanel />
+          </Children>
+        </Widget>
+
+      </Children>
+    </ListPanel>
+  </Children>
+</Widget>
+  </Window>
+</Prefab>
