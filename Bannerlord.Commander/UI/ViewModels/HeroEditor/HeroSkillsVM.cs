@@ -118,7 +118,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             {
                 new { AttributeName = "Vigor", AttributeId = "VIG", SkillIds = new[] { "OneHanded", "TwoHanded", "Polearm" } },
                 new { AttributeName = "Control", AttributeId = "CTR", SkillIds = new[] { "Bow", "Crossbow", "Throwing" } },
-                new { AttributeName = "Endurance", AttributeId = "END", SkillIds = new[] { "Riding", "Athletics", "Smithing" } },
+                new { AttributeName = "Endurance", AttributeId = "END", SkillIds = new[] { "Riding", "Athletics", "Crafting" } },
                 new { AttributeName = "Cunning", AttributeId = "CNG", SkillIds = new[] { "Scouting", "Tactics", "Roguery" } },
                 new { AttributeName = "Social", AttributeId = "SOC", SkillIds = new[] { "Charm", "Leadership", "Trade" } },
                 new { AttributeName = "Intelligence", AttributeId = "INT", SkillIds = new[] { "Steward", "Medicine", "Engineering" } }

@@ -19,8 +19,8 @@
 
         <!-- RIGHT: Hero Editor -->
         <Widget Id="HeroEditorContainer" DataSource="{HeroEditor}"
-          WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-          SuggestedWidth="900" IsVisible="@IsVisible" Sprite="BlankWhiteSquare_9"
+          WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          SuggestedWidth="640" IsVisible="@IsVisible" Sprite="BlankWhiteSquare_9"
           Color="#2a2a2aFF">
           <Children>
             <Widget Id="EditorTopBorder" WidthSizePolicy="StretchToParent"

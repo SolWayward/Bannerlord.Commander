@@ -102,17 +102,19 @@ Main Screen Native Files example (ClanScreen.xml):
 </Prefab>
 ```
 
+All Child standalone prefab filse must have `<Prefab><Window><Widget Id="prefabname"...>` wrapperstructure
 Child Component Native Files Example (ClanMembers.xml, ClanPartiesLeftPanel.xml):
 ```xml
 <Prefab>
   <Window>
-    <Widget ...>
+    <Widget Id="prefabname"...>
       <!-- content -->
     </Widget>
   </Window>
 </Prefab>
 ```
 
+For prefab children the widget ID should match the filname of the prefab (without file extensions) and any references to the prefab should reference by using `<prefabname />`
 Example Native guantlet UI xml files are located in the examples folder
 
 ## Emoji
