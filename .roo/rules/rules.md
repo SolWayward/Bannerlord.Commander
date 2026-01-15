@@ -71,6 +71,8 @@ Make sure code is high quality, maintainable, human readable, and well organized
 
 Make use of MARK: for long methods. Use region for sections of code that has many short methods one after another.
 
+Do not use ```InformationManager.DisplayMessage(new InformationMessage())```, instead use InfoMessage.Error(string message), .Warning, .Log, .Success, .Important, .Status, etc which automaticaly uses apropiate colors. InfoMessage is part of Bannerlord.GameMaster.Information namespace
+
 ### Performance Considerations
 Avoid LINQ when performance-critical (use native collections instead, LINQ ok for non critical operations)
 String concatenation in loops (use StringBuilder)
