@@ -13,6 +13,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+.roo/rules
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -37,6 +38,7 @@ bld/
 [Ll]og/
 [Ll]ogs/
 [Kk]nowledge/
+.roo/
 
 Bannerlord.Commander/[Dd]ebug/
 Bannerlord.Commander/[Dd]ebugPublic/
@@ -411,3 +413,9 @@ Bannerlord.Commander/obj/Debug/net6/Bannerlord.Commander.v1.3.13.pdb
 Bannerlord.Commander/obj/Debug/net6/ref/Bannerlord.Commander.v1.3.13.dll
 Bannerlord.Commander/obj/Debug/net6/refint/Bannerlord.Commander.v1.3.13.dll
 Knowledge/ImageIdentifierVM_Vs_ItemImageIdentifierVM.md
+.roo/rules/rules.md
+.vs/Bannerlord.Commander.slnx/v18/.suo
+.vs/ProjectEvaluation/bannerlord.commander.metadata.v10.bin
+.vs/ProjectEvaluation/bannerlord.commander.projects.v10.bin
+.vs/ProjectEvaluation/bannerlord.commander.strings.v10.bin
+.roo/rules/rules.md
