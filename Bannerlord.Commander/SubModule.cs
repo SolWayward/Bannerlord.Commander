@@ -47,7 +47,8 @@ namespace Bannerlord.Commander
                 return;
             }
 
-            if (Input.IsKeyPressed(InputKey.F10))
+            if ((Input.IsKeyDown(InputKey.LeftShift) || Input.IsKeyDown(InputKey.RightShift))
+                && Input.IsKeyPressed(InputKey.C))
             {
                 OpenCommanderScreen();
             }
