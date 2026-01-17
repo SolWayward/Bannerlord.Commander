@@ -45,7 +45,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
                 _portraitImage?.OnFinalize();
 
                 // Create CharacterPortrait
-                CharacterCode characterCode = Helpers.CharacterCodeHelpers.BuildCharacterCode(_hero.CharacterObject, true, SettingsManager.HeroSettings.ShowHiddenInfo);
+                CharacterCode characterCode = Helpers.CharacterHelpers.BuildCharacterCode(_hero.CharacterObject, true, SettingsManager.HeroSettings.ShowHiddenInfo);
                 PortraitImage = new CharacterImageIdentifierVM(characterCode);
             }
             else

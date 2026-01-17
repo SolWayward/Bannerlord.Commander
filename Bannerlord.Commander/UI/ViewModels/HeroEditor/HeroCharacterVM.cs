@@ -93,6 +93,20 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             RefreshCharacterData();
         }
 
+        /// <summary>
+        /// Sets the civilian equipment mode and refreshes the character display.
+        /// Called by HeroEditorVM to sync with HeroInventoryVM loadout changes.
+        /// </summary>
+        /// <param name="useCivilian">True for civilian equipment, false for battle equipment</param>
+        public void SetUseCivilianEquipment(bool useCivilian)
+        {
+            if (_useCivilianEquipment != useCivilian)
+            {
+                _useCivilianEquipment = useCivilian;
+                RefreshCharacterData();
+            }
+        }
+
         #endregion
 
         #region DataSource Properties

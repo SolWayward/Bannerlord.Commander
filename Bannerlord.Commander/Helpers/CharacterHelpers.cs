@@ -6,7 +6,7 @@ using TaleWorlds.Localization;
 
 namespace Bannerlord.Commander.Helpers
 {
-    public static class CharacterCodeHelpers
+    public static class CharacterHelpers
     {
         /// <summary>
         /// Builds Character code the same way as CampaignUIHelper.GetCharacterCode except has an option to bypass the check for IsHeroInformationHidden

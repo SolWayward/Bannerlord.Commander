@@ -219,6 +219,10 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 case nameof(HeroInventoryVM.BannerSlot):
                     OnPropertyChangedWithValue(HeroInventory.BannerSlot, nameof(BannerSlot));
                     break;
+                case nameof(HeroInventoryVM.SelectedLoadoutIndex):
+                    // Sync the 3D character model equipment with the inventory loadout selection
+                    HeroCharacter?.SetUseCivilianEquipment(HeroInventory.SelectedLoadoutIndex == 1);
+                    break;
             }
         }
 
