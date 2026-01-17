@@ -1,3 +1,4 @@
+using Bannerlord.Commander.Settings;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
@@ -9,6 +10,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
     /// <summary>
     /// ViewModel for read-only hero information display.
     /// Shows hero portrait and basic hero statistics.
+    /// Creates CharacterImageIdentifierVM directly for portrait display using native pattern.
     /// </summary>
     public class HeroInfoVM : ViewModel
     {
@@ -30,7 +32,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 
         public HeroInfoVM()
         {
-            Clear();
+            ClearFields();
         }
 
         #endregion
@@ -47,18 +49,15 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 
             if (_hero != null)
             {
-                // Create portrait image identifier using CharacterCode
-                if (_hero.CharacterObject != null)
-                {
-                    CharacterCode charCode = CampaignUIHelper.GetCharacterCode(_hero.CharacterObject, false);
-                    PortraitImage = new CharacterImageIdentifierVM(charCode);
-                }
-                else
-                {
-                    PortraitImage = new CharacterImageIdentifierVM(null);
-                }
-                
-                // Create clan banner
+                // Finalize previous portrait if it exists before creating new one
+                _portraitImage?.OnFinalize();
+
+                // Create CharacterPortrait
+                CharacterCode characterCode = Helpers.CharacterCodeHelpers.BuildCharacterCode(_hero.CharacterObject, true, SettingsManager.HeroSettings.ShowHiddenInfo);
+                PortraitImage = new CharacterImageIdentifierVM(characterCode);
+
+                // Update clan banner
+                _clanBanner?.OnFinalize();
                 ClanBanner = new BannerImageIdentifierVM(_hero.ClanBanner, true);
 
                 Gender = _hero.IsFemale ? "Female" : "Male";
@@ -67,7 +66,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 BirthDateText = $"Born: {GetBirthDateDisplay(_hero)}";
 
                 IsDead = !_hero.IsAlive;
-                
+
                 // Show death date if one is set, regardless of whether hero is currently dead
                 string deathDisplay = GetDeathDateDisplay(_hero);
                 DeathDateText = deathDisplay != "-" ? $"Death: {deathDisplay}" : "Death: -";
@@ -80,12 +79,29 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 
         /// <summary>
         /// Clears all data from the ViewModel.
+        /// Sets PortraitImage to null instead of creating empty VM to avoid silhouette.
         /// </summary>
         public void Clear()
         {
             _hero = null;
-            PortraitImage = new CharacterImageIdentifierVM(null);
-            ClanBanner = new BannerImageIdentifierVM(null, false);
+
+            // Finalize and set to null - don't create empty VM which causes silhouette
+            _portraitImage?.OnFinalize();
+            _portraitImage = null;
+            OnPropertyChanged(nameof(PortraitImage));
+
+            _clanBanner?.OnFinalize();
+            _clanBanner = null;
+            OnPropertyChanged(nameof(ClanBanner));
+
+            ClearFields();
+        }
+
+        /// <summary>
+        /// Clears all text/value fields without touching the image VMs.
+        /// </summary>
+        private void ClearFields()
+        {
             Gender = "";
             AgeText = "";
             GenderAgeText = "";
@@ -97,7 +113,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         public override void OnFinalize()
         {
             base.OnFinalize();
-            PortraitImage?.OnFinalize();
+            _portraitImage?.OnFinalize();
             ClanBanner?.OnFinalize();
         }
 
@@ -106,7 +122,9 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         #region DataSource Properties
 
         /// <summary>
-        /// Gets the portrait image identifier for ImageIdentifierWidget display.
+        /// Gets the character portrait image identifier for display.
+        /// Bind directly to this property in XML using DataSource="{PortraitImage}".
+        /// This follows the native pattern used in ClanLordItemVM, GameMenuPartyItemVM, etc.
         /// </summary>
         [DataSourceProperty]
         public CharacterImageIdentifierVM PortraitImage

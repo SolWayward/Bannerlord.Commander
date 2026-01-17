@@ -10,6 +10,7 @@
       Sprite="BlankWhiteSquare_9"
       Color="#1a1a1aFF">
       <Children>
+        <!-- Borders -->
         <Widget Id="PortraitTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Top"
           Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
@@ -23,16 +24,18 @@
           SuggestedWidth="2" HorizontalAlignment="Right"
           Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
         
-        <ImageIdentifierWidget Id="PortraitImage" WidthSizePolicy="StretchToParent"
+        <!-- Hero portrait using direct CharacterImageIdentifierVM binding -->
+        <ImageIdentifierWidget Id="HeroPortraitImage"
+          DataSource="{PortraitImage}"
+          WidthSizePolicy="StretchToParent"
           HeightSizePolicy="StretchToParent"
           MarginTop="4"
           MarginBottom="4"
           MarginLeft="4"
           MarginRight="4"
-          DataSource="{PortraitImage}"
-          ImageTypeCode="@ImageTypeCode"
           AdditionalArgs="@AdditionalArgs"
-          ImageId="@Id" />
+          ImageId="@Id"
+          TextureProviderName="@TextureProviderName" />
       </Children>
     </Widget>
   </Window>
