@@ -1,6 +1,6 @@
 <Prefab>
   <Window>
-    <Widget Id="HeroKingdomReadonlyPanel" DataSource="{HeroCultureClan}"
+    <Widget Id="HeroKingdomReadonlyPanel" DataSource="{HeroKingdomPanel}"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="Fixed"
       SuggestedHeight="30"

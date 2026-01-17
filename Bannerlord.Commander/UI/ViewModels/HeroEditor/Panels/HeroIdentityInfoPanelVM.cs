@@ -1,36 +1,29 @@
-using Bannerlord.Commander.Settings;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.ViewModelCollection;
-using TaleWorlds.Core;
-using TaleWorlds.Core.ViewModelCollection.ImageIdentifiers;
 using TaleWorlds.Library;
 
-namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
+namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
 {
     /// <summary>
-    /// ViewModel for read-only hero information display.
-    /// Shows hero portrait and basic hero statistics.
-    /// Creates CharacterImageIdentifierVM directly for portrait display using native pattern.
+    /// ViewModel for the hero identity information panel.
+    /// Consolidates gender, age, birth/death dates, and culture information.
+    /// Eliminates nested DataSource requirement by including CultureName directly.
     /// </summary>
-    public class HeroInfoVM : ViewModel
+    public class HeroIdentityInfoPanelVM : ViewModel
     {
         #region Private Fields
 
         private Hero _hero;
-        private CharacterImageIdentifierVM _portraitImage;
-        private BannerImageIdentifierVM _clanBanner;
         private string _gender;
         private string _ageText;
-        private string _genderAgeText;
         private string _birthDateText;
         private string _deathDateText;
-        private bool _isDead;
+        private string _cultureName;
 
         #endregion
 
         #region Constructor
 
-        public HeroInfoVM()
+        public HeroIdentityInfoPanelVM()
         {
             ClearFields();
         }
@@ -42,34 +35,23 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         /// <summary>
         /// Refreshes the ViewModel with data from the specified hero.
         /// </summary>
-        /// <param name="hero">The hero to display information for</param>
+        /// <param name="hero">The hero to display identity info for</param>
         public void RefreshForHero(Hero hero)
         {
             _hero = hero;
 
             if (_hero != null)
             {
-                // Finalize previous portrait if it exists before creating new one
-                _portraitImage?.OnFinalize();
-
-                // Create CharacterPortrait
-                CharacterCode characterCode = Helpers.CharacterCodeHelpers.BuildCharacterCode(_hero.CharacterObject, true, SettingsManager.HeroSettings.ShowHiddenInfo);
-                PortraitImage = new CharacterImageIdentifierVM(characterCode);
-
-                // Update clan banner
-                _clanBanner?.OnFinalize();
-                ClanBanner = new BannerImageIdentifierVM(_hero.ClanBanner, true);
-
                 Gender = _hero.IsFemale ? "Female" : "Male";
                 AgeText = ((int)_hero.Age).ToString();
-                GenderAgeText = $"Gender: {Gender}  Age: {AgeText}";
                 BirthDateText = $"Born: {GetBirthDateDisplay(_hero)}";
-
-                IsDead = !_hero.IsAlive;
 
                 // Show death date if one is set, regardless of whether hero is currently dead
                 string deathDisplay = GetDeathDateDisplay(_hero);
                 DeathDateText = deathDisplay != "-" ? $"Death: {deathDisplay}" : "Death: -";
+
+                // Culture information
+                CultureName = _hero.Culture?.Name?.ToString() ?? "Unknown";
             }
             else
             {
@@ -79,83 +61,28 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 
         /// <summary>
         /// Clears all data from the ViewModel.
-        /// Sets PortraitImage to null instead of creating empty VM to avoid silhouette.
         /// </summary>
         public void Clear()
         {
             _hero = null;
-
-            // Finalize and set to null - don't create empty VM which causes silhouette
-            _portraitImage?.OnFinalize();
-            _portraitImage = null;
-            OnPropertyChanged(nameof(PortraitImage));
-
-            _clanBanner?.OnFinalize();
-            _clanBanner = null;
-            OnPropertyChanged(nameof(ClanBanner));
-
             ClearFields();
         }
 
         /// <summary>
-        /// Clears all text/value fields without touching the image VMs.
+        /// Clears all text/value fields.
         /// </summary>
         private void ClearFields()
         {
             Gender = "";
             AgeText = "";
-            GenderAgeText = "";
             BirthDateText = "";
             DeathDateText = "";
-            IsDead = false;
-        }
-
-        public override void OnFinalize()
-        {
-            base.OnFinalize();
-            _portraitImage?.OnFinalize();
-            ClanBanner?.OnFinalize();
+            CultureName = "Unknown";
         }
 
         #endregion
 
         #region DataSource Properties
-
-        /// <summary>
-        /// Gets the character portrait image identifier for display.
-        /// Bind directly to this property in XML using DataSource="{PortraitImage}".
-        /// This follows the native pattern used in ClanLordItemVM, GameMenuPartyItemVM, etc.
-        /// </summary>
-        [DataSourceProperty]
-        public CharacterImageIdentifierVM PortraitImage
-        {
-            get => _portraitImage;
-            private set
-            {
-                if (_portraitImage != value)
-                {
-                    _portraitImage = value;
-                    OnPropertyChangedWithValue(value, nameof(PortraitImage));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the clan banner image identifier for ImageIdentifierWidget display.
-        /// </summary>
-        [DataSourceProperty]
-        public BannerImageIdentifierVM ClanBanner
-        {
-            get => _clanBanner;
-            private set
-            {
-                if (_clanBanner != value)
-                {
-                    _clanBanner = value;
-                    OnPropertyChangedWithValue(value, nameof(ClanBanner));
-                }
-            }
-        }
 
         /// <summary>
         /// Gets the hero's gender display text.
@@ -175,16 +102,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         {
             get => _ageText;
             private set => SetProperty(ref _ageText, value, nameof(AgeText));
-        }
-
-        /// <summary>
-        /// Gets the combined gender and age text for compact display.
-        /// </summary>
-        [DataSourceProperty]
-        public string GenderAgeText
-        {
-            get => _genderAgeText;
-            private set => SetProperty(ref _genderAgeText, value, nameof(GenderAgeText));
         }
 
         /// <summary>
@@ -208,13 +125,13 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         }
 
         /// <summary>
-        /// Gets whether the hero is dead.
+        /// Gets the hero's culture name display text.
         /// </summary>
         [DataSourceProperty]
-        public bool IsDead
+        public string CultureName
         {
-            get => _isDead;
-            private set => SetProperty(ref _isDead, value, nameof(IsDead));
+            get => _cultureName;
+            private set => SetProperty(ref _cultureName, value, nameof(CultureName));
         }
 
         #endregion
@@ -298,19 +215,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 
             field = value;
             OnPropertyChangedWithValue(value, propertyName);
-            return true;
-        }
-
-        /// <summary>
-        /// Helper method to reduce boilerplate in bool property setters.
-        /// </summary>
-        private bool SetProperty(ref bool field, bool value, string propertyName)
-        {
-            if (field == value)
-                return false;
-
-            field = value;
-            OnPropertyChanged(propertyName);
             return true;
         }
 

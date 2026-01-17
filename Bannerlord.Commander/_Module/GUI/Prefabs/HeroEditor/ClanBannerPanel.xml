@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <Window>
-    <Widget Id="ClanBannerPanel" DataSource="{HeroInfo}"
+    <Widget Id="ClanBannerPanel" DataSource="{ClanBannerPanel}"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="Fixed"
       SuggestedHeight="120"

@@ -2,6 +2,7 @@ using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels;
 
 namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 {
@@ -15,14 +16,23 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         #region Private Fields
 
         private Hero _hero;
-        private HeroInfoVM _heroInfo;
-        private HeroIdentityVM _heroIdentity;
-        private HeroCultureClanVM _heroCultureClan;
+        
+        // New Panel VMs - 1:1 match with XML panels
+        private HeroPortraitPanelVM _heroPortraitPanel;
+        private HeroNamePanelVM _heroNamePanel;
+        private HeroTitlePanelVM _heroTitlePanel;
+        private ClanBannerPanelVM _clanBannerPanel;
+        private HeroIdentityInfoPanelVM _heroIdentityInfoPanel;
+        private HeroClanPanelVM _heroClanPanel;
+        private HeroKingdomPanelVM _heroKingdomPanel;
+        
+        // Existing VMs that remain unchanged
         private HeroPartyVM _heroParty;
         private HeroSkillsVM _heroSkills;
         private HeroInventoryVM _heroInventory;
         private HeroCharacterVM _heroCharacter;
         private ClanSelectionPopupVM _clanSelectionPopup;
+        
         private bool _isVisible;
         private string _selectedHeroStringId;
 
@@ -32,15 +42,22 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 
         public HeroEditorVM()
         {
-            // Initialize sub-ViewModels
-            HeroInfo = new();
-            HeroIdentity = new();
-            HeroCultureClan = new();
+            // Initialize new Panel ViewModels
+            HeroPortraitPanel = new();
+            HeroNamePanel = new();
+            HeroTitlePanel = new();
+            ClanBannerPanel = new();
+            HeroIdentityInfoPanel = new();
+            HeroClanPanel = new();
+            HeroKingdomPanel = new();
+            
+            // Initialize existing ViewModels
             HeroParty = new();
             HeroSkills = new();
             HeroInventory = new();
             HeroCharacter = new();
             _clanSelectionPopup = new();
+            
             IsVisible = false;
             SelectedHeroStringId = "";
 
@@ -63,9 +80,17 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             if (_hero != null)
             {
                 SelectedHeroStringId = _hero.StringId ?? "";
-                HeroInfo?.RefreshForHero(_hero);
-                HeroIdentity?.RefreshForHero(_hero);
-                HeroCultureClan?.RefreshForHero(_hero, _clanSelectionPopup);
+                
+                // Refresh new Panel ViewModels
+                HeroPortraitPanel?.RefreshForHero(_hero);
+                HeroNamePanel?.RefreshForHero(_hero);
+                HeroTitlePanel?.RefreshForHero(_hero);
+                ClanBannerPanel?.RefreshForHero(_hero);
+                HeroIdentityInfoPanel?.RefreshForHero(_hero);
+                HeroClanPanel?.RefreshForHero(_hero);
+                HeroKingdomPanel?.RefreshForHero(_hero);
+                
+                // Refresh existing ViewModels
                 HeroParty?.RefreshForHero(_hero);
                 HeroSkills?.RefreshForHero(_hero);
                 HeroInventory?.RefreshForHero(_hero);
@@ -88,9 +113,16 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             IsVisible = false;
             SelectedHeroStringId = "";
 
-            HeroInfo?.Clear();
-            HeroIdentity?.Clear();
-            HeroCultureClan?.Clear();
+            // Clear new Panel ViewModels
+            HeroPortraitPanel?.Clear();
+            HeroNamePanel?.Clear();
+            HeroTitlePanel?.Clear();
+            ClanBannerPanel?.Clear();
+            HeroIdentityInfoPanel?.Clear();
+            HeroClanPanel?.Clear();
+            HeroKingdomPanel?.Clear();
+            
+            // Clear existing ViewModels
             HeroParty?.Clear();
             HeroSkills?.Clear();
             HeroInventory?.Clear();
@@ -122,9 +154,16 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 HeroInventory.PropertyChanged -= OnInventoryPropertyChanged;
             }
 
-            HeroInfo?.OnFinalize();
-            HeroIdentity?.OnFinalize();
-            HeroCultureClan?.OnFinalize();
+            // Finalize new Panel ViewModels
+            HeroPortraitPanel?.OnFinalize();
+            HeroNamePanel?.OnFinalize();
+            HeroTitlePanel?.OnFinalize();
+            ClanBannerPanel?.OnFinalize();
+            HeroIdentityInfoPanel?.OnFinalize();
+            HeroClanPanel?.OnFinalize();
+            HeroKingdomPanel?.OnFinalize();
+            
+            // Finalize existing ViewModels
             HeroParty?.OnFinalize();
             HeroSkills?.OnFinalize();
             HeroInventory?.OnFinalize();
@@ -212,35 +251,79 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             set => SetProperty(ref _selectedHeroStringId, value, nameof(SelectedHeroStringId));
         }
 
+        // New Panel ViewModels - 1:1 match with XML panels
+
         /// <summary>
-        /// Gets the hero info sub-ViewModel (portrait and read-only data).
+        /// Gets the hero portrait panel ViewModel.
         /// </summary>
         [DataSourceProperty]
-        public HeroInfoVM HeroInfo
+        public HeroPortraitPanelVM HeroPortraitPanel
         {
-            get => _heroInfo;
-            private set => SetProperty(ref _heroInfo, value, nameof(HeroInfo));
+            get => _heroPortraitPanel;
+            private set => SetProperty(ref _heroPortraitPanel, value, nameof(HeroPortraitPanel));
         }
 
         /// <summary>
-        /// Gets the hero identity sub-ViewModel (editable name/title).
+        /// Gets the hero name panel ViewModel.
         /// </summary>
         [DataSourceProperty]
-        public HeroIdentityVM HeroIdentity
+        public HeroNamePanelVM HeroNamePanel
         {
-            get => _heroIdentity;
-            private set => SetProperty(ref _heroIdentity, value, nameof(HeroIdentity));
+            get => _heroNamePanel;
+            private set => SetProperty(ref _heroNamePanel, value, nameof(HeroNamePanel));
         }
 
         /// <summary>
-        /// Gets the hero culture/clan sub-ViewModel.
+        /// Gets the hero title panel ViewModel.
         /// </summary>
         [DataSourceProperty]
-        public HeroCultureClanVM HeroCultureClan
+        public HeroTitlePanelVM HeroTitlePanel
         {
-            get => _heroCultureClan;
-            private set => SetProperty(ref _heroCultureClan, value, nameof(HeroCultureClan));
+            get => _heroTitlePanel;
+            private set => SetProperty(ref _heroTitlePanel, value, nameof(HeroTitlePanel));
         }
+
+        /// <summary>
+        /// Gets the clan banner panel ViewModel.
+        /// </summary>
+        [DataSourceProperty]
+        public ClanBannerPanelVM ClanBannerPanel
+        {
+            get => _clanBannerPanel;
+            private set => SetProperty(ref _clanBannerPanel, value, nameof(ClanBannerPanel));
+        }
+
+        /// <summary>
+        /// Gets the hero identity info panel ViewModel.
+        /// </summary>
+        [DataSourceProperty]
+        public HeroIdentityInfoPanelVM HeroIdentityInfoPanel
+        {
+            get => _heroIdentityInfoPanel;
+            private set => SetProperty(ref _heroIdentityInfoPanel, value, nameof(HeroIdentityInfoPanel));
+        }
+
+        /// <summary>
+        /// Gets the hero clan panel ViewModel.
+        /// </summary>
+        [DataSourceProperty]
+        public HeroClanPanelVM HeroClanPanel
+        {
+            get => _heroClanPanel;
+            private set => SetProperty(ref _heroClanPanel, value, nameof(HeroClanPanel));
+        }
+
+        /// <summary>
+        /// Gets the hero kingdom panel ViewModel.
+        /// </summary>
+        [DataSourceProperty]
+        public HeroKingdomPanelVM HeroKingdomPanel
+        {
+            get => _heroKingdomPanel;
+            private set => SetProperty(ref _heroKingdomPanel, value, nameof(HeroKingdomPanel));
+        }
+
+        // Existing ViewModels
 
         /// <summary>
         /// Gets the hero party sub-ViewModel.

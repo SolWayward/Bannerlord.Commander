@@ -1,6 +1,6 @@
 <Prefab>
   <Window>
-    <Widget Id="HeroNameInputPanel" DataSource="{HeroIdentity}"
+    <Widget Id="HeroNameInputPanel" DataSource="{HeroNamePanel}"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="Fixed"
       SuggestedHeight="30"

@@ -1,6 +1,6 @@
 <Prefab>
   <Window>
-    <Widget Id="HeroPortraitPanel" DataSource="{HeroInfo}"
+    <Widget Id="HeroPortraitPanel" DataSource="{HeroPortraitPanel}"
       WidthSizePolicy="Fixed"
       HeightSizePolicy="Fixed"
       SuggestedWidth="150"

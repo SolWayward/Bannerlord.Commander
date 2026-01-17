@@ -1,6 +1,6 @@
 <Prefab>
   <Window>
-    <Widget Id="HeroIdentityInfoPanel" DataSource="{HeroInfo}"
+    <Widget Id="HeroIdentityInfoPanel" DataSource="{HeroIdentityInfoPanel}"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="Fixed"
       SuggestedHeight="110"
@@ -97,8 +97,7 @@
               </Children>
             </ListPanel>
             
-            <ListPanel Id="CultureRow" DataSource="{HeroCultureClan}"
-              WidthSizePolicy="StretchToParent"
+            <ListPanel Id="CultureRow" WidthSizePolicy="StretchToParent"
               HeightSizePolicy="Fixed"
               SuggestedHeight="18"
               StackLayout.LayoutMethod="HorizontalLeftToRight">

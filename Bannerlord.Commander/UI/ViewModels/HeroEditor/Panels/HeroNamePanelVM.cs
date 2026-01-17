@@ -1,31 +1,28 @@
 using System;
 using Bannerlord.GameMaster.Heroes;
+using Bannerlord.GameMaster.Information;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.Localization;
 
-namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
+namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
 {
     /// <summary>
-    /// ViewModel for editable hero identity information.
-    /// Handles hero name and title editing with BLGM API integration.
+    /// ViewModel for the hero name input panel.
+    /// Handles hero name editing with BLGM API integration.
     /// </summary>
-    public class HeroIdentityVM : ViewModel
+    public class HeroNamePanelVM : ViewModel
     {
         #region Private Fields
 
         private Hero _hero;
         private string _heroName;
-        private string _heroTitle;
         private string _originalName;
-        private string _originalTitle;
 
         #endregion
 
         #region Constructor
 
-        public HeroIdentityVM()
+        public HeroNamePanelVM()
         {
             Clear();
         }
@@ -37,19 +34,15 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         /// <summary>
         /// Refreshes the ViewModel with data from the specified hero.
         /// </summary>
-        /// <param name="hero">The hero to display information for</param>
+        /// <param name="hero">The hero to display name for</param>
         public void RefreshForHero(Hero hero)
         {
             _hero = hero;
-            
+
             if (_hero != null)
             {
                 HeroName = _hero.Name?.ToString() ?? "";
                 _originalName = HeroName;
-                
-                // Title is stored in FirstName property
-                HeroTitle = _hero.FirstName?.ToString() ?? "";
-                _originalTitle = HeroTitle;
             }
             else
             {
@@ -64,9 +57,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         {
             _hero = null;
             HeroName = "";
-            HeroTitle = "";
             _originalName = "";
-            _originalTitle = "";
         }
 
         #endregion
@@ -81,7 +72,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         {
             if (_hero == null || string.IsNullOrWhiteSpace(HeroName))
                 return;
-            
+
             // Only save if the name changed
             if (HeroName != _originalName)
             {
@@ -90,41 +81,17 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                     // Use BLGM API to set the hero's name
                     _hero.SetStringName(HeroName);
                     _originalName = HeroName;
-                    
-                    InformationManager.DisplayMessage(
-                        new InformationMessage($"Hero name changed to: {HeroName}", 
-                        TaleWorlds.Library.Color.FromUint(4282569842u)));
+
+                    InfoMessage.Success($"Hero name changed to: {HeroName}");
                 }
                 catch (Exception ex)
                 {
-                    InformationManager.DisplayMessage(
-                        new InformationMessage($"Failed to change hero name: {ex.Message}", 
-                        TaleWorlds.Library.Color.FromUint(4291559424u)));
-                    
+                    InfoMessage.Error($"Failed to change hero name: {ex.Message}");
+
                     // Revert to original name on failure
                     HeroName = _originalName;
                 }
             }
-        }
-
-        /// <summary>
-        /// Saves the hero's title.
-        /// Called when the user finishes editing the title field.
-        /// NOTE: Title editing is not yet implemented in BLGM - FirstName property is read-only.
-        /// TODO: Request BLGM implementation for SetFirstName/SetTitle extension method.
-        /// </summary>
-        public void ExecuteSaveTitle()
-        {
-            if (_hero == null)
-                return;
-            
-            // Title editing not yet supported - BLGM needs to implement this feature
-            InformationManager.DisplayMessage(
-                new InformationMessage("Title editing not yet supported - requires BLGM extension",
-                TaleWorlds.Library.Color.FromUint(4291559424u)));
-            
-            // Revert to original title
-            HeroTitle = _originalTitle;
         }
 
         #endregion
@@ -139,16 +106,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         {
             get => _heroName;
             set => SetProperty(ref _heroName, value, nameof(HeroName));
-        }
-
-        /// <summary>
-        /// Gets or sets the hero's title (editable).
-        /// </summary>
-        [DataSourceProperty]
-        public string HeroTitle
-        {
-            get => _heroTitle;
-            set => SetProperty(ref _heroTitle, value, nameof(HeroTitle));
         }
 
         #endregion
