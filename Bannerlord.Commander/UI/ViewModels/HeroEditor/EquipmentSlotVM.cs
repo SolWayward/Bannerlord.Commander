@@ -1,5 +1,6 @@
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.ImageIdentifiers;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 
 namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
@@ -13,6 +14,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         #region Private Fields
 
         private EquipmentIndex _slotIndex;
+        private EquipmentElement _equipmentElement;
         private string _slotName;
         private string _itemName;
         private bool _hasItem;
@@ -65,6 +67,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         public void RefreshWith(EquipmentIndex index, EquipmentElement element)
         {
             _slotIndex = index;
+            _equipmentElement = element;
             SlotName = GetSlotName(index);
             EmptySlotSprite = GetEmptySlotSprite(index);
 
@@ -75,7 +78,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 ItemModifier = element.ItemModifier != null ? 1 : 0;
 
                 // Create ItemImageIdentifierVM ONLY when we have a valid item
-                // This is the key fix - native game never creates ImageIdentifier for empty slots
                 ImageIdentifier = new ItemImageIdentifierVM(element.Item, "");
             }
             else
@@ -87,6 +89,31 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 // Set to null for empty slots - prevents ItemImageTextureProvider crash
                 ImageIdentifier = null;
             }
+        }
+
+        /// <summary>
+        /// Shows the native item tooltip with full item details (stats, armor values, etc.)
+        /// Called by Command.HoverBegin in the Gauntlet XML.
+        /// Uses the native InformationManager.ShowTooltip system for rich item tooltips.
+        /// </summary>
+        public void ExecuteShowItemTooltip()
+        {
+            // Show tooltip if we have a valid item
+            // CRITICAL: Must use typeof(ItemObject), not typeof(EquipmentElement)
+            // The tooltip system is registered for ItemObject, but expects EquipmentElement in args
+            if (!_equipmentElement.IsEmpty && _equipmentElement.Item != null)
+            {
+                InformationManager.ShowTooltip(typeof(ItemObject), new object[] { _equipmentElement });
+            }
+        }
+
+        /// <summary>
+        /// Hides the item tooltip.
+        /// Called by Command.HoverEnd in the Gauntlet XML.
+        /// </summary>
+        public void ExecuteHideItemTooltip()
+        {
+            InformationManager.HideTooltip();
         }
 
         /// <summary>
@@ -177,7 +204,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 
         /// <summary>
         /// Gets the image identifier for displaying the item icon.
-        /// NULL when slot is empty - this is the key to preventing the crash.
+        /// NULL when slot is empty - preventings crash.
         /// </summary>
         [DataSourceProperty]
         public ItemImageIdentifierVM ImageIdentifier
@@ -247,6 +274,14 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the equipment element for this slot.
+        /// Bound directly to CommanderEquipmentSlotWidget for tooltip display.
+        /// Widget handles tooltips in OnHoverBegin/OnHoverEnd using this value.
+        /// </summary>
+        [DataSourceProperty]
+        public EquipmentElement EquipmentElement => _equipmentElement;
 
         #endregion
 

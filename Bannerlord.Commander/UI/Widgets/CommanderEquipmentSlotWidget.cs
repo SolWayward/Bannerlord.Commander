@@ -1,22 +1,25 @@
+using TaleWorlds.Core;
 using TaleWorlds.GauntletUI;
 using TaleWorlds.GauntletUI.BaseTypes;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade.GauntletUI.Widgets;
 
 namespace Bannerlord.Commander.UI.Widgets
 {
     /// <summary>
-    /// Custom equipment slot widget that renders backgrounds and manages selection state.
-    /// Follows the native InventoryEquippedItemSlotWidget pattern exactly.
-    ///
-    /// Click handling is via Command.Click on parent Widget (not ButtonWidget).
-    /// Preserves async item loading by keeping ImageIdentifierWidget as child.
+    /// Custom equipment slot widget that extends ButtonWidget for native hover and click support.<br />
+    /// Key features:<br />
+    /// - Extends ButtonWidget for native Command.Click and hover support<br />
+    /// - Handles tooltips directly in OnHoverBegin/OnHoverEnd via InformationManager<br />
+    /// - Manages background visual state (Default/Selected)
     /// </summary>
-    public class CommanderEquipmentSlotWidget : Widget
+    public class CommanderEquipmentSlotWidget : ButtonWidget
     {
         private Widget _background;
         private ImageIdentifierWidget _imageIdentifier;
         private bool _isSelected;
         private bool _lastSelectedState;
+        private EquipmentElement _equipmentElement;
 
         public CommanderEquipmentSlotWidget(UIContext context) : base(context)
         {
@@ -33,6 +36,33 @@ namespace Bannerlord.Commander.UI.Widgets
                 _background.SetState(_isSelected ? "Selected" : "Default");
                 _lastSelectedState = _isSelected;
             }
+        }
+
+        /// <summary>
+        /// Called when the mouse begins hovering over this widget.
+        /// Shows item tooltip directly using InformationManager.
+        /// Follows native InventoryItemButtonWidget pattern.
+        /// </summary>
+        protected override void OnHoverBegin()
+        {
+            base.OnHoverBegin();
+
+            // Show tooltip if we have a valid item
+            if (!_equipmentElement.IsEmpty && _equipmentElement.Item != null)
+            {
+                InformationManager.ShowTooltip(typeof(ItemObject), new object[] { _equipmentElement });
+            }
+        }
+
+        /// <summary>
+        /// Called when the mouse stops hovering over this widget.
+        /// Hides any active tooltip.
+        /// Follows native InventoryItemButtonWidget pattern.
+        /// </summary>
+        protected override void OnHoverEnd()
+        {
+            base.OnHoverEnd();
+            InformationManager.HideTooltip();
         }
 
         /// <summary>
@@ -89,15 +119,15 @@ namespace Bannerlord.Commander.UI.Widgets
                     {
                         _imageIdentifier.PropertyChanged -= ImageIdentifierOnPropertyChanged;
                     }
-                    
+
                     _imageIdentifier = value;
-                    
+
                     // Subscribe to new widget
                     if (_imageIdentifier != null)
                     {
                         _imageIdentifier.PropertyChanged += ImageIdentifierOnPropertyChanged;
                     }
-                    
+
                     OnPropertyChanged<ImageIdentifierWidget>(value, nameof(ImageIdentifier));
                 }
             }
@@ -109,7 +139,7 @@ namespace Bannerlord.Commander.UI.Widgets
         /// Bound to ViewModel's IsSelected property.
         /// </summary>
         [Editor(false)]
-        public bool IsSelected
+        public new bool IsSelected
         {
             get => _isSelected;
             set
@@ -118,6 +148,26 @@ namespace Bannerlord.Commander.UI.Widgets
                 {
                     _isSelected = value;
                     OnPropertyChanged(value, nameof(IsSelected));
+                }
+            }
+        }
+
+        /// <summary>
+        /// The equipment element in this slot.
+        /// Used directly by the widget to show tooltips on hover.
+        /// Bound from ViewModel's EquipmentElement property via XML binding.
+        /// </summary>
+        [Editor(false)]
+        public EquipmentElement EquipmentElement
+        {
+            get => _equipmentElement;
+            set
+            {
+                if (!_equipmentElement.Equals(value))
+                {
+                    _equipmentElement = value;
+                    // Note: Cannot use OnPropertyChanged<T> for struct types (CS0452)
+                    // This property is used for tooltip display, not UI binding
                 }
             }
         }

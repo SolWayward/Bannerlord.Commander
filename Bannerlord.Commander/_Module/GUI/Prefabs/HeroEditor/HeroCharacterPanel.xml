@@ -41,7 +41,7 @@
               StackLayout.LayoutMethod="VerticalBottomToTop">
               <Children>
                 
-                <!-- Head Slot -->
+                <!-- Head Slot - Uses ButtonWidget-based widget for native hover/click support -->
                 <Widget Id="HeadSlotContainer" DataSource="{HeadSlot}"
                   WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
                   SuggestedWidth="50" SuggestedHeight="50"
@@ -55,6 +55,9 @@
                       HeightSizePolicy="StretchToParent"
                       DoNotPassEventsToChildren="true"
                       Command.Click="ExecuteSelectSlot"
+                      Command.HoverBegin="ExecuteShowItemTooltip"
+                      Command.HoverEnd="ExecuteHideItemTooltip"
+                      EquipmentElement="@EquipmentElement"
                       Background="..\HeadBg"
                       ImageIdentifier="HeadImage"
                       IsSelected="@IsSelected">
@@ -62,7 +65,8 @@
                         <Widget Id="HeadPlaceholder" WidthSizePolicy="StretchToParent"
                           HeightSizePolicy="StretchToParent"
                           MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
-                          Sprite="Inventory\portrait_cart" />
+                          Sprite="Inventory\portrait_cart"
+                          IsHitTestVisible="false" />
                         <ImageIdentifierWidget Id="HeadImage"
                           DataSource="{ImageIdentifier}"
                           WidthSizePolicy="StretchToParent"
@@ -70,7 +74,8 @@
                           MarginLeft="2" MarginRight="2" MarginTop="2" MarginBottom="2"
                           ImageId="@Id"
                           AdditionalArgs="@AdditionalArgs"
-                          TextureProviderName="@TextureProviderName" />
+                          TextureProviderName="@TextureProviderName"
+                          IsHitTestVisible="false" />
                       </Children>
                     </CommanderEquipmentSlotWidget>
                   </Children>
@@ -90,6 +95,9 @@
                       HeightSizePolicy="StretchToParent"
                       DoNotPassEventsToChildren="true"
                       Command.Click="ExecuteSelectSlot"
+                      Command.HoverBegin="ExecuteShowItemTooltip"
+                      Command.HoverEnd="ExecuteHideItemTooltip"
+                      EquipmentElement="@EquipmentElement"
                       Background="..\CapeBg"
                       ImageIdentifier="CapeImage"
                       IsSelected="@IsSelected">
@@ -125,6 +133,8 @@
                       HeightSizePolicy="StretchToParent"
                       DoNotPassEventsToChildren="true"
                       Command.Click="ExecuteSelectSlot"
+                      Command.HoverBegin="ExecuteShowItemTooltip"
+                      Command.HoverEnd="ExecuteHideItemTooltip"
                       Background="..\BodyBg"
                       ImageIdentifier="BodyImage"
                       IsSelected="@IsSelected">
@@ -154,12 +164,14 @@
                   <Children>
                     <BrushWidget Id="GlovesBg" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
-                      Brush="InventoryGlovesSlot" />
+                      Brush="InventoryGloveSlot" />
                     <CommanderEquipmentSlotWidget Id="GlovesSlotWidget"
                       WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
                       DoNotPassEventsToChildren="true"
                       Command.Click="ExecuteSelectSlot"
+                      Command.HoverBegin="ExecuteShowItemTooltip"
+                      Command.HoverEnd="ExecuteHideItemTooltip"
                       Background="..\GlovesBg"
                       ImageIdentifier="GlovesImage"
                       IsSelected="@IsSelected">
@@ -189,12 +201,14 @@
                   <Children>
                     <BrushWidget Id="LegBg" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
-                      Brush="InventoryBootsSlot" />
+                      Brush="InventoryBootSlot" />
                     <CommanderEquipmentSlotWidget Id="LegSlotWidget"
                       WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
                       DoNotPassEventsToChildren="true"
                       Command.Click="ExecuteSelectSlot"
+                      Command.HoverBegin="ExecuteShowItemTooltip"
+                      Command.HoverEnd="ExecuteHideItemTooltip"
                       Background="..\LegBg"
                       ImageIdentifier="LegImage"
                       IsSelected="@IsSelected">
@@ -224,12 +238,14 @@
                   <Children>
                     <BrushWidget Id="HorseBg" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
-                      Brush="InventoryHorseSlot" />
+                      Brush="InventoryMountSlot" />
                     <CommanderEquipmentSlotWidget Id="HorseSlotWidget"
                       WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
                       DoNotPassEventsToChildren="true"
                       Command.Click="ExecuteSelectSlot"
+                      Command.HoverBegin="ExecuteShowItemTooltip"
+                      Command.HoverEnd="ExecuteHideItemTooltip"
                       Background="..\HorseBg"
                       ImageIdentifier="HorseImage"
                       IsSelected="@IsSelected">
@@ -259,12 +275,14 @@
                   <Children>
                     <BrushWidget Id="HorseHarnessBg" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
-                      Brush="InventoryHorseArmorSlot" />
+                      Brush="InventoryMountArmorSlot" />
                     <CommanderEquipmentSlotWidget Id="HorseHarnessSlotWidget"
                       WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
                       DoNotPassEventsToChildren="true"
                       Command.Click="ExecuteSelectSlot"
+                      Command.HoverBegin="ExecuteShowItemTooltip"
+                      Command.HoverEnd="ExecuteHideItemTooltip"
                       Background="..\HorseHarnessBg"
                       ImageIdentifier="HorseHarnessImage"
                       IsSelected="@IsSelected">
@@ -337,6 +355,8 @@
                       HeightSizePolicy="StretchToParent"
                       DoNotPassEventsToChildren="true"
                       Command.Click="ExecuteSelectSlot"
+                      Command.HoverBegin="ExecuteShowItemTooltip"
+                      Command.HoverEnd="ExecuteHideItemTooltip"
                       Background="..\Weapon0Bg"
                       ImageIdentifier="Weapon0Image"
                       IsSelected="@IsSelected">
@@ -372,6 +392,8 @@
                       HeightSizePolicy="StretchToParent"
                       DoNotPassEventsToChildren="true"
                       Command.Click="ExecuteSelectSlot"
+                      Command.HoverBegin="ExecuteShowItemTooltip"
+                      Command.HoverEnd="ExecuteHideItemTooltip"
                       Background="..\Weapon1Bg"
                       ImageIdentifier="Weapon1Image"
                       IsSelected="@IsSelected">
@@ -407,6 +429,8 @@
                       HeightSizePolicy="StretchToParent"
                       DoNotPassEventsToChildren="true"
                       Command.Click="ExecuteSelectSlot"
+                      Command.HoverBegin="ExecuteShowItemTooltip"
+                      Command.HoverEnd="ExecuteHideItemTooltip"
                       Background="..\Weapon2Bg"
                       ImageIdentifier="Weapon2Image"
                       IsSelected="@IsSelected">
@@ -442,6 +466,8 @@
                       HeightSizePolicy="StretchToParent"
                       DoNotPassEventsToChildren="true"
                       Command.Click="ExecuteSelectSlot"
+                      Command.HoverBegin="ExecuteShowItemTooltip"
+                      Command.HoverEnd="ExecuteHideItemTooltip"
                       Background="..\Weapon3Bg"
                       ImageIdentifier="Weapon3Image"
                       IsSelected="@IsSelected">
@@ -477,6 +503,8 @@
                       HeightSizePolicy="StretchToParent"
                       DoNotPassEventsToChildren="true"
                       Command.Click="ExecuteSelectSlot"
+                      Command.HoverBegin="ExecuteShowItemTooltip"
+                      Command.HoverEnd="ExecuteHideItemTooltip"
                       Background="..\BannerBg"
                       ImageIdentifier="BannerImage"
                       IsSelected="@IsSelected">
