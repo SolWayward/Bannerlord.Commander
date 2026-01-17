@@ -307,19 +307,26 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             Race = _hero.CharacterObject?.Race ?? 0;
             StanceIndex = 0; // Standing pose
             
-            // Get clan colors
-            if (_hero.Clan != null)
+            // Get faction colors (MapFaction returns Kingdom when clan is in one, otherwise the Clan itself)
+            if (_hero.MapFaction != null)
             {
-                ArmorColor1 = _hero.Clan.Color;
-                ArmorColor2 = _hero.Clan.Color2;
-                BannerCodeText = _hero.ClanBanner?.Serialize() ?? "";
+                ArmorColor1 = _hero.MapFaction.Color;
+                ArmorColor2 = _hero.MapFaction.Color2;
+            }
+            else if (_hero.CharacterObject?.Culture != null)
+            {
+                // Fallback to culture colors if no faction
+                ArmorColor1 = _hero.CharacterObject.Culture.Color;
+                ArmorColor2 = _hero.CharacterObject.Culture.Color2;
             }
             else
             {
                 ArmorColor1 = 0;
                 ArmorColor2 = 0;
-                BannerCodeText = "";
             }
+            
+            // Banner still comes from the clan (not the kingdom)
+            BannerCodeText = _hero.ClanBanner?.Serialize() ?? "";
             
             // Get mount creation key if hero has a horse
             // Note: MountCreationKey retrieval may require different approach based on game version
