@@ -536,24 +536,30 @@
         <Widget Id="LoadoutContainer" DataSource="{HeroInventory}"
           WidthSizePolicy="StretchToParent"
           HeightSizePolicy="Fixed"
-          SuggestedHeight="32">
+          SuggestedHeight="24"
+          MarginLeft="4"
+          MarginRight="4">
           <Children>
-            <ListPanel Id="LoadoutPanel" WidthSizePolicy="CoverChildren"
+            <ListPanel Id="LoadoutPanel" WidthSizePolicy="StretchToParent"
               HeightSizePolicy="StretchToParent"
               HorizontalAlignment="Center"
+              MarginLeft="10"
+              MarginRight="10"
               StackLayout.LayoutMethod="HorizontalLeftToRight">
               <Children>
-                <TextWidget Id="LoadoutLabel" WidthSizePolicy="CoverChildren"
+                <TextWidget Id="LoadoutLabel" WidthSizePolicy="Fixed"
                   HeightSizePolicy="StretchToParent"
-                  MarginRight="8"
+                  SuggestedWidth="52"
+                  MarginRight="4"
                   VerticalAlignment="Center"
                   Brush="TownManagement.Description.Title.Text"
-                  Brush.FontSize="12"
+                  Brush.FontSize="13"
                   Text="Loadout:" />
                 <ButtonWidget Id="LoadoutToggleBtn" DoNotPassEventsToChildren="true"
-                  WidthSizePolicy="CoverChildren"
+                  WidthSizePolicy="Fixed"
                   HeightSizePolicy="Fixed"
-                  SuggestedHeight="22"
+                  SuggestedWidth="90"
+                  SuggestedHeight="20"
                   VerticalAlignment="Center"
                   Command.Click="ExecuteToggleLoadout">
                   <Children>
@@ -561,13 +567,13 @@
                       HeightSizePolicy="StretchToParent"
                       Sprite="BlankWhiteSquare_9"
                       Color="#453920FF" />
-                    <TextWidget Id="LoadoutName" WidthSizePolicy="CoverChildren"
+                    <TextWidget Id="LoadoutName" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
-                      MarginLeft="10"
-                      MarginRight="10"
+                      MarginLeft="8"
+                      MarginRight="8"
                       VerticalAlignment="Center"
                       Brush="Clan.TabControl.Text"
-                      Brush.FontSize="11"
+                      Brush.FontSize="12"
                       Text="@LoadoutName" />
                   </Children>
                 </ButtonWidget>

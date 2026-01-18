@@ -38,13 +38,13 @@
                   HeightSizePolicy="StretchToParent"
                   VerticalAlignment="Center"
                   Brush="TownManagement.Description.Title.Text"
-                  Brush.FontSize="14"
+                  Brush.FontSize="17"
                   Text="Level " />
                 <TextWidget Id="LevelValue" WidthSizePolicy="CoverChildren"
                   HeightSizePolicy="StretchToParent"
                   VerticalAlignment="Center"
                   Brush="TownManagement.Description.Value.Text"
-                  Brush.FontSize="14"
+                  Brush.FontSize="17"
                   IntText="@Level" />
               </Children>
             </ListPanel>
@@ -56,7 +56,7 @@
               <ItemTemplate>
                 <Widget Id="AttributeGroupContainer" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="Fixed"
-                  SuggestedHeight="65"
+                  SuggestedHeight="95"
                   MarginBottom="3">
                   <Children>
                     <ListPanel Id="AttributeLayout" WidthSizePolicy="StretchToParent"
@@ -66,7 +66,7 @@
                         
                         <ListPanel Id="AttrHeader" WidthSizePolicy="StretchToParent"
                           HeightSizePolicy="Fixed"
-                          SuggestedHeight="16"
+                          SuggestedHeight="26"
                           MarginBottom="2"
                           Sprite="BlankWhiteSquare_9"
                           Color="#3a3a3aFF"
@@ -77,14 +77,14 @@
                               MarginLeft="4"
                               VerticalAlignment="Center"
                               Brush="Clan.TabControl.Text"
-                              Brush.FontSize="11"
+                              Brush.FontSize="19"
                               Text="@AttributeName" />
                             <TextWidget Id="AttrValue" WidthSizePolicy="CoverChildren"
                               HeightSizePolicy="StretchToParent"
                               MarginLeft="4"
                               VerticalAlignment="Center"
                               Brush="Clan.TabControl.Text"
-                              Brush.FontSize="9"
+                              Brush.FontSize="17"
                               IntText="@AttributeValue" />
                           </Children>
                         </ListPanel>
@@ -96,7 +96,7 @@
                           <ItemTemplate>
                             <Widget Id="SkillBox" WidthSizePolicy="Fixed"
                               HeightSizePolicy="StretchToParent"
-                              SuggestedWidth="75"
+                              SuggestedWidth="110"
                               MarginRight="2">
                               <Children>
                                 <ListPanel Id="SkillLayout" WidthSizePolicy="StretchToParent"
@@ -107,8 +107,8 @@
                                     <SkillIconVisualWidget Id="SkillIcon"
                                       WidthSizePolicy="Fixed"
                                       HeightSizePolicy="Fixed"
-                                      SuggestedWidth="35"
-                                      SuggestedHeight="35"
+                                      SuggestedWidth="65"
+                                      SuggestedHeight="65"
                                       HorizontalAlignment="Center"
                                       MarginBottom="2"
                                       SkillId="@SkillId"
@@ -116,8 +116,8 @@
                                       <Children>
                                         <Widget Id="ValueOverlay" WidthSizePolicy="Fixed"
                                           HeightSizePolicy="Fixed"
-                                          SuggestedWidth="22"
-                                          SuggestedHeight="14"
+                                          SuggestedWidth="36"
+                                          SuggestedHeight="22"
                                           HorizontalAlignment="Center"
                                           VerticalAlignment="Bottom"
                                           Sprite="BlankWhiteSquare_9"
@@ -129,7 +129,7 @@
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Center"
                                               Brush="Clan.TabControl.Text"
-                                              Brush.FontSize="9"
+                                              Brush.FontSize="14"
                                               IntText="@SkillValue" />
                                           </Children>
                                         </Widget>
@@ -137,10 +137,10 @@
                                     </SkillIconVisualWidget>
                                     <TextWidget Id="SkillName" WidthSizePolicy="StretchToParent"
                                       HeightSizePolicy="Fixed"
-                                      SuggestedHeight="12"
+                                      SuggestedHeight="16"
                                       HorizontalAlignment="Center"
                                       Brush="Clan.TabControl.Text"
-                                      Brush.FontSize="8"
+                                      Brush.FontSize="15"
                                       Brush.TextHorizontalAlignment="Center"
                                       Text="@SkillName" />
                                   </Children>

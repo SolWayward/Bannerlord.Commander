@@ -27,7 +27,7 @@
           MarginLeft="6"
           VerticalAlignment="Center"
           Brush="Clan.TabControl.Text"
-          Brush.FontSize="13"
+          Brush.FontSize="15"
           Text="Title:" />
         <EditableTextWidget Id="TitleInput" WidthSizePolicy="StretchToParent"
           HeightSizePolicy="StretchToParent"
@@ -36,7 +36,7 @@
           MarginTop="4"
           MarginBottom="4"
           Brush="Clan.TabControl.Text"
-          Brush.FontSize="13"
+          Brush.FontSize="17"
           Text="@HeroTitle" />
       </Children>
     </Widget>

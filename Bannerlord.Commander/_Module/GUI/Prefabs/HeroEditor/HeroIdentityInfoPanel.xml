@@ -38,23 +38,23 @@
                 <TextWidget Id="GenderLabel" WidthSizePolicy="CoverChildren"
                   HeightSizePolicy="StretchToParent"
                   Brush="Clan.TabControl.Text"
-                  Brush.FontSize="11"
+                  Brush.FontSize="17"
                   Text="Gender: " />
                 <TextWidget Id="GenderValue" WidthSizePolicy="CoverChildren"
                   HeightSizePolicy="StretchToParent"
                   Brush="Clan.TabControl.Text"
-                  Brush.FontSize="11"
+                  Brush.FontSize="16"
                   Text="@Gender" />
                 <TextWidget Id="AgeLabel" WidthSizePolicy="CoverChildren"
                   HeightSizePolicy="StretchToParent"
                   MarginLeft="20"
                   Brush="Clan.TabControl.Text"
-                  Brush.FontSize="11"
+                  Brush.FontSize="17"
                   Text="Age: " />
                 <TextWidget Id="AgeValue" WidthSizePolicy="CoverChildren"
                   HeightSizePolicy="StretchToParent"
                   Brush="Clan.TabControl.Text"
-                  Brush.FontSize="11"
+                  Brush.FontSize="16"
                   Text="@AgeText" />
               </Children>
             </ListPanel>
@@ -68,12 +68,12 @@
                 <TextWidget Id="BirthLabel" WidthSizePolicy="CoverChildren"
                   HeightSizePolicy="StretchToParent"
                   Brush="Clan.TabControl.Text"
-                  Brush.FontSize="11"
+                  Brush.FontSize="17"
                   Text="Born: " />
                 <TextWidget Id="BirthValue" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
                   Brush="Clan.TabControl.Text"
-                  Brush.FontSize="11"
+                  Brush.FontSize="16"
                   Text="@BirthDateText" />
               </Children>
             </ListPanel>
@@ -87,12 +87,12 @@
                 <TextWidget Id="DeathLabel" WidthSizePolicy="CoverChildren"
                   HeightSizePolicy="StretchToParent"
                   Brush="Clan.TabControl.Text"
-                  Brush.FontSize="11"
+                  Brush.FontSize="17"
                   Text="Death: " />
                 <TextWidget Id="DeathValue" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
                   Brush="Clan.TabControl.Text"
-                  Brush.FontSize="11"
+                  Brush.FontSize="16"
                   Text="@DeathDateText" />
               </Children>
             </ListPanel>
@@ -105,12 +105,12 @@
                 <TextWidget Id="CultureLabel" WidthSizePolicy="CoverChildren"
                   HeightSizePolicy="StretchToParent"
                   Brush="Clan.TabControl.Text"
-                  Brush.FontSize="11"
+                  Brush.FontSize="17"
                   Text="Culture: " />
                 <TextWidget Id="CultureValue" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
                   Brush="Clan.TabControl.Text"
-                  Brush.FontSize="11"
+                  Brush.FontSize="16"
                   Text="@CultureName" />
               </Children>
             </ListPanel>

@@ -33,13 +33,13 @@
               HeightSizePolicy="StretchToParent"
               VerticalAlignment="Center"
               Brush="Clan.TabControl.Text"
-              Brush.FontSize="11"
+              Brush.FontSize="15"
               Text="Clan: " />
             <TextWidget Id="ClanNameText" WidthSizePolicy="StretchToParent"
               HeightSizePolicy="StretchToParent"
               VerticalAlignment="Center"
               Brush="Clan.TabControl.Text"
-              Brush.FontSize="13"
+              Brush.FontSize="16"
               Text="@ClanName" />
           </Children>
         </ListPanel>

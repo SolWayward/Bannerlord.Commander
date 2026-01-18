@@ -3,7 +3,7 @@
     <Widget Id="HeroPortraitPanel" DataSource="{HeroPortraitPanel}"
       WidthSizePolicy="Fixed"
       HeightSizePolicy="Fixed"
-      SuggestedWidth="150"
+      SuggestedWidth="165"
       SuggestedHeight="180"
       HorizontalAlignment="Center"
       MarginBottom="8"

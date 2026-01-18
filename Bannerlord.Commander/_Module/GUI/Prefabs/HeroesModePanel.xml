@@ -22,7 +22,7 @@
             <!-- RIGHT: Hero Editor Container bound to HeroEditorVM -->
             <Widget Id="HeroEditorContainer" DataSource="{HeroEditor}"
               WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-              SuggestedWidth="640" IsVisible="@IsVisible" Sprite="BlankWhiteSquare_9"
+              SuggestedWidth="720" IsVisible="@IsVisible" Sprite="BlankWhiteSquare_9"
               Color="#2a2a2aFF">
               <Children>
                 <Widget Id="EditorTopBorder" WidthSizePolicy="StretchToParent"

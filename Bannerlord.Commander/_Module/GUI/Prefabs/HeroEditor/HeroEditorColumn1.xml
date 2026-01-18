@@ -2,7 +2,7 @@
   <Window>
     <Widget Id="HeroEditorColumn1"
       WidthSizePolicy="Fixed"
-      SuggestedWidth="300"
+      SuggestedWidth="330"
       HeightSizePolicy="StretchToParent"
       MarginRight="4">
       <Children>
