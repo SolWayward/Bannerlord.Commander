@@ -18,6 +18,8 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
         private string _birthDateText;
         private string _deathDateText;
         private string _cultureName;
+        private string _aliveStatus;
+        private string _aliveStatusColor;
 
         #endregion
 
@@ -44,14 +46,26 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
             {
                 Gender = _hero.IsFemale ? "Female" : "Male";
                 AgeText = ((int)_hero.Age).ToString();
-                BirthDateText = $"Born: {GetBirthDateDisplay(_hero)}";
+                BirthDateText = GetBirthDateDisplay(_hero);
 
                 // Show death date if one is set, regardless of whether hero is currently dead
                 string deathDisplay = GetDeathDateDisplay(_hero);
-                DeathDateText = deathDisplay != "-" ? $"Death: {deathDisplay}" : "Death: -";
+                DeathDateText = deathDisplay != "-" ? deathDisplay : "-";
 
                 // Culture information
                 CultureName = _hero.Culture?.Name?.ToString() ?? "Unknown";
+
+                // Alive/Dead status
+                if (_hero.IsAlive)
+                {
+                    AliveStatus = "Alive";
+                    AliveStatusColor = "#90EE90FF"; // Light green pastel
+                }
+                else
+                {
+                    AliveStatus = "Dead";
+                    AliveStatusColor = "#FFB3B3FF"; // Light red pastel
+                }
             }
             else
             {
@@ -78,6 +92,8 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
             BirthDateText = "";
             DeathDateText = "";
             CultureName = "Unknown";
+            AliveStatus = "";
+            AliveStatusColor = "#FFFFFFFF";
         }
 
         #endregion
@@ -132,6 +148,26 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
         {
             get => _cultureName;
             private set => SetProperty(ref _cultureName, value, nameof(CultureName));
+        }
+
+        /// <summary>
+        /// Gets the hero's alive/dead status text.
+        /// </summary>
+        [DataSourceProperty]
+        public string AliveStatus
+        {
+            get => _aliveStatus;
+            private set => SetProperty(ref _aliveStatus, value, nameof(AliveStatus));
+        }
+
+        /// <summary>
+        /// Gets the color for the alive/dead status text.
+        /// </summary>
+        [DataSourceProperty]
+        public string AliveStatusColor
+        {
+            get => _aliveStatusColor;
+            private set => SetProperty(ref _aliveStatusColor, value, nameof(AliveStatusColor));
         }
 
         #endregion

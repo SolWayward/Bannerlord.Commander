@@ -56,8 +56,8 @@
               <ItemTemplate>
                 <Widget Id="AttributeGroupContainer" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="Fixed"
-                  SuggestedHeight="95"
-                  MarginBottom="3">
+                  SuggestedHeight="86"
+                  MarginBottom="6">
                   <Children>
                     <ListPanel Id="AttributeLayout" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
@@ -107,10 +107,11 @@
                                     <SkillIconVisualWidget Id="SkillIcon"
                                       WidthSizePolicy="Fixed"
                                       HeightSizePolicy="Fixed"
-                                      SuggestedWidth="65"
-                                      SuggestedHeight="65"
+                                      SuggestedWidth="59"
+                                      SuggestedHeight="59"
                                       HorizontalAlignment="Center"
-                                      MarginBottom="2"
+                                      MarginTop="1"
+                                      MarginBottom="4"
                                       SkillId="@SkillId"
                                       UseSmallVariation="true">
                                       <Children>
@@ -135,15 +136,7 @@
                                         </Widget>
                                       </Children>
                                     </SkillIconVisualWidget>
-                                    <TextWidget Id="SkillName" WidthSizePolicy="StretchToParent"
-                                      HeightSizePolicy="Fixed"
-                                      SuggestedHeight="16"
-                                      HorizontalAlignment="Center"
-                                      Brush="Clan.TabControl.Text"
-                                      Brush.FontSize="15"
-                                      Brush.TextHorizontalAlignment="Center"
-                                      Text="@SkillName" />
-                                  </Children>
+                                   </Children>
                                 </ListPanel>
                               </Children>
                             </Widget>

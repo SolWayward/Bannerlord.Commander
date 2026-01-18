@@ -28,6 +28,7 @@
         <!-- EQUIPMENT AND MODEL SECTION -->
         <ListPanel Id="ModelEquipmentLayout" WidthSizePolicy="StretchToParent"
           HeightSizePolicy="StretchToParent"
+          MarginBottom="0"
           StackLayout.LayoutMethod="HorizontalLeftToRight">
           <Children>
             

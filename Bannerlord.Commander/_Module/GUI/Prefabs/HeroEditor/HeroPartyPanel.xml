@@ -4,7 +4,6 @@
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="Fixed"
       SuggestedHeight="80"
-      MarginBottom="8"
       Sprite="BlankWhiteSquare_9"
       Color="#1a1a1aFF">
       <Children>
