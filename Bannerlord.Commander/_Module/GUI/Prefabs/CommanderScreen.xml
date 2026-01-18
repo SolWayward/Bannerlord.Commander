@@ -16,8 +16,9 @@
           MarginTop="104" MarginBottom="60" MarginLeft="20" MarginRight="20">
           <Children>
 
-            <!-- HEROES MODE -->
-            <HeroesModePanel />
+            <!-- HEROES MODE - Bound to CommanderVM.HeroesMode -->
+            <!-- Visibility controlled by HeroModeVM.IsVisible via prefab's internal binding -->
+            <HeroesModePanel DataSource="{HeroesMode}" />
 
             <!-- Future modes will be added here -->
             <!-- <KingdomsModePanel /> -->

@@ -1,4 +1,4 @@
-namespace Bannerlord.Commander.UI.ViewModels
+namespace Bannerlord.Commander.UI.ViewModels.HeroMode
 {
     /// <summary>
     /// Interface for handling hero selection in the UI.
@@ -10,6 +10,6 @@ namespace Bannerlord.Commander.UI.ViewModels
         /// Selects the specified hero and deselects others
         /// </summary>
         /// <param name="hero">The hero to select</param>
-        void SelectHero(CommanderHeroVM hero);
+        void SelectHero(HeroListItemVM hero);
     }
 }

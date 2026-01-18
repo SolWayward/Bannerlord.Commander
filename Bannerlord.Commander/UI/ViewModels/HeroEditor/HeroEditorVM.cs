@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels;
+using Bannerlord.Commander.UI.ViewModels.HeroMode;
 
 namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 {
@@ -16,7 +17,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         #region Private Fields
 
         private Hero _hero;
-        
+
         // New Panel VMs - 1:1 match with XML panels
         private HeroPortraitPanelVM _heroPortraitPanel;
         private HeroNamePanelVM _heroNamePanel;
@@ -25,14 +26,14 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         private HeroIdentityInfoPanelVM _heroIdentityInfoPanel;
         private HeroClanPanelVM _heroClanPanel;
         private HeroKingdomPanelVM _heroKingdomPanel;
-        
+
         // Existing VMs that remain unchanged
         private HeroPartyVM _heroParty;
         private HeroSkillsVM _heroSkills;
         private HeroInventoryVM _heroInventory;
         private HeroCharacterVM _heroCharacter;
         private ClanSelectionPopupVM _clanSelectionPopup;
-        
+
         private bool _isVisible;
         private string _selectedHeroStringId;
 
@@ -50,14 +51,14 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             HeroIdentityInfoPanel = new();
             HeroClanPanel = new();
             HeroKingdomPanel = new();
-            
+
             // Initialize existing ViewModels
             HeroParty = new();
             HeroSkills = new();
             HeroInventory = new();
             HeroCharacter = new();
             _clanSelectionPopup = new();
-            
+
             IsVisible = false;
             SelectedHeroStringId = "";
 
@@ -80,7 +81,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             if (_hero != null)
             {
                 SelectedHeroStringId = _hero.StringId ?? "";
-                
+
                 // Refresh new Panel ViewModels
                 HeroPortraitPanel?.RefreshForHero(_hero);
                 HeroNamePanel?.RefreshForHero(_hero);
@@ -89,7 +90,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 HeroIdentityInfoPanel?.RefreshForHero(_hero);
                 HeroClanPanel?.RefreshForHero(_hero);
                 HeroKingdomPanel?.RefreshForHero(_hero);
-                
+
                 // Refresh existing ViewModels
                 HeroParty?.RefreshForHero(_hero);
                 HeroSkills?.RefreshForHero(_hero);
@@ -121,7 +122,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             HeroIdentityInfoPanel?.Clear();
             HeroClanPanel?.Clear();
             HeroKingdomPanel?.Clear();
-            
+
             // Clear existing ViewModels
             HeroParty?.Clear();
             HeroSkills?.Clear();
@@ -132,7 +133,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         /// <summary>
         /// Implementation of IHeroSelectionHandler - called when a hero is selected.
         /// </summary>
-        public void SelectHero(CommanderHeroVM hero)
+        public void SelectHero(HeroListItemVM hero)
         {
             if (hero != null)
             {
@@ -162,7 +163,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             HeroIdentityInfoPanel?.OnFinalize();
             HeroClanPanel?.OnFinalize();
             HeroKingdomPanel?.OnFinalize();
-            
+
             // Finalize existing ViewModels
             HeroParty?.OnFinalize();
             HeroSkills?.OnFinalize();

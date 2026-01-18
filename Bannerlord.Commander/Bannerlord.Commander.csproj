@@ -4,6 +4,7 @@
     <Version>1.3.13.1</Version>
     <TargetFrameworks>net472;net6</TargetFrameworks>
     <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <LangVersion>10.0</LangVersion>
     <Nullable>disable</Nullable>
@@ -19,8 +20,6 @@
     <!-- Module manually override GameVersion -->
     <OverrideGameVersion>v1.3.13</OverrideGameVersion>
 
-    <!-- Suppress unused variable warnings for EXLauncher template code -->
-    <NoWarn>$(NoWarn);CS0168</NoWarn>
   </PropertyGroup>
 
   <!--
