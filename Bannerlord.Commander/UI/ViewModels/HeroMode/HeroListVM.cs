@@ -429,12 +429,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroMode
             _isLoading = false;
             _pendingHeroVMs = null;
             _pendingHeroIndex = 0;
-<<<<<<< HEAD
-=======
-
-            // DO NOT sort here - already sorted before incremental load
-            // This eliminates the jarring visible reorder after loading completes
->>>>>>> bee9ed2462867d99b3c8449bdfad9f0460826042
 
             // Apply initial filter if there's existing filter text
             if (!string.IsNullOrEmpty(_filterText))
