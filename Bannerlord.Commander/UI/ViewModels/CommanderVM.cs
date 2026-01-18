@@ -80,7 +80,6 @@ namespace Bannerlord.Commander.UI.ViewModels
             {
                 HeroesMode.OnTick();
             }
-            // Future: add other mode OnTick() calls here as more modes are implemented
         }
 
         /// <summary>
@@ -93,19 +92,18 @@ namespace Bannerlord.Commander.UI.ViewModels
             {
                 HeroesMode.RefreshCurrentMode();
             }
-            // Future: add other mode refresh calls here
         }
 
         public override void OnFinalize()
         {
             base.OnFinalize();
-            
+
             // Unsubscribe from HeroListVM events
             if (_heroesMode?.HeroList != null)
             {
                 _heroesMode.HeroList.PropertyChanged -= OnHeroListPropertyChanged;
             }
-            
+
             HeroesMode?.OnFinalize();
             OnCloseRequested = null;
         }

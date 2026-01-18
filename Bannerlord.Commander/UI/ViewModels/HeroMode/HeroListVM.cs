@@ -11,12 +11,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroMode
 {
     /// <summary>
     /// ViewModel for managing the hero list with sorting, filtering, and selection.
-    /// Encapsulates all hero list management logic from CommanderVM.
-    /// 
-    /// Uses the IsFiltered property pattern (like native Inventory):
-    /// - Heroes are never removed from the list
-    /// - IsFiltered toggles visibility via IsHidden binding in XML
-    /// - This avoids expensive list rebuilds and keeps UI smooth
     /// </summary>
     public class HeroListVM : CommanderListVMBase<HeroListItemVM>, IHeroSelectionHandler
     {
@@ -429,16 +423,12 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroMode
 
         /// <summary>
         /// Finalizes hero loading and applies initial filter if needed.
-        /// Note: NO sort here - VMs were pre-sorted before incremental display.
         /// </summary>
         private void CompleteHeroLoading()
         {
             _isLoading = false;
             _pendingHeroVMs = null;
             _pendingHeroIndex = 0;
-
-            // DO NOT sort here - already sorted before incremental load
-            // This eliminates the jarring visible reorder after loading completes
 
             // Apply initial filter if there's existing filter text
             if (!string.IsNullOrEmpty(_filterText))
@@ -491,7 +481,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroMode
 
         /// <summary>
         /// Handles sorting by a column. If already sorting by this column, toggles direction.
-        /// Uses in-place MBBindingList.Sort() for instant performance (native inventory pattern).
+        /// Uses in-place MBBindingList.Sort() for instant performance
         /// </summary>
         private void ExecuteSortByColumn(HeroSortColumn column)
         {
@@ -515,7 +505,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroMode
         /// <summary>
         /// Applies the current sort to the Heroes list.
         /// Uses in-place sorting via MBBindingList.Sort(IComparer) for instant performance.
-        /// This matches the native inventory pattern - no list rebuild, single notification.
         /// </summary>
         private void ApplySortToList()
         {
@@ -527,7 +516,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroMode
             comparer.SetSortMode(_sortAscending);
 
             // Sort in-place - no list rebuild, single UI notification
-            // This is the native inventory pattern for responsive sorting
             Heroes.Sort(comparer);
 
             // Filter state (IsFiltered on each VM) is preserved through in-place sort
@@ -579,7 +567,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroMode
 
         /// <summary>
         /// Applies filter to all heroes by setting their IsFiltered property.
-        /// This is the native Inventory pattern - no list rebuilding, just boolean flips.
         /// The UI hides items where IsFiltered = true via IsHidden binding.
         /// </summary>
         private void ApplyFilter(string filter)
