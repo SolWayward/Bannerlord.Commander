@@ -1,13 +1,13 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
-namespace Bannerlord.Commander.UI.ViewModels
+namespace Bannerlord.Commander.UI.ViewModels.HeroMode
 {
     /// <summary>
     /// ViewModel for individual hero items in the list.
     /// Wraps TaleWorlds.CampaignSystem.Hero for UI data binding.
     /// </summary>
-    public class CommanderHeroVM : ViewModel
+    public class HeroListItemVM : ViewModel
     {
         private readonly Hero _hero;
         private readonly IHeroSelectionHandler _selectionHandler;
@@ -30,7 +30,7 @@ namespace Bannerlord.Commander.UI.ViewModels
         /// </summary>
         /// <param name="hero">The Hero to wrap</param>
         /// <param name="selectionHandler">Handler for selection events</param>
-        public CommanderHeroVM(Hero hero, IHeroSelectionHandler selectionHandler)
+        public HeroListItemVM(Hero hero, IHeroSelectionHandler selectionHandler)
         {
             _hero = hero;
             _selectionHandler = selectionHandler;

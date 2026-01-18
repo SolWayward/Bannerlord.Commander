@@ -1,49 +1,51 @@
 <!-- ============================================================================================================ -->
 <!-- HEROES MODE PANEL - Complete Heroes Mode UI                                                             -->
 <!-- Contains: Hero List (left) + Hero Editor Container (right)                                              -->
+<!-- DataSource: HeroesModeVM                                                                                -->
 <!-- ============================================================================================================ -->
 
 <Prefab>
   <Window>
-    <Widget Id="HeroesModePanel" WidthSizePolicy="StretchToParent"
-  HeightSizePolicy="StretchToParent"
-  IsVisible="@IsHeroesSelected">
-  <Children>
-    <ListPanel Id="HeroesLayoutPanel" WidthSizePolicy="StretchToParent"
+    <Widget Id="HeroesModePanel" DataSource="{.}"
+      WidthSizePolicy="StretchToParent"
       HeightSizePolicy="StretchToParent"
-      StackLayout.LayoutMethod="HorizontalLeftToRight">
+      IsVisible="@IsVisible">
       <Children>
-
-        <!-- LEFT: Hero List -->
-        <CommanderHeroListPanel />
-
-        <!-- RIGHT: Hero Editor -->
-        <Widget Id="HeroEditorContainer" DataSource="{HeroEditor}"
-          WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-          SuggestedWidth="640" IsVisible="@IsVisible" Sprite="BlankWhiteSquare_9"
-          Color="#2a2a2aFF">
+        <ListPanel Id="HeroesLayoutPanel" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          StackLayout.LayoutMethod="HorizontalLeftToRight">
           <Children>
-            <Widget Id="EditorTopBorder" WidthSizePolicy="StretchToParent"
-              HeightSizePolicy="Fixed" SuggestedHeight="2"
-              VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-            <Widget Id="EditorBottomBorder" WidthSizePolicy="StretchToParent"
-              HeightSizePolicy="Fixed" SuggestedHeight="2"
-              VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-            <Widget Id="EditorLeftBorder" WidthSizePolicy="Fixed"
-              HeightSizePolicy="StretchToParent" SuggestedWidth="2"
-              HorizontalAlignment="Left" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-            <Widget Id="EditorRightBorder" WidthSizePolicy="Fixed"
-              HeightSizePolicy="StretchToParent" SuggestedWidth="2"
-              HorizontalAlignment="Right" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
 
-            <!-- Hero Editor Panel -->
-            <HeroEditorPanel />
+            <!-- LEFT: Hero List Panel bound to HeroListVM -->
+            <CommanderHeroListPanel DataSource="{HeroList}" />
+
+            <!-- RIGHT: Hero Editor Container bound to HeroEditorVM -->
+            <Widget Id="HeroEditorContainer" DataSource="{HeroEditor}"
+              WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+              SuggestedWidth="640" IsVisible="@IsVisible" Sprite="BlankWhiteSquare_9"
+              Color="#2a2a2aFF">
+              <Children>
+                <Widget Id="EditorTopBorder" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="Fixed" SuggestedHeight="2"
+                  VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget Id="EditorBottomBorder" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="Fixed" SuggestedHeight="2"
+                  VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget Id="EditorLeftBorder" WidthSizePolicy="Fixed"
+                  HeightSizePolicy="StretchToParent" SuggestedWidth="2"
+                  HorizontalAlignment="Left" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget Id="EditorRightBorder" WidthSizePolicy="Fixed"
+                  HeightSizePolicy="StretchToParent" SuggestedWidth="2"
+                  HorizontalAlignment="Right" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
+                <!-- Hero Editor Panel -->
+                <HeroEditorPanel />
+              </Children>
+            </Widget>
+
           </Children>
-        </Widget>
-
+        </ListPanel>
       </Children>
-    </ListPanel>
-  </Children>
-</Widget>
+    </Widget>
   </Window>
 </Prefab>

@@ -1,9 +1,10 @@
 <Prefab>
   <Window>
-    <Widget Id="CommanderHeroListPanel" WidthSizePolicy="StretchToParent"
-    HeightSizePolicy="StretchToParent"
-    Sprite="BlankWhiteSquare_9" Color="#2a2a2aFF"
-    MarginRight="10">
+    <Widget Id="CommanderHeroListPanel" DataSource="{.}"
+      WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="StretchToParent"
+      Sprite="BlankWhiteSquare_9" Color="#2a2a2aFF"
+      MarginRight="10">
     <Children>
       <Widget Id="HeroListTopBorder" WidthSizePolicy="StretchToParent"
         HeightSizePolicy="Fixed" SuggestedHeight="2"
