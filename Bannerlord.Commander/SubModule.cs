@@ -1,4 +1,4 @@
-using Bannerlord.Commander.UI.Screens;
+using Bannerlord.Commander.UI.States;
 using TaleWorlds.Core;
 using TaleWorlds.GauntletUI.BaseTypes;
 using TaleWorlds.GauntletUI.PrefabSystem;
@@ -11,7 +11,7 @@ namespace Bannerlord.Commander
 {
     /// <summary>
     /// Main entry point for the Bannerlord.Commander mod.
-    /// Handles mod initialization and F10 hotkey to open the Commander screen.
+    /// Handles mod initialization and Shift+C hotkey to open the Commander screen.
     /// </summary>
     public class SubModule : MBSubModuleBase
     {
@@ -32,7 +32,7 @@ namespace Bannerlord.Commander
         }
 
         /// <summary>
-        /// Called every frame - handles F10 key press to open the Commander screen
+        /// Called every frame - handles Shift+C key press to open the Commander screen
         /// </summary>
         protected override void OnApplicationTick(float dt)
         {
@@ -56,12 +56,12 @@ namespace Bannerlord.Commander
 
         private bool IsGameActive()
         {
-            return Game.Current != null;
+            return Game.Current?.GameStateManager != null;
         }
 
         private void CheckIfScreenClosed()
         {
-            if (!(ScreenManager.TopScreen is CommanderGauntletScreen))
+            if (!(Game.Current.GameStateManager.ActiveState is CommanderState))
             {
                 _isScreenOpen = false;
             }
@@ -69,8 +69,8 @@ namespace Bannerlord.Commander
 
         private void OpenCommanderScreen()
         {
-            var screen = new CommanderGauntletScreen();
-            ScreenManager.PushScreen(screen);
+            Game.Current.GameStateManager.PushState(
+                Game.Current.GameStateManager.CreateState<CommanderState>());
             _isScreenOpen = true;
         }
     }

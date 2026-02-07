@@ -1,17 +1,27 @@
 using System.Collections.Generic;
+using Bannerlord.Commander.UI.States;
 using Bannerlord.Commander.UI.ViewModels;
 using Bannerlord.GameMaster.Information;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
+using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ScreenSystem;
 using TaleWorlds.TwoDimension;
 
 namespace Bannerlord.Commander.UI.Screens
 {
-    public class CommanderGauntletScreen : ScreenBase
+    /// <summary>
+    /// Gauntlet screen bound to <see cref="CommanderState"/> via the GameStateScreen attribute.
+    /// Follows the native pattern used by GauntletClanScreen, GauntletQuestsScreen, etc.
+    /// The engine creates this screen automatically when CommanderState is pushed.
+    /// </summary>
+    [GameStateScreen(typeof(CommanderState))]
+    public class CommanderGauntletScreen : ScreenBase, IGameStateListener
     {
+        private readonly CommanderState _commanderState;
         private GauntletLayer _gauntletLayer;
         private CommanderVM _viewModel;
         private bool _isClosing;
@@ -29,22 +39,90 @@ namespace Bannerlord.Commander.UI.Screens
             "MapHotKeyCategory",                    // Space, 1, 2, 3, Arrows, WASD
         };
 
+        public CommanderGauntletScreen(CommanderState commanderState)
+        {
+            _commanderState = commanderState;
+        }
+
+        #region ScreenBase Overrides
+
         protected override void OnInitialize()
         {
             base.OnInitialize();
+        }
 
-            _viewModel = new CommanderVM();
-            _viewModel.OnCloseRequested += OnCloseRequested;
+        protected override void OnFinalize()
+        {
+            base.OnFinalize();
+        }
 
-            _gauntletLayer = new GauntletLayer("GauntletLayer", 1000, false);
-            _gauntletLayer.LoadMovie("CommanderScreen", _viewModel);
+        protected override void OnFrameTick(float dt)
+        {
+            base.OnFrameTick(dt);
+            if (_isClosing) return;
 
-            AddLayer(_gauntletLayer);
+            _viewModel?.OnTick();
 
-            // Load required sprite categories
-            LoadSprites();
+            // Handle Escape manually
+            // We use Input.IsKeyPressed (Global) because layer input might be restricted
+            if (_gauntletLayer != null && Input.IsKeyPressed(InputKey.Escape))
+            {
+                CloseScreen();
+            }
+        }
 
-            // Enable all Input (Game seems to ignore this but just in case)
+        /// <summary>
+        /// Called when the screen is re-activated (e.g. returning from a child state).
+        /// Re-applies focus and refreshes data without recreating the layer.
+        /// </summary>
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+
+            if (_gauntletLayer != null)
+            {
+                _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
+                _gauntletLayer.IsFocusLayer = true;
+                ScreenManager.TrySetFocus(_gauntletLayer);
+            }
+
+            // Re-apply unbinds on re-activation (e.g. returning from child state).
+            // Since UnbindMapHotKeys checks ContainsKey, it won't accidentally save "Invalid".
+            UnbindMapHotKeys();
+
+            _viewModel?.RefreshCurrentMode();
+            PauseGameTime();
+        }
+
+        #endregion
+
+        #region IGameStateListener Implementation
+
+        void IGameStateListener.OnInitialize()
+        {
+            // Empty body - matches native pattern (GauntletClanScreen, GauntletQuestsScreen)
+        }
+
+        void IGameStateListener.OnActivate()
+        {
+            base.OnActivate();
+
+            if (_gauntletLayer == null)
+            {
+                // MARK: First activation - full setup
+                _viewModel = new CommanderVM();
+                _viewModel.OnCloseRequested += OnCloseRequested;
+
+                _gauntletLayer = new GauntletLayer("GauntletLayer", 1000, false);
+                _gauntletLayer.LoadMovie("CommanderScreen", _viewModel);
+
+                AddLayer(_gauntletLayer);
+
+                // Load required sprite categories
+                LoadSprites();
+            }
+
+            // Every activation (first + re-activation)
             _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
             _gauntletLayer.IsFocusLayer = true;
             ScreenManager.TrySetFocus(_gauntletLayer);
@@ -53,15 +131,26 @@ namespace Bannerlord.Commander.UI.Screens
             UnbindMapHotKeys();
 
             PauseGameTime();
+            _viewModel?.RefreshCurrentMode();
         }
 
-        protected override void OnFinalize()
+        void IGameStateListener.OnDeactivate()
         {
-            ResumeGameTime();
+            base.OnDeactivate();
 
-            // Restore hotkeys on screen close
+            ResumeGameTime();
             RestoreMapHotKeys();
 
+            if (_gauntletLayer != null)
+            {
+                _gauntletLayer.IsFocusLayer = false;
+                ScreenManager.TryLoseFocus(_gauntletLayer);
+                RemoveLayer(_gauntletLayer);
+            }
+        }
+
+        void IGameStateListener.OnFinalize()
+        {
             if (_viewModel != null)
             {
                 _viewModel.OnCloseRequested -= OnCloseRequested;
@@ -70,18 +159,37 @@ namespace Bannerlord.Commander.UI.Screens
             }
 
             _gauntletLayer = null;
-
-            base.OnFinalize();
         }
+
+        #endregion
+
+        #region Screen Close
+
+        private void OnCloseRequested() { CloseScreen(); }
+
+        private void CloseScreen()
+        {
+            if (_isClosing) return;
+            _isClosing = true;
+            Game.Current.GameStateManager.PopState(0);
+        }
+
+        #endregion
+
+        #region Sprite Loading
 
         /// <summary>
         /// Load required sprite categories
         /// </summary>
-        void LoadSprites()
+        private void LoadSprites()
         {
             SpriteCategory inventoryCategory = UIResourceManager.SpriteData.SpriteCategories["ui_inventory"];
             inventoryCategory.Load(UIResourceManager.ResourceContext, UIResourceManager.ResourceDepot);
         }
+
+        #endregion
+
+        #region Hotkey Management
 
         /// <summary>
         /// Prevent hotkeys from interfering with text input by unbinding them temporarily.
@@ -132,7 +240,7 @@ namespace Bannerlord.Commander.UI.Screens
         /// </summary>
         private void RestoreMapHotKeys()
         {
-            foreach (var kvp in _originalKeyboardKeys)
+            foreach (KeyValuePair<GameKey, InputKey> kvp in _originalKeyboardKeys)
             {
                 GameKey gameKey = kvp.Key;
                 InputKey originalInput = kvp.Value;
@@ -154,29 +262,9 @@ namespace Bannerlord.Commander.UI.Screens
             _originalKeyboardKeys.Clear();
         }
 
-        protected override void OnFrameTick(float dt)
-        {
-            base.OnFrameTick(dt);
-            if (_isClosing) return;
+        #endregion
 
-            _viewModel?.OnTick();
-
-            // Handle Escape manually
-            // We use Input.IsKeyPressed (Global) because layer input might be restricted
-            if (_gauntletLayer != null && Input.IsKeyPressed(InputKey.Escape))
-            {
-                CloseScreen();
-            }
-        }
-
-        private void OnCloseRequested() { CloseScreen(); }
-
-        private void CloseScreen()
-        {
-            if (_isClosing) return;
-            _isClosing = true;
-            ScreenManager.PopScreen();
-        }
+        #region Game Time Control
 
         private void PauseGameTime()
         {
@@ -199,23 +287,6 @@ namespace Bannerlord.Commander.UI.Screens
             }
         }
 
-        protected override void OnActivate()
-        {
-            base.OnActivate();
-            if (_gauntletLayer != null)
-            {
-                _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
-                _gauntletLayer.IsFocusLayer = true;
-                ScreenManager.TrySetFocus(_gauntletLayer);
-            }
-
-            // Re-apply unbinds.
-            // Since UnbindMapHotKeys checks ContainsKey, it won't accidentally save "Invalid".
-            // This ensures keys stay unbound even if the game reloads them on focus change.
-            UnbindMapHotKeys();
-
-            _viewModel?.RefreshCurrentMode();
-            PauseGameTime();
-        }
+        #endregion
     }
 }
