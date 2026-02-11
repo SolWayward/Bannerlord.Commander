@@ -3,7 +3,7 @@
     <Widget Id="HeroIdentityInfoPanel" DataSource="{HeroIdentityInfoPanel}"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="Fixed"
-      SuggestedHeight="110"
+      SuggestedHeight="130"
       MarginBottom="4"
       Sprite="BlankWhiteSquare_9"
       Color="#1a1a1aFF">
@@ -22,144 +22,168 @@
           SuggestedWidth="2" HorizontalAlignment="Right"
           Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
         
-        <!-- Two column layout -->
+        <!-- Vertical layout: Rank row on top, two-column grid below -->
         <ListPanel Id="IdentityContent" WidthSizePolicy="StretchToParent"
           HeightSizePolicy="StretchToParent"
           MarginTop="4"
           MarginBottom="4"
           MarginLeft="6"
           MarginRight="6"
-          StackLayout.LayoutMethod="HorizontalLeftToRight">
+          StackLayout.LayoutMethod="VerticalBottomToTop">
           <Children>
-            <!-- Left Column: Gender, Born, Dies -->
-            <ListPanel Id="LeftColumn" WidthSizePolicy="Fixed"
-              HeightSizePolicy="StretchToParent"
-              SuggestedWidth="240"
-              StackLayout.LayoutMethod="VerticalBottomToTop">
+            <!-- Rank Description Row (centered, full width, only visible when hero has a kingdom rank) -->
+            <Widget Id="RankDescriptionRow" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="Fixed"
+              SuggestedHeight="20"
+              MarginBottom="4"
+              IsVisible="@HasRankDescription">
               <Children>
-                <!-- Gender Row -->
-                <ListPanel Id="GenderRow" WidthSizePolicy="StretchToParent"
-                  HeightSizePolicy="Fixed"
-                  SuggestedHeight="18"
-                  MarginBottom="4"
-                  StackLayout.LayoutMethod="HorizontalLeftToRight">
-                  <Children>
-                    <TextWidget Id="GenderLabel" WidthSizePolicy="CoverChildren"
-                      HeightSizePolicy="StretchToParent"
-                      Brush="Clan.TabControl.Text"
-                      Brush.FontSize="17"
-                      Text="Gender: " />
-                    <TextWidget Id="GenderValue" WidthSizePolicy="CoverChildren"
-                      HeightSizePolicy="StretchToParent"
-                      Brush="Clan.TabControl.Text"
-                      Brush.FontSize="16"
-                      Text="@Gender" />
-                  </Children>
-                </ListPanel>
-                
-                <!-- Born Row -->
-                <ListPanel Id="BornRow" WidthSizePolicy="StretchToParent"
-                  HeightSizePolicy="Fixed"
-                  SuggestedHeight="18"
-                  MarginBottom="4"
-                  StackLayout.LayoutMethod="HorizontalLeftToRight">
-                  <Children>
-                    <TextWidget Id="BornLabel" WidthSizePolicy="CoverChildren"
-                      HeightSizePolicy="StretchToParent"
-                      Brush="Clan.TabControl.Text"
-                      Brush.FontSize="17"
-                      Text="Born: " />
-                    <TextWidget Id="BornValue" WidthSizePolicy="CoverChildren"
-                      HeightSizePolicy="StretchToParent"
-                      Brush="Clan.TabControl.Text"
-                      Brush.FontSize="16"
-                      Text="@BirthDateText" />
-                  </Children>
-                </ListPanel>
-                
-                <!-- Dies Row -->
-                <ListPanel Id="DiesRow" WidthSizePolicy="StretchToParent"
-                  HeightSizePolicy="Fixed"
-                  SuggestedHeight="18"
-                  MarginBottom="4"
-                  StackLayout.LayoutMethod="HorizontalLeftToRight">
-                  <Children>
-                    <TextWidget Id="DiesLabel" WidthSizePolicy="CoverChildren"
-                      HeightSizePolicy="StretchToParent"
-                      Brush="Clan.TabControl.Text"
-                      Brush.FontSize="17"
-                      Text="Dies: " />
-                    <TextWidget Id="DiesValue" WidthSizePolicy="CoverChildren"
-                      HeightSizePolicy="StretchToParent"
-                      Brush="Clan.TabControl.Text"
-                      Brush.FontSize="16"
-                      Text="@DeathDateText" />
-                  </Children>
-                </ListPanel>
+                <TextWidget Id="RankDescriptionValue"
+                  WidthSizePolicy="CoverChildren"
+                  HeightSizePolicy="StretchToParent"
+                  HorizontalAlignment="Center"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="16"
+                  Text="@RankDescription" />
               </Children>
-            </ListPanel>
-            
-            <!-- Right Column: Culture, Age, Alive/Dead Status -->
-            <ListPanel Id="RightColumn" WidthSizePolicy="StretchToParent"
+            </Widget>
+
+            <!-- Two-column grid -->
+            <ListPanel Id="TwoColumnGrid" WidthSizePolicy="StretchToParent"
               HeightSizePolicy="StretchToParent"
-              StackLayout.LayoutMethod="VerticalBottomToTop">
+              StackLayout.LayoutMethod="HorizontalLeftToRight">
               <Children>
-                <!-- Culture Row -->
-                <ListPanel Id="CultureRow" WidthSizePolicy="StretchToParent"
-                  HeightSizePolicy="Fixed"
-                  SuggestedHeight="18"
-                  MarginBottom="4"
-                  HorizontalAlignment="Right"
-                  StackLayout.LayoutMethod="HorizontalLeftToRight">
+                <!-- Left Column: Gender, Born, Dies -->
+                <ListPanel Id="LeftColumn" WidthSizePolicy="Fixed"
+                  HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="240"
+                  StackLayout.LayoutMethod="VerticalBottomToTop">
                   <Children>
-                    <TextWidget Id="CultureLabel" WidthSizePolicy="CoverChildren"
-                      HeightSizePolicy="StretchToParent"
-                      Brush="Clan.TabControl.Text"
-                      Brush.FontSize="17"
-                      Text="Culture: " />
-                    <TextWidget Id="CultureValue" WidthSizePolicy="CoverChildren"
-                      HeightSizePolicy="StretchToParent"
-                      Brush="Clan.TabControl.Text"
-                      Brush.FontSize="16"
-                      Text="@CultureName" />
+                    <!-- Gender Row -->
+                    <ListPanel Id="GenderRow" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="18"
+                      MarginBottom="4"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <TextWidget Id="GenderLabel" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="17"
+                          Text="Gender: " />
+                        <TextWidget Id="GenderValue" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="16"
+                          Text="@Gender" />
+                      </Children>
+                    </ListPanel>
+                    
+                    <!-- Born Row -->
+                    <ListPanel Id="BornRow" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="18"
+                      MarginBottom="4"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <TextWidget Id="BornLabel" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="17"
+                          Text="Born: " />
+                        <TextWidget Id="BornValue" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="16"
+                          Text="@BirthDateText" />
+                      </Children>
+                    </ListPanel>
+                    
+                    <!-- Dies Row -->
+                    <ListPanel Id="DiesRow" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="18"
+                      MarginBottom="4"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <TextWidget Id="DiesLabel" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="17"
+                          Text="Dies: " />
+                        <TextWidget Id="DiesValue" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="16"
+                          Text="@DeathDateText" />
+                      </Children>
+                    </ListPanel>
                   </Children>
                 </ListPanel>
                 
-                <!-- Age Row -->
-                <ListPanel Id="AgeRow" WidthSizePolicy="StretchToParent"
-                  HeightSizePolicy="Fixed"
-                  SuggestedHeight="18"
-                  MarginBottom="4"
-                  HorizontalAlignment="Right"
-                  StackLayout.LayoutMethod="HorizontalLeftToRight">
+                <!-- Right Column: Culture, Age, Alive/Dead Status -->
+                <ListPanel Id="RightColumn" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  StackLayout.LayoutMethod="VerticalBottomToTop">
                   <Children>
-                    <TextWidget Id="AgeLabel" WidthSizePolicy="CoverChildren"
-                      HeightSizePolicy="StretchToParent"
-                      Brush="Clan.TabControl.Text"
-                      Brush.FontSize="17"
-                      Text="Age: " />
-                    <TextWidget Id="AgeValue" WidthSizePolicy="CoverChildren"
-                      HeightSizePolicy="StretchToParent"
-                      Brush="Clan.TabControl.Text"
-                      Brush.FontSize="16"
-                      Text="@AgeText" />
-                  </Children>
-                </ListPanel>
-                
-                <!-- Alive/Dead Status Row -->
-                <ListPanel Id="AliveStatusRow" WidthSizePolicy="StretchToParent"
-                  HeightSizePolicy="Fixed"
-                  SuggestedHeight="18"
-                  MarginBottom="4"
-                  HorizontalAlignment="Right"
-                  StackLayout.LayoutMethod="HorizontalLeftToRight">
-                  <Children>
-                    <TextWidget Id="AliveStatusValue" WidthSizePolicy="CoverChildren"
-                      HeightSizePolicy="StretchToParent"
-                      Brush="Clan.TabControl.Text"
-                      Brush.FontSize="16"
-                      Text="@AliveStatus"
-                      Brush.TextColor="@AliveStatusColor" />
+                    <!-- Culture Row -->
+                    <ListPanel Id="CultureRow" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="18"
+                      MarginBottom="4"
+                      HorizontalAlignment="Right"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <TextWidget Id="CultureLabel" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="17"
+                          Text="Culture: " />
+                        <TextWidget Id="CultureValue" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="16"
+                          Text="@CultureName" />
+                      </Children>
+                    </ListPanel>
+                    
+                    <!-- Age Row -->
+                    <ListPanel Id="AgeRow" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="18"
+                      MarginBottom="4"
+                      HorizontalAlignment="Right"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <TextWidget Id="AgeLabel" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="17"
+                          Text="Age: " />
+                        <TextWidget Id="AgeValue" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="16"
+                          Text="@AgeText" />
+                      </Children>
+                    </ListPanel>
+                    
+                    <!-- Alive/Dead Status Row -->
+                    <ListPanel Id="AliveStatusRow" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="Fixed"
+                      SuggestedHeight="18"
+                      MarginBottom="4"
+                      HorizontalAlignment="Right"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <TextWidget Id="AliveStatusValue" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="Clan.TabControl.Text"
+                          Brush.FontSize="16"
+                          Text="@AliveStatus"
+                          Brush.TextColor="@AliveStatusColor" />
+                      </Children>
+                    </ListPanel>
                   </Children>
                 </ListPanel>
               </Children>

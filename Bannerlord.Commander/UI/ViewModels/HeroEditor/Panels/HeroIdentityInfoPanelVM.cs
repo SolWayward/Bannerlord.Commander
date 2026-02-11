@@ -1,4 +1,5 @@
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Library;
 
 namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
@@ -20,6 +21,8 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
         private string _cultureName;
         private string _aliveStatus;
         private string _aliveStatusColor;
+        private string _rankDescription;
+        private bool _hasRankDescription;
 
         #endregion
 
@@ -55,18 +58,33 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
                 // Culture information
                 CultureName = _hero.Culture?.Name?.ToString() ?? "Unknown";
 
+                // Kingdom rank description (e.g., "Ruler of the Vlandians")
+                if (_hero.Clan?.Kingdom != null)
+                {
+                    RankDescription = CampaignUIHelper.GetHeroKingdomRank(_hero);
+                    HasRankDescription = !string.IsNullOrEmpty(RankDescription);
+                }
+
+                else
+                {
+                    RankDescription = "";
+                    HasRankDescription = false;
+                }
+
                 // Alive/Dead status
                 if (_hero.IsAlive)
                 {
                     AliveStatus = "Alive";
                     AliveStatusColor = "#90EE90FF"; // Light green pastel
                 }
+
                 else
                 {
                     AliveStatus = "Dead";
                     AliveStatusColor = "#FFB3B3FF"; // Light red pastel
                 }
             }
+
             else
             {
                 Clear();
@@ -94,6 +112,8 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
             CultureName = "Unknown";
             AliveStatus = "";
             AliveStatusColor = "#FFFFFFFF";
+            RankDescription = "";
+            HasRankDescription = false;
         }
 
         #endregion
@@ -168,6 +188,34 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
         {
             get => _aliveStatusColor;
             private set => SetProperty(ref _aliveStatusColor, value, nameof(AliveStatusColor));
+        }
+
+        /// <summary>
+        /// Gets the hero's kingdom rank description (e.g., "Ruler of the Vlandians").
+        /// </summary>
+        [DataSourceProperty]
+        public string RankDescription
+        {
+            get => _rankDescription;
+            private set => SetProperty(ref _rankDescription, value, nameof(RankDescription));
+        }
+
+        /// <summary>
+        /// Gets whether the hero has a kingdom rank description to display.
+        /// Used for XML visibility binding.
+        /// </summary>
+        [DataSourceProperty]
+        public bool HasRankDescription
+        {
+            get => _hasRankDescription;
+            private set
+            {
+                if (_hasRankDescription != value)
+                {
+                    _hasRankDescription = value;
+                    OnPropertyChanged(nameof(HasRankDescription));
+                }
+            }
         }
 
         #endregion

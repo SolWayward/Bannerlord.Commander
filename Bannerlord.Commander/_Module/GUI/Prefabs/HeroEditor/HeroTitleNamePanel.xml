@@ -1,0 +1,63 @@
+<Prefab>
+  <Window>
+    <!-- Combined Title + Name row. DataSource binds to HeroNamePanel VM. -->
+    <Widget Id="HeroTitleNamePanel" DataSource="{HeroNamePanel}"
+      WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="Fixed"
+      SuggestedHeight="30"
+      MarginBottom="8">
+      <Children>
+        <!-- Content row: [Title (plain)] [Name (editable box)] -->
+        <ListPanel Id="TitleNameContent" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          StackLayout.LayoutMethod="HorizontalLeftToRight">
+          <Children>
+            <!-- Title label (non-editable, no box, only visible when hero has a title) -->
+            <TextWidget Id="TitleText"
+              WidthSizePolicy="CoverChildren"
+              HeightSizePolicy="StretchToParent"
+              VerticalAlignment="Center"
+              MarginLeft="2" MarginRight="6"
+              Brush="Clan.TabControl.Text"
+              Brush.FontSize="17"
+              Text="@HeroTitle"
+              IsVisible="@HasTitle" />
+
+            <!-- Editable name field with its own bordered background -->
+            <Widget Id="NameInputContainer"
+              WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="StretchToParent"
+              Sprite="BlankWhiteSquare_9"
+              Color="#1a1a1aFF">
+              <Children>
+                <!-- Borders around name input only -->
+                <Widget Id="NameTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="2" VerticalAlignment="Top"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget Id="NameBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="2" VerticalAlignment="Bottom"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget Id="NameLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="2" HorizontalAlignment="Left"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                <Widget Id="NameRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="2" HorizontalAlignment="Right"
+                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
+                <!-- Editable name text -->
+                <EditableTextWidget Id="NameInput"
+                  WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  MarginLeft="6" MarginRight="6"
+                  MarginTop="4" MarginBottom="4"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="17"
+                  Text="@HeroName" />
+              </Children>
+            </Widget>
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

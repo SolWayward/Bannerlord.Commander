@@ -12,8 +12,7 @@
           StackLayout.LayoutMethod="VerticalBottomToTop">
           <Children>
             <HeroPortraitPanel />
-            <HeroNameInputPanel />
-            <HeroTitleInputPanel />
+            <HeroTitleNamePanel />
             <HeroCharacterPanel />
             <HeroPartyPanel />
           </Children>

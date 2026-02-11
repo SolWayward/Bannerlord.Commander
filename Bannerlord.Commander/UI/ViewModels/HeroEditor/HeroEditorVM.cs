@@ -5,6 +5,7 @@ using TaleWorlds.Library;
 using Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels;
 using Bannerlord.Commander.UI.ViewModels.HeroMode;
 
+
 namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
 {
     /// <summary>
@@ -17,11 +18,11 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         #region Private Fields
 
         private Hero _hero;
+        private HeroListItemVM _selectedListItem;
 
         // New Panel VMs - 1:1 match with XML panels
         private HeroPortraitPanelVM _heroPortraitPanel;
         private HeroNamePanelVM _heroNamePanel;
-        private HeroTitlePanelVM _heroTitlePanel;
         private ClanBannerPanelVM _clanBannerPanel;
         private HeroIdentityInfoPanelVM _heroIdentityInfoPanel;
         private HeroClanPanelVM _heroClanPanel;
@@ -46,7 +47,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             // Initialize new Panel ViewModels
             HeroPortraitPanel = new();
             HeroNamePanel = new();
-            HeroTitlePanel = new();
+            HeroNamePanel.SetOnNameChanged(OnHeroNameChanged);
             ClanBannerPanel = new();
             HeroIdentityInfoPanel = new();
             HeroClanPanel = new();
@@ -85,7 +86,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 // Refresh new Panel ViewModels
                 HeroPortraitPanel?.RefreshForHero(_hero);
                 HeroNamePanel?.RefreshForHero(_hero);
-                HeroTitlePanel?.RefreshForHero(_hero);
                 ClanBannerPanel?.RefreshForHero(_hero);
                 HeroIdentityInfoPanel?.RefreshForHero(_hero);
                 HeroClanPanel?.RefreshForHero(_hero);
@@ -117,7 +117,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             // Clear new Panel ViewModels
             HeroPortraitPanel?.Clear();
             HeroNamePanel?.Clear();
-            HeroTitlePanel?.Clear();
             ClanBannerPanel?.Clear();
             HeroIdentityInfoPanel?.Clear();
             HeroClanPanel?.Clear();
@@ -135,6 +134,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         /// </summary>
         public void SelectHero(HeroListItemVM hero)
         {
+            _selectedListItem = hero;
             if (hero != null)
             {
                 RefreshForHero(hero.Hero);
@@ -158,7 +158,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             // Finalize new Panel ViewModels
             HeroPortraitPanel?.OnFinalize();
             HeroNamePanel?.OnFinalize();
-            HeroTitlePanel?.OnFinalize();
             ClanBannerPanel?.OnFinalize();
             HeroIdentityInfoPanel?.OnFinalize();
             HeroClanPanel?.OnFinalize();
@@ -169,6 +168,22 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             HeroSkills?.OnFinalize();
             HeroInventory?.OnFinalize();
             HeroCharacter?.OnFinalize();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        /// <summary>
+        /// Callback invoked when the hero name changes in the name panel.
+        /// Updates the hero list item so the left panel reflects the new name.
+        /// </summary>
+        private void OnHeroNameChanged(string newName)
+        {
+            if (_selectedListItem != null)
+            {
+                _selectedListItem.Name = newName;
+            }
         }
 
         #endregion
@@ -276,16 +291,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         {
             get => _heroNamePanel;
             private set => SetProperty(ref _heroNamePanel, value, nameof(HeroNamePanel));
-        }
-
-        /// <summary>
-        /// Gets the hero title panel ViewModel.
-        /// </summary>
-        [DataSourceProperty]
-        public HeroTitlePanelVM HeroTitlePanel
-        {
-            get => _heroTitlePanel;
-            private set => SetProperty(ref _heroTitlePanel, value, nameof(HeroTitlePanel));
         }
 
         /// <summary>
