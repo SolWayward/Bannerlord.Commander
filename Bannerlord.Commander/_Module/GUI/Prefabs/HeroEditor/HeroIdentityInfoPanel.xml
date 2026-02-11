@@ -3,7 +3,7 @@
     <Widget Id="HeroIdentityInfoPanel" DataSource="{HeroIdentityInfoPanel}"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="Fixed"
-      SuggestedHeight="130"
+      SuggestedHeight="105"
       MarginBottom="4"
       Sprite="BlankWhiteSquare_9"
       Color="#1a1a1aFF">

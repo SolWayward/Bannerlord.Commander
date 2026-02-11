@@ -13,6 +13,7 @@
           <Children>
             <HeroPortraitPanel />
             <HeroTitleNamePanel />
+            <HeroActionButtonsPanel />
             <HeroCharacterPanel />
             <HeroPartyPanel />
           </Children>

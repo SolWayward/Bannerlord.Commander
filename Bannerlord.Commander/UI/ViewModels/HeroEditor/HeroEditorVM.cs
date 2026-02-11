@@ -23,6 +23,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         // New Panel VMs - 1:1 match with XML panels
         private HeroPortraitPanelVM _heroPortraitPanel;
         private HeroNamePanelVM _heroNamePanel;
+        private HeroActionButtonsPanelVM _heroActionButtonsPanel;
         private ClanBannerPanelVM _clanBannerPanel;
         private HeroIdentityInfoPanelVM _heroIdentityInfoPanel;
         private HeroClanPanelVM _heroClanPanel;
@@ -48,7 +49,10 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             HeroPortraitPanel = new();
             HeroNamePanel = new();
             HeroNamePanel.SetOnNameChanged(OnHeroNameChanged);
+            HeroActionButtonsPanel = new();
+            HeroActionButtonsPanel.SetOnEditorClosed(OnExternalEditorClosed);
             ClanBannerPanel = new();
+            ClanBannerPanel.SetOnEditorClosed(OnExternalEditorClosed);
             HeroIdentityInfoPanel = new();
             HeroClanPanel = new();
             HeroKingdomPanel = new();
@@ -86,6 +90,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 // Refresh new Panel ViewModels
                 HeroPortraitPanel?.RefreshForHero(_hero);
                 HeroNamePanel?.RefreshForHero(_hero);
+                HeroActionButtonsPanel?.RefreshForHero(_hero);
                 ClanBannerPanel?.RefreshForHero(_hero);
                 HeroIdentityInfoPanel?.RefreshForHero(_hero);
                 HeroClanPanel?.RefreshForHero(_hero);
@@ -117,6 +122,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             // Clear new Panel ViewModels
             HeroPortraitPanel?.Clear();
             HeroNamePanel?.Clear();
+            HeroActionButtonsPanel?.Clear();
             ClanBannerPanel?.Clear();
             HeroIdentityInfoPanel?.Clear();
             HeroClanPanel?.Clear();
@@ -158,6 +164,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             // Finalize new Panel ViewModels
             HeroPortraitPanel?.OnFinalize();
             HeroNamePanel?.OnFinalize();
+            HeroActionButtonsPanel?.OnFinalize();
             ClanBannerPanel?.OnFinalize();
             HeroIdentityInfoPanel?.OnFinalize();
             HeroClanPanel?.OnFinalize();
@@ -183,6 +190,18 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             if (_selectedListItem != null)
             {
                 _selectedListItem.Name = newName;
+            }
+        }
+
+        /// <summary>
+        /// Callback invoked when an external BLGM editor (appearance, inventory, banner) closes.
+        /// Refreshes all panels to reflect any changes made in those editors.
+        /// </summary>
+        private void OnExternalEditorClosed()
+        {
+            if (_hero != null)
+            {
+                RefreshForHero(_hero);
             }
         }
 
@@ -291,6 +310,16 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         {
             get => _heroNamePanel;
             private set => SetProperty(ref _heroNamePanel, value, nameof(HeroNamePanel));
+        }
+
+        /// <summary>
+        /// Gets the hero action buttons panel ViewModel.
+        /// </summary>
+        [DataSourceProperty]
+        public HeroActionButtonsPanelVM HeroActionButtonsPanel
+        {
+            get => _heroActionButtonsPanel;
+            private set => SetProperty(ref _heroActionButtonsPanel, value, nameof(HeroActionButtonsPanel));
         }
 
         /// <summary>

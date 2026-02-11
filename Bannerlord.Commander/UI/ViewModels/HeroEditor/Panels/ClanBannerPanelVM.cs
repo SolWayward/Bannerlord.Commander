@@ -1,3 +1,5 @@
+using System;
+using Bannerlord.GameMaster.Banners;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core.ViewModelCollection.ImageIdentifiers;
@@ -14,6 +16,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
         #region Private Fields
 
         private Hero _hero;
+        private Action _onEditorClosed;
         private BannerImageIdentifierVM _clanBanner;
 
         #endregion
@@ -60,6 +63,27 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
             _clanBanner?.OnFinalize();
             _clanBanner = null;
             OnPropertyChanged(nameof(ClanBanner));
+        }
+
+        /// <summary>
+        /// Sets a callback to invoke when an external editor (banner editor) closes.
+        /// </summary>
+        public void SetOnEditorClosed(Action onEditorClosed)
+        {
+            _onEditorClosed = onEditorClosed;
+        }
+
+        /// <summary>
+        /// Opens the BLGM banner editor for the hero's clan.
+        /// </summary>
+        public void ExecuteOpenBannerEditor()
+        {
+            if (_hero == null || _hero.Clan == null)
+            {
+                return;
+            }
+
+            BannerEditorController.OpenBannerEditor(_hero.Clan, removeExtraIcons: true, onComplete: _onEditorClosed);
         }
 
         public override void OnFinalize()

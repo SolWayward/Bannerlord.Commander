@@ -22,12 +22,14 @@
       SuggestedWidth="2" HorizontalAlignment="Right"
       Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
     
-    <Widget Id="ClanBannerContainer" WidthSizePolicy="Fixed"
+    <ButtonWidget Id="ClanBannerContainer" DoNotPassEventsToChildren="true"
+      WidthSizePolicy="Fixed"
       HeightSizePolicy="Fixed"
       SuggestedWidth="100"
       SuggestedHeight="110"
       HorizontalAlignment="Center"
-      VerticalAlignment="Center">
+      VerticalAlignment="Center"
+      Command.Click="ExecuteOpenBannerEditor">
       <Children>
             <MaskedTextureWidget Id="ClanBannerImage" DataSource="{ClanBanner}"
               WidthSizePolicy="Fixed"
@@ -39,7 +41,7 @@
               ImageId="@Id"
               TextureProviderName="@TextureProviderName" />
       </Children>
-    </Widget>
+    </ButtonWidget>
   </Children>
 </Widget>
   </Window>

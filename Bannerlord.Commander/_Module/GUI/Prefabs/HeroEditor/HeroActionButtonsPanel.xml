@@ -1,0 +1,60 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroActionButtonsPanel" DataSource="{HeroActionButtonsPanel}"
+      WidthSizePolicy="StretchToParent"
+      HeightSizePolicy="Fixed"
+      SuggestedHeight="34"
+      MarginBottom="4">
+      <Children>
+        <ListPanel Id="ActionButtonsRow" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          StackLayout.LayoutMethod="HorizontalLeftToRight">
+          <Children>
+            <!-- Edit Appearance Button -->
+            <ButtonWidget Id="EditAppearanceButton" DoNotPassEventsToChildren="true"
+              WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="StretchToParent"
+              MarginRight="2"
+              Command.Click="ExecuteEditAppearance">
+              <Children>
+                <Widget Id="EditAppearanceBg" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  Sprite="BlankWhiteSquare_9"
+                  Color="#453920FF" />
+                <TextWidget Id="EditAppearanceText"
+                  WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="15"
+                  Text="Edit Appearance" />
+              </Children>
+            </ButtonWidget>
+            <!-- Open Inventory Button -->
+            <ButtonWidget Id="OpenInventoryButton" DoNotPassEventsToChildren="true"
+              WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="StretchToParent"
+              MarginLeft="2"
+              Command.Click="ExecuteOpenInventory">
+              <Children>
+                <Widget Id="OpenInventoryBg" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  Sprite="BlankWhiteSquare_9"
+                  Color="#453920FF" />
+                <TextWidget Id="OpenInventoryText"
+                  WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Brush="Clan.TabControl.Text"
+                  Brush.FontSize="15"
+                  Text="Open Inventory" />
+              </Children>
+            </ButtonWidget>
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>
