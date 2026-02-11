@@ -25,6 +25,7 @@ namespace Bannerlord.Commander.UI.Screens
         private GauntletLayer _gauntletLayer;
         private CommanderVM _viewModel;
         private bool _isClosing;
+        private bool _spritesLoaded;
         private CampaignTimeControlMode _previousTimeControlMode;
         private bool _wasTimePaused;
 
@@ -73,25 +74,12 @@ namespace Bannerlord.Commander.UI.Screens
 
         /// <summary>
         /// Called when the screen is re-activated (e.g. returning from a child state).
-        /// Re-applies focus and refreshes data without recreating the layer.
+        /// Layer management is handled in IGameStateListener.OnActivate() — only data refresh here.
         /// </summary>
         protected override void OnActivate()
         {
             base.OnActivate();
-
-            if (_gauntletLayer != null)
-            {
-                _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
-                _gauntletLayer.IsFocusLayer = true;
-                ScreenManager.TrySetFocus(_gauntletLayer);
-            }
-
-            // Re-apply unbinds on re-activation (e.g. returning from child state).
-            // Since UnbindMapHotKeys checks ContainsKey, it won't accidentally save "Invalid".
-            UnbindMapHotKeys();
-
             _viewModel?.RefreshCurrentMode();
-            PauseGameTime();
         }
 
         #endregion
@@ -107,29 +95,32 @@ namespace Bannerlord.Commander.UI.Screens
         {
             base.OnActivate();
 
-            if (_gauntletLayer == null)
+            // MARK: VM is kept alive across activations to preserve UI state (selected hero, mode, etc.)
+            if (_viewModel == null)
             {
-                // MARK: First activation - full setup
                 _viewModel = new CommanderVM();
                 _viewModel.OnCloseRequested += OnCloseRequested;
-
-                _gauntletLayer = new GauntletLayer("GauntletLayer", 1000, false);
-                _gauntletLayer.LoadMovie("CommanderScreen", _viewModel);
-
-                AddLayer(_gauntletLayer);
-
-                // Load required sprite categories
-                LoadSprites();
             }
 
-            // Every activation (first + re-activation)
+            // Load sprite categories once
+            if (!_spritesLoaded)
+            {
+                LoadSprites();
+                _spritesLoaded = true;
+            }
+
+            // MARK: Always create a fresh GauntletLayer — native pattern (GauntletClanScreen).
+            // A removed layer's UIContext becomes stale; reusing it causes NullRef in GauntletChatLogView.
+            _gauntletLayer = new GauntletLayer("GauntletLayer", 1000, false);
+            _gauntletLayer.LoadMovie("CommanderScreen", _viewModel);
+
+            AddLayer(_gauntletLayer);
+
             _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
             _gauntletLayer.IsFocusLayer = true;
             ScreenManager.TrySetFocus(_gauntletLayer);
 
-            // Temporarily unbind hotkeys that interfere with text input
             UnbindMapHotKeys();
-
             PauseGameTime();
             _viewModel?.RefreshCurrentMode();
         }
@@ -138,9 +129,10 @@ namespace Bannerlord.Commander.UI.Screens
         {
             base.OnDeactivate();
 
-            ResumeGameTime();
             RestoreMapHotKeys();
 
+            // Remove the layer — the old instance is orphaned for GC (native pattern).
+            // A fresh layer is created on next OnActivate().
             if (_gauntletLayer != null)
             {
                 _gauntletLayer.IsFocusLayer = false;
@@ -171,6 +163,7 @@ namespace Bannerlord.Commander.UI.Screens
         {
             if (_isClosing) return;
             _isClosing = true;
+            ResumeGameTime();
             Game.Current.GameStateManager.PopState(0);
         }
 
