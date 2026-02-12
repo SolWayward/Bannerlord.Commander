@@ -25,7 +25,6 @@ namespace Bannerlord.Commander.UI.Screens
         private GauntletLayer _gauntletLayer;
         private CommanderVM _viewModel;
         private bool _isClosing;
-        private bool _spritesLoaded;
         private CampaignTimeControlMode _previousTimeControlMode;
         private bool _wasTimePaused;
 
@@ -74,12 +73,11 @@ namespace Bannerlord.Commander.UI.Screens
 
         /// <summary>
         /// Called when the screen is re-activated (e.g. returning from a child state).
-        /// Layer management is handled in IGameStateListener.OnActivate() — only data refresh here.
+        /// Data refresh is handled by IGameStateListener.OnActivate() — no duplicate refresh here.
         /// </summary>
         protected override void OnActivate()
         {
             base.OnActivate();
-            _viewModel?.RefreshCurrentMode();
         }
 
         #endregion
@@ -102,12 +100,10 @@ namespace Bannerlord.Commander.UI.Screens
                 _viewModel.OnCloseRequested += OnCloseRequested;
             }
 
-            // Load sprite categories once
-            if (!_spritesLoaded)
-            {
-                LoadSprites();
-                _spritesLoaded = true;
-            }
+            // Always reload sprite categories — native screens (e.g. GauntletInventoryScreen)
+            // may unload shared categories like "ui_inventory" in their OnFinalize().
+            // SpriteCategory.Load() is safe to call when already loaded (no-op if textures are in GPU memory).
+            LoadSprites();
 
             // MARK: Always create a fresh GauntletLayer — native pattern (GauntletClanScreen).
             // A removed layer's UIContext becomes stale; reusing it causes NullRef in GauntletChatLogView.

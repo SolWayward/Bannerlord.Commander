@@ -46,6 +46,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroMode
 
         private bool _isLoading;
         private bool _needsHeroLoad;
+        private bool _hasLoadedOnce;
         private string _loadingStatusText;
 
         /// <summary>
@@ -146,9 +147,18 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroMode
         /// <summary>
         /// Refresh the hero list by reloading heroes when the mode becomes visible
         /// </summary>
+        /// <summary>
+        /// Refresh the hero list when the mode becomes visible.
+        /// Only triggers a full reload on the first activation.
+        /// Subsequent activations (e.g. returning from BLGM editors) skip the
+        /// expensive reload since the list data is still valid.
+        /// </summary>
         public void RefreshCurrentMode()
         {
-            _needsHeroLoad = true;
+            if (!_hasLoadedOnce)
+            {
+                _needsHeroLoad = true;
+            }
         }
 
         #endregion
@@ -427,6 +437,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroMode
         private void CompleteHeroLoading()
         {
             _isLoading = false;
+            _hasLoadedOnce = true;
             _pendingHeroVMs = null;
             _pendingHeroIndex = 0;
 
