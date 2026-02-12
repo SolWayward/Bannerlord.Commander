@@ -1,4 +1,5 @@
 using Bannerlord.Commander.Settings;
+using Bannerlord.GameMaster.Characters;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
@@ -45,7 +46,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
                 _portraitImage?.OnFinalize();
 
                 // Create CharacterPortrait
-                CharacterCode characterCode = Helpers.CharacterHelpers.BuildCharacterCode(_hero.CharacterObject, true, SettingsManager.HeroSettings.ShowHiddenInfo);
+                CharacterCode characterCode = CharacterHelpers.BuildCharacterCode(_hero.CharacterObject, true, SettingsManager.HeroSettings.ShowHiddenInfo);
                 PortraitImage = new CharacterImageIdentifierVM(characterCode);
             }
             else
