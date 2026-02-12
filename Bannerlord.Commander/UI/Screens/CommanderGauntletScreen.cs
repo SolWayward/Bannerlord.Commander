@@ -105,12 +105,16 @@ namespace Bannerlord.Commander.UI.Screens
             // SpriteCategory.Load() is safe to call when already loaded (no-op if textures are in GPU memory).
             LoadSprites();
 
-            // MARK: Always create a fresh GauntletLayer — native pattern (GauntletClanScreen).
-            // A removed layer's UIContext becomes stale; reusing it causes NullRef in GauntletChatLogView.
-            _gauntletLayer = new GauntletLayer("GauntletLayer", 1000, false);
-            _gauntletLayer.LoadMovie("CommanderScreen", _viewModel);
-
-            AddLayer(_gauntletLayer);
+            // MARK: Layer is kept alive across activations to avoid re-running LoadMovie()
+            // on a fully-populated MBBindingList (~2000 items), which causes a ~2s freeze
+            // as Gauntlet must instantiate all row widgets synchronously.
+            // The layer is only created once; on reactivation we just restore focus.
+            if (_gauntletLayer == null)
+            {
+                _gauntletLayer = new GauntletLayer("GauntletLayer", 1000, false);
+                _gauntletLayer.LoadMovie("CommanderScreen", _viewModel);
+                AddLayer(_gauntletLayer);
+            }
 
             _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
             _gauntletLayer.IsFocusLayer = true;
@@ -127,26 +131,36 @@ namespace Bannerlord.Commander.UI.Screens
 
             RestoreMapHotKeys();
 
-            // Remove the layer — the old instance is orphaned for GC (native pattern).
-            // A fresh layer is created on next OnActivate().
+            // MARK: Layer is kept alive — only lose focus so the editor state on top
+            // can receive input. The widget tree and all bound VMs stay intact,
+            // preserving scroll position, selection state, and avoiding the ~2s
+            // LoadMovie() freeze on reactivation.
             if (_gauntletLayer != null)
             {
+                _gauntletLayer.InputRestrictions.ResetInputRestrictions();
                 _gauntletLayer.IsFocusLayer = false;
                 ScreenManager.TryLoseFocus(_gauntletLayer);
-                RemoveLayer(_gauntletLayer);
             }
         }
 
         void IGameStateListener.OnFinalize()
         {
+            // Layer cleanup happens here — the only place where the layer is removed and destroyed.
+            if (_gauntletLayer != null)
+            {
+                _gauntletLayer.InputRestrictions.ResetInputRestrictions();
+                _gauntletLayer.IsFocusLayer = false;
+                ScreenManager.TryLoseFocus(_gauntletLayer);
+                RemoveLayer(_gauntletLayer);
+                _gauntletLayer = null;
+            }
+
             if (_viewModel != null)
             {
                 _viewModel.OnCloseRequested -= OnCloseRequested;
                 _viewModel.OnFinalize();
                 _viewModel = null;
             }
-
-            _gauntletLayer = null;
         }
 
         #endregion
