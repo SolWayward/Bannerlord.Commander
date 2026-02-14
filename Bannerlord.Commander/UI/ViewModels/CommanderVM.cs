@@ -228,6 +228,16 @@ namespace Bannerlord.Commander.UI.ViewModels
 
         public void ExecuteClose() => OnCloseRequested?.Invoke();
 
+        public void ExecuteCreateHero()
+        {
+            Bannerlord.GameMaster.Information.InfoMessage.Warning("Create Hero: Not yet implemented");
+        }
+
+        public void ExecuteBatchCreate()
+        {
+            Bannerlord.GameMaster.Information.InfoMessage.Warning("Batch Create: Not yet implemented");
+        }
+
         #endregion
 
         #region Private Methods - Filter Management
