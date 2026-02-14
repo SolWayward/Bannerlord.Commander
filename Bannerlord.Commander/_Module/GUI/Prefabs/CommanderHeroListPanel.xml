@@ -1,32 +1,32 @@
 <Prefab>
   <Window>
-    <Widget Id="CommanderHeroListPanel" DataSource="{.}"
+    <BrushWidget Id="CommanderHeroListPanel" DataSource="{.}"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="StretchToParent"
-      Sprite="BlankWhiteSquare_9" Color="#2a2a2aFF"
+      Brush="HeroEditor.Panel.Background"
       MarginRight="10">
     <Children>
-      <Widget Id="HeroListTopBorder" WidthSizePolicy="StretchToParent"
+      <BrushWidget Id="HeroListTopBorder" WidthSizePolicy="StretchToParent"
         HeightSizePolicy="Fixed" SuggestedHeight="2"
-        VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-      <Widget Id="HeroListBottomBorder" WidthSizePolicy="StretchToParent"
+        VerticalAlignment="Top" Brush="HeroEditor.Section.Border" />
+      <BrushWidget Id="HeroListBottomBorder" WidthSizePolicy="StretchToParent"
         HeightSizePolicy="Fixed" SuggestedHeight="2"
-        VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-      <Widget Id="HeroListLeftBorder" WidthSizePolicy="Fixed"
+        VerticalAlignment="Bottom" Brush="HeroEditor.Section.Border" />
+      <BrushWidget Id="HeroListLeftBorder" WidthSizePolicy="Fixed"
         HeightSizePolicy="StretchToParent" SuggestedWidth="2"
-        HorizontalAlignment="Left" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-      <Widget Id="HeroListRightBorder" WidthSizePolicy="Fixed"
+        HorizontalAlignment="Left" Brush="HeroEditor.Section.Border" />
+      <BrushWidget Id="HeroListRightBorder" WidthSizePolicy="Fixed"
         HeightSizePolicy="StretchToParent" SuggestedWidth="2"
-        HorizontalAlignment="Right" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        HorizontalAlignment="Right" Brush="HeroEditor.Section.Border" />
 
       <Widget Id="HeroListContent" WidthSizePolicy="StretchToParent"
         HeightSizePolicy="StretchToParent"
         MarginTop="10" MarginBottom="10" MarginLeft="10" MarginRight="10">
         <Children>
           <!-- Headers -->
-          <Widget Id="HeroListHeaderRow" WidthSizePolicy="StretchToParent"
+          <BrushWidget Id="HeroListHeaderRow" WidthSizePolicy="StretchToParent"
             HeightSizePolicy="Fixed" SuggestedHeight="40"
-            VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#3a3a3aFF">
+            VerticalAlignment="Top" Brush="HeroEditor.Skills.Background">
             <Children>
               <ListPanel Id="HeroListHeaderPanel"
                 WidthSizePolicy="StretchToParent"
@@ -147,12 +147,11 @@
                   </ButtonWidget>
                 </Children>
               </ListPanel>
-              <Widget Id="HeaderDividerLine" WidthSizePolicy="StretchToParent"
+              <BrushWidget Id="HeaderDividerLine" WidthSizePolicy="StretchToParent"
                 HeightSizePolicy="Fixed" SuggestedHeight="2"
-                VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9"
-                Color="#8B7355FF" />
+                VerticalAlignment="Bottom" Brush="HeroEditor.Section.Border" />
             </Children>
-          </Widget>
+          </BrushWidget>
 
           <!-- Scrollable List -->
           <Widget Id="HeroListScrollContainer" WidthSizePolicy="StretchToParent"
@@ -313,12 +312,11 @@
                     HorizontalAlignment="Center" VerticalAlignment="Top"
                     Handle="ScrollbarHandle">
                     <Children>
-                      <Widget Id="ScrollbarHandle" WidthSizePolicy="Fixed"
+                      <BrushWidget Id="ScrollbarHandle" WidthSizePolicy="Fixed"
                         HeightSizePolicy="Fixed"
                         SuggestedWidth="20" MinHeight="30"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Top" Sprite="BlankWhiteSquare_9"
-                        Color="#8B7355FF" />
+                        VerticalAlignment="Top" Brush="HeroEditor.Section.Border" />
                     </Children>
                   </ScrollbarWidget>
                 </Children>
@@ -328,6 +326,6 @@
         </Children>
       </Widget>
     </Children>
-    </Widget>
+    </BrushWidget>
   </Window>
 </Prefab>

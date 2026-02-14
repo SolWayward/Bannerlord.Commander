@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <Window>
-    <Widget Id="ClanBannerPanel" DataSource="{ClanBannerPanel}"
+    <BrushWidget Id="ClanBannerPanel" DataSource="{ClanBannerPanel}"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="Fixed"
       SuggestedHeight="120"
       MarginBottom="4"
-      Sprite="BlankWhiteSquare_9"
-      Color="#1a1a1aFF">
+      Brush="HeroEditor.Input.Background">
   <Children>
-    <Widget Id="BannerPanelTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+    <BrushWidget Id="BannerPanelTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
       SuggestedHeight="2" VerticalAlignment="Top"
-      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-    <Widget Id="BannerPanelBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+      Brush="HeroEditor.Section.Border" />
+    <BrushWidget Id="BannerPanelBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
       SuggestedHeight="2" VerticalAlignment="Bottom"
-      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-    <Widget Id="BannerPanelLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+      Brush="HeroEditor.Section.Border" />
+    <BrushWidget Id="BannerPanelLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
       SuggestedWidth="2" HorizontalAlignment="Left"
-      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-    <Widget Id="BannerPanelRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+      Brush="HeroEditor.Section.Border" />
+    <BrushWidget Id="BannerPanelRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
       SuggestedWidth="2" HorizontalAlignment="Right"
-      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+      Brush="HeroEditor.Section.Border" />
     
     <ButtonWidget Id="ClanBannerContainer" DoNotPassEventsToChildren="true"
       WidthSizePolicy="Fixed"
@@ -43,6 +42,6 @@
       </Children>
     </ButtonWidget>
   </Children>
-</Widget>
+</BrushWidget>
   </Window>
 </Prefab>

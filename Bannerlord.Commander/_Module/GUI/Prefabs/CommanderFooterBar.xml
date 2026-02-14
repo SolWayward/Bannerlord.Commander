@@ -2,13 +2,13 @@
   <Parameters>
   </Parameters>
   <Window>
-    <Widget Id="CommanderFooterBar" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+    <BrushWidget Id="CommanderFooterBar" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
     SuggestedHeight="50"
-    VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#2a2a2aFF">
+    VerticalAlignment="Bottom" Brush="HeroEditor.Panel.Background">
     <Children>
-      <Widget Id="FooterTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+      <BrushWidget Id="FooterTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
         SuggestedHeight="2"
-        VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+        VerticalAlignment="Top" Brush="HeroEditor.Section.Border" />
       <Widget Id="LoadingStatusContainer" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
         SuggestedWidth="200" SuggestedHeight="36"
         HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="25"
@@ -31,7 +31,58 @@
             Brush="Clan.TabControl.Text" Text="Close" />
         </Children>
       </ButtonWidget>
+
+      <!-- Hero Mode Action Buttons - Right aligned, only visible in Heroes mode -->
+      <ListPanel Id="HeroModeFooterButtons" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed"
+        SuggestedHeight="36"
+        HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="25"
+        IsVisible="@IsHeroesSelected"
+        StackLayout.LayoutMethod="HorizontalLeftToRight">
+        <Children>
+          <!-- Create Hero Button -->
+          <ButtonWidget Id="CreateHeroButton" DoNotPassEventsToChildren="true"
+            UpdateChildrenStates="true"
+            WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+            SuggestedWidth="130"
+            MarginRight="8"
+            Command.Click="ExecuteCreateHero">
+            <Children>
+              <BrushWidget Id="CreateHeroBg" WidthSizePolicy="StretchToParent"
+                HeightSizePolicy="StretchToParent"
+                Brush="HeroEditor.Button.Standard" />
+              <TextWidget Id="CreateHeroText"
+                WidthSizePolicy="StretchToParent"
+                HeightSizePolicy="StretchToParent"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Brush="Clan.TabControl.Text"
+                Brush.FontSize="15"
+                Text="Create Hero" />
+            </Children>
+          </ButtonWidget>
+          <!-- Batch Create Button -->
+          <ButtonWidget Id="BatchCreateButton" DoNotPassEventsToChildren="true"
+            UpdateChildrenStates="true"
+            WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+            SuggestedWidth="130"
+            Command.Click="ExecuteBatchCreate">
+            <Children>
+              <BrushWidget Id="BatchCreateBg" WidthSizePolicy="StretchToParent"
+                HeightSizePolicy="StretchToParent"
+                Brush="HeroEditor.Button.Standard" />
+              <TextWidget Id="BatchCreateText"
+                WidthSizePolicy="StretchToParent"
+                HeightSizePolicy="StretchToParent"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Brush="Clan.TabControl.Text"
+                Brush.FontSize="15"
+                Text="Batch Create" />
+            </Children>
+          </ButtonWidget>
+        </Children>
+      </ListPanel>
     </Children>
-    </Widget>
+    </BrushWidget>
   </Window>
 </Prefab>

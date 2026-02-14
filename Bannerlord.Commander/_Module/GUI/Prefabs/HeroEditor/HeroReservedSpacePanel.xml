@@ -1,25 +1,24 @@
 <Prefab>
   <Window>
-    <Widget Id="HeroReservedSpacePanel"
+    <BrushWidget Id="HeroReservedSpacePanel"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="Fixed"
       SuggestedHeight="60"
       MarginBottom="4"
-      Sprite="BlankWhiteSquare_9"
-      Color="#1a1a1aFF">
+      Brush="HeroEditor.Input.Background">
       <Children>
-        <Widget Id="ReservedTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <BrushWidget Id="ReservedTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Top"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="ReservedBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="ReservedBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Bottom"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="ReservedLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="ReservedLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
           SuggestedWidth="2" HorizontalAlignment="Left"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="ReservedRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="ReservedRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
           SuggestedWidth="2" HorizontalAlignment="Right"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+          Brush="HeroEditor.Section.Border" />
         
         <TextWidget Id="ReservedText" WidthSizePolicy="StretchToParent"
           HeightSizePolicy="StretchToParent"
@@ -30,6 +29,6 @@
           Brush.TextHorizontalAlignment="Center"
           Text="Reserved Space" />
       </Children>
-    </Widget>
+    </BrushWidget>
   </Window>
 </Prefab>

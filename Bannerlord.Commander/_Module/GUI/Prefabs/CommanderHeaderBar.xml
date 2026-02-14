@@ -2,13 +2,13 @@
   <Parameters>
   </Parameters>
   <Window>
-    <Widget Id="CommanderHeaderBar" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+    <BrushWidget Id="CommanderHeaderBar" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
       SuggestedHeight="60"
-      VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#2a2a2aFF">
+      VerticalAlignment="Top" Brush="HeroEditor.Panel.Background">
       <Children>
-        <Widget Id="HeaderTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <BrushWidget Id="HeaderTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2"
-          VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+          VerticalAlignment="Top" Brush="HeroEditor.Section.Border" />
         <RichTextWidget Id="TitleText" WidthSizePolicy="StretchToParent"
           HeightSizePolicy="StretchToParent"
           HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -21,33 +21,33 @@
             <TextWidget Id="FilterLabel" WidthSizePolicy="CoverChildren"
               HeightSizePolicy="StretchToParent"
               Brush="Clan.TabControl.Text" Brush.FontSize="16" Text="Filter" MarginRight="8" />
-            <Widget Id="FilterInputContainer" WidthSizePolicy="Fixed"
+            <BrushWidget Id="FilterInputContainer" WidthSizePolicy="Fixed"
               HeightSizePolicy="StretchToParent" SuggestedWidth="250"
-              MarginLeft="45" Sprite="BlankWhiteSquare_9" Color="#1a1a1aFF">
+              MarginLeft="45" Brush="HeroEditor.Input.Background">
               <Children>
-                <Widget Id="FilterTopBorder" WidthSizePolicy="StretchToParent"
+                <BrushWidget Id="FilterTopBorder" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="Fixed" SuggestedHeight="2"
-                  VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget Id="FilterBottomBorder" WidthSizePolicy="StretchToParent"
+                  VerticalAlignment="Top" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="FilterBottomBorder" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="Fixed" SuggestedHeight="2"
-                  VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget Id="FilterLeftBorder" WidthSizePolicy="Fixed"
+                  VerticalAlignment="Bottom" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="FilterLeftBorder" WidthSizePolicy="Fixed"
                   HeightSizePolicy="StretchToParent" SuggestedWidth="2"
-                  HorizontalAlignment="Left" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget Id="FilterRightBorder" WidthSizePolicy="Fixed"
+                  HorizontalAlignment="Left" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="FilterRightBorder" WidthSizePolicy="Fixed"
                   HeightSizePolicy="StretchToParent" SuggestedWidth="2"
-                  HorizontalAlignment="Right" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                  HorizontalAlignment="Right" Brush="HeroEditor.Section.Border" />
                 <EditableTextWidget Id="SearchInputWidget" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent" MarginLeft="6" MarginRight="6"
                   Brush="Clan.TabControl.Text" Brush.FontSize="14" Text="@FilterText" />
               </Children>
-            </Widget>
+            </BrushWidget>
           </Children>
         </Widget>
-        <Widget Id="HeaderBottomBorder" WidthSizePolicy="StretchToParent"
+        <BrushWidget Id="HeaderBottomBorder" WidthSizePolicy="StretchToParent"
           HeightSizePolicy="Fixed" SuggestedHeight="2"
-          VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+          VerticalAlignment="Bottom" Brush="HeroEditor.Section.Border" />
       </Children>
-    </Widget>
+    </BrushWidget>
   </Window>
 </Prefab>

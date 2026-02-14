@@ -1,28 +1,27 @@
 <Prefab>
   <Window>
-    <Widget Id="HeroPortraitPanel" DataSource="{HeroPortraitPanel}"
+    <BrushWidget Id="HeroPortraitPanel" DataSource="{HeroPortraitPanel}"
       WidthSizePolicy="Fixed"
       HeightSizePolicy="Fixed"
       SuggestedWidth="165"
       SuggestedHeight="180"
       HorizontalAlignment="Center"
       MarginBottom="8"
-      Sprite="BlankWhiteSquare_9"
-      Color="#1a1a1aFF">
+      Brush="HeroEditor.Input.Background">
       <Children>
         <!-- Borders -->
-        <Widget Id="PortraitTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <BrushWidget Id="PortraitTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Top"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="PortraitBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="PortraitBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Bottom"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="PortraitLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="PortraitLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
           SuggestedWidth="2" HorizontalAlignment="Left"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="PortraitRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="PortraitRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
           SuggestedWidth="2" HorizontalAlignment="Right"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+          Brush="HeroEditor.Section.Border" />
         
         <!-- Hero portrait using direct CharacterImageIdentifierVM binding -->
         <ImageIdentifierWidget Id="HeroPortraitImage"
@@ -37,6 +36,6 @@
           ImageId="@Id"
           TextureProviderName="@TextureProviderName" />
       </Children>
-    </Widget>
+    </BrushWidget>
   </Window>
 </Prefab>

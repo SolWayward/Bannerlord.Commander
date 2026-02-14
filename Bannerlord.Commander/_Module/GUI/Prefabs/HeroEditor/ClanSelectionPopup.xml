@@ -14,30 +14,29 @@
           Command.Click="ExecuteClose" />
 
     <!-- Popup container (centered) -->
-        <Widget Id="PopupContainer" WidthSizePolicy="Fixed"
+        <BrushWidget Id="PopupContainer" WidthSizePolicy="Fixed"
           HeightSizePolicy="Fixed"
           SuggestedWidth="900"
           SuggestedHeight="800"
           HorizontalAlignment="Center"
           VerticalAlignment="Center"
-          Sprite="BlankWhiteSquare_9"
-          Color="#2a2a2aFF">
+          Brush="HeroEditor.Panel.Background">
           <Children>
 
         <!-- Border Frame -->
-            <Widget Id="PopupTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+            <BrushWidget Id="PopupTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
               SuggestedHeight="2" VerticalAlignment="Top"
-              Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-            <Widget Id="PopupBottomBorder" WidthSizePolicy="StretchToParent"
+              Brush="HeroEditor.Section.Border" />
+            <BrushWidget Id="PopupBottomBorder" WidthSizePolicy="StretchToParent"
               HeightSizePolicy="Fixed"
               SuggestedHeight="2" VerticalAlignment="Bottom"
-              Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-            <Widget Id="PopupLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+              Brush="HeroEditor.Section.Border" />
+            <BrushWidget Id="PopupLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
               SuggestedWidth="2" HorizontalAlignment="Left"
-              Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-            <Widget Id="PopupRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+              Brush="HeroEditor.Section.Border" />
+            <BrushWidget Id="PopupRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
               SuggestedWidth="2" HorizontalAlignment="Right"
-              Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+              Brush="HeroEditor.Section.Border" />
 
         <!-- Content Container -->
             <ListPanel Id="PopupContentPanel" WidthSizePolicy="StretchToParent"
@@ -80,29 +79,28 @@
                       Brush.FontSize="18"
                       Text="Filter:" />
 
-                    <Widget Id="FilterInputBox" WidthSizePolicy="StretchToParent"
+                    <BrushWidget Id="FilterInputBox" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
                       MarginLeft="90"
-                      Sprite="BlankWhiteSquare_9"
-                      Color="#1a1a1aFF">
+                      Brush="HeroEditor.Input.Background">
                       <Children>
                     <!-- Border frame -->
-                        <Widget Id="FilterInputTopBorder" WidthSizePolicy="StretchToParent"
+                        <BrushWidget Id="FilterInputTopBorder" WidthSizePolicy="StretchToParent"
                           HeightSizePolicy="Fixed"
                           SuggestedHeight="1" VerticalAlignment="Top"
-                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <Widget Id="FilterInputBottomBorder" WidthSizePolicy="StretchToParent"
+                          Brush="HeroEditor.Section.Border" />
+                        <BrushWidget Id="FilterInputBottomBorder" WidthSizePolicy="StretchToParent"
                           HeightSizePolicy="Fixed"
                           SuggestedHeight="1" VerticalAlignment="Bottom"
-                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <Widget Id="FilterInputLeftBorder" WidthSizePolicy="Fixed"
+                          Brush="HeroEditor.Section.Border" />
+                        <BrushWidget Id="FilterInputLeftBorder" WidthSizePolicy="Fixed"
                           HeightSizePolicy="StretchToParent"
                           SuggestedWidth="1" HorizontalAlignment="Left"
-                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                        <Widget Id="FilterInputRightBorder" WidthSizePolicy="Fixed"
+                          Brush="HeroEditor.Section.Border" />
+                        <BrushWidget Id="FilterInputRightBorder" WidthSizePolicy="Fixed"
                           HeightSizePolicy="StretchToParent"
                           SuggestedWidth="1" HorizontalAlignment="Right"
-                          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                          Brush="HeroEditor.Section.Border" />
 
                         <EditableTextWidget Id="FilterInput" WidthSizePolicy="StretchToParent"
                           HeightSizePolicy="StretchToParent"
@@ -114,7 +112,7 @@
                           Brush.FontSize="16"
                           Text="@FilterText" />
                       </Children>
-                    </Widget>
+                    </BrushWidget>
                   </Children>
                 </Widget>
 
@@ -318,15 +316,14 @@
                           VerticalAlignment="Top"
                           Handle="ClanScrollbarHandle">
                           <Children>
-                            <Widget Id="ClanScrollbarHandle"
+                            <BrushWidget Id="ClanScrollbarHandle"
                               WidthSizePolicy="Fixed"
                               HeightSizePolicy="Fixed"
                               SuggestedWidth="20"
                               MinHeight="30"
                               HorizontalAlignment="Center"
                               VerticalAlignment="Top"
-                              Sprite="BlankWhiteSquare_9"
-                              Color="#8B7355FF" />
+                              Brush="HeroEditor.Section.Border" />
                           </Children>
                         </ScrollbarWidget>
                       </Children>
@@ -345,27 +342,26 @@
                   HorizontalAlignment="Center"
                   Command.Click="ExecuteClose">
                   <Children>
-                    <Widget Id="CloseButtonBackground" WidthSizePolicy="StretchToParent"
+                    <BrushWidget Id="CloseButtonBackground" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
-                      Sprite="BlankWhiteSquare_9"
-                      Color="#453920FF" />
+                      Brush="HeroEditor.Button.Standard" />
                 <!-- Border frame -->
-                    <Widget Id="CloseButtonTopBorder" WidthSizePolicy="StretchToParent"
+                    <BrushWidget Id="CloseButtonTopBorder" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="Fixed"
                       SuggestedHeight="1" VerticalAlignment="Top"
-                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                    <Widget Id="CloseButtonBottomBorder" WidthSizePolicy="StretchToParent"
+                      Brush="HeroEditor.Section.Border" />
+                    <BrushWidget Id="CloseButtonBottomBorder" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="Fixed"
                       SuggestedHeight="1" VerticalAlignment="Bottom"
-                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                    <Widget Id="CloseButtonLeftBorder" WidthSizePolicy="Fixed"
+                      Brush="HeroEditor.Section.Border" />
+                    <BrushWidget Id="CloseButtonLeftBorder" WidthSizePolicy="Fixed"
                       HeightSizePolicy="StretchToParent"
                       SuggestedWidth="1" HorizontalAlignment="Left"
-                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                    <Widget Id="CloseButtonRightBorder" WidthSizePolicy="Fixed"
+                      Brush="HeroEditor.Section.Border" />
+                    <BrushWidget Id="CloseButtonRightBorder" WidthSizePolicy="Fixed"
                       HeightSizePolicy="StretchToParent"
                       SuggestedWidth="1" HorizontalAlignment="Right"
-                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                      Brush="HeroEditor.Section.Border" />
                     <TextWidget Id="CloseButtonText" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
                       HorizontalAlignment="Center"
@@ -380,7 +376,7 @@
             </ListPanel>
 
           </Children>
-        </Widget>
+        </BrushWidget>
 
       </Children>
     </Widget>

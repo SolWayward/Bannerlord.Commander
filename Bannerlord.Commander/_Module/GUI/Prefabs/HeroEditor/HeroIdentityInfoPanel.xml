@@ -1,26 +1,25 @@
 <Prefab>
   <Window>
-    <Widget Id="HeroIdentityInfoPanel" DataSource="{HeroIdentityInfoPanel}"
+    <BrushWidget Id="HeroIdentityInfoPanel" DataSource="{HeroIdentityInfoPanel}"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="Fixed"
       SuggestedHeight="105"
       MarginBottom="4"
-      Sprite="BlankWhiteSquare_9"
-      Color="#1a1a1aFF">
+      Brush="HeroEditor.Input.Background">
       <Children>
         <!-- Borders -->
-        <Widget Id="IdentityInfoTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <BrushWidget Id="IdentityInfoTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Top"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="IdentityInfoBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="IdentityInfoBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Bottom"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="IdentityInfoLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="IdentityInfoLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
           SuggestedWidth="2" HorizontalAlignment="Left"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="IdentityInfoRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="IdentityInfoRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
           SuggestedWidth="2" HorizontalAlignment="Right"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+          Brush="HeroEditor.Section.Border" />
         
         <!-- Vertical layout: Rank row on top, two-column grid below -->
         <ListPanel Id="IdentityContent" WidthSizePolicy="StretchToParent"
@@ -191,6 +190,6 @@
           </Children>
         </ListPanel>
       </Children>
-    </Widget>
+    </BrushWidget>
   </Window>
 </Prefab>

@@ -1,23 +1,22 @@
 <Prefab>
   <Window>
-    <Widget Id="HeroSkillsAttributesPanel" DataSource="{HeroSkills}"
+    <BrushWidget Id="HeroSkillsAttributesPanel" DataSource="{HeroSkills}"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="StretchToParent"
-      Sprite="BlankWhiteSquare_9"
-      Color="#1a1a1aFF">
+      Brush="HeroEditor.Input.Background">
       <Children>
-        <Widget Id="SkillsAttrTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <BrushWidget Id="SkillsAttrTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Top"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="SkillsAttrBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="SkillsAttrBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Bottom"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="SkillsAttrLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="SkillsAttrLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
           SuggestedWidth="2" HorizontalAlignment="Left"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="SkillsAttrRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="SkillsAttrRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
           SuggestedWidth="2" HorizontalAlignment="Right"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+          Brush="HeroEditor.Section.Border" />
         
         <ListPanel Id="SkillsContent" WidthSizePolicy="StretchToParent"
           HeightSizePolicy="StretchToParent"
@@ -68,8 +67,7 @@
                           HeightSizePolicy="Fixed"
                           SuggestedHeight="26"
                           MarginBottom="2"
-                          Sprite="BlankWhiteSquare_9"
-                          Color="#3a3a3aFF"
+                          Brush="HeroEditor.Skills.Background"
                           StackLayout.LayoutMethod="HorizontalLeftToRight">
                           <Children>
                             <TextWidget Id="AttrName" WidthSizePolicy="CoverChildren"
@@ -153,6 +151,6 @@
           </Children>
         </ListPanel>
       </Children>
-    </Widget>
+    </BrushWidget>
   </Window>
 </Prefab>

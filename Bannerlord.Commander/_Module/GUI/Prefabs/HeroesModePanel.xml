@@ -20,28 +20,28 @@
             <CommanderHeroListPanel DataSource="{HeroList}" />
 
             <!-- RIGHT: Hero Editor Container bound to HeroEditorVM -->
-            <Widget Id="HeroEditorContainer" DataSource="{HeroEditor}"
+            <BrushWidget Id="HeroEditorContainer" DataSource="{HeroEditor}"
               WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-              SuggestedWidth="720" IsVisible="@IsVisible" Sprite="BlankWhiteSquare_9"
-              Color="#2a2a2aFF">
+              SuggestedWidth="720" IsVisible="@IsVisible"
+              Brush="HeroEditor.Panel.Background">
               <Children>
-                <Widget Id="EditorTopBorder" WidthSizePolicy="StretchToParent"
+                <BrushWidget Id="EditorTopBorder" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="Fixed" SuggestedHeight="2"
-                  VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget Id="EditorBottomBorder" WidthSizePolicy="StretchToParent"
+                  VerticalAlignment="Top" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="EditorBottomBorder" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="Fixed" SuggestedHeight="2"
-                  VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget Id="EditorLeftBorder" WidthSizePolicy="Fixed"
+                  VerticalAlignment="Bottom" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="EditorLeftBorder" WidthSizePolicy="Fixed"
                   HeightSizePolicy="StretchToParent" SuggestedWidth="2"
-                  HorizontalAlignment="Left" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget Id="EditorRightBorder" WidthSizePolicy="Fixed"
+                  HorizontalAlignment="Left" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="EditorRightBorder" WidthSizePolicy="Fixed"
                   HeightSizePolicy="StretchToParent" SuggestedWidth="2"
-                  HorizontalAlignment="Right" Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                  HorizontalAlignment="Right" Brush="HeroEditor.Section.Border" />
 
                 <!-- Hero Editor Panel -->
                 <HeroEditorPanel />
               </Children>
-            </Widget>
+            </BrushWidget>
 
           </Children>
         </ListPanel>

@@ -1,24 +1,23 @@
 <Prefab>
   <Window>
-    <Widget Id="HeroPartyPanel" DataSource="{HeroParty}"
+    <BrushWidget Id="HeroPartyPanel" DataSource="{HeroParty}"
       WidthSizePolicy="StretchToParent"
       HeightSizePolicy="Fixed"
       SuggestedHeight="80"
-      Sprite="BlankWhiteSquare_9"
-      Color="#1a1a1aFF">
+      Brush="HeroEditor.Input.Background">
       <Children>
-        <Widget Id="PartyTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+        <BrushWidget Id="PartyTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Top"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="PartyBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="PartyBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
           SuggestedHeight="2" VerticalAlignment="Bottom"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="PartyLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="PartyLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
           SuggestedWidth="2" HorizontalAlignment="Left"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-        <Widget Id="PartyRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+          Brush="HeroEditor.Section.Border" />
+        <BrushWidget Id="PartyRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
           SuggestedWidth="2" HorizontalAlignment="Right"
-          Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+          Brush="HeroEditor.Section.Border" />
         
         <ListPanel Id="PartyContent" WidthSizePolicy="StretchToParent"
           HeightSizePolicy="StretchToParent"
@@ -50,10 +49,9 @@
                   Command.Click="ExecuteDisbandParty"
                   IsEnabled="@CanDisbandParty">
                   <Children>
-                    <Widget Id="DisbandBg" WidthSizePolicy="StretchToParent"
+                    <BrushWidget Id="DisbandBg" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
-                      Sprite="BlankWhiteSquare_9"
-                      Color="#453920FF" />
+                      Brush="HeroEditor.Button.Standard" />
                     <TextWidget Id="DisbandText" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
                       HorizontalAlignment="Center"
@@ -69,10 +67,9 @@
                   MarginLeft="2"
                   Command.Click="ExecuteToggleParty">
                   <Children>
-                    <Widget Id="ToggleBg" WidthSizePolicy="StretchToParent"
+                    <BrushWidget Id="ToggleBg" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
-                      Sprite="BlankWhiteSquare_9"
-                      Color="#453920FF" />
+                      Brush="HeroEditor.Button.Standard" />
                     <TextWidget Id="ToggleText" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
                       HorizontalAlignment="Center"
@@ -92,10 +89,9 @@
               Command.Click="ExecuteEditParty"
               IsEnabled="@CanEditParty">
               <Children>
-                <Widget Id="EditPartyBg" WidthSizePolicy="StretchToParent"
+                <BrushWidget Id="EditPartyBg" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
-                  Sprite="BlankWhiteSquare_9"
-                  Color="#453920FF" />
+                  Brush="HeroEditor.Button.Standard" />
                 <TextWidget Id="EditPartyText" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
                   HorizontalAlignment="Center"
@@ -108,6 +104,6 @@
           </Children>
         </ListPanel>
       </Children>
-    </Widget>
+    </BrushWidget>
   </Window>
 </Prefab>

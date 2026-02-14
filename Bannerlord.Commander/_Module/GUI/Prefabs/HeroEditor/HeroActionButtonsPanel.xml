@@ -17,10 +17,9 @@
               MarginRight="2"
               Command.Click="ExecuteEditAppearance">
               <Children>
-                <Widget Id="EditAppearanceBg" WidthSizePolicy="StretchToParent"
+                <BrushWidget Id="EditAppearanceBg" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
-                  Sprite="BlankWhiteSquare_9"
-                  Color="#453920FF" />
+                  Brush="HeroEditor.Button.Standard" />
                 <TextWidget Id="EditAppearanceText"
                   WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
@@ -38,10 +37,9 @@
               MarginLeft="2"
               Command.Click="ExecuteOpenInventory">
               <Children>
-                <Widget Id="OpenInventoryBg" WidthSizePolicy="StretchToParent"
+                <BrushWidget Id="OpenInventoryBg" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
-                  Sprite="BlankWhiteSquare_9"
-                  Color="#453920FF" />
+                  Brush="HeroEditor.Button.Standard" />
                 <TextWidget Id="OpenInventoryText"
                   WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"

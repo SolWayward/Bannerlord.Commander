@@ -24,25 +24,24 @@
               IsVisible="@HasTitle" />
 
             <!-- Editable name field with its own bordered background -->
-            <Widget Id="NameInputContainer"
+            <BrushWidget Id="NameInputContainer"
               WidthSizePolicy="StretchToParent"
               HeightSizePolicy="StretchToParent"
-              Sprite="BlankWhiteSquare_9"
-              Color="#1a1a1aFF">
+              Brush="HeroEditor.Input.Background">
               <Children>
                 <!-- Borders around name input only -->
-                <Widget Id="NameTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                <BrushWidget Id="NameTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                   SuggestedHeight="2" VerticalAlignment="Top"
-                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget Id="NameBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="NameBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                   SuggestedHeight="2" VerticalAlignment="Bottom"
-                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget Id="NameLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="NameLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                   SuggestedWidth="2" HorizontalAlignment="Left"
-                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
-                <Widget Id="NameRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="NameRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
                   SuggestedWidth="2" HorizontalAlignment="Right"
-                  Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+                  Brush="HeroEditor.Section.Border" />
 
                 <!-- Editable name text -->
                 <EditableTextWidget Id="NameInput"
@@ -54,7 +53,7 @@
                   Brush.FontSize="17"
                   Text="@HeroName" />
               </Children>
-            </Widget>
+            </BrushWidget>
           </Children>
         </ListPanel>
       </Children>
