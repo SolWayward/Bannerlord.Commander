@@ -1,3 +1,5 @@
+using System;
+using Bannerlord.Commander.Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Library;
@@ -62,13 +64,19 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
                 if (_hero.Clan?.Kingdom != null)
                 {
                     RankDescription = CampaignUIHelper.GetHeroKingdomRank(_hero);
+
+                    // Try to get custom description if native method failed
+                    if (string.IsNullOrEmpty(RankDescription))
+                        RankDescription = HeroEditorHelpers.ResolveCustomHeroDescription(_hero);
+
                     HasRankDescription = !string.IsNullOrEmpty(RankDescription);
                 }
 
                 else
                 {
-                    RankDescription = "";
-                    HasRankDescription = false;
+                    // Try to get custom description
+                    RankDescription = HeroEditorHelpers.ResolveCustomHeroDescription(_hero);
+                    HasRankDescription = !string.IsNullOrEmpty(RankDescription);
                 }
 
                 // Alive/Dead status
