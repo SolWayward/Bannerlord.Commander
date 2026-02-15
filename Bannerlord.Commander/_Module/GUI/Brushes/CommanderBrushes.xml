@@ -112,6 +112,24 @@
     </SoundProperties>
   </Brush>
 
+  <!-- Hero Editor Banner Hover Overlay Brush - Semi-transparent highlight on hover -->
+  <Brush Name="HeroEditor.Banner.HoverOverlay">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="BlankWhiteSquare_9" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="0" Color="#FFFFFF00" />
+      </Style>
+      <Style Name="Hovered">
+        <BrushLayer Name="Default" AlphaFactor="0.15" Color="#FFFFFFFF" />
+      </Style>
+      <Style Name="Pressed">
+        <BrushLayer Name="Default" AlphaFactor="0.08" Color="#FFFFFFFF" />
+      </Style>
+    </Styles>
+  </Brush>
+
   <!-- Hero Editor Input Field Background Brush -->
   <Brush Name="HeroEditor.Input.Background">
     <Layers>

@@ -1,8 +1,5 @@
-using System;
-using Bannerlord.GameMaster.Heroes;
+using Bannerlord.GameMaster.Information;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.Core;
 using TaleWorlds.Library;
 
 namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
@@ -21,9 +18,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         private int _partySize;
         private string _partyStatusText;
         private bool _canDisbandParty;
-        private bool _canCreateParty;
-        private bool _canLeaveParty;
-        private string _createLeaveButtonText;
+        private string _editPartyButtonText;
 
         #endregion
 
@@ -45,11 +40,12 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         public void RefreshForHero(Hero hero)
         {
             _hero = hero;
-            
+
             if (_hero != null)
             {
                 RefreshPartyInfo();
             }
+
             else
             {
                 Clear();
@@ -67,9 +63,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             PartySize = 0;
             PartyStatusText = "Not in Party";
             CanDisbandParty = false;
-            CanCreateParty = false;
-            CanLeaveParty = false;
-            CreateLeaveButtonText = "Create Party";
+            EditPartyButtonText = "Create Party";
         }
 
         #endregion
@@ -79,84 +73,55 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         /// <summary>
         /// Disbands the hero's party.
         /// Only available if the hero is the party leader.
-        /// NOTE: Party disbanding is not yet implemented in BLGM.
-        /// TODO: Request BLGM implementation for DisbandParty or RemoveParty extension method.
         /// </summary>
         public void ExecuteDisbandParty()
         {
             if (_hero == null || !CanDisbandParty)
+            {
                 return;
-            
-            // Party disbanding not yet supported - BLGM needs to implement this feature
-            InformationManager.DisplayMessage(
-                new InformationMessage("Party disbanding not yet supported - requires BLGM extension",
-                TaleWorlds.Library.Color.FromUint(4291559424u)));
+            }
+
+            // TODO: Awaiting BLGM implementation for DisbandParty
+            InfoMessage.Warning("Party disbanding not yet supported - requires BLGM extension");
         }
 
         /// <summary>
-        /// Creates a new party for the hero or leaves the current party.
-        /// Uses BLGM API's GetHomeOrAlternativeSettlement() for party creation.
-        /// </summary>
-        public void ExecuteCreateOrLeaveParty()
-        {
-            if (_hero == null)
-                return;
-            
-            try
-            {
-                if (!IsInParty)
-                {
-                    // Create a new party using BLGM API
-                    var settlement = _hero.GetHomeOrAlternativeSettlement();
-                    if (settlement != null)
-                    {
-                        _hero.CreateParty(settlement);
-                        
-                        InformationManager.DisplayMessage(
-                            new InformationMessage($"Party created for {_hero.Name} at {settlement.Name}", 
-                            TaleWorlds.Library.Color.FromUint(4282569842u)));
-                    }
-                    else
-                    {
-                        InformationManager.DisplayMessage(
-                            new InformationMessage("Could not find a suitable settlement for party creation", 
-                            TaleWorlds.Library.Color.FromUint(4291559424u)));
-                    }
-                }
-                else if (!IsPartyLeader)
-                {
-                    // Leave the current party
-                    var party = _hero.PartyBelongedTo;
-                    if (party != null && party.MemberRoster != null)
-                    {
-                        party.MemberRoster.RemoveTroop(_hero.CharacterObject, 1);
-                        
-                        InformationManager.DisplayMessage(
-                            new InformationMessage($"{_hero.Name} left the party", 
-                            TaleWorlds.Library.Color.FromUint(4282569842u)));
-                    }
-                }
-                
-                RefreshPartyInfo();
-            }
-            catch (Exception ex)
-            {
-                InformationManager.DisplayMessage(
-                    new InformationMessage($"Failed to create/leave party: {ex.Message}", 
-                    TaleWorlds.Library.Color.FromUint(4291559424u)));
-            }
-        }
-
-        /// <summary>
-        /// Opens the party editor.
+        /// Opens a party assignment dialog to add the hero to an existing party.
         /// Placeholder for future implementation.
         /// </summary>
-        public void ExecuteEditParty()
+        public void ExecuteAddHeroToParty()
         {
-            // TODO: Future implementation - party editor
-            InformationManager.DisplayMessage(
-                new InformationMessage("Party editor - Coming in a future update", 
-                TaleWorlds.Library.Color.FromUint(4282569842u)));
+            if (_hero == null)
+            {
+                return;
+            }
+
+            // TODO: Future implementation - party assignment UI
+            InfoMessage.Status("Assign Party - Coming in a future update");
+        }
+
+        /// <summary>
+        /// When the hero is in a party, opens the party editor.
+        /// When the hero is not in a party, creates a new party.
+        /// </summary>
+        public void ExecuteEditOrCreateParty()
+        {
+            if (_hero == null)
+            {
+                return;
+            }
+
+            if (IsInParty)
+            {
+                // TODO: Future implementation - party editor
+                InfoMessage.Status("Party editor - Coming in a future update");
+            }
+
+            else
+            {
+                // TODO: Awaiting BLGM implementation for CreateParty
+                InfoMessage.Status("Create Party - Coming in a future update");
+            }
         }
 
         #endregion
@@ -214,33 +179,14 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         }
 
         /// <summary>
-        /// Gets whether the Create Party button should be enabled.
+        /// Gets the text for the Edit/Create Party button.
+        /// Shows "Edit Party" when hero is in a party, "Create Party" otherwise.
         /// </summary>
         [DataSourceProperty]
-        public bool CanCreateParty
+        public string EditPartyButtonText
         {
-            get => _canCreateParty;
-            set => SetProperty(ref _canCreateParty, value, nameof(CanCreateParty));
-        }
-
-        /// <summary>
-        /// Gets whether the Leave Party button should be enabled.
-        /// </summary>
-        [DataSourceProperty]
-        public bool CanLeaveParty
-        {
-            get => _canLeaveParty;
-            set => SetProperty(ref _canLeaveParty, value, nameof(CanLeaveParty));
-        }
-
-        /// <summary>
-        /// Gets the text for the Create/Leave Party button.
-        /// </summary>
-        [DataSourceProperty]
-        public string CreateLeaveButtonText
-        {
-            get => _createLeaveButtonText;
-            set => SetProperty(ref _createLeaveButtonText, value, nameof(CreateLeaveButtonText));
+            get => _editPartyButtonText;
+            set => SetProperty(ref _editPartyButtonText, value, nameof(EditPartyButtonText));
         }
 
         #endregion
@@ -257,23 +203,24 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 Clear();
                 return;
             }
-            
+
             var party = _hero.PartyBelongedTo;
-            
+
             // Determine party membership
             IsInParty = party != null;
             IsPartyLeader = party?.LeaderHero == _hero;
-            
+
             // Get party size
             if (party != null && party.MemberRoster != null)
             {
                 PartySize = party.MemberRoster.TotalManCount;
             }
+
             else
             {
                 PartySize = 0;
             }
-            
+
             // Build status text
             if (IsInParty)
             {
@@ -281,30 +228,26 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
                 {
                     PartyStatusText = $"Leading Party ({PartySize} troops)";
                 }
+
                 else
                 {
-                    PartyStatusText = $"In Party ({PartySize} troops)";
+                    string leaderText = "Leaderless";
+
+                    if (_hero.PartyBelongedTo.LeaderHero != null)
+                        leaderText = $"{_hero.PartyBelongedTo.LeaderHero.Name}'s";
+
+                    PartyStatusText = $"In {leaderText} Party ({PartySize} troops)";
                 }
             }
+
             else
             {
                 PartyStatusText = "Not in Party";
             }
-            
+
             // Update button states
             CanDisbandParty = IsPartyLeader;
-            CanCreateParty = !IsInParty;
-            CanLeaveParty = IsInParty && !IsPartyLeader;
-            
-            // Update Create/Leave button text
-            if (IsInParty && !IsPartyLeader)
-            {
-                CreateLeaveButtonText = "Leave Party";
-            }
-            else
-            {
-                CreateLeaveButtonText = "Create Party";
-            }
+            EditPartyButtonText = IsInParty ? "Edit Party" : "Create Party";
         }
 
         #endregion
@@ -317,7 +260,9 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         private bool SetProperty(ref string field, string value, string propertyName)
         {
             if (field == value)
+            {
                 return false;
+            }
 
             field = value;
             OnPropertyChangedWithValue(value, propertyName);
@@ -330,7 +275,9 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         private bool SetProperty(ref int field, int value, string propertyName)
         {
             if (field == value)
+            {
                 return false;
+            }
 
             field = value;
             OnPropertyChanged(propertyName);
@@ -343,7 +290,9 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         private bool SetProperty(ref bool field, bool value, string propertyName)
         {
             if (field == value)
+            {
                 return false;
+            }
 
             field = value;
             OnPropertyChanged(propertyName);

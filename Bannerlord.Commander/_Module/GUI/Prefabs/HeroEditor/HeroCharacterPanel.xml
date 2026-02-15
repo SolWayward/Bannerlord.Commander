@@ -556,6 +556,7 @@
                   Brush.FontSize="13"
                   Text="Loadout:" />
                 <ButtonWidget Id="LoadoutToggleBtn" DoNotPassEventsToChildren="true"
+                  UpdateChildrenStates="true"
                   WidthSizePolicy="Fixed"
                   HeightSizePolicy="Fixed"
                   SuggestedWidth="90"

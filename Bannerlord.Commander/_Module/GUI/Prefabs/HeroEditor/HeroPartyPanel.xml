@@ -36,6 +36,7 @@
               Brush.TextHorizontalAlignment="Center"
               Text="@PartyStatusText" />
             
+            <!-- Top row: Disband + Assign Party -->
             <ListPanel Id="PartyButtonsRow" WidthSizePolicy="StretchToParent"
               HeightSizePolicy="Fixed"
               SuggestedHeight="24"
@@ -43,6 +44,7 @@
               StackLayout.LayoutMethod="HorizontalLeftToRight">
               <Children>
                 <ButtonWidget Id="DisbandPartyButton" DoNotPassEventsToChildren="true"
+                  UpdateChildrenStates="true"
                   WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
                   MarginRight="2"
@@ -61,33 +63,36 @@
                       Text="Disband" />
                   </Children>
                 </ButtonWidget>
-                <ButtonWidget Id="TogglePartyButton" DoNotPassEventsToChildren="true"
+
+                <ButtonWidget Id="AssignPartyButton" DoNotPassEventsToChildren="true"
+                  UpdateChildrenStates="true"
                   WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
                   MarginLeft="2"
-                  Command.Click="ExecuteToggleParty">
+                  Command.Click="ExecuteAddHeroToParty">
                   <Children>
-                    <BrushWidget Id="ToggleBg" WidthSizePolicy="StretchToParent"
+                    <BrushWidget Id="AssignBg" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
                       Brush="HeroEditor.Button.Standard" />
-                    <TextWidget Id="ToggleText" WidthSizePolicy="StretchToParent"
+                    <TextWidget Id="AssignText" WidthSizePolicy="StretchToParent"
                       HeightSizePolicy="StretchToParent"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       Brush="Clan.TabControl.Text"
                       Brush.FontSize="15"
-                      Text="@TogglePartyButtonText" />
+                      Text="Assign Party" />
                   </Children>
                 </ButtonWidget>
               </Children>
             </ListPanel>
             
+            <!-- Bottom row: Edit Party / Create Party (dynamic text) -->
             <ButtonWidget Id="EditPartyButton" DoNotPassEventsToChildren="true"
+              UpdateChildrenStates="true"
               WidthSizePolicy="StretchToParent"
               HeightSizePolicy="Fixed"
               SuggestedHeight="24"
-              Command.Click="ExecuteEditParty"
-              IsEnabled="@CanEditParty">
+              Command.Click="ExecuteEditOrCreateParty">
               <Children>
                 <BrushWidget Id="EditPartyBg" WidthSizePolicy="StretchToParent"
                   HeightSizePolicy="StretchToParent"
@@ -98,7 +103,7 @@
                   VerticalAlignment="Center"
                   Brush="Clan.TabControl.Text"
                   Brush.FontSize="15"
-                  Text="Edit Party" />
+                  Text="@EditPartyButtonText" />
               </Children>
             </ButtonWidget>
           </Children>

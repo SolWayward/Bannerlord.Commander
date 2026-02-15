@@ -3,6 +3,7 @@ using Bannerlord.GameMaster.Banners;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core.ViewModelCollection.ImageIdentifiers;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 
 namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
@@ -18,6 +19,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
         private Hero _hero;
         private Action _onEditorClosed;
         private BannerImageIdentifierVM _clanBanner;
+        private HintViewModel _bannerHint;
 
         #endregion
 
@@ -26,6 +28,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
         public ClanBannerPanelVM()
         {
             _clanBanner = null;
+            _bannerHint = new HintViewModel(new TaleWorlds.Localization.TextObject("Edit Banner"));
         }
 
         #endregion
@@ -109,6 +112,23 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor.Panels
                 {
                     _clanBanner = value;
                     OnPropertyChangedWithValue(value, nameof(ClanBanner));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the hint/tooltip for the banner button.
+        /// </summary>
+        [DataSourceProperty]
+        public HintViewModel BannerHint
+        {
+            get => _bannerHint;
+            private set
+            {
+                if (_bannerHint != value)
+                {
+                    _bannerHint = value;
+                    OnPropertyChangedWithValue(value, nameof(BannerHint));
                 }
             }
         }

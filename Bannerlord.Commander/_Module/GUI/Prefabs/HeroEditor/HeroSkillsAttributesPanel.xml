@@ -63,29 +63,34 @@
                       StackLayout.LayoutMethod="VerticalBottomToTop">
                       <Children>
                         
-                        <ListPanel Id="AttrHeader" WidthSizePolicy="StretchToParent"
+                        <BrushWidget Id="AttrHeaderBg" WidthSizePolicy="StretchToParent"
                           HeightSizePolicy="Fixed"
                           SuggestedHeight="26"
                           MarginBottom="2"
-                          Brush="HeroEditor.Skills.Background"
-                          StackLayout.LayoutMethod="HorizontalLeftToRight">
+                          Brush="HeroEditor.Skills.Background">
                           <Children>
-                            <TextWidget Id="AttrName" WidthSizePolicy="CoverChildren"
+                            <ListPanel Id="AttrHeader" WidthSizePolicy="StretchToParent"
                               HeightSizePolicy="StretchToParent"
-                              MarginLeft="4"
-                              VerticalAlignment="Center"
-                              Brush="Clan.TabControl.Text"
-                              Brush.FontSize="19"
-                              Text="@AttributeName" />
-                            <TextWidget Id="AttrValue" WidthSizePolicy="CoverChildren"
-                              HeightSizePolicy="StretchToParent"
-                              MarginLeft="4"
-                              VerticalAlignment="Center"
-                              Brush="Clan.TabControl.Text"
-                              Brush.FontSize="17"
-                              IntText="@AttributeValue" />
+                              StackLayout.LayoutMethod="HorizontalLeftToRight">
+                              <Children>
+                                <TextWidget Id="AttrName" WidthSizePolicy="CoverChildren"
+                                  HeightSizePolicy="StretchToParent"
+                                  MarginLeft="4"
+                                  VerticalAlignment="Center"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="19"
+                                  Text="@AttributeName" />
+                                <TextWidget Id="AttrValue" WidthSizePolicy="CoverChildren"
+                                  HeightSizePolicy="StretchToParent"
+                                  MarginLeft="4"
+                                  VerticalAlignment="Center"
+                                  Brush="Clan.TabControl.Text"
+                                  Brush.FontSize="17"
+                                  IntText="@AttributeValue" />
+                              </Children>
+                            </ListPanel>
                           </Children>
-                        </ListPanel>
+                        </BrushWidget>
                         
                         <ListPanel Id="SkillsRow" WidthSizePolicy="StretchToParent"
                           HeightSizePolicy="StretchToParent"

@@ -22,6 +22,7 @@
       Brush="HeroEditor.Section.Border" />
     
     <ButtonWidget Id="ClanBannerContainer" DoNotPassEventsToChildren="true"
+      UpdateChildrenStates="true"
       WidthSizePolicy="Fixed"
       HeightSizePolicy="Fixed"
       SuggestedWidth="100"
@@ -39,6 +40,18 @@
               AdditionalArgs="@AdditionalArgs"
               ImageId="@Id"
               TextureProviderName="@TextureProviderName" />
+            <!-- Hover overlay for visual feedback -->
+            <BrushWidget Id="BannerHoverOverlay"
+              WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="StretchToParent"
+              Brush="HeroEditor.Banner.HoverOverlay"
+              IsHitTestVisible="false" />
+            <!-- Tooltip -->
+            <HintWidget DataSource="{BannerHint}"
+              WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="StretchToParent"
+              Command.HoverBegin="ExecuteBeginHint"
+              Command.HoverEnd="ExecuteEndHint" />
       </Children>
     </ButtonWidget>
   </Children>

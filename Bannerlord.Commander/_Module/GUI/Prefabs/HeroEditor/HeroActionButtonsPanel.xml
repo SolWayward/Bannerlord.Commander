@@ -12,6 +12,7 @@
           <Children>
             <!-- Edit Appearance Button -->
             <ButtonWidget Id="EditAppearanceButton" DoNotPassEventsToChildren="true"
+              UpdateChildrenStates="true"
               WidthSizePolicy="StretchToParent"
               HeightSizePolicy="StretchToParent"
               MarginRight="2"
@@ -32,6 +33,7 @@
             </ButtonWidget>
             <!-- Open Inventory Button -->
             <ButtonWidget Id="OpenInventoryButton" DoNotPassEventsToChildren="true"
+              UpdateChildrenStates="true"
               WidthSizePolicy="StretchToParent"
               HeightSizePolicy="StretchToParent"
               MarginLeft="2"
