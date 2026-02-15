@@ -1,9 +1,9 @@
 <Prefab>
   <Window>
-    <Widget Id="HeroCreatorTypeList" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
-      MarginBottom="8">
+    <Widget Id="HeroCreatorTypeList" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+      SuggestedHeight="130" MarginBottom="8">
       <Children>
-        <ListPanel Id="TypeListLayout" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+        <ListPanel Id="TypeListLayout" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
           StackLayout.LayoutMethod="VerticalBottomToTop">
           <Children>
 
@@ -24,7 +24,7 @@
 
             <!-- Type list (fixed 4 items) -->
             <BrushWidget Id="TypeListContainer" WidthSizePolicy="StretchToParent"
-              HeightSizePolicy="CoverChildren"
+              HeightSizePolicy="StretchToParent"
               Brush="HeroEditor.Input.Background">
               <Children>
                 <!-- Borders -->
@@ -38,7 +38,7 @@
                   SuggestedWidth="1" HorizontalAlignment="Right" Brush="HeroEditor.Section.Border" />
 
                 <ListPanel Id="TypeItems" DataSource="{HeroTypes}"
-                  WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                  WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
                   MarginTop="1" MarginBottom="1" MarginLeft="1" MarginRight="1"
                   StackLayout.LayoutMethod="VerticalBottomToTop">
                   <ItemTemplate>

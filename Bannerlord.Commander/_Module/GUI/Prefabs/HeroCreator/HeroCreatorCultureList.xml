@@ -1,8 +1,9 @@
 <Prefab>
   <Window>
-    <Widget Id="HeroCreatorCultureList" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren">
+    <Widget Id="HeroCreatorCultureList" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+      SuggestedHeight="220">
       <Children>
-        <ListPanel Id="CultureListLayout" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+        <ListPanel Id="CultureListLayout" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
           StackLayout.LayoutMethod="VerticalBottomToTop">
           <Children>
 
@@ -23,7 +24,7 @@
 
             <!-- Culture list (Random + main cultures) -->
             <BrushWidget Id="CultureListContainer" WidthSizePolicy="StretchToParent"
-              HeightSizePolicy="CoverChildren"
+              HeightSizePolicy="StretchToParent"
               Brush="HeroEditor.Input.Background">
               <Children>
                 <!-- Borders -->
@@ -37,7 +38,7 @@
                   SuggestedWidth="1" HorizontalAlignment="Right" Brush="HeroEditor.Section.Border" />
 
                 <ListPanel Id="CultureItems" DataSource="{Cultures}"
-                  WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                  WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
                   MarginTop="1" MarginBottom="1" MarginLeft="1" MarginRight="1"
                   StackLayout.LayoutMethod="VerticalBottomToTop">
                   <ItemTemplate>

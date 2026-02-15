@@ -80,10 +80,13 @@
                   IsSelected="@IsMaleSelected"
                   WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent"
                   MarginRight="15"
+                  DoNotPassEventsToChildren="true" UpdateChildrenStates="true"
+                  ToggleIndicator="MaleRadioIndicator"
                   Command.Click="ExecuteSelectMale">
                   <Children>
                     <ListPanel Id="MaleRadioContent" WidthSizePolicy="CoverChildren"
                       HeightSizePolicy="StretchToParent"
+                      UpdateChildrenStates="true"
                       StackLayout.LayoutMethod="HorizontalLeftToRight">
                       <Children>
                         <!-- Radio indicator -->
@@ -105,10 +108,13 @@
                   IsSelected="@IsFemaleSelected"
                   WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent"
                   MarginRight="30"
+                  DoNotPassEventsToChildren="true" UpdateChildrenStates="true"
+                  ToggleIndicator="FemaleRadioIndicator"
                   Command.Click="ExecuteSelectFemale">
                   <Children>
                     <ListPanel Id="FemaleRadioContent" WidthSizePolicy="CoverChildren"
                       HeightSizePolicy="StretchToParent"
+                      UpdateChildrenStates="true"
                       StackLayout.LayoutMethod="HorizontalLeftToRight">
                       <Children>
                         <BrushWidget Id="FemaleRadioIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
@@ -128,16 +134,19 @@
                 <ButtonWidget Id="CreatePartyCheckbox" ButtonType="Toggle"
                   IsSelected="@CreateParty" IsEnabled="@IsCreatePartyEnabled"
                   WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent"
-                  ToggleIndicator="CreatePartyCheckIndicator" UpdateChildrenStates="true">
+                  DoNotPassEventsToChildren="true" UpdateChildrenStates="true"
+                  ToggleIndicator="CreatePartyCheckIndicator">
                   <Children>
                     <ListPanel Id="CreatePartyContent" WidthSizePolicy="CoverChildren"
                       HeightSizePolicy="StretchToParent"
+                      UpdateChildrenStates="true"
                       StackLayout.LayoutMethod="HorizontalLeftToRight">
                       <Children>
                         <!-- Checkbox indicator -->
                         <Widget Id="CheckboxContainer" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
                           SuggestedWidth="16" SuggestedHeight="16"
                           VerticalAlignment="Center" MarginRight="5"
+                          UpdateChildrenStates="true"
                           Sprite="BlankWhiteSquare_9" Color="#555555FF">
                           <Children>
                             <BrushWidget Id="CreatePartyCheckIndicator" WidthSizePolicy="StretchToParent"

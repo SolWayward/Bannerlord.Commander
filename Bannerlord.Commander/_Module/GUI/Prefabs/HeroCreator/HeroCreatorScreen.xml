@@ -9,7 +9,7 @@
 
         <!-- Centered Hero Creator Panel -->
         <BrushWidget Id="HeroCreatorPanel" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-          SuggestedWidth="540" SuggestedHeight="640"
+          SuggestedWidth="540" SuggestedHeight="720"
           HorizontalAlignment="Center" VerticalAlignment="Center"
           Brush="HeroEditor.Panel.Background">
           <Children>
@@ -52,7 +52,8 @@
                     <!-- Right: Type + Culture stacked vertically -->
                     <ListPanel Id="RightSelectionColumn" WidthSizePolicy="Fixed"
                       SuggestedWidth="170"
-                      HeightSizePolicy="StretchToParent"
+                      HeightSizePolicy="CoverChildren"
+                      VerticalAlignment="Top"
                       StackLayout.LayoutMethod="VerticalBottomToTop">
                       <Children>
                         <HeroCreatorTypeList />

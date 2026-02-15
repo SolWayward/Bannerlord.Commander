@@ -24,7 +24,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroCreator
     {
         #region Constants
 
-        private const int MaxFilteredClans = 12;
+        private const int MaxFilteredClans = 15;
 
         #endregion
 
