@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Bannerlord.Commander.UI.States;
 using Bannerlord.Commander.UI.ViewModels;
+using Bannerlord.Commander.UI.ViewModels.HeroCreator;
 using Bannerlord.GameMaster.Information;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -27,6 +28,10 @@ namespace Bannerlord.Commander.UI.Screens
         private bool _isClosing;
         private CampaignTimeControlMode _previousTimeControlMode;
         private bool _wasTimePaused;
+
+        // Hero Creator overlay layer
+        private GauntletLayer _heroCreatorLayer;
+        private HeroCreatorVM _heroCreatorVM;
 
         // Stores original hotkey bindings to restore on close
         private Dictionary<GameKey, InputKey> _originalKeyboardKeys = new();
@@ -65,9 +70,18 @@ namespace Bannerlord.Commander.UI.Screens
 
             // Handle Escape manually
             // We use Input.IsKeyPressed (Global) because layer input might be restricted
-            if (_gauntletLayer != null && Input.IsKeyPressed(InputKey.Escape))
+            if (Input.IsKeyPressed(InputKey.Escape))
             {
-                CloseScreen();
+                // If Hero Creator is open, close it (consume Escape)
+                if (_heroCreatorLayer != null)
+                {
+                    CloseHeroCreator();
+                }
+
+                else
+                {
+                    CloseScreen();
+                }
             }
         }
 
@@ -98,6 +112,7 @@ namespace Bannerlord.Commander.UI.Screens
             {
                 _viewModel = new CommanderVM();
                 _viewModel.OnCloseRequested += OnCloseRequested;
+                _viewModel.OnCreateHeroRequested += OpenHeroCreator;
             }
 
             // Always reload sprite categories — native screens (e.g. GauntletInventoryScreen)
@@ -145,6 +160,12 @@ namespace Bannerlord.Commander.UI.Screens
 
         void IGameStateListener.OnFinalize()
         {
+            // Clean up hero creator if still open
+            if (_heroCreatorLayer != null)
+            {
+                CloseHeroCreator();
+            }
+
             // Layer cleanup happens here — the only place where the layer is removed and destroyed.
             if (_gauntletLayer != null)
             {
@@ -158,6 +179,7 @@ namespace Bannerlord.Commander.UI.Screens
             if (_viewModel != null)
             {
                 _viewModel.OnCloseRequested -= OnCloseRequested;
+                _viewModel.OnCreateHeroRequested -= OpenHeroCreator;
                 _viewModel.OnFinalize();
                 _viewModel = null;
             }
@@ -175,6 +197,65 @@ namespace Bannerlord.Commander.UI.Screens
             _isClosing = true;
             ResumeGameTime();
             Game.Current.GameStateManager.PopState(0);
+        }
+
+        #endregion
+
+        #region Hero Creator Overlay
+
+        /// <summary>
+        /// Opens the Hero Creator as a second GauntletLayer overlaid on top of Commander.
+        /// Commander remains visible but loses focus/input.
+        /// </summary>
+        private void OpenHeroCreator()
+        {
+            if (_heroCreatorLayer != null) return; // Already open
+
+            _heroCreatorVM = new HeroCreatorVM();
+            _heroCreatorVM.OnCloseRequested += CloseHeroCreator;
+            _heroCreatorVM.OnHeroCreated += OnHeroCreated;
+
+            _heroCreatorLayer = new GauntletLayer("HeroCreatorLayer", 1001, false);
+            _heroCreatorLayer.LoadMovie("HeroCreatorScreen", _heroCreatorVM);
+            AddLayer(_heroCreatorLayer);
+
+            _heroCreatorLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
+            _heroCreatorLayer.IsFocusLayer = true;
+            ScreenManager.TrySetFocus(_heroCreatorLayer);
+        }
+
+        /// <summary>
+        /// Closes the Hero Creator overlay and restores focus to Commander.
+        /// </summary>
+        private void CloseHeroCreator()
+        {
+            if (_heroCreatorLayer == null) return;
+
+            _heroCreatorLayer.InputRestrictions.ResetInputRestrictions();
+            _heroCreatorLayer.IsFocusLayer = false;
+            ScreenManager.TryLoseFocus(_heroCreatorLayer);
+            RemoveLayer(_heroCreatorLayer);
+            _heroCreatorLayer = null;
+
+            // Restore focus to Commander layer
+            _gauntletLayer.IsFocusLayer = true;
+            ScreenManager.TrySetFocus(_gauntletLayer);
+
+            _heroCreatorVM.OnCloseRequested -= CloseHeroCreator;
+            _heroCreatorVM.OnHeroCreated -= OnHeroCreated;
+            _heroCreatorVM.OnFinalize();
+            _heroCreatorVM = null;
+        }
+
+        /// <summary>
+        /// Called when a hero is successfully created. Refreshes the hero list and auto-selects the new hero.
+        /// </summary>
+        private void OnHeroCreated(Hero hero)
+        {
+            // Refresh the hero list to include the new hero
+            _viewModel?.RefreshCurrentMode();
+            // TODO: Auto-select the new hero in the list after refresh completes
+            // This may require passing the hero's StringId to HeroListVM for deferred selection
         }
 
         #endregion

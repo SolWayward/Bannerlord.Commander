@@ -1,0 +1,57 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroCreatorFooter" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+      SuggestedHeight="44" MarginTop="6">
+      <Children>
+        <!-- Top border -->
+        <BrushWidget Id="FooterTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Top"
+          Brush="HeroEditor.Section.Border" />
+
+        <!-- Button row centered -->
+        <ListPanel Id="FooterButtons" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed"
+          SuggestedHeight="34"
+          HorizontalAlignment="Center" VerticalAlignment="Bottom"
+          StackLayout.LayoutMethod="HorizontalLeftToRight">
+          <Children>
+            <!-- Cancel Button -->
+            <ButtonWidget Id="CancelButton" DoNotPassEventsToChildren="true"
+              UpdateChildrenStates="true"
+              WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+              SuggestedWidth="130" MarginRight="20"
+              Command.Click="ExecuteCancel">
+              <Children>
+                <BrushWidget Id="CancelBg" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="HeroEditor.Button.Standard" />
+                <TextWidget Id="CancelText" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Brush="Clan.TabControl.Text" Brush.FontSize="16"
+                  Text="Cancel" />
+              </Children>
+            </ButtonWidget>
+
+            <!-- Create Button -->
+            <ButtonWidget Id="CreateButton" DoNotPassEventsToChildren="true"
+              UpdateChildrenStates="true"
+              WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+              SuggestedWidth="130"
+              Command.Click="ExecuteCreate">
+              <Children>
+                <BrushWidget Id="CreateBg" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="HeroEditor.Button.Standard" />
+                <TextWidget Id="CreateText" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Brush="Clan.TabControl.Text" Brush.FontSize="16"
+                  Text="Create" />
+              </Children>
+            </ButtonWidget>
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

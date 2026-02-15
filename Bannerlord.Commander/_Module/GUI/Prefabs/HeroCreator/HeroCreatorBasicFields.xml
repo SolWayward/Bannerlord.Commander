@@ -1,0 +1,202 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroCreatorBasicFields" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+      MarginBottom="8">
+      <Children>
+        <ListPanel Id="BasicFieldsLayout" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+          StackLayout.LayoutMethod="VerticalBottomToTop">
+          <Children>
+
+            <!-- Row 1: Name + Level -->
+            <ListPanel Id="NameLevelRow" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+              SuggestedHeight="30" MarginBottom="6"
+              StackLayout.LayoutMethod="HorizontalLeftToRight">
+              <Children>
+                <!-- Name Label -->
+                <TextWidget Id="NameLabel" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="50" VerticalAlignment="Center"
+                  Brush="Clan.TabControl.Text" Brush.FontSize="16"
+                  Text="Name" />
+
+                <!-- Name Input Field -->
+                <BrushWidget Id="NameInputContainer" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent" MarginRight="15"
+                  Brush="HeroEditor.Input.Background">
+                  <Children>
+                    <BrushWidget Id="NameTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="1" VerticalAlignment="Top" Brush="HeroEditor.Section.Border" />
+                    <BrushWidget Id="NameBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="1" VerticalAlignment="Bottom" Brush="HeroEditor.Section.Border" />
+                    <BrushWidget Id="NameLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                      SuggestedWidth="1" HorizontalAlignment="Left" Brush="HeroEditor.Section.Border" />
+                    <BrushWidget Id="NameRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                      SuggestedWidth="1" HorizontalAlignment="Right" Brush="HeroEditor.Section.Border" />
+
+                    <EditableTextWidget Id="NameInput" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      MarginLeft="6" MarginRight="6" MarginTop="3" MarginBottom="3"
+                      Brush="Clan.TabControl.Text" Brush.FontSize="16"
+                      Text="@HeroName" />
+                  </Children>
+                </BrushWidget>
+
+                <!-- Level Label -->
+                <TextWidget Id="LevelLabel" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="45" VerticalAlignment="Center"
+                  Brush="Clan.TabControl.Text" Brush.FontSize="16"
+                  Text="Level" />
+
+                <!-- Level Input Field -->
+                <BrushWidget Id="LevelInputContainer" WidthSizePolicy="Fixed"
+                  HeightSizePolicy="StretchToParent" SuggestedWidth="55"
+                  Brush="HeroEditor.Input.Background">
+                  <Children>
+                    <BrushWidget Id="LevelTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="1" VerticalAlignment="Top" Brush="HeroEditor.Section.Border" />
+                    <BrushWidget Id="LevelBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="1" VerticalAlignment="Bottom" Brush="HeroEditor.Section.Border" />
+                    <BrushWidget Id="LevelLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                      SuggestedWidth="1" HorizontalAlignment="Left" Brush="HeroEditor.Section.Border" />
+                    <BrushWidget Id="LevelRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                      SuggestedWidth="1" HorizontalAlignment="Right" Brush="HeroEditor.Section.Border" />
+
+                    <EditableTextWidget Id="LevelInput" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      MarginLeft="6" MarginRight="6" MarginTop="3" MarginBottom="3"
+                      Brush="Clan.TabControl.Text" Brush.FontSize="16"
+                      Text="@LevelText" />
+                  </Children>
+                </BrushWidget>
+              </Children>
+            </ListPanel>
+
+            <!-- Row 2: Gender Radio + Create Party Checkbox -->
+            <ListPanel Id="GenderPartyRow" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+              SuggestedHeight="28" MarginBottom="6"
+              StackLayout.LayoutMethod="HorizontalLeftToRight">
+              <Children>
+                <!-- Male Radio Button -->
+                <ButtonWidget Id="MaleRadioButton" ButtonType="Toggle"
+                  IsSelected="@IsMaleSelected"
+                  WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent"
+                  MarginRight="15"
+                  Command.Click="ExecuteSelectMale">
+                  <Children>
+                    <ListPanel Id="MaleRadioContent" WidthSizePolicy="CoverChildren"
+                      HeightSizePolicy="StretchToParent"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <!-- Radio indicator -->
+                        <BrushWidget Id="MaleRadioIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                          SuggestedWidth="14" SuggestedHeight="14"
+                          VerticalAlignment="Center" MarginRight="5"
+                          Brush="HeroCreator.RadioButton" />
+                        <TextWidget Id="MaleText" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent" VerticalAlignment="Center"
+                          Brush="Clan.TabControl.Text" Brush.FontSize="15"
+                          Text="Male" />
+                      </Children>
+                    </ListPanel>
+                  </Children>
+                </ButtonWidget>
+
+                <!-- Female Radio Button -->
+                <ButtonWidget Id="FemaleRadioButton" ButtonType="Toggle"
+                  IsSelected="@IsFemaleSelected"
+                  WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent"
+                  MarginRight="30"
+                  Command.Click="ExecuteSelectFemale">
+                  <Children>
+                    <ListPanel Id="FemaleRadioContent" WidthSizePolicy="CoverChildren"
+                      HeightSizePolicy="StretchToParent"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <BrushWidget Id="FemaleRadioIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                          SuggestedWidth="14" SuggestedHeight="14"
+                          VerticalAlignment="Center" MarginRight="5"
+                          Brush="HeroCreator.RadioButton" />
+                        <TextWidget Id="FemaleText" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent" VerticalAlignment="Center"
+                          Brush="Clan.TabControl.Text" Brush.FontSize="15"
+                          Text="Female" />
+                      </Children>
+                    </ListPanel>
+                  </Children>
+                </ButtonWidget>
+
+                <!-- Create Party Checkbox -->
+                <ButtonWidget Id="CreatePartyCheckbox" ButtonType="Toggle"
+                  IsSelected="@CreateParty" IsEnabled="@IsCreatePartyEnabled"
+                  WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent"
+                  ToggleIndicator="CreatePartyCheckIndicator" UpdateChildrenStates="true">
+                  <Children>
+                    <ListPanel Id="CreatePartyContent" WidthSizePolicy="CoverChildren"
+                      HeightSizePolicy="StretchToParent"
+                      StackLayout.LayoutMethod="HorizontalLeftToRight">
+                      <Children>
+                        <!-- Checkbox indicator -->
+                        <Widget Id="CheckboxContainer" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                          SuggestedWidth="16" SuggestedHeight="16"
+                          VerticalAlignment="Center" MarginRight="5"
+                          Sprite="BlankWhiteSquare_9" Color="#555555FF">
+                          <Children>
+                            <BrushWidget Id="CreatePartyCheckIndicator" WidthSizePolicy="StretchToParent"
+                              HeightSizePolicy="StretchToParent"
+                              Brush="HeroCreator.RadioButton" />
+                          </Children>
+                        </Widget>
+                        <TextWidget Id="CreatePartyText" WidthSizePolicy="CoverChildren"
+                          HeightSizePolicy="StretchToParent" VerticalAlignment="Center"
+                          Brush="Clan.TabControl.Text" Brush.FontSize="15"
+                          Text="Create Party" />
+                      </Children>
+                    </ListPanel>
+                  </Children>
+                </ButtonWidget>
+              </Children>
+            </ListPanel>
+
+            <!-- Row 3: Appearance Randomization Slider -->
+            <Widget Id="SliderRow" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+              SuggestedHeight="30" MarginBottom="4">
+              <Children>
+                <TextWidget Id="SliderLabel" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="Fixed" SuggestedHeight="14"
+                  VerticalAlignment="Top"
+                  Brush="Clan.TabControl.Text" Brush.FontSize="13"
+                  Text="Appearance Randomization" HorizontalAlignment="Center" />
+
+                <SliderWidget Id="AppearanceSlider" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="14" VerticalAlignment="Bottom"
+                  DoNotUpdateHandleSize="true"
+                  MinValueFloat="0" MaxValueFloat="1"
+                  ValueFloat="@AppearanceRandomization"
+                  Handle="SliderHandle" Filler="SliderFiller"
+                  MarginLeft="20" MarginRight="20">
+                  <Children>
+                    <!-- Slider track background -->
+                    <Widget Id="SliderTrack" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="4" VerticalAlignment="Center"
+                      Sprite="BlankWhiteSquare_9" Color="#555555FF" />
+
+                    <!-- Slider filler (left of handle) -->
+                    <Widget Id="SliderFiller" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="4" VerticalAlignment="Center"
+                      Sprite="BlankWhiteSquare_9" Color="#8B7355FF" />
+
+                    <!-- Slider handle -->
+                    <Widget Id="SliderHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                      SuggestedWidth="12" SuggestedHeight="12"
+                      VerticalAlignment="Center"
+                      Sprite="BlankWhiteSquare_9" Color="#C0A87CFF" />
+                  </Children>
+                </SliderWidget>
+              </Children>
+            </Widget>
+
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

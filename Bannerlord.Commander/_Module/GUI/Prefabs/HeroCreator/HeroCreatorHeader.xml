@@ -1,0 +1,20 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroCreatorHeader" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+      SuggestedHeight="40" MarginBottom="6">
+      <Children>
+        <!-- Title text centered -->
+        <TextWidget Id="HeaderTitleText" WidthSizePolicy="StretchToParent"
+          HeightSizePolicy="StretchToParent"
+          HorizontalAlignment="Center" VerticalAlignment="Center"
+          Brush="Clan.TabControl.Text" Brush.FontSize="22"
+          Text="Hero Creator" />
+
+        <!-- Bottom border -->
+        <BrushWidget Id="HeaderBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+          SuggestedHeight="2" VerticalAlignment="Bottom"
+          Brush="HeroEditor.Section.Border" />
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

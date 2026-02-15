@@ -153,4 +153,77 @@
       </Style>
     </Styles>
   </Brush>
+
+  <!-- Hero Creator Radio Button - Toggle indicator for gender selection -->
+  <Brush Name="HeroCreator.RadioButton">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="BlankWhiteSquare_9" />
+      <BrushLayer Name="Selected" Sprite="BlankWhiteSquare_9" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" Color="#555555FF" />
+        <BrushLayer Name="Selected" AlphaFactor="0" />
+      </Style>
+      <Style Name="Selected">
+        <BrushLayer Name="Default" AlphaFactor="0" />
+        <BrushLayer Name="Selected" AlphaFactor="1" Color="#8B7355FF" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <!-- Hero Creator Selectable List Item (for Clan, Type, Culture lists) -->
+  <Brush Name="HeroCreator.ListItem">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="BlankWhiteSquare_9" />
+      <BrushLayer Name="Selected" Sprite="BlankWhiteSquare_9" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" Color="#1E1E1EFF" />
+        <BrushLayer Name="Selected" AlphaFactor="0" />
+      </Style>
+      <Style Name="Hovered">
+        <BrushLayer Name="Default" AlphaFactor="1" Color="#2A2A2AFF" />
+        <BrushLayer Name="Selected" AlphaFactor="0" />
+      </Style>
+      <Style Name="Selected">
+        <BrushLayer Name="Default" AlphaFactor="0" />
+        <BrushLayer Name="Selected" AlphaFactor="1" Color="#453920FF" />
+      </Style>
+      <Style Name="Disabled">
+        <BrushLayer Name="Default" AlphaFactor="0.4" Color="#1E1E1EFF" />
+        <BrushLayer Name="Selected" AlphaFactor="0" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <!-- Hero Creator Special List Item (for Random and Player Clan highlight) -->
+  <Brush Name="HeroCreator.ListItem.Special">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="BlankWhiteSquare_9" />
+      <BrushLayer Name="Selected" Sprite="BlankWhiteSquare_9" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1" Color="#2A2520FF" />
+        <BrushLayer Name="Selected" AlphaFactor="0" />
+      </Style>
+      <Style Name="Hovered">
+        <BrushLayer Name="Default" AlphaFactor="1" Color="#352E25FF" />
+        <BrushLayer Name="Selected" AlphaFactor="0" />
+      </Style>
+      <Style Name="Selected">
+        <BrushLayer Name="Default" AlphaFactor="0" />
+        <BrushLayer Name="Selected" AlphaFactor="1" Color="#453920FF" />
+      </Style>
+    </Styles>
+  </Brush>
+
+  <!-- Hero Creator Section Label Text Brush -->
+  <Brush Name="HeroCreator.SectionLabel" FontSize="14" Font="montserrat">
+    <Styles>
+      <Style Name="Default" FontColor="#C0A87CFF" />
+    </Styles>
+  </Brush>
 </Brushes>

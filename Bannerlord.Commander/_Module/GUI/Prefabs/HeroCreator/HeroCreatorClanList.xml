@@ -1,0 +1,105 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroCreatorClanList" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+      MarginRight="10">
+      <Children>
+        <ListPanel Id="ClanListLayout" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+          StackLayout.LayoutMethod="VerticalBottomToTop">
+          <Children>
+
+            <!-- Filter input row -->
+            <ListPanel Id="ClanFilterRow" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+              SuggestedHeight="26" MarginBottom="4"
+              StackLayout.LayoutMethod="HorizontalLeftToRight">
+              <Children>
+                <TextWidget Id="FilterLabel" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="40" VerticalAlignment="Center"
+                  Brush="Clan.TabControl.Text" Brush.FontSize="14"
+                  Text="Filter" />
+
+                <BrushWidget Id="ClanFilterInputContainer" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="HeroEditor.Input.Background">
+                  <Children>
+                    <BrushWidget Id="ClanFilterTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="1" VerticalAlignment="Top" Brush="HeroEditor.Section.Border" />
+                    <BrushWidget Id="ClanFilterBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="1" VerticalAlignment="Bottom" Brush="HeroEditor.Section.Border" />
+                    <BrushWidget Id="ClanFilterLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                      SuggestedWidth="1" HorizontalAlignment="Left" Brush="HeroEditor.Section.Border" />
+                    <BrushWidget Id="ClanFilterRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                      SuggestedWidth="1" HorizontalAlignment="Right" Brush="HeroEditor.Section.Border" />
+
+                    <EditableTextWidget Id="ClanFilterInput" WidthSizePolicy="StretchToParent"
+                      HeightSizePolicy="StretchToParent"
+                      MarginLeft="6" MarginRight="6" MarginTop="2" MarginBottom="2"
+                      Brush="Clan.TabControl.Text" Brush.FontSize="14"
+                      Text="@ClanFilterText" />
+                  </Children>
+                </BrushWidget>
+              </Children>
+            </ListPanel>
+
+            <!-- Clan section header -->
+            <Widget Id="ClanSectionHeader" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+              SuggestedHeight="22" MarginBottom="2">
+              <Children>
+                <TextWidget Id="ClanHeaderText" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="Clan.TabControl.Text" Brush.FontSize="14"
+                  Text="Clan" />
+
+                <BrushWidget Id="ClanHeaderBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="1" VerticalAlignment="Bottom"
+                  Brush="HeroEditor.Section.Border" />
+              </Children>
+            </Widget>
+
+            <!-- Clan list (max 12 items, no scrollbar) -->
+            <BrushWidget Id="ClanListContainer" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="StretchToParent"
+              Brush="HeroEditor.Input.Background">
+              <Children>
+                <!-- Borders -->
+                <BrushWidget Id="ClanListTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="1" VerticalAlignment="Top" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="ClanListBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="1" VerticalAlignment="Bottom" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="ClanListLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="1" HorizontalAlignment="Left" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="ClanListRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="1" HorizontalAlignment="Right" Brush="HeroEditor.Section.Border" />
+
+                <ListPanel Id="ClanItems" DataSource="{FilteredClans}"
+                  WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                  MarginTop="1" MarginBottom="1" MarginLeft="1" MarginRight="1"
+                  StackLayout.LayoutMethod="VerticalBottomToTop">
+                  <ItemTemplate>
+                    <ButtonWidget Id="ClanItemButton" ButtonType="Toggle"
+                      IsSelected="@IsSelected"
+                      WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="24"
+                      DoNotPassEventsToChildren="true" UpdateChildrenStates="true"
+                      Command.Click="ExecuteSelect">
+                      <Children>
+                        <BrushWidget Id="ClanItemBg" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="HeroCreator.ListItem" />
+                        <TextWidget Id="ClanItemText" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          MarginLeft="6" VerticalAlignment="Center"
+                          Brush="Clan.TabControl.Text" Brush.FontSize="13"
+                          Text="@ClanName" />
+                      </Children>
+                    </ButtonWidget>
+                  </ItemTemplate>
+                </ListPanel>
+              </Children>
+            </BrushWidget>
+
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

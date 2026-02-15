@@ -42,9 +42,15 @@ namespace Bannerlord.Commander.UI.ViewModels
         #region Events
 
         /// <summary>
-        /// Event to notify the screen that close was requested
+        /// Event to notify the screen that close was requested.
         /// </summary>
         public event Action OnCloseRequested;
+
+        /// <summary>
+        /// Event raised when the Create Hero button is clicked.
+        /// The screen handles opening the Hero Creator overlay.
+        /// </summary>
+        public event Action OnCreateHeroRequested;
 
         #endregion
 
@@ -106,6 +112,7 @@ namespace Bannerlord.Commander.UI.ViewModels
 
             HeroesMode?.OnFinalize();
             OnCloseRequested = null;
+            OnCreateHeroRequested = null;
         }
 
         #endregion
@@ -230,7 +237,7 @@ namespace Bannerlord.Commander.UI.ViewModels
 
         public void ExecuteCreateHero()
         {
-            Bannerlord.GameMaster.Information.InfoMessage.Warning("Create Hero: Not yet implemented");
+            OnCreateHeroRequested?.Invoke();
         }
 
         public void ExecuteBatchCreate()

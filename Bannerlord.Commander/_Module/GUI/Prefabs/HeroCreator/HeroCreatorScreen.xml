@@ -1,0 +1,77 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroCreatorRoot" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+      <Children>
+
+        <!-- Semi-transparent overlay darkening Commander behind -->
+        <Widget Id="DarkOverlay" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+          Sprite="BlankWhiteSquare_9" Color="#000000AA" />
+
+        <!-- Centered Hero Creator Panel -->
+        <BrushWidget Id="HeroCreatorPanel" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+          SuggestedWidth="540" SuggestedHeight="640"
+          HorizontalAlignment="Center" VerticalAlignment="Center"
+          Brush="HeroEditor.Panel.Background">
+          <Children>
+            <!-- Panel Borders -->
+            <BrushWidget Id="PanelTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+              SuggestedHeight="2" VerticalAlignment="Top"
+              Brush="HeroEditor.Section.Border" />
+            <BrushWidget Id="PanelBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+              SuggestedHeight="2" VerticalAlignment="Bottom"
+              Brush="HeroEditor.Section.Border" />
+            <BrushWidget Id="PanelLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+              SuggestedWidth="2" HorizontalAlignment="Left"
+              Brush="HeroEditor.Section.Border" />
+            <BrushWidget Id="PanelRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+              SuggestedWidth="2" HorizontalAlignment="Right"
+              Brush="HeroEditor.Section.Border" />
+
+            <!-- Content layout -->
+            <ListPanel Id="ContentLayout" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="StretchToParent"
+              MarginTop="10" MarginBottom="10" MarginLeft="15" MarginRight="15"
+              StackLayout.LayoutMethod="VerticalBottomToTop">
+              <Children>
+
+                <!-- Header: Title bar -->
+                <HeroCreatorHeader />
+
+                <!-- Basic Fields: Name, Level, Gender, Create Party, Appearance Slider -->
+                <HeroCreatorBasicFields />
+
+                <!-- Selection Row: Clan list (left) + Type/Culture (right) -->
+                <ListPanel Id="SelectionRow" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  StackLayout.LayoutMethod="HorizontalLeftToRight">
+                  <Children>
+
+                    <!-- Left: Clan list with filter -->
+                    <HeroCreatorClanList />
+
+                    <!-- Right: Type + Culture stacked vertically -->
+                    <ListPanel Id="RightSelectionColumn" WidthSizePolicy="Fixed"
+                      SuggestedWidth="170"
+                      HeightSizePolicy="StretchToParent"
+                      StackLayout.LayoutMethod="VerticalBottomToTop">
+                      <Children>
+                        <HeroCreatorTypeList />
+                        <HeroCreatorCultureList />
+                      </Children>
+                    </ListPanel>
+
+                  </Children>
+                </ListPanel>
+
+                <!-- Footer: Cancel + Create buttons -->
+                <HeroCreatorFooter />
+
+              </Children>
+            </ListPanel>
+          </Children>
+        </BrushWidget>
+
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

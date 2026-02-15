@@ -1,0 +1,71 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroCreatorCultureList" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren">
+      <Children>
+        <ListPanel Id="CultureListLayout" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+          StackLayout.LayoutMethod="VerticalBottomToTop">
+          <Children>
+
+            <!-- Culture section header -->
+            <Widget Id="CultureSectionHeader" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+              SuggestedHeight="22" MarginBottom="2">
+              <Children>
+                <TextWidget Id="CultureHeaderText" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="Clan.TabControl.Text" Brush.FontSize="14"
+                  Text="Culture" />
+
+                <BrushWidget Id="CultureHeaderBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="1" VerticalAlignment="Bottom"
+                  Brush="HeroEditor.Section.Border" />
+              </Children>
+            </Widget>
+
+            <!-- Culture list (Random + main cultures) -->
+            <BrushWidget Id="CultureListContainer" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="CoverChildren"
+              Brush="HeroEditor.Input.Background">
+              <Children>
+                <!-- Borders -->
+                <BrushWidget Id="CultureListTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="1" VerticalAlignment="Top" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="CultureListBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="1" VerticalAlignment="Bottom" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="CultureListLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="1" HorizontalAlignment="Left" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="CultureListRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="1" HorizontalAlignment="Right" Brush="HeroEditor.Section.Border" />
+
+                <ListPanel Id="CultureItems" DataSource="{Cultures}"
+                  WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                  MarginTop="1" MarginBottom="1" MarginLeft="1" MarginRight="1"
+                  StackLayout.LayoutMethod="VerticalBottomToTop">
+                  <ItemTemplate>
+                    <ButtonWidget Id="CultureItemButton" ButtonType="Toggle"
+                      IsSelected="@IsSelected"
+                      WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="24"
+                      DoNotPassEventsToChildren="true" UpdateChildrenStates="true"
+                      Command.Click="ExecuteSelect">
+                      <Children>
+                        <BrushWidget Id="CultureItemBg" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="HeroCreator.ListItem" />
+                        <TextWidget Id="CultureItemText" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          HorizontalAlignment="Center" VerticalAlignment="Center"
+                          Brush="Clan.TabControl.Text" Brush.FontSize="13"
+                          Text="@CultureName" />
+                      </Children>
+                    </ButtonWidget>
+                  </ItemTemplate>
+                </ListPanel>
+              </Children>
+            </BrushWidget>
+
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

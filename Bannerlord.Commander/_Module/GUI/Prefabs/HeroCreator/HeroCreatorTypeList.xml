@@ -1,0 +1,72 @@
+<Prefab>
+  <Window>
+    <Widget Id="HeroCreatorTypeList" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+      MarginBottom="8">
+      <Children>
+        <ListPanel Id="TypeListLayout" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+          StackLayout.LayoutMethod="VerticalBottomToTop">
+          <Children>
+
+            <!-- Type section header -->
+            <Widget Id="TypeSectionHeader" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+              SuggestedHeight="22" MarginBottom="2">
+              <Children>
+                <TextWidget Id="TypeHeaderText" WidthSizePolicy="StretchToParent"
+                  HeightSizePolicy="StretchToParent"
+                  Brush="Clan.TabControl.Text" Brush.FontSize="14"
+                  Text="Type" />
+
+                <BrushWidget Id="TypeHeaderBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="1" VerticalAlignment="Bottom"
+                  Brush="HeroEditor.Section.Border" />
+              </Children>
+            </Widget>
+
+            <!-- Type list (fixed 4 items) -->
+            <BrushWidget Id="TypeListContainer" WidthSizePolicy="StretchToParent"
+              HeightSizePolicy="CoverChildren"
+              Brush="HeroEditor.Input.Background">
+              <Children>
+                <!-- Borders -->
+                <BrushWidget Id="TypeListTopBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="1" VerticalAlignment="Top" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="TypeListBottomBorder" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                  SuggestedHeight="1" VerticalAlignment="Bottom" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="TypeListLeftBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="1" HorizontalAlignment="Left" Brush="HeroEditor.Section.Border" />
+                <BrushWidget Id="TypeListRightBorder" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                  SuggestedWidth="1" HorizontalAlignment="Right" Brush="HeroEditor.Section.Border" />
+
+                <ListPanel Id="TypeItems" DataSource="{HeroTypes}"
+                  WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                  MarginTop="1" MarginBottom="1" MarginLeft="1" MarginRight="1"
+                  StackLayout.LayoutMethod="VerticalBottomToTop">
+                  <ItemTemplate>
+                    <ButtonWidget Id="TypeItemButton" ButtonType="Toggle"
+                      IsSelected="@IsSelected" IsEnabled="@IsEnabled"
+                      WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                      SuggestedHeight="24"
+                      DoNotPassEventsToChildren="true" UpdateChildrenStates="true"
+                      Command.Click="ExecuteSelect">
+                      <Children>
+                        <BrushWidget Id="TypeItemBg" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          Brush="HeroCreator.ListItem" />
+                        <TextWidget Id="TypeItemText" WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          HorizontalAlignment="Center" VerticalAlignment="Center"
+                          Brush="Clan.TabControl.Text" Brush.FontSize="13"
+                          Text="@TypeName" />
+                      </Children>
+                    </ButtonWidget>
+                  </ItemTemplate>
+                </ListPanel>
+              </Children>
+            </BrushWidget>
+
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>
