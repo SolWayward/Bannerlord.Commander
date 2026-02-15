@@ -77,7 +77,7 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroCreator
             CreateParty = false;
             IsCreatePartyEnabled = true;
             AppearanceRandomization = 0.5f;
-            ClanFilterText = "";
+            _clanFilterText = "";
 
             InitializeClans();
             InitializeTypes();
@@ -463,6 +463,8 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroCreator
         /// </summary>
         private void ApplyClanFilter()
         {
+            if (_allClans == null) return;
+
             FilteredClans.Clear();
             int count = 0;
             string filter = ClanFilterText?.ToLowerInvariant() ?? "";

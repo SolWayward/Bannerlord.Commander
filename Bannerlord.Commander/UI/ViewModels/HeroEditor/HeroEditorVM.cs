@@ -34,7 +34,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         private HeroSkillsVM _heroSkills;
         private HeroInventoryVM _heroInventory;
         private HeroCharacterVM _heroCharacter;
-        private ClanSelectionPopupVM _clanSelectionPopup;
 
         private bool _isVisible;
         private string _selectedHeroStringId;
@@ -62,7 +61,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
             HeroSkills = new();
             HeroInventory = new();
             HeroCharacter = new();
-            _clanSelectionPopup = new();
 
             IsVisible = false;
             SelectedHeroStringId = "";
@@ -402,16 +400,6 @@ namespace Bannerlord.Commander.UI.ViewModels.HeroEditor
         {
             get => _heroCharacter;
             private set => SetProperty(ref _heroCharacter, value, nameof(HeroCharacter));
-        }
-
-        /// <summary>
-        /// Gets the clan selection popup ViewModel.
-        /// </summary>
-        [DataSourceProperty]
-        public ClanSelectionPopupVM ClanSelectionPopup
-        {
-            get => _clanSelectionPopup;
-            private set => SetProperty(ref _clanSelectionPopup, value, nameof(ClanSelectionPopup));
         }
 
         // Pass-through properties for equipment slots to support Gauntlet's flat binding requirements
